@@ -9,6 +9,9 @@ public class cartDTO {
 	private int p_cnt;// NUMBER NOT NULL 			인원
 	private String sdate;// VARCHAR2(30) NOT NULL 	이용시작일
 	private String fdate;// VARCHAR2(30)			이용끝일
+	
+	public cartDTO() {}
+	
 	public int getC_no() {
 		return c_no;
 	}
