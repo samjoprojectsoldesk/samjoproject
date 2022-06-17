@@ -12,4 +12,6 @@ public class cartDAO {
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
 	private StringBuilder sql=null;
+	
+	
 }
