@@ -355,6 +355,10 @@ figure {
   float: right;
 }
 
+.sf-menu .bold {
+	font-weight: bold;
+}
+
 .sf-menu ul {
   box-shadow: none;
   border: transparent;
@@ -452,7 +456,7 @@ figure {
 }
 
 #fh5co-header-section {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.65);
   position: absolute;
   top: 40px;
   left: 0;
@@ -469,6 +473,98 @@ figure {
   #fh5co-header-section {
     padding: 2.4em 0;
   }
+}
+
+#fh5co-header-section .bottomMenu {
+    clear: both;
+    overflow: hidden;
+}
+#fh5co-header-section .bottomMenu .searchWrap {
+    float: left;
+    overflow: hidden;
+}
+#fh5co-header-section .bottomMenu .searchWrap .search {
+	font-family: "Roboto Slab", Arial, sans-serif;
+    border: 2px solid #f3c204;
+    background: #fff;
+}
+#fh5co-header-section .bottomMenu .searchWrap .keywords {
+    margin: 10px 0 0 10px;
+}
+#fh5co-header-section .bottomMenu .weather {
+    float: right;
+}
+#fh5co-header-section .bottomMenu .weather li{
+	font-family: "Roboto Slab", Arial, sans-serif;
+	font-weight: bold;
+}
+
+#fh5co-header-section .bottomMenu .weather li:first-child {
+	font-family: "Roboto Slab", Arial, sans-serif;
+	font-weight: bold;
+	list-style-type: none;
+    font-size: 16px;
+    margin-left: 0;
+    padding: 11px 0 11px 50px;
+}
+
+#fh5co-header-section .bottomMenu .weather li {
+	font-family: "Roboto Slab", Arial, sans-serif;
+	font-weight: bold;
+	list-style-type: none;
+    position: relative;
+    float: left;
+    padding: 15px 0 14px 50px;
+    margin-left: 15px;
+}
+
+#fh5co-header-section .bottomMenu .searchWrap .search input {
+    float: left;
+    border: 0;
+    line-height: 46px;
+    height: 46px;
+    padding: 0 10px;
+    color: #888;
+    width: 350px;
+    font-size: 15px;
+}
+#fh5co-header-section .bottomMenu .searchWrap .search a.btn {
+    float: right;
+    display: block;
+    width: 46px;
+    height: 46px;
+    background: url(../images/search.png) no-repeat center;
+    text-indent: -99999px;
+}
+
+#fh5co-header-section .bottomMenu .weather li.icon2::before {
+    background: url(/design/tour2019/img/common/weather02.png) no-repeat;
+}
+
+#fh5co-header-section .bottomMenu .weather li:first-child span {
+    font-size: 20px;
+    color: #006ed2;
+    font-weight: 600;
+    padding-right: 5px;
+}
+
+#fh5co-header-section .bottomMenu .weather li {
+	font-family: "Roboto", Arial, serif;
+	font-weight: bold;
+    position: relative;
+    float: left;
+    padding: 15px 0 14px 50px;
+    margin-left: 15px;
+}
+
+#fh5co-header-section .bottomMenu .weather li::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 45px;
+    height: 35px;
+    left: 0;
+    top: 9px;
 }
 
 .nav-header {
