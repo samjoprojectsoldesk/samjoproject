@@ -1,6 +1,8 @@
 package kr.co.samjo.cart;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class cartCont {
@@ -10,5 +12,14 @@ public class cartCont {
 		dao = new cartDAO();
 		System.out.println("-----cartCont객체 생성됨");
 	}
+
+	@RequestMapping("/cart/list.do")
+	public ModelAndView list(int c_no) {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("media/list");
+		mav.addObject("list", dao.list());
+		mav.addObject("c_no", c_no);
+		return mav;
+	}//list end
 	
 }
