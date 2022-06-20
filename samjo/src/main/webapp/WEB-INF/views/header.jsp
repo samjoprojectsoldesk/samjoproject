@@ -75,8 +75,8 @@
 			<header id="fh5co-header-section">
 				<div class="container">
 					<div class="nav-header">
-						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-						<h1 id="fh5co-logo"><a href="index.html"><i class="icon-home2"></i>여기놀자</a></h1>
+						<a href="/index.do" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+						<h1 id="fh5co-logo"><a href="index.do"><i class="icon-home2"></i>여기놀자</a></h1>
 						<!-- START #fh5co-menu-wrap -->
 						<nav id="fh5co-menu-wrap" role="navigation">
 							<ul class="sf-menu" id="fh5co-primary-menu">
@@ -114,7 +114,7 @@
 									<a class="bold" href="about.html">로그인</a>
 								</li>
 								<li>
-									<a class="bold" href="about.html">장바구니</a>
+									<a class="bold" href="/cart/list.do">장바구니</a>
 								</li>
 							</ul>
 						</nav>

@@ -43,7 +43,7 @@ public class cartDAO {
             }//end
             
         }catch (Exception e) {
-            System.out.println("카드 전체목록 실패:"+e);
+            System.out.println("카트 전체목록 실패:"+e);
         }finally {
             DBClose.close(con, pstmt, rs);
         }//end		

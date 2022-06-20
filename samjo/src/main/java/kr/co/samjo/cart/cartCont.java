@@ -14,11 +14,10 @@ public class cartCont {
 	}
 
 	@RequestMapping("/cart/list.do")
-	public ModelAndView list(int c_no) {
+	public ModelAndView list() {
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("media/list");
+		mav.setViewName("cart/list");
 		mav.addObject("list", dao.list());
-		mav.addObject("c_no", c_no);
 		return mav;
 	}//list end
 	
