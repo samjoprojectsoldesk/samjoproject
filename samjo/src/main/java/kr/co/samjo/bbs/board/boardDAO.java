@@ -31,11 +31,6 @@ public class boardDAO {//데이터베이스 관련 작업
             sql.append(" VALUES (bbs_seq.nextval, ?, ?, ?, ?, ?, (SELECT NVL(MAX(bbsno), 0)+1 FROM tb_bbs)) ");
 
             pstmt=con.prepareStatement(sql.toString());
-            pstmt.setString(1, dto.getWname());
-            pstmt.setString(2, dto.getSubject());
-            pstmt.setString(3, dto.getContent());
-            pstmt.setString(4, dto.getPasswd());
-            pstmt.setString(5, dto.getIp());
             
             cnt=pstmt.executeUpdate();
             
@@ -64,14 +59,6 @@ public class boardDAO {//데이터베이스 관련 작업
             if(rs.next()) {
                 list=new ArrayList<boardDTO>();
                 do {
-                    boardDTO dto=new boardDTO(); //한줄담기
-                    dto.setBbsno(rs.getInt("bbsno"));
-                    dto.setWname(rs.getString("wname"));
-                    dto.setSubject(rs.getString("subject"));
-                    dto.setReadcnt(rs.getInt("readcnt"));
-                    dto.setRegdt(rs.getString("regdt"));
-                    dto.setIndent(rs.getInt("indent"));
-                    list.add(dto); //list에 모으기
                 }while(rs.next());
             }//end
             
@@ -100,17 +87,6 @@ public class boardDAO {//데이터베이스 관련 작업
             
             rs=pstmt.executeQuery();
             if(rs.next()) {
-                dto=new boardDTO();
-                dto.setBbsno(rs.getInt("bbsno"));
-                dto.setWname(rs.getString("wname"));
-                dto.setSubject(rs.getString("subject"));
-                dto.setContent (rs.getString("content")); 
-                dto.setReadcnt(rs.getInt("readcnt"));
-                dto.setRegdt(rs.getString("regdt"));
-                dto.setIp(rs.getString("ip"));
-                dto.setGrpno(rs.getInt("grpno"));
-                dto.setIndent(rs.getInt("indent"));
-                dto.setAnsnum(rs.getInt("ansnum"));
             }//end
             
         }catch (Exception e) {
@@ -154,8 +130,6 @@ public class boardDAO {//데이터베이스 관련 작업
             sql.append(" WHERE bbsno=? AND passwd=? ");
             
             pstmt=con.prepareStatement(sql.toString());
-            pstmt.setInt(1, dto.getBbsno());
-            pstmt.setString(2, dto.getPasswd());
             cnt=pstmt.executeUpdate();
             
         }catch (Exception e) {
@@ -186,13 +160,6 @@ public class boardDAO {//데이터베이스 관련 작업
             sql.append(" WHERE bbsno=? AND passwd=? ");
             
             pstmt=con.prepareStatement(sql.toString());
-            pstmt.setString(1, dto.getWname());
-            pstmt.setString(2, dto.getSubject());
-            pstmt.setString(3, dto.getContent());
-            pstmt.setString(4, dto.getIp());
-            pstmt.setInt(5, dto.getBbsno());
-            pstmt.setString(6, dto.getPasswd());
-            
             cnt=pstmt.executeUpdate();
             
         }catch (Exception e) {
@@ -263,12 +230,6 @@ public class boardDAO {//데이터베이스 관련 작업
                 list=new ArrayList<boardDTO>();
                 do {
                     boardDTO dto=new boardDTO(); //한줄담기
-                    dto.setBbsno(rs.getInt("bbsno"));
-                    dto.setWname(rs.getString("wname"));
-                    dto.setSubject(rs.getString("subject"));
-                    dto.setReadcnt(rs.getInt("readcnt"));
-                    dto.setRegdt(rs.getString("regdt"));
-                    dto.setIndent(rs.getInt("indent"));
                     list.add(dto); //list에 모으기
                 }while(rs.next());
             }//end
@@ -382,12 +343,6 @@ public class boardDAO {//데이터베이스 관련 작업
             list=new ArrayList<>();
             do{
               boardDTO dto=new boardDTO();
-              dto.setBbsno(rs.getInt("bbsno"));
-              dto.setSubject(rs.getString("subject"));
-              dto.setWname(rs.getString("wname"));
-              dto.setReadcnt(rs.getInt("readcnt"));
-              dto.setRegdt(rs.getString("regdt"));
-              dto.setIndent(rs.getInt("indent"));
               list.add(dto);
             }while(rs.next());
           }//if end

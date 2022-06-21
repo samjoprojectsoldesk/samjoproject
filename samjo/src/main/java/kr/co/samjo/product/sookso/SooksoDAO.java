@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import kr.co.mymelon.media.MediaDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
