@@ -75,13 +75,11 @@
 			<header id="fh5co-header-section">
 				<div class="container">
 					<div class="nav-header">
-<<<<<<< HEAD
 						<a href="/index.do" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 						<h1 id="fh5co-logo"><a href="index.do"><i class="icon-home2"></i>여기놀자</a></h1>
-=======
 						<a href="../index.do" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 						<h1 id="fh5co-logo"><a href="../index.do"><i class="icon-home2"></i>여기놀자</a></h1>
->>>>>>> e10affe6da48e6bd4ea46af18af2ea25e75c77bc
+
 						<!-- START #fh5co-menu-wrap -->
 						<nav id="fh5co-menu-wrap" role="navigation">
 							<ul class="sf-menu" id="fh5co-primary-menu">
