@@ -30,7 +30,11 @@
     		<td>${dto.fdate}</td>
     		<td>
     			<input type="button" value="삭제" onclick="location.href='delete.do?c_no=${dto.c_no}'">
+<<<<<<< HEAD
     		</td>    		
+=======
+    		</td>
+>>>>>>> e10affe6da48e6bd4ea46af18af2ea25e75c77bc
     	</tr>
     </c:forEach>
     </table>
