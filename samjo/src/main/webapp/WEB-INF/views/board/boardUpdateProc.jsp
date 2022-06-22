@@ -10,9 +10,9 @@
 				   	<div class="container">
 				   		<div style="margin-top: 25%;">자 유 게 시 판</div>
 							<p>
-							   <a href="boardForm.jsp">[글쓰기]</a>
+							   <a href="boardForm.do">[글쓰기]</a>
 							   &nbsp;&nbsp;
-							   <a href="boardList.jsp">[글목록]</a>
+							   <a href="boardList.do">[글목록]</a>
 							</p>
 							<div class="container">
 							<%
@@ -35,7 +35,7 @@
 							    }else{
 							        out.println("<script>");
 							        out.println("    alert('게시글이 수정되었습니다');");
-							        out.println("    location.href='boardList.jsp';");//목록페이지 이동
+							        out.println("    location.href='boardList.do';");//목록페이지 이동
 							        out.println("</script>");
 							    }//if end
 							%>	

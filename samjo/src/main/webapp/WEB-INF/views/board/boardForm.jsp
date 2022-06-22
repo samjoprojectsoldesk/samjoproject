@@ -7,13 +7,13 @@
 				<div class="slides">
 				   	<div class="container">
 				   		<div style="margin-top: 25%;">자 유 게 시 판</div>
-							<p><a href="bbsList.jsp">[글목록]</a></p>
+							<p><a href="boardList.do">[글목록]</a></p>
 							<div class="container">
-								<form name="bbsfrm" id="bbsfrm" method="post" action="bbsIns.jsp" onsubmit="return bbsCheck()"><!-- myscript.js에 함수 작성함 -->
+								<form name="boardfrm" id="boardfrm" method="post" action="boardIns.jsp" onsubmit="return bbsCheck()"><!-- myscript.js에 함수 작성함 -->
 								<table class="table">
 								<tr>
 								   <th class="success">작성자</th>
-								   <td><input type="text" name="bbs_id" id="bbs_id" class="form-control" maxlength="20" required></td>
+								   <td><input type="text" name="bbs_idx" id="bbs_idx" class="form-control" maxlength="20" required></td>
 								</tr>
 								<tr>
 								   <th class="success">제목</th>

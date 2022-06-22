@@ -27,10 +27,14 @@ public class boardDAO {//데이터베이스 관련 작업
             con=dbopen.getConnection();
             
             sql=new StringBuilder();
-            sql.append(" INSERT INTO tb_bbs(bbsno, wname, subject, content, passwd, ip, grpno) ");
-            sql.append(" VALUES (bbs_seq.nextval, ?, ?, ?, ?, ?, (SELECT NVL(MAX(bbsno), 0)+1 FROM tb_bbs)) ");
+            sql.append(" INSERT INTO tb_bbs(bbs_idx, bbs_id, bbs_title, bbs_content, bbs_userip) ");
+            sql.append(" VALUES (bbs_seq2.nextval, ?, ?, ?, ?)) ");
 
             pstmt=con.prepareStatement(sql.toString());
+            pstmt.setInt(1, dto.getBbs_idx());
+            pstmt.setString(2, dto.getBbs_title());
+            pstmt.setString(3, dto.getBbs_content());
+            pstmt.setString(4, dto.getBbs_userip());
             
             cnt=pstmt.executeUpdate();
             
@@ -50,15 +54,22 @@ public class boardDAO {//데이터베이스 관련 작업
             con=dbopen.getConnection();
             
             sql=new StringBuilder();
-            sql.append(" SELECT bbsno, wname, subject, readcnt, regdt, indent ");
+            sql.append(" SELECT bbs_idx, bbs_id, bbs_title, bbs_count, bbs_date ");
             sql.append(" FROM tb_bbs ");
-            sql.append(" ORDER BY grpno DESC, ansnum ASC ");
+            sql.append(" ORDER BY bbs_date ");
             
             pstmt=con.prepareStatement(sql.toString());
             rs=pstmt.executeQuery();
             if(rs.next()) {
                 list=new ArrayList<boardDTO>();
                 do {
+                    boardDTO dto=new boardDTO(); //한줄담기
+                    dto.setBbs_idx(rs.getInt("bbs_idx"));
+                    dto.setBbs_id(rs.getString("bbs_id"));
+                    dto.setBbs_title(rs.getString("bbs_title"));
+                    dto.setBbs_count(rs.getInt("bbs_count"));
+                    dto.setBbs_date(rs.getString("bbs_date"));
+                    list.add(dto); //list에 모으기
                 }while(rs.next());
             }//end
             
@@ -72,21 +83,29 @@ public class boardDAO {//데이터베이스 관련 작업
     
     
     
-    public boardDTO read(int bbsno) {
+    public boardDTO read(int bbs_idx) {
         boardDTO dto=null;
         try {
             con=dbopen.getConnection();
             
             sql=new StringBuilder();
-            sql.append(" SELECT bbsno, wname, subject, content, readcnt, regdt, ip, grpno, indent, ansnum ");
+            sql.append(" SELECT bbs_idx, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date, bbs_userip ");
             sql.append(" FROM tb_bbs ");
-            sql.append(" WHERE bbsno=? ");
+            sql.append(" WHERE bbs_idx=? ");
             
             pstmt=con.prepareStatement(sql.toString());
-            pstmt.setInt(1, bbsno);
+            pstmt.setInt(1, bbs_idx);
             
             rs=pstmt.executeQuery();
             if(rs.next()) {
+                dto=new boardDTO();
+                dto.setBbs_content(rs.getString("bbs_content")); 
+                dto.setBbs_userip(rs.getString("bbs_userip"));
+                dto.setBbs_idx(rs.getInt("bbs_idx"));
+                dto.setBbs_id(rs.getString("bbs_id"));
+                dto.setBbs_title(rs.getString("bbs_title"));
+                dto.setBbs_count(rs.getInt("bbs_count"));
+                dto.setBbs_date(rs.getString("bbs_date"));
             }//end
             
         }catch (Exception e) {
@@ -99,17 +118,17 @@ public class boardDAO {//데이터베이스 관련 작업
     
     
     
-    public void incrementCnt(int bbsno) {
+    public void incrementCnt(int bbs_idx) {
         try {
             con=dbopen.getConnection();
             
             sql=new StringBuilder();
             sql.append(" UPDATE tb_bbs ");
-            sql.append(" SET readcnt=readcnt+1 ");
-            sql.append(" WHERE bbsno=? ");
+            sql.append(" SET bbs_count=bbs_count+1 ");
+            sql.append(" WHERE bbs_idx=? ");
             
             pstmt=con.prepareStatement(sql.toString());
-            pstmt.setInt(1, bbsno);
+            pstmt.setInt(1, bbs_idx);
             pstmt.executeUpdate();
             
         }catch (Exception e) {
@@ -127,9 +146,10 @@ public class boardDAO {//데이터베이스 관련 작업
             con=dbopen.getConnection();
             sql=new StringBuilder();
             sql.append(" DELETE FROM tb_bbs ");
-            sql.append(" WHERE bbsno=? AND passwd=? ");
+            sql.append(" WHERE bbs_idx=? ");
             
             pstmt=con.prepareStatement(sql.toString());
+            pstmt.setInt(1, dto.getBbs_idx());
             cnt=pstmt.executeUpdate();
             
         }catch (Exception e) {
@@ -153,13 +173,19 @@ public class boardDAO {//데이터베이스 관련 작업
             con=dbopen.getConnection();
             sql=new StringBuilder();
             sql.append(" UPDATE tb_bbs ");
-            sql.append(" SET wname=? ");
-            sql.append(" , subject=? ");
-            sql.append(" , content=? ");
-            sql.append(" , ip=? ");
-            sql.append(" WHERE bbsno=? AND passwd=? ");
+            sql.append(" SET bbs_id=? ");
+            sql.append(" , bbs_title=? ");
+            sql.append(" , bbs_content=? ");
+            sql.append(" , bbs_userip=? ");
+            sql.append(" WHERE bbs_idx=? ");
             
             pstmt=con.prepareStatement(sql.toString());
+            pstmt.setString(1, dto.getBbs_id());
+            pstmt.setString(2, dto.getBbs_title());
+            pstmt.setString(3, dto.getBbs_content());
+            pstmt.setString(4, dto.getBbs_userip());
+            pstmt.setInt(5, dto.getBbs_idx());
+            
             cnt=pstmt.executeUpdate();
             
         }catch (Exception e) {
@@ -203,26 +229,26 @@ public class boardDAO {//데이터베이스 관련 작업
             con=dbopen.getConnection();
             
             sql=new StringBuilder();
-            sql.append(" SELECT bbsno, wname, subject, readcnt, regdt, indent ");
+            sql.append(" SELECT bbs_idx, bbs_id, bbs_title, bbs_count, bbs_date ");
             sql.append(" FROM tb_bbs ");
             
             //검색어가 존재한다면
             if(word.length()>=1) {
                 String search="";
                 if(col.equals("subject_content")) {
-                    search+=" WHERE subject LIKE '%" + word + "%' ";
-                    search+=" OR content LIKE '%" + word + "%'";
+                    search+=" WHERE bbs_title LIKE '%" + word + "%' ";
+                    search+=" OR bbs_content LIKE '%" + word + "%'";
                 }else if(col.equals("subject")) {
-                    search+=" WHERE subject LIKE '%" + word + "%' ";
+                    search+=" WHERE bbs_title LIKE '%" + word + "%' ";
                 }else if(col.equals("content")) {
-                    search+=" WHERE content LIKE '%" + word + "%' ";
+                    search+=" WHERE bbs_content LIKE '%" + word + "%' ";
                 }else if(col.equals("wname")) {
-                    search+=" WHERE wname LIKE '%" + word + "%' ";
+                    search+=" WHERE bbs_id LIKE '%" + word + "%' ";
                 }//if end
                 sql.append(search);
             }//if end
             
-            sql.append(" ORDER BY grpno DESC, ansnum ASC ");
+            sql.append(" ORDER BY bbs_date ");
             
             pstmt=con.prepareStatement(sql.toString());
             rs=pstmt.executeQuery();
@@ -230,6 +256,11 @@ public class boardDAO {//데이터베이스 관련 작업
                 list=new ArrayList<boardDTO>();
                 do {
                     boardDTO dto=new boardDTO(); //한줄담기
+                    dto.setBbs_idx(rs.getInt("bbs_idx"));
+                    dto.setBbs_id(rs.getString("bbs_id"));
+                    dto.setBbs_title(rs.getString("bbs_title"));
+                    dto.setBbs_count(rs.getInt("bbs_count"));
+                    dto.setBbs_date(rs.getString("bbs_date"));
                     list.add(dto); //list에 모으기
                 }while(rs.next());
             }//end
@@ -256,14 +287,14 @@ public class boardDAO {//데이터베이스 관련 작업
             if(word.length()>=1) {//검색어가 존재한다면
                 String search="";
                 if(col.equals("subject_content")) {
-                    search+=" WHERE subject LIKE '%" + word + "%' ";
-                    search+=" OR content LIKE '%" + word + "%'";
+                    search+=" WHERE bbs_title LIKE '%" + word + "%' ";
+                    search+=" OR bbs_content LIKE '%" + word + "%'";
                 }else if(col.equals("subject")) {
-                    search+=" WHERE subject LIKE '%" + word + "%' ";
+                    search+=" WHERE bbs_title LIKE '%" + word + "%' ";
                 }else if(col.equals("content")) {
-                    search+=" WHERE content LIKE '%" + word + "%' ";
+                    search+=" WHERE bbs_content LIKE '%" + word + "%' ";
                 }else if(col.equals("wname")) {
-                    search+=" WHERE wname LIKE '%" + word + "%' ";
+                    search+=" WHERE bbs_id LIKE '%" + word + "%' ";
                 }//if end
                 sql.append(search);
             }//if end
@@ -301,37 +332,37 @@ public class boardDAO {//데이터베이스 관련 작업
           word = word.trim(); //검색어의 좌우 공백 제거
           
           if(word.length()==0) { //검색을 하지 않는 경우
-                sql.append(" SELECT bbsno,subject,wname,readcnt,indent,regdt, r");
-                sql.append(" FROM( SELECT bbsno,subject,wname,readcnt,indent,regdt, rownum as r");
-                sql.append("       FROM ( SELECT bbsno,subject,wname,readcnt,indent,regdt");
-                sql.append("              FROM tb_bbs");
-                sql.append("              ORDER BY grpno DESC, ansnum ASC");
-                sql.append("           )");
-                sql.append("     )");
-                sql.append(" WHERE r>=" + startRow + " AND r<=" + endRow) ;
+                sql.append(" SELECT bbs_idx,bbs_title,bbs_id,bbs_count,bbs_date, r ");
+                sql.append(" FROM( SELECT bbs_idx,bbs_title,bbs_id,bbs_count,bbs_date, rownum as r ");
+                sql.append("       FROM ( SELECT bbs_idx,bbs_title,bbs_id,bbs_count,bbs_date ");
+                sql.append("              FROM tb_bbs ");
+                sql.append("              ORDER BY bbs_date ");
+                sql.append("           ) ");
+                sql.append("     ) ");
+                sql.append(" WHERE r>=" + startRow + " AND r<= " + endRow) ;
             
           } else {            
                 //검색을 하는 경우
-                sql.append(" SELECT bbsno,subject,wname,readcnt,indent,regdt, r");
-                sql.append(" FROM( SELECT bbsno,subject,wname,readcnt,indent,regdt, rownum as r");
-                sql.append("       FROM ( SELECT bbsno,subject,wname,readcnt,indent,regdt");
+                sql.append(" SELECT bbs_idx,bbs_title,bbs_id,bbs_count,bbs_date, r");
+                sql.append(" FROM( SELECT bbs_idx,bbs_title,bbs_id,bbs_count,bbs_date, rownum as r");
+                sql.append("       FROM ( SELECT bbs_idx,bbs_title,bbs_id,bbs_count,bbs_date");
                 sql.append("              FROM tb_bbs");
                 
                 String search="";
                 if(col.equals("subject")) {
-                    search += " WHERE subject LIKE '%" + word + "%' ";
+                    search += " WHERE bbs_title LIKE '%" + word + "%' ";
                 }else if(col.equals("content")) {
-                    search += " WHERE content LIKE '%" + word + "%' ";
+                    search += " WHERE bbs_content LIKE '%" + word + "%' ";
                 }else if(col.equals("subject_content")) {
-                    search += " WHERE subject LIKE '%" + word + "%' ";
-                    search += " OR content LIKE '%" + word + "%' ";
+                    search += " WHERE bbs_title LIKE '%" + word + "%' ";
+                    search += " OR bbs_content LIKE '%" + word + "%' ";
                 }else if(col.equals("wname")) {
-                    search += " WHERE wname LIKE '%" + word + "%' ";
+                    search += " WHERE bbs_id LIKE '%" + word + "%' ";
                 }//if end
                 
                 sql.append(search);        
                 
-                sql.append("              ORDER BY grpno DESC, ansnum ASC");
+                sql.append("              ORDER BY bbs_date ");
                 sql.append("           )");
                 sql.append("     )");
                 sql.append(" WHERE r>=" + startRow + " AND r<=" + endRow) ;
@@ -343,6 +374,11 @@ public class boardDAO {//데이터베이스 관련 작업
             list=new ArrayList<>();
             do{
               boardDTO dto=new boardDTO();
+              dto.setBbs_idx(rs.getInt("bbs_idx"));
+              dto.setBbs_title(rs.getString("bbs_title"));
+              dto.setBbs_id(rs.getString("bbs_id"));
+              dto.setBbs_count(rs.getInt("bbs_count"));
+              dto.setBbs_date(rs.getString("bbs_date"));
               list.add(dto);
             }while(rs.next());
           }//if end
@@ -356,11 +392,6 @@ public class boardDAO {//데이터베이스 관련 작업
               
     }//list3() end
     
-    
-    
-    
-    
-    
-    
+ 
     
 }//class end   

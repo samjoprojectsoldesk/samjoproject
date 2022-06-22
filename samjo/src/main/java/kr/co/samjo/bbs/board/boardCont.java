@@ -12,11 +12,12 @@ public class boardCont {
 	
 	//결과확인 http://localhost:9095/list.do
 	
-	@RequestMapping("/list.do")
-	public ModelAndView list() {
+	@RequestMapping("/board/boardList.do")
+	public ModelAndView boardList() {
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("bbs/bbsList.do");//redirect : 등록한 명령어를 호출하 수 있다
+		mav.setViewName("board/boardList");
 		return mav;
 	}//home() end
+	
 	
 }//class end
