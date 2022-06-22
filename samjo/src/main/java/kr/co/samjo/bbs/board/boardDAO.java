@@ -357,10 +357,4 @@ public class boardDAO {//데이터베이스 관련 작업
     }//list3() end
     
     
-    
-    
-    
-    
-    
-    
 }//class end   
