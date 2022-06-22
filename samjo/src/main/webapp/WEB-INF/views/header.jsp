@@ -4,6 +4,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<<<<<<< HEAD
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
@@ -16,6 +17,17 @@
 <meta name="keywords"
 	content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 <meta name="author" content="FREEHTML5.CO" />
+=======
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>여기놀자</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FREEHTML5.CO" />
+>>>>>>> 0e885f2360e516d5663ab3e7a3d3b1eefa40f3a5
 
 
 <!-- 내가 추가 -->
@@ -63,6 +75,7 @@
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <link rel="shortcut icon" href="favicon.ico">
 
+<<<<<<< HEAD
 <link
 	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900'
 	rel='stylesheet' type='text/css'>
@@ -80,6 +93,23 @@
 <link rel="stylesheet" href="/css/superfish.css">
 <!-- Flexslider  -->
 <link rel="stylesheet" href="/css/flexslider.css">
+=======
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<!-- Superfish -->
+	<link rel="stylesheet" href="../css/superfish.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="../css/flexslider.css">
+
+	<link rel="stylesheet" href="../css/style.css">
+>>>>>>> 0e885f2360e516d5663ab3e7a3d3b1eefa40f3a5
 
 <link rel="stylesheet" href="/css/style.css">
 
@@ -95,6 +125,7 @@
 <body>
 	<div id="fh5co-wrapper">
 		<div id="fh5co-page">
+<<<<<<< HEAD
 			<div id="fh5co-header">
 
 				<header id="fh5co-header-section">
@@ -102,10 +133,23 @@
 					<div class="nav-header">
 						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 						<h1 id="fh5co-logo"><a href="/index.do"><i class="icon-home2"></i>여기놀자</a></h1>
+=======
+		<div id="fh5co-header">
+		
+			<header id="fh5co-header-section">
+				<div class="container">
+					<div class="nav-header">
+						<a href="/index.do" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+						<h1 id="fh5co-logo"><a href="index.do"><i class="icon-home2"></i>여기놀자</a></h1>
+						<a href="../index.do" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+						<h1 id="fh5co-logo"><a href="../index.do"><i class="icon-home2"></i>여기놀자</a></h1>
+
+>>>>>>> 0e885f2360e516d5663ab3e7a3d3b1eefa40f3a5
 						<!-- START #fh5co-menu-wrap -->
 						<nav id="fh5co-menu-wrap" role="navigation">
 							<ul class="sf-menu" id="fh5co-primary-menu">
 								<li>
+<<<<<<< HEAD
 									<a class="bold" href="#">여행지소개</a>
 									<ul class="fh5co-sub-menu">
 									 	<li><a href="/tour/tourist.do">관광지</a></li>
@@ -122,10 +166,29 @@
 									</ul>
 								</li>
 								<li>
+=======
+									<a class="bold" href="index.html">여행지소개</a>
+									<ul class="fh5co-sub-menu">
+									 	<li><a href="left-sidebar.html">관광지</a></li>
+									 	<li><a href="right-sidebar.html">문화행사</a></li>
+									</ul>
+								</li>
+								<li>
+									<a class="bold" href="work.html">예약</a>
+									<ul class="fh5co-sub-menu">
+									 	<li><a href="left-sidebar.html">숙박</a></li>
+									 	<li><a href="right-sidebar.html">교통</a></li>
+										<li><a href="#" class="fh5co-sub-ddown">맛집</a></li>
+										<li><a href="#">패키지</a></li>
+									</ul>
+								</li>
+								<li>
+>>>>>>> 0e885f2360e516d5663ab3e7a3d3b1eefa40f3a5
 									<a class="bold" href="services.html" class="fh5co-sub-ddown">커뮤니티</a>
 									 <ul class="fh5co-sub-menu">
 									 	<li><a href="left-sidebar.html">공지사항</a></li>
 									 	<li><a href="right-sidebar.html">자유게시판</a></li>
+<<<<<<< HEAD
 									</ul>
 								</li>
 								<li>
@@ -140,6 +203,22 @@
 								</li>
 								<li>
 									<a class="bold" href="about.html">장바구니</a>
+=======
+									</ul>
+								</li>
+								<li>
+									<a class="bold" href="about.html">마이페이지</a>
+									<ul class="fh5co-sub-menu">
+									 	<li><a href="left-sidebar.html">개인정보수정</a></li>
+									 	<li><a href="right-sidebar.html">예약관리</a></li>
+									</ul>
+								</li>
+								<li>
+									<a class="bold" href="about.html">로그인</a>
+								</li>
+								<li>
+									<a class="bold" href="/cart/list.do">장바구니</a>
+>>>>>>> 0e885f2360e516d5663ab3e7a3d3b1eefa40f3a5
 								</li>
 							</ul>
 						</nav>

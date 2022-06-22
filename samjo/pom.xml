@@ -45,6 +45,7 @@
 			<version>9.0.52</version>
 		</dependency>
 		
+<<<<<<< HEAD
 		<!-- https://mvnrepository.com 에서 jstl 검색 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -60,6 +61,23 @@
             <version>1.3.3</version>
         </dependency>
 		
+=======
+		<!-- json-simple 라이브러리 -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<!-- jstl -->
+		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		
+>>>>>>> 0e885f2360e516d5663ab3e7a3d3b1eefa40f3a5
 	</dependencies>
 
 	<build>
