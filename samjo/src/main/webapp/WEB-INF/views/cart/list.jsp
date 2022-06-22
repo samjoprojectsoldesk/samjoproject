@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="ssi.jsp" %>
 <%@ include file="../header.jsp"%>
 <!-- 본문 시작 template.jsp -->
 <div class="title">장바구니 목록</div>

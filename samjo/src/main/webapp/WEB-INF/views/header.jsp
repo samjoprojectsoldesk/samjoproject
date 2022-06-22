@@ -60,7 +60,6 @@
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <link rel="shortcut icon" href="favicon.ico">
-
 <link
 	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900'
 	rel='stylesheet' type='text/css'>
@@ -80,7 +79,6 @@
 <link rel="stylesheet" href="../../css/flexslider.css">
 
 <link rel="stylesheet" href="../../css/style.css">
-
 
 <!-- Modernizr JS -->
 <script src="js/modernizr-2.6.2.min.js"></script>
@@ -128,7 +126,7 @@
 											<li><a href="left-sidebar.html">개인정보수정</a></li>
 											<li><a href="right-sidebar.html">예약관리</a></li>
 										</ul></li>
-									<li><a class="bold" href="about.html">로그인</a></li>
+									<li><a class="bold" href="../member/loginForm.do">로그인</a></li>
 									<li><a class="bold" href="/cart/list.do">장바구니</a></li>
 								</ul>
 							</nav>
@@ -158,4 +156,4 @@
 
 				</header>
 			</div>
-			<!-- end:fh5co-header -->
+	<!-- end:fh5co-header -->
