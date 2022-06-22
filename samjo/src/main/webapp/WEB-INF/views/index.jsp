@@ -111,7 +111,7 @@
 									</ul>
 								</li>
 								<li>
-									<a class="bold" href="about.html">로그인</a>
+									<a class="bold" href="/member/loginForm.do">로그인</a>
 								</li>
 								<li>
 									<a class="bold" href="/cart/list.do">장바구니</a>
