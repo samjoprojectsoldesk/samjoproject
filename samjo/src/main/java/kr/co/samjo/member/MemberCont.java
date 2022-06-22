@@ -23,17 +23,4 @@ public class MemberCont {
 		return mav;
 	}//hello() end
 	
-	@RequestMapping("/member/loginForm.do", method = RequestMethod.GET)
-	public ModelAndView index() {
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/member/loginForm");
-		return mav;
-	}//hello() end
-	
-	@RequestMapping("/member/loginForm.do", method = RequestMethod.GET)
-	public ModelAndView index() {
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/member/loginForm");
-		return mav;
-	}//hello() end
 }
