@@ -10,9 +10,9 @@
 				   	<div class="container">
 				   		<div style="margin-top: 25%;">자 유 게 시 판</div>
 							<p>
-							   <a href="boardForm.jsp">[글쓰기]</a>
+							   <a href="boardForm.do">[글쓰기]</a>
 							   &nbsp;&nbsp;
-							   <a href="boardList.jsp">[글목록]</a>
+							   <a href="boardList.do">[글목록]</a>
 							</p>
 							
 							<div class="container">

@@ -8,7 +8,7 @@
 				<div class="slides">
 				   	<div class="container">
 				   		<div style="margin-top: 25%;">자 유 게 시 판</div>
-							<p><a href="boardForm.jsp">[글쓰기]</a></p>
+							<p><a href="boardForm.do">[글쓰기]</a></p>
 							 <div class="container">
 								<table class="table table-hover">
 								<thead>
@@ -38,7 +38,7 @@
 							%>
 										<tr>
 											<td style="text-align: left">		
-												<a href="bbsRead.jsp?bbs_idx=<%=dto.getBbs_idx()%>"><%=dto.getBbs_content()%></a>
+												<a href="boardRead.do?bbs_idx=<%=dto.getBbs_idx()%>"><%=dto.getBbs_content()%></a>
 							<%
 												//조회수가 10이상이면 hot이미지 출력
 												if(dto.getBbs_count()>=10){

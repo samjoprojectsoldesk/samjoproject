@@ -14,12 +14,16 @@
 		<input type="hidden" name="bbs_idx" value="<%=bbs_idx%>">
 		<table class="table">
 		<tr>
-			<th class="success">삭제하시겠습니까?</th>
-			<td><input type="password" name="yes" id="yes" required></td>
+			<th class="success">비밀번호</th>
+			<td></td>
 		</tr>
 		<tr>
 			<td colspan="2">
-			    <input type="submit" value="삭제" class="btn btn-danger">
+			    <%        if(s_mlevel==1 || s_id.equals(bbs_idx)){ %>
+            <input type="submit" value="삭제"        class="btn btn-danger"    onclick="location.href='boardDel.do?bbs_idx=<%=bbs_idx%>'">
+		<%
+        }//if end
+		%>
 			</td>
 		</tr>
 		</table>

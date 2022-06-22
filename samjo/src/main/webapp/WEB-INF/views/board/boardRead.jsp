@@ -9,9 +9,9 @@
 				   	<div class="container">
 				   		<div style="margin-top: 25%;">자 유 게 시 판</div>
 							<p>
-							   <a href="boardForm.jsp">[글쓰기]</a>
+							   <a href="boardForm.do">[글쓰기]</a>
 							   &nbsp;&nbsp;
-							   <a href="boardList.jsp">[글목록]</a>
+							   <a href="boardList.do">[글목록]</a>
 							</p>
 							
 							<div class="container">
@@ -58,8 +58,8 @@
 									</tr>		
 									</table>
 									<br>
-									<input type="button" value="수정"    class="btn btn-warning" onclick="location.href='boardUpdate.jsp?bbs_idx=<%=bbs_idx%>'">
-									<input type="button" value="삭제"    class="btn btn-danger"  onclick="location.href='boardDel.jsp?bbs_idx=<%=bbs_idx%>'">		
+									<input type="button" value="수정"    class="btn btn-warning" onclick="location.href='boardUpdate.do?bbs_idx=<%=bbs_idx%>'">
+									<input type="button" value="삭제"    class="btn btn-danger"  onclick="location.href='boardDel.do?bbs_idx=<%=bbs_idx%>'">		
 							<%
 								}//if end
 							%>
