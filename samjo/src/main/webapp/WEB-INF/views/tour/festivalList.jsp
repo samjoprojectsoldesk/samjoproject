@@ -39,6 +39,7 @@
 						<div class="desc-T">
 							<h3>${dto.t_name}</h3>
 							<span>${dto.t_addr}</span> <br> <br>
+							<span>${dto.t_cont}</span> <br> <br>
 							<ul>
 								<li>${dto.t_tel}</li>
 								<li><a class="textLink" href="${dto.t_link}"

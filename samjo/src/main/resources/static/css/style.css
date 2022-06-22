@@ -1096,7 +1096,6 @@ figure {
 	width: 50%;
 	float: right;
 	text-align: left;
-	margin-top: 10px;
 }
 
 .grid-project .desc-T ul {
@@ -1136,7 +1135,7 @@ figure {
 
 .grid-project .desc-T span {
 	font-family: "Roboto Slab", Arial, sans-serif;
-	color: rgba(0, 0, 0, 0.3);
+	color: rgba(0, 0, 0, 0.5);
 }
 
 .grid-project:hover .image img, .grid-project:focus .image img {

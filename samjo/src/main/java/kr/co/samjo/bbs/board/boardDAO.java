@@ -55,7 +55,7 @@ public class boardDAO {//데이터베이스 관련 작업
             
             sql=new StringBuilder();
             sql.append(" SELECT bbs_idx, bbs_id, bbs_title, bbs_count, bbs_date ");
-            sql.append(" FROM tb_bbs ");
+            sql.append(" FROM tb_bbs2 ");
             sql.append(" ORDER BY bbs_date ");
             
             pstmt=con.prepareStatement(sql.toString());

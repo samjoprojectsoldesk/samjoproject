@@ -196,5 +196,102 @@ public class TourCont {
 	}// read() end
 	
 
+	@RequestMapping(value = "/tour/update.do", method = RequestMethod.GET)
+	public ModelAndView updateForm(String t_cn) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("tour/updateForm");
+		TourDTO dto = dao.read(t_cn);// 수정하고자 하는 행 가져오기
+		mav.addObject("dto", dto);
+		return mav;
+	}// updateForm() end
+
+	@RequestMapping(value = "/tour/update.do", method = RequestMethod.POST)
+	public ModelAndView update(@ModelAttribute TourDTO dto, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("tour/msgView");
+
+		String basePath = req.getRealPath("/storage");
+		TourDTO oldDTO = dao.read(dto.getT_cn()); // 기존에 저장된 정보 가져오기
+		// ---------------------------------------------------------------------
+		// 파일을 수정할 것인지?
+
+		// 1)
+		MultipartFile posterMF = dto.getPosterMF();
+		if (posterMF.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
+			// 기존 파일 삭제
+			UploadSaveManager.deleteFile(basePath, oldDTO.getT_img());
+			// 신규 파일 저장
+			String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
+			dto.setT_img(poster); // 새롭게 첨부된 신규 파일명
+			
+		} else {
+			// 포스터 파일을 수정하지 않는 경우
+			dto.setT_img(oldDTO.getT_img()); // 기존에 저장된 파일명
+		} // if end
+
+			// ---------------------------------------------------------------------
+
+		int cnt = dao.update(dto);
+		if (cnt == 0) {
+			String msg = "<p>여행지 수정 실패!!</p>";
+			String img = "<img src='../images/fail.png'>";
+			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/tour/tourist.do'\\\">";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link1", link1);
+			mav.addObject("link2", link2);
+		} else {
+			String msg = "<p>여행지가 수정 되었습니다</p>";
+			String img = "<img src='../images/sound.png'>";
+			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/tour/tourist.do'\\\">";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link2", link2);
+		} // if end
+
+		return mav;
+	}// updateProc() end
+	
+	@RequestMapping(value = "/tour/delete.do", method = RequestMethod.GET)
+	public ModelAndView deleteForm(String t_cn) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("tour/deleteForm");
+		TourDTO dto = dao.read(t_cn);// 수정하고자 하는 행 가져오기
+		mav.addObject("dto", dto);
+		return mav;
+	}// deleteForm() end
+
+	@RequestMapping(value = "/tour/delete.do", method = RequestMethod.POST)
+	public ModelAndView deleteProc(String t_cn, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("tour/msgView");
+
+		// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
+		TourDTO oldDTO = dao.read(t_cn);
+
+		int cnt = dao.delete(t_cn);
+		if (cnt == 0) {
+			String msg = "<p>여행지 삭제 실패!!</p>";
+			String img = "<img src='../images/fail.png'>";
+			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+			String link2 = "<input type='button' value='음원목록' onclick=\\\\\\\"location.href='/tour/tourist.do'\\\\\\\">";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link1", link1);
+			mav.addObject("link2", link2);
+		} else {
+			String msg = "<p>여행지가 삭제되었습니다</p>";
+			String img = "<img src='../images/sound.png'>";
+			String link2 = "<input type='button' value='음원목록' onclick=\\\\\\\"location.href='/tour/tourist.do'\\\\\\\">";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link2", link2);
+			// 첨부했던 파일 삭제
+			String basePath = req.getRealPath("/storage");
+			UploadSaveManager.deleteFile(basePath, oldDTO.getT_img());
+		} // if end
+		return mav;
+	}// deleteProc() end
 
 }

@@ -225,4 +225,52 @@ public class TourDAO {
 		} // end
 		return dto;
 	}// read() end
+	
+	
+	public int update(TourDTO dto) {
+		int cnt = 0;
+		try {
+			con = dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" UPDATE tb_tour ");
+			sql.append(" SET t_name=?, t_addr=?, t_dividecn=?, t_tel=?, t_link=?, t_sche=?, t_car=?, t_img=?, t_cont=?, t_rdate=sysdate ");
+			sql.append(" WHERE t_cn=? ");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getT_name());
+			pstmt.setString(2, dto.getT_addr());
+			pstmt.setInt(3, dto.getT_dividecn());
+			pstmt.setString(4, dto.getT_tel());
+			pstmt.setString(5, dto.getT_link());
+			pstmt.setString(6, dto.getT_sche());
+			pstmt.setString(7, dto.getT_car());
+			pstmt.setString(8, dto.getT_img());
+			pstmt.setString(9, dto.getT_cont());
+			pstmt.setString(10, dto.getT_cn());
+			cnt = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("여행지 수정 실패" + e);
+		} finally {
+			DBClose.close(con, pstmt);
+		} // end
+		return cnt;
+	}// update() end
+	
+	public int delete(String t_cn) {
+		int cnt = 0;
+		try {
+			con = dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" DELETE FROM tb_tour");
+			sql.append(" WHERE t_cn=? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, t_cn);
+			cnt = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("삭제 실패" + e);
+		} finally {
+			DBClose.close(con, pstmt);
+		} // end
+		return cnt;
+	}// delete() end
 }
