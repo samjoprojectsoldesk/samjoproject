@@ -393,9 +393,4 @@ public class boardDAO {//데이터베이스 관련 작업
     }//list3() end
     
  
-    
-<<<<<<< HEAD
-}//class end   
-=======
-}//class end   
->>>>>>> c0fa964a79dfc0da31970f5fa43f15b45746fb8d
+}//class end
