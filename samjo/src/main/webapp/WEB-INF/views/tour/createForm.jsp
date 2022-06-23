@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
+<%@ include file="../header2.jsp"%>
 <!-- 본문 시작 -->
 
 <aside id="fh5co-hero-T" class="js-fullheight">
@@ -18,7 +18,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="create.do" class="tourcreate" enctype="multipart/form-data">
+		<form name="frm" method="post" action="tourcreate.do" class="tourcreate" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="t_cn">여행지코드</label> 
 				<input type="text" class="form-control" id="t_cn" name="t_cn" placeholder="T000">

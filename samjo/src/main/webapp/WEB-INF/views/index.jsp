@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -116,6 +117,11 @@
 								<li>
 									<a class="bold" href="/cart/list.do">장바구니</a>
 								</li>
+								<c:if test="${user_level == 1}">
+								<li>
+									<a class="bold" href="/admin/index.do">관리자 페이지</a>
+								</li>
+								</c:if>
 							</ul>
 						</nav>
 					</div>

@@ -1,55 +1,24 @@
-package kr.co.samjo.tour;
+package kr.co.samjo.admin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import kr.co.samjo.tour.TourDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
-public class TourDAO {
-
+public class adminDAO {
 	private DBOpen dbopen = null;
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	private StringBuilder sql = null;
 
-	public TourDAO() {
+	public adminDAO() {
 		dbopen = new DBOpen();
 	}// end
-
-	public int create(TourDTO dto) {
-		int cnt = 0;
-		try {
-			con = dbopen.getConnection(); // DB연결
-
-			sql = new StringBuilder();
-			sql.append(" INSERT INTO tb_tour(t_cn, t_name, t_addr, t_dividecn, t_tel, t_link, t_sche, t_car, t_img, t_cont, t_rdate) ");
-			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate) ");
-
-			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, dto.getT_cn());
-			pstmt.setString(2, dto.getT_name());
-			pstmt.setString(3, dto.getT_addr());
-			pstmt.setInt(4, dto.getT_dividecn());
-			pstmt.setString(5, dto.getT_tel());
-			pstmt.setString(6, dto.getT_link());
-			pstmt.setString(7, dto.getT_sche());
-			pstmt.setString(8, dto.getT_car());
-			pstmt.setString(9, dto.getT_img());
-			pstmt.setString(10, dto.getT_cont());
-			cnt = pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("여행지 등록 실패: " + e);
-		} finally {
-			DBClose.close(con, pstmt);
-		} // end
-		return cnt;
-	}// create() end
-	
 	
 	public ArrayList<TourDTO> list(int start, int end){
         ArrayList<TourDTO> list=null;
@@ -121,8 +90,7 @@ public class TourDAO {
         return cnt;
     }//totalRowCount() end
     
-
-	public ArrayList<TourDTO> list2(int start, int end) {
+    public ArrayList<TourDTO> list2(int start, int end) {
 		ArrayList<TourDTO> list=null;
         try {
             con=dbopen.getConnection();
@@ -189,89 +157,6 @@ public class TourDAO {
             DBClose.close(con, pstmt);
         }
         return cnt;
-    }//totalRowCount2() end
-	
-    
-	public TourDTO read(String t_cn) {
-		TourDTO dto = null;
-		try {
-			con = dbopen.getConnection();
-			sql = new StringBuilder();
-			sql.append(" SELECT t_cn, t_name, t_addr, t_dividecn, t_tel, t_link, t_sche, t_car, t_img, t_cont, t_rdate ");
-			sql.append(" FROM tb_tour ");
-			sql.append(" WHERE tb_tour.t_cn = ? ");
-			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, t_cn);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				dto = new TourDTO();
-				dto.setT_cn(rs.getString("t_cn"));
-				dto.setT_name(rs.getString("t_name"));
-				dto.setT_addr(rs.getString("t_addr"));
-				dto.setT_dividecn(rs.getInt("t_dividecn"));
-				dto.setT_tel(rs.getString("t_tel"));
-				dto.setT_link(rs.getString("t_link"));
-				dto.setT_sche(rs.getString("t_sche"));
-				dto.setT_car(rs.getString("t_car"));
-				dto.setT_img(rs.getString("t_img"));
-				dto.setT_cont(rs.getString("t_cont"));
-				dto.setT_rdate(rs.getString("t_rdate"));;
-				dto.setReview_content(rs.getString("review_content"));
-			} // if end
+    }//totalRowCoun2t() end
 
-		} catch (Exception e) {
-			System.out.println("상세보기실패" + e);
-		} finally {
-			DBClose.close(con, pstmt, rs);
-		} // end
-		return dto;
-	}// read() end
-	
-	
-	public int update(TourDTO dto) {
-		int cnt = 0;
-		try {
-			con = dbopen.getConnection();
-			sql = new StringBuilder();
-			sql.append(" UPDATE tb_tour ");
-			sql.append(" SET t_name=?, t_addr=?, t_dividecn=?, t_tel=?, t_link=?, t_sche=?, t_car=?, t_img=?, t_cont=?, t_rdate=sysdate ");
-			sql.append(" WHERE t_cn=? ");
-			
-			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, dto.getT_name());
-			pstmt.setString(2, dto.getT_addr());
-			pstmt.setInt(3, dto.getT_dividecn());
-			pstmt.setString(4, dto.getT_tel());
-			pstmt.setString(5, dto.getT_link());
-			pstmt.setString(6, dto.getT_sche());
-			pstmt.setString(7, dto.getT_car());
-			pstmt.setString(8, dto.getT_img());
-			pstmt.setString(9, dto.getT_cont());
-			pstmt.setString(10, dto.getT_cn());
-			cnt = pstmt.executeUpdate();
-		} catch (Exception e) {
-			System.out.println("여행지 수정 실패" + e);
-		} finally {
-			DBClose.close(con, pstmt);
-		} // end
-		return cnt;
-	}// update() end
-	
-	public int delete(String t_cn) {
-		int cnt = 0;
-		try {
-			con = dbopen.getConnection();
-			sql = new StringBuilder();
-			sql.append(" DELETE FROM tb_tour");
-			sql.append(" WHERE t_cn=? ");
-			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, t_cn);
-			cnt = pstmt.executeUpdate();
-		} catch (Exception e) {
-			System.out.println("삭제 실패" + e);
-		} finally {
-			DBClose.close(con, pstmt);
-		} // end
-		return cnt;
-	}// delete() end
 }

@@ -1,8 +1,10 @@
-package kr.co.samjo.tour;
+package kr.co.samjo.admin;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class TourDTO {
+public class adminDTO {
+	
+	/*여행지 시작*/
 	private String t_cn;
 	private String t_name;
 	private String t_addr;
@@ -14,9 +16,8 @@ public class TourDTO {
 	private String t_img;
 	private String t_cont;
 	private String t_rdate;
-	private String review_content;
 
-	public TourDTO() {
+	public adminDTO() {
 	}
 
 	private MultipartFile posterMF;
@@ -116,14 +117,7 @@ public class TourDTO {
 	public void setT_rdate(String t_rdate) {
 		this.t_rdate = t_rdate;
 	}
+	/*여행지 끝*/
 
-	public String getReview_content() {
-		return review_content;
-	}
-
-	public void setReview_content(String review_content) {
-		this.review_content = review_content;
-	}
 	
-
 }

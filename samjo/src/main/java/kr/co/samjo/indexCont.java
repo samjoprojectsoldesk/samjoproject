@@ -19,5 +19,5 @@ public class indexCont {
 		// /WEB-INF/views/index.jsp
 		mav.setViewName("index");
 		return mav;
-	}//hello() end
+	}//index() end
 }

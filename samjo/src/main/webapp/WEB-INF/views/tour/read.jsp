@@ -55,7 +55,7 @@
 			<div class="tab-pane fade" id="map" role="tabpanel"
 				aria-labelledby="map-tab"></div>
 			<div class="tab-pane fade" id="review" role="tabpanel"
-				aria-labelledby="review-tab">...</div>
+				aria-labelledby="review-tab">리뷰 추가하기</div>
 		</div>
 	</div>
 </div>
