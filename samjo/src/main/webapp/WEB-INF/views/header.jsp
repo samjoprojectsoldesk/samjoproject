@@ -119,7 +119,7 @@
 										class="fh5co-sub-ddown">커뮤니티</a>
 										<ul class="fh5co-sub-menu">
 											<li><a href="/cart/list.do">공지사항</a></li>
-											<li><a href="board/boardList.do">자유게시판</a></li>
+											<li><a href="/board/List.do">자유게시판</a></li>
 										</ul></li>
 									<li><a class="bold" href="about.html">마이페이지</a>
 										<ul class="fh5co-sub-menu">
