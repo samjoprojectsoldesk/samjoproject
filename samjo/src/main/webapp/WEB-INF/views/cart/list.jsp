@@ -2,13 +2,23 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="ssi.jsp" %>
 <%@ include file="../header.jsp"%>
 <!-- 본문 시작 template.jsp -->
-<div class="title">장바구니 목록</div>
 
-    <table>
-    
+<aside id="fh5co-hero-T" class="js-fullheight">
+	<div class="flexslider js-fullheight">
+		<div class="container">
+			<div class="slider-text-inner desc">
+				<h2
+					style="margin-top: 300px; text-align: center; font-weight: bold;"
+					class="heading-section">장바구니 목록</h2>
+			</div>
+		</div>
+	</div>
+</aside>
+
+<div class="row-read">
+    <table class="table">   
     <tr>
     	<th>번호</th>
     	<th>아이디</th>
@@ -35,5 +45,6 @@
     	</tr>
     </c:forEach>
     </table>
+</div>
 <!-- 본문 끝 -->
 <%@ include file="../footer.jsp"%>

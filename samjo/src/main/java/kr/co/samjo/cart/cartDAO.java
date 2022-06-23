@@ -9,11 +9,16 @@ import net.utility.DBClose;
 import net.utility.DBOpen;
 
 public class cartDAO {
+	
 	private DBOpen dbopen=null;
 	private Connection con=null;
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
 	private StringBuilder sql=null;
+	
+	public cartDAO() {
+		dbopen = new DBOpen();
+	}
 
 	public ArrayList<cartDTO> list(String user_id){
 		ArrayList<cartDTO> list=null;
@@ -80,6 +85,50 @@ public class cartDAO {
 		}
 		return cnt;
 	}
+	
+	public ArrayList<cartDTO> list(int start, int end) {
+		ArrayList<cartDTO> list=null;
+        try {
+            con=dbopen.getConnection();
+            sql=new StringBuilder();
+           
+            sql.append(" SELECT AA.* ");
+            sql.append(" FROM ( ");
+            sql.append("        SELECT ROWNUM as RNUM, BB.* ");
+            sql.append("        FROM ( ");
+            sql.append("               SELECT c_no, user_id, s_code, cnt, p_cnt, sdate, fdate ");
+            sql.append("               FROM tb_cart ");
+            sql.append("               ORDER BY t_cn DESC ");
+            sql.append("             )BB ");
+            sql.append("      ) AA ");
+            sql.append(" WHERE AA.RNUM >=? AND AA.RNUM<=? ");           
+           
+            pstmt=con.prepareStatement(sql.toString());
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, end);
+           
+            rs=pstmt.executeQuery();
+            if(rs.next()) {
+                list=new ArrayList<cartDTO>();
+                do{
+                	cartDTO dto=new cartDTO();
+                	dto.setC_no(rs.getInt("c_no"));
+                	dto.setUser_id(rs.getString("user_id"));
+                	dto.setCnt(rs.getInt("cng"));
+                	dto.setP_cnt(rs.getInt("p_cnt"));
+                	dto.setSdate(rs.getString("sdate"));
+                	dto.setFdate(rs.getString("fdate"));
+                    list.add(dto);
+                }while(rs.next());
+            }//if end
+
+		} catch (Exception e) {
+			System.out.println("카트 전체 목록 실패: " + e);
+		} finally {
+			DBClose.close(con, pstmt, rs);
+		} // end
+		return list;
+	}// list2() end
 
 	public int delete(int c_no) {
 		int cnt=0;
@@ -101,4 +150,25 @@ public class cartDAO {
 		
 		return cnt;
 	}	
+	
+	public int totalRowCount() {
+        int cnt=0;
+        try {
+			con = dbopen.getConnection(); // DB연결
+			
+            sql=new StringBuilder();
+            sql.append(" SELECT COUNT(*) FROM tb_cart ");
+            
+            pstmt=con.prepareStatement(sql.toString());
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                cnt=rs.getInt(1);
+            }//if end
+        }catch(Exception e){
+            System.out.println("전체 카트 갯수:" + e);
+        }finally{
+            DBClose.close(con, pstmt);
+        }
+        return cnt;
+    }//totalRowCount() end
 }
