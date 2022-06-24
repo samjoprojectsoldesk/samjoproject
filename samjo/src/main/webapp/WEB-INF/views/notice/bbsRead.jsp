@@ -21,13 +21,17 @@
 		<table>
 			<tr>
 				<th>제목 : ${dto.board_title}</th>
+<<<<<<< HEAD
 			</tr>		
 			<tr>
 				<th>내용 : ${dto.board_content}</th>
+=======
+>>>>>>> 3957b23ec365f815f7bb8479c9def54925c2214e
 			</tr>
 			<tr>
 				<th>조회수 : ${dto.board_readcnt}</th>
 			</tr>
+<<<<<<< HEAD
 			
 			<!-- 삭제, 수정, 목록 버튼 -->
 			<tr>
@@ -38,6 +42,10 @@
 					<button type="button" class="btn btn-secondary" onclick="location.href='/notice/bbsList.do'">목록</button>
 				</div>			
 			</td>
+=======
+			<tr>
+				<th>내용 : ${dto.board_content}</th>
+>>>>>>> 3957b23ec365f815f7bb8479c9def54925c2214e
 			</tr>
 		</table>
 	</div>

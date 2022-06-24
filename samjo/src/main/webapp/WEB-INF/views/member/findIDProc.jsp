@@ -4,7 +4,16 @@
 <%@ include file="../header.jsp" %>
 <!-- 본문시작 findIDProc.jsp -->
 <div class="container">
-	<h3>* 아이디/비번 찾기* </h3>
+<aside id="fh5co-hero" class="js-fullheight">
+	<div class="flexslider js-fullheight">
+		<div class="container">
+			<div class="slider-text-inner desc">
+				<h2
+					style="margin-top: 300px; text-align: center; font-weight: bold;"
+					class="heading-section">아이디/비번찾기</h2>
+			</div>
+		</div>
+	</div>
 <%
 	String mname=request.getParameter("mname").trim();
 	String email=request.getParameter("email").trim();//여기 수정했음
@@ -21,7 +30,7 @@
 		message += "임시 비밀번호는 로그인 후 회원정보수정에서 수정하시기 바랍니다";
 		out.println("<script>");
 		out.println("	alert('" + message + "');");
-		out.println("	location.href='loginForm.jsp'");
+		out.println("	location.href='loginForm.do'");
 		out.println("</script>");
 	}//if end
 	
