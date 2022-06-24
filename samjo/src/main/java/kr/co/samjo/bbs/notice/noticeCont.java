@@ -44,10 +44,6 @@ public class noticeCont {
 		mav.setViewName("notice/msgView");
 		
 		int cnt = dao.create(dto);
-<<<<<<< HEAD
-
-=======
->>>>>>> 3957b23ec365f815f7bb8479c9def54925c2214e
 		if (cnt == 0) {
 			String msg = "<p>공지사항 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";
