@@ -29,7 +29,7 @@
     <c:forEach var="dto" items="${list}">
         <tr>
         <td>${dto.bbs_idx}</td>
-        <td><a href="board/boardread.do?bbs_idx=${dto.bbs_idx}">${dto.bbs_title}</a></td>
+        <td><a href="boardread.do?bbs_idx=${dto.bbs_idx}">${dto.bbs_title}</a></td>
         <td>${dto.bbs_id}</td>
         <td>${dto.bbs_date}</td>
         <td>${dto.bbs_count}</td>

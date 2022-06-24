@@ -39,7 +39,7 @@ public class noticeCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/msgView");
 		
-		int cnt = dao.bbsInsProc(dto);
+		int cnt = dao.create(dto);
 		if (cnt == 0) {
 			String msg = "<p>공지사항 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";

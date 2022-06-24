@@ -27,17 +27,16 @@ public class boardDAO {
 
 			sql = new StringBuilder();
 			sql.append(" INSERT INTO tb_bbs2(bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date) ");
-			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, sysdate) ");
+			sql.append(" VALUES(bbs_seq2.nextval, ?, ?, ?, ?, ?, ?, ?, sysdate) ");
 
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setInt(1, dto.getBbs_idx());
-			pstmt.setString(2, dto.getBbs_img());
-			pstmt.setString(3, dto.getBbs_img2());
-			pstmt.setString(4, dto.getBbs_img3());
-			pstmt.setString(5, dto.getBbs_id());
-			pstmt.setString(6, dto.getBbs_title());
-			pstmt.setString(7, dto.getBbs_content());
-			pstmt.setInt(8, dto.getBbs_count());
+			pstmt.setString(1, dto.getBbs_img());
+			pstmt.setString(2, dto.getBbs_img2());
+			pstmt.setString(3, dto.getBbs_img3());
+			pstmt.setString(4, dto.getBbs_id());
+			pstmt.setString(5, dto.getBbs_title());
+			pstmt.setString(6, dto.getBbs_content());
+			pstmt.setInt(7, dto.getBbs_count());
 			cnt = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -122,7 +121,7 @@ public class boardDAO {
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
-			sql.append(" SELECT bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_userip, bbs_date ");
+			sql.append(" SELECT bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
 			sql.append(" FROM tb_bbs2 ");
 			sql.append(" WHERE bbs_idx = ? ");
 			pstmt = con.prepareStatement(sql.toString());
@@ -139,7 +138,6 @@ public class boardDAO {
 				dto.setBbs_content(rs.getString("bbs_content"));
 				dto.setBbs_count(rs.getInt("bbs_count"));
 				dto.setBbs_date(rs.getString("bbs_date"));
-				dto.setBbs_userip(rs.getString("bbs_userip"));
 			} // if end
 
 		} catch (Exception e) {
