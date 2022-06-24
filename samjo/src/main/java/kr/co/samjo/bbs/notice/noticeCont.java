@@ -39,12 +39,14 @@ public class noticeCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/msgView");
 		
-		int cnt = dao.bbsInsProc(dto);
+		int cnt = dao.create(dto);
+		System.out.println(dto.toString());
+		
 		if (cnt == 0) {
 			String msg = "<p>공지사항 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"notice/bbsList.do\"'>";
+			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"bbsList.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -52,8 +54,8 @@ public class noticeCont {
 		} else {
 			String msg = "<p>공지사항 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link1 = "<input type='button' value='계속등록' onclick='location.href=\"notice/bbsIns.do\"'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"notice/bbsList.do\"'>";
+			String link1 = "<input type='button' value='계속등록' onclick='location.href=\"bbsIns.do\"'>";
+			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"bbsList.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);

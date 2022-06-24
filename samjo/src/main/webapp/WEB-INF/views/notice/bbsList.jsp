@@ -39,8 +39,19 @@
                     <th class="board_readcnt">조회수</th>
                 </tr>
             </thead>
+            <thead>
+            	<c:forEach var="dto" items="${list }">
+            	<tr>
+            		<th>${dto.board_no }</th>
+            		<th><a href="bbsRead.do?board_no=${dto.board_no}">${dto.board_title }</a></th>
+            		<th>${dto.board_date }</th>
+            		<th>${dto.board_readcnt }</th>
+            	</tr>
+            	</c:forEach>
+            </thead>
     </table>
     </div>
+    
    
    	<!-- 페이지 리스트 -->
 	<div class="paging">

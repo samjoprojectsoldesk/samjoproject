@@ -30,14 +30,14 @@ public class noticeDAO {//데이터베이스 관련 작업
             
             sql=new StringBuilder();
             sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date, board_readcnt) ");
-            sql.append(" VALUES (bbs_seq.nextval, ?, ?, ?, ?, ?, (SELECT NVL(MAX(board_no), 0)+1 FROM tb_board)) ");
+            sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate, (SELECT NVL(MAX(board_no), 0)+1 FROM tb_board)) ");
+            
+            System.out.println(dto.getBoard_title());
+            System.out.println(dto.getBoard_content());
 
             pstmt=con.prepareStatement(sql.toString());
-            pstmt.setInt(1, dto.getBoard_no());
-            pstmt.setString(2, dto.getBoard_title());
-            pstmt.setString(3, dto.getBoard_content());
-            pstmt.setString(4, dto.getBoard_date());
-            pstmt.setInt(5, dto.getBoard_readcnt());
+            pstmt.setString(1, dto.getBoard_title());
+            pstmt.setString(2, dto.getBoard_content());
             
             cnt=pstmt.executeUpdate();
             
@@ -62,8 +62,7 @@ public class noticeDAO {//데이터베이스 관련 작업
             sql.append("        SELECT ROWNUM as RNUM, BB.* ");
             sql.append("        FROM ( ");
             sql.append("               SELECT board_no, board_title, board_content, board_date, board_readcnt ");
-            sql.append("               FROM tb_tb_board ");
-            sql.append(" 			   WHERE t_dividecn = 1 ");
+            sql.append("               FROM tb_board ");
             sql.append("               ORDER BY board_no DESC ");
             sql.append("             )BB ");
             sql.append("      ) AA ");
@@ -184,7 +183,7 @@ public class noticeDAO {//데이터베이스 관련 작업
         try {
             con=dbopen.getConnection();
             sql=new StringBuilder();
-            sql.append(" SELECT COUNT(*) FROM tb_board WHERE t_dividecn = 1 ");
+            sql.append(" SELECT COUNT(*) FROM tb_board ");
             pstmt=con.prepareStatement(sql.toString());
             rs=pstmt.executeQuery();
             if(rs.next()){
