@@ -5,13 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-=======
->>>>>>> 3957b23ec365f815f7bb8479c9def54925c2214e
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
@@ -35,15 +32,9 @@ public class noticeDAO {//데이터베이스 관련 작업
             con=dbopen.getConnection();
             
             sql=new StringBuilder();
-<<<<<<< HEAD
 
             sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date, board_readcnt) ");
             sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate, (SELECT NVL(MAX(board_no), 0)+1 FROM tb_board) ) ");
-=======
-            sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date) ");
-            sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate ) ");
-
->>>>>>> 3957b23ec365f815f7bb8479c9def54925c2214e
 
             pstmt=con.prepareStatement(sql.toString());
             pstmt.setString(1, dto.getBoard_title());
