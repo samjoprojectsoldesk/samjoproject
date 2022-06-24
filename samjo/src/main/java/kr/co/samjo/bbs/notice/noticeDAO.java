@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import kr.co.samjo.tour.TourDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
@@ -18,7 +17,7 @@ public class noticeDAO {//데이터베이스 관련 작업
     private StringBuilder sql=null;
     
     public noticeDAO() {
-        dbopen=new DBOpen();    
+        dbopen=new DBOpen();
     }//end
 
     
