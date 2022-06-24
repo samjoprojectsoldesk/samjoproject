@@ -16,13 +16,16 @@
 		<td><textarea rows="5" class="form-control" name="content" id="content"></textarea></td>
 	</tr>
 	<tr>
+		<!-- 공지사항 등록 -->	
 		<td colspan="2" align="center">
-			<input type="submit" value="쓰기" class="btn btn-success">
-			<input type="reset" value="취소" class="btn btn-danger">
+			<div class='bottom'>
+				<button type="submit" class="btn btn-primary">등록</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='/notice/noticeList.do'">목록</button>
+			</div>
+			
 		</td>
 	</tr>
 	</table>
-	</form>
 </div>
 
 <!-- 본문끝 -->

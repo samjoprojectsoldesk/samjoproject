@@ -28,6 +28,7 @@
     </form>
 </div>
 <!-- 검색 끝 -->
+
     <div class="noticeList">
     <table class="table table-hover">
             <thead>
@@ -67,6 +68,13 @@
 			</div>
 		</c:if>
 	</div>
+<!-- 공지사항 작성 -->	
+<div class="content">
+        <input type="button" value="작성" onclick="location.href='bbsIns.do'">
+</div>	
+
+
+	
 	</aside>
 </body>
 </html>
