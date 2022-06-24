@@ -64,6 +64,12 @@ public class MemberCont {
 		return mav;
 	}//memberModify() end
 	
+	@RequestMapping("/member/findIDProc.do")
+	public ModelAndView findIDProc() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/member/findIDProc");
+		return mav;
+	}//findIDProc() end
 	
 	
 	

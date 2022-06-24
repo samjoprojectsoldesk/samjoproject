@@ -3,8 +3,18 @@
 <%@ include file="../header.jsp" %>
 <!-- 본문시작 findID.jsp -->
 <div class="container">
-	<h3>* 아이디/비번 찾기* </h3>
-	<form method="post" action="findIDProc.jsp" onsubmit="return findIDCheck()"><!-- myscript.js -->>
+<aside id="fh5co-hero" class="js-fullheight">
+	<div class="flexslider js-fullheight">
+		<div class="container">
+			<div class="slider-text-inner desc">
+				<h2
+					style="margin-top: 300px; text-align: center; font-weight: bold;"
+					class="heading-section">아이디/비번찾기</h2>
+			</div>
+		</div>
+	</div>
+	
+	<form method="post" action="findIDProc.do" onsubmit="return findIDCheck()"><!-- myscript.js -->>
 	<table class="table">
 	<tr>
 	   <th>이름</th>
@@ -21,7 +31,7 @@
 	<tr>
 		<td colspan="2">
 			<input type="submit" value="아이디/비번찾기"  class="btn btn-primary"/>
-			<input type="reset"  value="취소"  class="btn btn-primary"/>
+			<input type="reset"  value="취소"  class="btn btn-primary" onclick="javascript:history.back()"/>
 		</td>
 	</tr>
 	</table>
