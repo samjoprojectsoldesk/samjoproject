@@ -4,7 +4,7 @@
 <!-- 본문시작 bbsIns.jsp -->
 <p><a href="bbsList.do">[글목록]</a></p>
 <div class="container">
-	<form name="bbsIns" id="bbsIns" method="post" action="bbsIns.do" enctype="multipart/form-data"><!-- ★myscript.js에 함수 작성함 -->><
+	<form name="bbsIns" id="bbsIns" method="post" action="bbsIns.do" onsubmit="return bbsCheck()"><!-- ★myscript.js에 함수 작성함 -->
 	<table class="table">
 	<tr>
 		<th class="success">제목</th>
@@ -19,7 +19,7 @@
 		<td colspan="2" align="center">
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">등록</button>
-				<button type="button" class="btn btn-secondary" onclick="location.href='noticeList.do'">목록</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='bbsList.do'">목록</button>
 			</div>
 			
 		</td>

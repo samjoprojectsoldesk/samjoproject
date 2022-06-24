@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import net.utility.UploadSaveManager;
 
 
 
@@ -24,8 +27,7 @@ public class noticeCont {
 	}// end
 	
 	
-
-	
+//bbsIns
 	@RequestMapping(value = "notice/bbsIns.do", method = RequestMethod.GET)
 	public ModelAndView bbsIns() {
 		ModelAndView mav = new ModelAndView();
@@ -33,15 +35,16 @@ public class noticeCont {
 		return mav; 
 	}//bbsIns() end
 	
+
 	
+// bbsInsProc
 	@RequestMapping(value = "notice/bbsIns.do", method = RequestMethod.POST)
 	public ModelAndView bbsIns(@ModelAttribute noticeDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/msgView");
 		
 		int cnt = dao.create(dto);
-		System.out.println(dto.toString());
-		
+
 		if (cnt == 0) {
 			String msg = "<p>공지사항 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";
@@ -66,6 +69,7 @@ public class noticeCont {
 	
 	
 	
+//List	
 	@RequestMapping("notice/bbsList.do")
     public ModelAndView bbsList(HttpServletRequest req) {
         ModelAndView mav=new ModelAndView();
@@ -119,7 +123,9 @@ public class noticeCont {
         return mav;
     }//list() end
 
+
 	
+//Read	
 	@RequestMapping("notice/bbsRead.do")
 	public ModelAndView bbsRead(int board_no) {
 		ModelAndView mav = new ModelAndView();
@@ -129,17 +135,9 @@ public class noticeCont {
 		return mav;
 	}// read() end
 	
-	
-	@RequestMapping(value = "/notice/bbsUpdate.do", method = RequestMethod.GET)
-	public ModelAndView bbsUpdate(int board_no) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("notice/bbsUpdate");
-		noticeDTO dto = dao.read(board_no);// 수정하고자 하는 행 가져오기
-		mav.addObject("dto", dto);
-		return mav;
-	}// updateForm() end
-	
-	
+
+		
+//Delete	
 	@RequestMapping(value = "/notice/bbsDelete.do", method = RequestMethod.GET)
 	public ModelAndView bbsDelete(int board_no) {
 		ModelAndView mav = new ModelAndView();
@@ -149,11 +147,13 @@ public class noticeCont {
 		return mav;
 	}// deleteForm() end
 	
+
 	
+//DeleteProc	
 	@RequestMapping(value = "/notice/bbsDelete.do", method = RequestMethod.POST)
 	public ModelAndView bbsDeleteProc(int board_no, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("notice/bbsDelete");
+		mav.setViewName("notice/msgView");
 
 		// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
 		noticeDTO oldDTO = dao.read(board_no);
@@ -163,7 +163,7 @@ public class noticeCont {
 			String msg = "<p>공지사항 삭제 실패!!</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick=\\\\\\\"location.href='/notice/noticeList.do'\\\\\\\">";
+			String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../notice/bbsList.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -171,12 +171,64 @@ public class noticeCont {
 		} else {
 			String msg = "<p>공지사항이 삭제되었습니다</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick=\\\\\\\"location.href='/notice/noticeList.do'\\\\\\\">";
+			String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../notice/bbsList.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
 		} // if end
 		return mav;
 	}// deleteProc() end
+	
+	
+	
+//Update	
+		@RequestMapping(value = "/notice/bbsUpdate.do", method = RequestMethod.GET)
+		public ModelAndView bbsUpdate(int board_no) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("notice/bbsUpdate");
+			noticeDTO dto = dao.read(board_no);// 수정하고자 하는 행 가져오기
+			mav.addObject("dto", dto);
+			return mav;
+		}// updateForm() end
+		
+	
+		
+//UpdateProc
+				@RequestMapping(value = "/notice/bbsUpdate.do", method = RequestMethod.POST)
+				public ModelAndView updateProc(@ModelAttribute int board_no, noticeDTO dto, HttpServletRequest req) {
+					ModelAndView mav=new ModelAndView();
+					mav.setViewName("notice/msgView");
+					
+					String basePath=req.getRealPath("/storage");
+					noticeDTO oldDTO = dao.read(board_no);
+						
+			        
+					int cnt = dao.delete(board_no);
+					if (cnt == 0) {
+						String msg = "<p>공지사항 수정 실패!!</p>";
+						String img = "<img src='../images/fail.png'>";
+						String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+						String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../notice/bbsList.do'\">";
+						mav.addObject("msg", msg);
+						mav.addObject("img", img);
+						mav.addObject("link1", link1);
+						mav.addObject("link2", link2);
+					} else {
+						String msg = "<p>공지사항이 수정되었습니다</p>";
+						String img = "<img src='../images/sound.png'>";
+						String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../notice/bbsList.do'\">";
+						mav.addObject("msg", msg);
+						mav.addObject("img", img);
+						mav.addObject("link2", link2);
+					} // if end
+					
+					return mav;
+					
+				}// deleteProc() end
+		
+		
+
+	
+	
 	
 }

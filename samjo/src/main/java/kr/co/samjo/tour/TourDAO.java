@@ -232,7 +232,7 @@ public class TourDAO {
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
-			sql.append(" UPDATE tb_tour ");
+			sql.append(" UPDATE tb_bbs2 ");
 			sql.append(" SET t_name=?, t_addr=?, t_dividecn=?, t_tel=?, t_link=?, t_sche=?, t_car=?, t_img=?, t_cont=?, t_rdate=sysdate ");
 			sql.append(" WHERE t_cn=? ");
 			
