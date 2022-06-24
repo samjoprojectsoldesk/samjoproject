@@ -5,6 +5,16 @@
 <!-- 본문시작 memberModify.jsp -->
 <div class="container">
 	<h3>* 회/원/정/보/수/정 *</h3> 
+	<aside id="fh5co-hero" class="js-fullheight">
+	<div class="flexslider js-fullheight">
+		<div class="container">
+			<div class="slider-text-inner desc">
+				<h2
+					style="margin-top: 300px; text-align: center; font-weight: bold;"
+					class="heading-section">로그인</h2>
+			</div>
+		</div>
+	</div>
 <%
 	dto=dao.read((String)session.getAttribute("s_id"));//loginProc.jsp 로그인성공
 	if(dto==null){

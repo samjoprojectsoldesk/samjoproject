@@ -108,7 +108,7 @@
 								<li>
 									<a class="bold" href="about.html">마이페이지</a>
 									<ul class="fh5co-sub-menu">
-									 	<li><a href="left-sidebar.html">개인정보수정</a></li>
+									 	<li><a href="/member/memberModify.do">개인정보수정</a></li>
 									 	<li><a href="right-sidebar.html">예약관리</a></li>
 									</ul>
 								</li>

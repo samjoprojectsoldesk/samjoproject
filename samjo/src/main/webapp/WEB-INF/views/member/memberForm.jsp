@@ -3,7 +3,16 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 memberForm.jsp-->
-<h3>* 회/원/가/입 *</h3>
+<aside id="fh5co-hero" class="js-fullheight">
+	<div class="flexslider js-fullheight">
+		<div class="container">
+			<div class="slider-text-inner desc">
+				<h2
+					style="margin-top: 300px; text-align: center; font-weight: bold;"
+					class="heading-section">회원가입</h2>
+			</div>
+		</div>
+	</div>
 <form name="memfrm" id="memfrm" action="memberProc.jsp" onsubmit="return memberCheck()"><!-- myscript.js -->
 <span style="color:red; font-weight: bold">* 필수입력</span>
 <br>
