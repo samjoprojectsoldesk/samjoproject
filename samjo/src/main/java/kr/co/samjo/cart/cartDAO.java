@@ -19,6 +19,7 @@ public class cartDAO {
 	public cartDAO() {
 		dbopen = new DBOpen();
 	}
+	
 
 	public ArrayList<cartDTO> list(String user_id){
 		ArrayList<cartDTO> list=null;
@@ -27,7 +28,7 @@ public class cartDAO {
             
             sql=new StringBuilder();
             sql.append(" SELECT c_no, user_id, s_code, cnt, p_cnt, sdate, fdate ");
-            sql.append(" FROM tb_cart ");
+            sql.append(" FROM TB_CART ");
             sql.append(" WHERE user_id=? ");
             sql.append(" ORDER BY c_no DESC ");
             
@@ -35,9 +36,11 @@ public class cartDAO {
             pstmt.setString(1, user_id);
             
             rs=pstmt.executeQuery();
+            
             if(rs.next()) {
                 list=new ArrayList<cartDTO>();
                 do {
+                	
                 	cartDTO dto=new cartDTO(); //한줄담기
                 	dto.setC_no(rs.getInt("c_no"));
                 	dto.setUser_id(rs.getString("user_id"));
@@ -48,7 +51,7 @@ public class cartDAO {
                 	dto.setFdate(rs.getString("fdate"));
                     list.add(dto); //list에 모으기
                 }while(rs.next());
-            }//end
+            }
             
         }catch (Exception e) {
             System.out.println("카트 전체목록 실패:"+e);
