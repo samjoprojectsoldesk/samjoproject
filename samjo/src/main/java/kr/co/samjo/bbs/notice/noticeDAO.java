@@ -29,16 +29,9 @@ public class noticeDAO {//데이터베이스 관련 작업
             con=dbopen.getConnection();
             
             sql=new StringBuilder();
-<<<<<<< HEAD
             sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date) ");
             sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate ) ");
-=======
-            sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date, board_readcnt) ");
-            sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate, (SELECT NVL(MAX(board_no), 0)+1 FROM tb_board)) ");
-            
-            System.out.println(dto.getBoard_title());
-            System.out.println(dto.getBoard_content());
->>>>>>> 614dcec9ca7e732178d2e3e5777bd2d87914a3e9
+
 
             pstmt=con.prepareStatement(sql.toString());
             pstmt.setString(1, dto.getBoard_title());
