@@ -4,7 +4,7 @@
 <%@ include file="../header.jsp" %>
 <!-- 본문시작 memberModify.jsp -->
 <div class="container">
-	<h3>* 회/원/수/정 *</h3> 
+	<h3>* 회/원/정/보/수/정 *</h3> 
 <%
 	dto=dao.read((String)session.getAttribute("s_id"));//loginProc.jsp 로그인성공
 	if(dto==null){
