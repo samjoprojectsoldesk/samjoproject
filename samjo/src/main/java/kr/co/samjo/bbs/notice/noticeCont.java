@@ -40,11 +40,16 @@ public class noticeCont {
 		mav.setViewName("notice/msgView");
 		
 		int cnt = dao.create(dto);
+<<<<<<< HEAD
+=======
+		System.out.println(dto.toString());
+		
+>>>>>>> 614dcec9ca7e732178d2e3e5777bd2d87914a3e9
 		if (cnt == 0) {
 			String msg = "<p>공지사항 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"list.do\"'>";
+			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"bbsList.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -52,8 +57,8 @@ public class noticeCont {
 		} else {
 			String msg = "<p>공지사항 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link1 = "<input type='button' value='계속등록' onclick='location.href=\"create.do\"'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"list.do\"'>";
+			String link1 = "<input type='button' value='계속등록' onclick='location.href=\"bbsIns.do\"'>";
+			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"bbsList.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -161,7 +166,7 @@ public class noticeCont {
 			String msg = "<p>공지사항 삭제 실패!!</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick=\\\\\\\"location.href='/tour/tourist.do'\\\\\\\">";
+			String link2 = "<input type='button' value='공지사항 목록' onclick=\\\\\\\"location.href='/notice/noticeList.do'\\\\\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -169,7 +174,7 @@ public class noticeCont {
 		} else {
 			String msg = "<p>공지사항이 삭제되었습니다</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick=\\\\\\\"location.href='/tour/tourist.do'\\\\\\\">";
+			String link2 = "<input type='button' value='공지사항 목록' onclick=\\\\\\\"location.href='/notice/noticeList.do'\\\\\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);

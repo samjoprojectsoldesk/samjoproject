@@ -2,10 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>    
 <!-- 본문시작 bbsIns.jsp -->
-<h3>* 공지사항 작성 *</h3>
-<p><a href="bbsList.jsp">[글목록]</a></p>
+<p><a href="bbsList.do">[글목록]</a></p>
 <div class="container">
+<<<<<<< HEAD
 	<form name="bbsIns" id="bbsIns" method="post" action="bbsIns.do" onsubmit="return bbsCheck()"><!-- ★myscript.js에 함수 작성함 -->
+=======
+	<form name="bbsIns" id="bbsIns" method="post" action="bbsIns.do" enctype="multipart/form-data"><!-- ★myscript.js에 함수 작성함 -->><
+>>>>>>> 614dcec9ca7e732178d2e3e5777bd2d87914a3e9
 	<table class="table">
 	<tr>
 		<th class="success">제목</th>
@@ -16,9 +19,13 @@
 		<td><textarea rows="5" class="form-control" name="board_content" id="board_content"></textarea></td>
 	</tr>
 	<tr>
+		<!-- 공지사항 등록 -->	
 		<td colspan="2" align="center">
-			<input type="submit" value="쓰기" class="btn btn-success">
-			<input type="reset" value="취소" class="btn btn-danger">
+			<div class='bottom'>
+				<button type="submit" class="btn btn-primary">등록</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='noticeList.do'">목록</button>
+			</div>
+			
 		</td>
 	</tr>
 	</table>
