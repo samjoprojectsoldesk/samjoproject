@@ -26,8 +26,8 @@ public class boardDAO {
 			con = dbopen.getConnection(); // DB연결
 
 			sql = new StringBuilder();
-			sql.append(" INSERT INTO tb_bb2(bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_userip, bbs_date) ");
-			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate) ");
+			sql.append(" INSERT INTO tb_bbs2(bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date) ");
+			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, sysdate) ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, dto.getBbs_idx());
@@ -38,7 +38,6 @@ public class boardDAO {
 			pstmt.setString(6, dto.getBbs_title());
 			pstmt.setString(7, dto.getBbs_content());
 			pstmt.setInt(8, dto.getBbs_count());
-			pstmt.setString(9, dto.getBbs_userip());
 			cnt = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -60,7 +59,7 @@ public class boardDAO {
             sql.append(" FROM ( ");
             sql.append("        SELECT ROWNUM as RNUM, BB.* ");
             sql.append("        FROM ( ");
-            sql.append("               SELECT bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_userip, bbs_date ");
+            sql.append("               SELECT bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
             sql.append("               FROM tb_bbs2 ");
             sql.append("               ORDER BY bbs_date DESC ");
             sql.append("             )BB ");
@@ -85,7 +84,6 @@ public class boardDAO {
 					dto.setBbs_content(rs.getString("bbs_content"));
 					dto.setBbs_count(rs.getInt("bbs_count"));
 					dto.setBbs_date(rs.getString("bbs_date"));
-					dto.setBbs_userip(rs.getString("bbs_userip"));
                     list.add(dto); 
                 }while(rs.next());
             }//if end
@@ -118,74 +116,6 @@ public class boardDAO {
         return cnt;
     }//totalRowCount() end
     
-
-	public ArrayList<boardDTO> list2(int start, int end) {
-		ArrayList<boardDTO> list=null;
-        try {
-            con=dbopen.getConnection();
-            sql=new StringBuilder();
-           
-            sql.append(" SELECT AA.* ");
-            sql.append(" FROM ( ");
-            sql.append("        SELECT ROWNUM as RNUM, BB.* ");
-            sql.append("        FROM ( ");
-            sql.append("               SELECT bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_userip, bbs_date ");
-            sql.append("               FROM tb_bbs2 ");
-            sql.append("               ORDER BY bbs_idx DESC ");
-            sql.append("             )BB ");
-            sql.append("      ) AA ");
-            sql.append(" WHERE AA.RNUM >=? AND AA.RNUM<=? ");           
-           
-            pstmt=con.prepareStatement(sql.toString());
-            pstmt.setInt(1, start);
-            pstmt.setInt(2, end);
-           
-            rs=pstmt.executeQuery();
-            if(rs.next()) {
-                list=new ArrayList<boardDTO>();
-                do{
-                	boardDTO dto=new boardDTO();
-                	dto.setBbs_idx(rs.getInt("bbs_idx"));
-					dto.setBbs_img(rs.getString("bbs_img"));
-					dto.setBbs_img2(rs.getString("bbs_img2"));
-					dto.setBbs_img3(rs.getString("bbs_img3"));
-					dto.setBbs_id(rs.getString("bbs_id"));
-					dto.setBbs_title(rs.getString("bbs_title"));
-					dto.setBbs_content(rs.getString("bbs_content"));
-					dto.setBbs_count(rs.getInt("bbs_count"));
-					dto.setBbs_date(rs.getString("bbs_date"));
-					dto.setBbs_userip(rs.getString("bbs_userip"));
-                    list.add(dto);
-                }while(rs.next());
-            }//if end
-
-		} catch (Exception e) {
-			System.out.println("문화행사 전체 목록 실패: " + e);
-		} finally {
-			DBClose.close(con, pstmt, rs);
-		} // end
-		return list;
-	}// list2() end
-	
-    public int totalRowCount2() {
-        int cnt=0;
-        try {
-            con=dbopen.getConnection();
-            sql=new StringBuilder();
-            sql.append(" SELECT COUNT(*) FROM tb_bbs2 ");
-            pstmt=con.prepareStatement(sql.toString());
-            rs=pstmt.executeQuery();
-            if(rs.next()){
-                cnt=rs.getInt(1);            
-            }//if end          
-        }catch(Exception e){
-            System.out.println("전체 행 갯수:" + e);
-        }finally{
-            DBClose.close(con, pstmt);
-        }
-        return cnt;
-    }//totalRowCount() end
-	
     
 	public boardDTO read(int bbs_idx) {
 		boardDTO dto = null;

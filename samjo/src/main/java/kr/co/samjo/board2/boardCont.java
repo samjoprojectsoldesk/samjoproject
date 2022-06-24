@@ -35,12 +35,12 @@ public class boardCont {
 	}//list() end
 	*/
 	
-	@RequestMapping(value = "board/create.do", method = RequestMethod.GET)
+	@RequestMapping(value = "board/boardcreate.do", method = RequestMethod.GET)
 	public String createFrom() {
 		return "board2/createForm";
 	}//createForm() end
 
-	@RequestMapping(value = "/board/create.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/board/boardcreate.do", method = RequestMethod.POST)
 	public ModelAndView create(@ModelAttribute boardDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board2/msgView");
@@ -64,14 +64,14 @@ public class boardCont {
 		if (cnt == 0) {
 			String msg = "<p>게시판 등록 실패</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/board2/List.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/board/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>게시판 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/board2/List.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/board/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
@@ -133,7 +133,7 @@ public class boardCont {
         return mav;
     }//list() end
 
-	@RequestMapping("/board/List/read.do")
+	@RequestMapping("/board/boardread.do")
 	public ModelAndView read(int bbs_idx) {
 		ModelAndView mav = new ModelAndView();
 		boardDTO dto = dao.read(bbs_idx);

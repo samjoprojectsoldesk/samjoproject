@@ -215,8 +215,7 @@ public class TourDAO {
 				dto.setT_car(rs.getString("t_car"));
 				dto.setT_img(rs.getString("t_img"));
 				dto.setT_cont(rs.getString("t_cont"));
-				dto.setT_rdate(rs.getString("t_rdate"));;
-				dto.setReview_content(rs.getString("review_content"));
+				dto.setT_rdate(rs.getString("t_rdate"));
 			} // if end
 
 		} catch (Exception e) {
