@@ -154,6 +154,27 @@ public class cartDAO {
 		return cnt;
 	}	
 	
+	public int delete(String user_id) {
+		int cnt=0;
+		try {			
+			con=dbopen.getConnection(); //DB연결
+			sql=new StringBuilder();
+			sql.append(" DELETE FROM tb_cart ");
+			sql.append(" WHERE user_id=? ");
+			
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, user_id);
+			cnt=pstmt.executeUpdate();
+						
+		} catch (Exception e) {
+            System.out.println("예약 완료 목록 삭제 실패:"+e);
+        } finally {
+            DBClose.close(con, pstmt);
+        }//end
+		
+		return cnt;
+	}	
+	
 	public int totalRowCount() {
         int cnt=0;
         try {

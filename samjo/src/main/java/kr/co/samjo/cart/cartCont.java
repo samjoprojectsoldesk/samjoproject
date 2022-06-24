@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.samjo.res.resDAO;
+
 
 @Controller
 public class cartCont {
@@ -100,7 +102,7 @@ public class cartCont {
 			String msg="<p>장바구니 항목 삭제 실패</p>";
 			String img="<img src='../images/fail.png'>";
 			String link1="<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2="<input type='button' value='목록으로' onclick='location.href=\"list.do\"'>";
+			String link2="<input type='button' value='목록으로' onclick='location.href=\"/list.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -108,7 +110,7 @@ public class cartCont {
 		} else {
 			String msg="<p>장바구니 항목 삭제 성공</p>";
 			String img="<img src='../images/sound.png'>";
-			String link2="<input type='button' value='목록으로' onclick='location.href=\"list.do\"'>";
+			String link2="<input type='button' value='목록으로' onclick='location.href=\"/list.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
@@ -116,4 +118,40 @@ public class cartCont {
 
 		return mav;
 	}// deleteProc end
+
+	@RequestMapping(value = "cart/reserve.do", method = RequestMethod.GET)
+	public ModelAndView reserveForm(String user_id) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("cart/reserve");
+		mav.addObject("user_id", user_id);
+		return mav;
+	}// deleteForm end
+	
+	@RequestMapping(value= "cart/reserve.do", method = RequestMethod.POST)
+	public ModelAndView reserveProc(String user_id) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("cart/msgView");
+
+		int cnt = resDAO.add(user_id);
+		
+		if (cnt == 0) {
+			String msg="<p>예약 실패</p>";
+			String img="<img src='../images/fail.png'>";
+			String link1="<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+			String link2="<input type='button' value='목록으로' onclick='location.href=\"/list.do\"'>";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link1", link1);
+			mav.addObject("link2", link2);
+		} else {
+			String msg="<p>예약 성공</p>";
+			dao.delete(user_id);
+			String img="<img src='../images/sound.png'>";
+			String link2="<input type='button' value='목록으로' onclick='location.href=\"/list.do\"'>";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link2", link2);
+		}
+		return mav;
+	}
 }
