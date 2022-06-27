@@ -72,5 +72,33 @@ public class MemberCont {
 	}//findIDProc() end
 	
 	
+	@RequestMapping("/member/logout.do")
+	public ModelAndView logout() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/member/logout");
+		return mav;
+	}//logout() end
+	
+	@RequestMapping("/member/idCheckProc.do")
+	public ModelAndView idCheckProc() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/member/idCheckProc");
+		return mav;
+	}//idCheckProc() end
+	
+	@RequestMapping("/member/emailCheckForm.do")
+	public ModelAndView emailCheckForm() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/member/emailCheckForm");
+		return mav;
+	}//emailCheckForm() end
+	
+	@RequestMapping("/member/emailCheckProc.do")
+	public ModelAndView emailCheckProc() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/member/emailCheckProc");
+		return mav;
+	}//emailCheckProc() end
+	
 	
 }
