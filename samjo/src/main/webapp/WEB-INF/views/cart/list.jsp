@@ -31,7 +31,7 @@
 		<table class="table">
 			<tr>
 				<th>번호</th>
-				<th>상품코드</th>
+				<th>상품명</th>
 				<th>수량</th>
 				<th>인원</th>
 				<th>이용시작일</th>
@@ -42,7 +42,7 @@
 			<c:forEach var="dto" items="${map.list}">
 				<tr>
 					<td>${dto.c_no}</td>
-					<td>${dto.s_code}</td>
+					<td>${dto.s_name}</td>
 					<td>${dto.cnt}</td>
 					<td>${dto.p_cnt}</td>
 					<td>${dto.sdate}</td>
@@ -51,6 +51,9 @@
 						onclick="location.href='delete.do?c_no=${dto.c_no}'"></td>
 				</tr>
 			</c:forEach>
+			<tr>
+				<td><input type="button" value="예약" onclick="location.href='reserve.do'"></td>
+			</tr>
 		</table>
 	</div>
 	</c:otherwise>
