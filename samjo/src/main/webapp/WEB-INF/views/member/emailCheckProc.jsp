@@ -5,40 +5,40 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>idCheckProc.jsp</title>
+	<title>emailCheckProc.jsp</title>
 </head>
 <body>
 
 	<div style="text-align: center">
-		<h3>* 아이디 중복확인 결과 *</h3>
+		<h3>* 이메일 중복확인 결과 *</h3>
 <%
-		String id=request.getParameter("id").trim();
-		int cnt=dao.duplecateID(id);
-		out.println("입력ID : <strong>" + id + "</strong>");
+		String email=request.getParameter("email").trim();
+		int cnt=dao.duplecateID(email);
+		out.println("입력email : <strong>" + email + "</strong>");
 		if(cnt==0){
-		    if(!(id.length()>=5 && id.length()<=10)){
+		    if(!(email.length()>8)){
 %>
-		        <script>alert("아이디 5~20글자이내 입력해 주세요");
+		        <script>alert("이메일 8글자이상 입력해 주세요");
 		        history.back();</script>
 <%
 		    }//if end
 		    else{
-			out.println("<p>사용 가능한 아이디 입니다</p>");
+			out.println("<p>사용 가능한 이메일 입니다</p>");
 			//사용 가능한 id를 부모창에 전달하기
-			out.println("<a href='javascript:apply(\"" + id + "\")'>[적용]</a>");
+			out.println("<a href='javascript:apply(\"" + email + "\")'>[적용]</a>");
 		    }
 %>
 			<script>
-				function apply(id) {
-					//alert(id);
+				function apply(email) {
+					//alert(email);
 					//중복 확인된 id를 부모창(opener)
-					opener.document.memfrm.id.value=id;
+					opener.document.memfrm.email.value=email;
 					window.close();
 				}//apply() end
 			</script>
 <%
 		}else{
-			out.println("<p style='color:red'>해당 아이디는 사용할 수 없습니다</p>");
+			out.println("<p style='color:red'>해당 이메일은 사용할 수 없습니다</p>");
 		}//if end
 %>
 		<hr>

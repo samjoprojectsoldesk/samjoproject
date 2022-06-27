@@ -49,6 +49,7 @@ public class cartDAO {
                 	dto.setP_cnt(rs.getInt("p_cnt"));
                 	dto.setSdate(rs.getString("sdate"));
                 	dto.setFdate(rs.getString("fdate"));
+                	dto.setSname();
                     list.add(dto); //list에 모으기
                 }while(rs.next());
             }

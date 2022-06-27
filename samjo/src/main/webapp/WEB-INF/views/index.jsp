@@ -236,9 +236,11 @@
 	<script src="js/superfish.js"></script>
 	<!-- Flexslider -->
 	<script src="js/jquery.flexslider-min.js"></script>
+	<!-- myscript -->
+	<script src="../../js/myscript.js"></script>
 
 	<!-- Main JS (Do not remove) -->
-	<script src="js/main.js"></script>
+	<script src="../../js/main.js"></script>
 
 	</body>
 </html>
