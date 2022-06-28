@@ -17,6 +17,7 @@ public class cartDTO {
 	private String sdate;// VARCHAR2(30) NOT NULL 	이용시작일
 	private String fdate;// VARCHAR2(30)			이용끝일
 	private String s_name;// 상품명
+	private int s_cost;// 상품 값
 	
 	
 	public cartDTO() {}
@@ -81,6 +82,26 @@ public class cartDTO {
 			SooksoDTO dto = new SooksoDTO();
 						
 			s_name = dto.getS_name() + "의 " + dto.getRoom_cn() + "호실";
+		}else if(S=='R') {
+			MaszipDAO dao = new MaszipDAO();
+			MaszipDTO dto = new MaszipDTO();
+			
+		}else if(S=='C') {
+			rentalDAO dao = new rentalDAO();
+			rentalDTO dto = new rentalDTO();
+			s_name = dto.getU_name();
+		}
+		
+	}
+
+	public void setScost() {
+		String scode = this.getS_code();
+		char S = scode.charAt(0);
+		if(S=='S') {
+			SooksoDAO dao = new SooksoDAO();
+			SooksoDTO dto = new SooksoDTO();
+			
+			s_cost=dto.getRoom_dp();
 		}else if(S=='R') {
 			MaszipDAO dao = new MaszipDAO();
 			MaszipDTO dto = new MaszipDTO();

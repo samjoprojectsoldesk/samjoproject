@@ -1,11 +1,9 @@
 package kr.co.samjo.cart;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.samjo.res.resDAO;
@@ -131,11 +128,21 @@ public class cartCont {
 	}// deleteForm end
 	
 	@RequestMapping(value= "cart/reserve.do", method = RequestMethod.POST)
-	public ModelAndView reserveProc(String user_id) {
+	public ModelAndView reserveProc(@ModelAttribute cartDTO cdto, String user_id) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("cart/msgView");
-		
+		int cost = 0;
 		resDTO dto = new resDTO();
+		dto.setUser_id(user_id);
+		ArrayList<String> weeklist = null;
+		weeklist = dao.week(cdto.getC_no());
+		for(int i = 0 ; i<weeklist.size(); i++ ) {
+			is(weeklist.get(i).equals('주말')){
+			}else {
+				
+			}
+		}
+		
 		int cnt = dao2.add(dto);
 		
 		if (cnt == 0) {

@@ -8,6 +8,7 @@ public class resDTO {
     private String pay; //varchar2(20),
     private int p_cnt; // number not null,
     private String result; // char(1) not null,
+    
 	public String getRes_no() {
 		return res_no;
 	}

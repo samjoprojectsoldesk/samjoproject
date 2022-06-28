@@ -48,10 +48,21 @@ public class resCont {
 		return mav;
 	}// list end
 	
-	@RequestMapping("read.do")
+	@RequestMapping("res/read.do")
 	public ModelAndView read(String res_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/res/read");
+		ArrayList<resDetailDTO> list = new ArrayList<resDetailDTO>();
+		list = dt_dao.list(res_no);
+
+		if(list==null) {
+			map.put("list", list);
+			map.put("count", 0);
+		}else {
+			map.put("list", list);
+			map.put("count", list.size());
+		}
 		
 		return mav;
 	}
