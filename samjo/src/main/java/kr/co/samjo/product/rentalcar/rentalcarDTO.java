@@ -9,7 +9,8 @@ public class rentalcarDTO {
 	private int c_sum;			//NUMBER 		NOT NULL 	금액(1일)
 	private int c_charge;		//NUMBER 		NOT NULL 	추가요금(1시간당)
 	private int c_reserve;		//NUMBER 		NOT NULL 	예약가능 차량수
-	private String c_content;	//VARCHAR2(4000)NOT NULL	내용
+	private String c_img;
+	private String c_cont;	//VARCHAR2(4000)NOT NULL	내용
 
 	public rentalcarDTO() {}
 
@@ -69,19 +70,28 @@ public class rentalcarDTO {
 		this.c_reserve = c_reserve;
 	}
 
-	public String getC_content() {
-		return c_content;
+	public String getC_img() {
+		return c_img;
 	}
 
-	public void setC_content(String c_content) {
-		this.c_content = c_content;
+	public void setC_img(String c_img) {
+		this.c_img = c_img;
+	}
+
+	public String getC_cont() {
+		return c_cont;
+	}
+
+	public void setC_cont(String c_cont) {
+		this.c_cont = c_cont;
 	}
 
 	@Override
 	public String toString() {
-		return "rentalDTO [c_code=" + c_code + ", u_code=" + u_code + ", c_kind=" + c_kind + ", c_name=" + c_name
-				+ ", c_sum=" + c_sum + ", c_charge=" + c_charge + ", c_reserve=" + c_reserve + ", c_content="
-				+ c_content + "]";
+		return "rentalcarDTO [c_code=" + c_code + ", u_code=" + u_code + ", c_kind=" + c_kind + ", c_name=" + c_name
+				+ ", c_sum=" + c_sum + ", c_charge=" + c_charge + ", c_reserve=" + c_reserve + ", c_img=" + c_img
+				+ ", c_cont=" + c_cont + "]";
 	}
+
 	
 }
