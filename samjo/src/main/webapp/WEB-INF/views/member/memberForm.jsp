@@ -21,11 +21,11 @@
 				</tr>
 				<tr>
 				    <th>*비밀번호</th>
-				    <td style="text-align: left"><input type="password" name="passwd" id="passwd" size="15" required></td>
+				    <td style="text-align: left"><input type="password" name="passwd" id="passwd" size="15" required onchange="memberCheck()"></td>
 				</tr>
 				<tr>
 				    <th>*비밀번호 확인</th>
-				    <td style="text-align: left"><input type="password" name="repasswd" id="repasswd" size="15" required></td>
+				    <td style="text-align: left"><input type="password" name="repasswd" id="repasswd" size="15" required onchange="memberCheck()">&nbsp;<span id="check"></span></td>
 				</tr>
 				<tr>
 				    <th>*이름</th>

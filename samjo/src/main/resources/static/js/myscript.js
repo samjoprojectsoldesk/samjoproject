@@ -78,7 +78,7 @@ function loginCheck(){ //로그인 ㅇ효성검사(아이디, 비번)
     var passwd=document.getElementById("passwd").value;
     passwd=passwd.trim();
     if(!(passwd.length>=5 && passwd.length<=10)){
-        alert("비밀번호 5~20글자이내 입력해 주세요");
+        alert("비밀번호 7~20글자이내 입력해 주세요");
         document.getElementById("passwd").focus();
         return false;
     }//if end
@@ -126,21 +126,25 @@ function memberCheck() { //회원가입 유효성 검사
     var passwd=document.getElementById("passwd").value;
     passwd=passwd.trim();
     if(!(passwd.length>=5 && passwd.length<=10)){
-        alert("비밀번호 5~20글자이내 입력해 주세요");
+        alert("비밀번호 6~20글자이내 입력해 주세요");
         document.getElementById("passwd").focus();
         return false;
     }//if end
 	
     //3)비밀번호와 비밀번호확인이 서로 일치하는지?
 
-    var repasswd=document.getElementById("repasswd").value;
-    repasswd=repasswd.trim();
-    if(repasswd.length<4 || isNaN(repasswd)){
-        alert("비밀번호확인 5~20글자이내 입력해 주세요");
-        document.getElementById("repasswd").focus();
-        return false;
-        
-    }//if end
+    var passwd = document.getElementById('passwd').value;
+    if(document.getElementById('passwd').value !='' && document.getElementById('repasswd').value!=''){
+                if(document.getElementById('passwd').value==document.getElementById('repasswd').value){
+                    document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                    document.getElementById('check').style.color='blue';
+                }
+                else{
+                    document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                    document.getElementById('check').style.color='red';
+                }
+    }
+    
     
     //4)이름 두글자 이상 인지?
 
