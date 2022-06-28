@@ -18,23 +18,23 @@ public class rentalCont {
 	
 	public rentalCont() {
 		dao = new rentalDAO();
-		System.out.println("-----rentalCont객체 생성됨");
+		System.out.println("-----rental객체 생성됨");
 	}
 	//Ins	
-		@RequestMapping(value = "rentalcar/Ins.do", method = RequestMethod.GET)
+		@RequestMapping(value = "rental/Ins.do", method = RequestMethod.GET)
 		public ModelAndView Ins() {
 			ModelAndView mav = new ModelAndView();
-			mav.setViewName("rentalcar/Ins");
+			mav.setViewName("rental/Ins");
 			return mav;
 		}//Ins() end
 		
 
 		
 	//InsProc
-			@RequestMapping(value = "rentalcar/Ins.do", method = RequestMethod.POST)
+			@RequestMapping(value = "rental/Ins.do", method = RequestMethod.POST)
 			public ModelAndView Ins(@ModelAttribute rentalDTO dto) {
 				ModelAndView mav = new ModelAndView();
-				mav.setViewName("rentalcar/msgView");
+				mav.setViewName("rental/msgView");
 
 				int cnt = dao.create(dto);
 				if (cnt == 0) {
@@ -62,10 +62,10 @@ public class rentalCont {
 			
 			
 	//List	
-			@RequestMapping("rentalcar/List.do")
+			@RequestMapping("rental/List.do")
 			public ModelAndView List(HttpServletRequest req) {
 				ModelAndView mav = new ModelAndView();
-				mav.setViewName("rentalcar/List");
+				mav.setViewName("rental/List");
 
 				int totalRowCount = dao.totalRowCount(); // 총 글갯수
 
@@ -116,11 +116,11 @@ public class rentalCont {
 			
 			
 	//Read	
-			@RequestMapping("rentalcar/Read.do")
+			@RequestMapping("rental/Read.do")
 				public ModelAndView Read(String u_code) {
 				ModelAndView mav = new ModelAndView();
 				rentalDTO dto = dao.read(u_code);
-				mav.setViewName("rentalcar/Read");
+				mav.setViewName("rental/Read");
 				mav.addObject("dto", dto);
 				return mav;
 			}// read() end
@@ -128,10 +128,10 @@ public class rentalCont {
 			
 			
 	//Delete	
-			@RequestMapping(value = "/rentalcar/Delete.do", method = RequestMethod.GET)
+			@RequestMapping(value = "/rental/Delete.do", method = RequestMethod.GET)
 			public ModelAndView Delete(String u_code) {
 				ModelAndView mav = new ModelAndView();
-				mav.setViewName("rentalcar/Delete");
+				mav.setViewName("rental/Delete");
 				rentalDTO dto = dao.read(u_code);// 수정하고자 하는 행 가져오기
 				mav.addObject("dto", dto);
 				return mav;
@@ -140,10 +140,10 @@ public class rentalCont {
 			
 			
 	//DeleteProc	
-			@RequestMapping(value = "/rentalcar/Delete.do", method = RequestMethod.POST)
+			@RequestMapping(value = "/rental/Delete.do", method = RequestMethod.POST)
 			public ModelAndView DeleteProc(String u_code, HttpServletRequest req) {
 				ModelAndView mav = new ModelAndView();
-				mav.setViewName("rentalcar/msgView");
+				mav.setViewName("rental/msgView");
 
 				// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
 				rentalDTO oldDTO = dao.read(u_code);
@@ -172,10 +172,10 @@ public class rentalCont {
 			
 			
 	//Update	
-			@RequestMapping(value = "/rentalcar/Update.do", method = RequestMethod.GET)
+			@RequestMapping(value = "/rental/Update.do", method = RequestMethod.GET)
 			public ModelAndView Update(String u_code) {
 				ModelAndView mav = new ModelAndView();
-				mav.setViewName("rentalcar/Update");
+				mav.setViewName("rental/Update");
 				rentalDTO dto = dao.read(u_code);// 수정하고자 하는 행 가져오기
 				mav.addObject("dto", dto);
 				return mav;
@@ -184,10 +184,10 @@ public class rentalCont {
 			
 			
 	//UpdateProc
-			@RequestMapping(value = "/rentalcar/Update.do", method = RequestMethod.POST)
+			@RequestMapping(value = "/rental/Update.do", method = RequestMethod.POST)
 			public ModelAndView updateProc(@ModelAttribute rentalDTO dto) {
 				ModelAndView mav = new ModelAndView();
-				mav.setViewName("rentalcar/msgView");
+				mav.setViewName("rental/msgView");
 
 				int cnt = dao.update(dto);
 				
