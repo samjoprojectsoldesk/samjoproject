@@ -20,15 +20,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.samjo.res.resDAO;
+import kr.co.samjo.res.resDTO;
 
 
 @Controller
 public class cartCont {
 	
 	cartDAO dao = null;
+	resDAO dao2 = null;
 
 	public cartCont() {
 		dao = new cartDAO();
+		dao2 = new resDAO();
 		System.out.println("-----cartCont객체 생성됨");
 	}
 	
@@ -131,8 +134,9 @@ public class cartCont {
 	public ModelAndView reserveProc(String user_id) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("cart/msgView");
-
-		int cnt = resDAO.add(user_id);
+		
+		resDTO dto = new resDTO();
+		int cnt = dao2.add(dto);
 		
 		if (cnt == 0) {
 			String msg="<p>예약 실패</p>";
