@@ -16,9 +16,17 @@
 		int cnt=dao.duplecateID(id);
 		out.println("입력ID : <strong>" + id + "</strong>");
 		if(cnt==0){
+		    if(!(id.length()>=5 && id.length()<=10)){
+%>
+		        <script>alert("아이디 5~20글자이내 입력해 주세요");
+		        history.back();</script>
+<%
+		    }//if end
+		    else{
 			out.println("<p>사용 가능한 아이디 입니다</p>");
 			//사용 가능한 id를 부모창에 전달하기
 			out.println("<a href='javascript:apply(\"" + id + "\")'>[적용]</a>");
+		    }
 %>
 			<script>
 				function apply(id) {

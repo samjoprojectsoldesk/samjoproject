@@ -32,10 +32,6 @@
 				<label for="posterMF">이미지</label> 
 				<img src='../storage/${dto.bbs_img}' width='20%'>
 				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
-				<img src='../storage/${dto.bbs_img2}' width='20%'>
-				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
-				<img src='../storage/${dto.bbs_img3}' width='20%'>
-				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
 			</div>
 			<div class="form-group">
 				<label for="bbs_content">내용</label>

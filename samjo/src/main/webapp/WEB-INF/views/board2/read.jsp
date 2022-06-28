@@ -13,24 +13,15 @@
 			</div>
 		</div>
 	</div>
-</aside>
 <div class="row-read">
 	<div class="col-md-12 text-center project">
 		<div class="grid-project">
-			<div class="image-T">
-
 					<ul>					
 						<li>아이디 : ${dto.bbs_id}</li>
 						<li>제목 : ${dto.bbs_title}</li>
 					</ul>
-
 				<img src="../../storage/${dto.bbs_img}" class="img-responsive"
-					style="width: 40%; float: left;">
-				<img src="../../storage/${dto.bbs_img2}" class="img-responsive"
-					style="width: 40%; float: left;">
-				<img src="../../storage/${dto.bbs_img3}" class="img-responsive"
-					style="width: 40%; float: left;">
-					
+					style="width: 40%; float: left;">		
 				<div>${dto.bbs_content}</div>
 				</div>
 				<div class='bottom'>
@@ -44,5 +35,6 @@
 		</div>
 	</div>
 </div>
+</aside>
 <!-- 본문 끝 -->
 <%@ include file="../footer.jsp"%>

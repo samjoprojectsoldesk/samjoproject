@@ -30,8 +30,6 @@
 			<div class="form-group">
 				<label for="posterMF">이미지</label> 
 				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
-				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
-				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
 			</div>
 			<div class="form-group">
 				<label for="bbs_content">내용</label>

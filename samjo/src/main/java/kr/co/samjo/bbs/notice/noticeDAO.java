@@ -219,7 +219,9 @@ public class noticeDAO {//데이터베이스 관련 작업
           pstmt = con.prepareStatement(sql.toString());
           pstmt.setString(1, dto.getBoard_title());
           pstmt.setString(2, dto.getBoard_content());
+          pstmt.setInt(3, dto.getBoard_no());
           cnt = pstmt.executeUpdate();
+          
         } catch (Exception e) {
            System.out.println("수정실패"+e);
         } finally {
