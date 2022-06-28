@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../header2.jsp"%>
+<%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 -->
 
@@ -10,7 +10,7 @@
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">숙소 삭제</h2>
+					class="heading-section">게시판 삭제</h2>
 			</div>
 		</div>
 	</div>
@@ -21,14 +21,13 @@
 	<div class="col-md-12">
 		<form name="frm" method="post" action="delete.do" class="tourcreate"
 			enctype="multipart/form-data">
-			<input type="hidden" name="s_cn" value="${dto.s_cn}">
+			<input type="hidden" name="bbs_idx" value="${dto.bbs_idx}">
 			<div class="content">
-				<p>해당 숙소(${dto.s_name}) 를 삭제하시겠습니까?</p>
+				<p>해당 게시판을 삭제하시겠습니까?</p>
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">삭제</button>
-				<button type="button" class="btn btn-secondary"
-					onclick="location.href='/sookso/List.do'">목록</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='/board/List.do'">목록</button>
 			</div>
 		</form>
 	</div>

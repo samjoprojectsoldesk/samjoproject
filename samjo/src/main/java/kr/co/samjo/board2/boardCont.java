@@ -139,7 +139,6 @@ public class boardCont {
 		boardDTO dto = dao.read(bbs_idx);
 		mav.setViewName("board2/read");
 		mav.addObject("dto", dto);
-		System.out.println(dto);
 		return mav;
 	}// read() end
 	
