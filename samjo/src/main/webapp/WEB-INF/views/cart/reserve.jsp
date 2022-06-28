@@ -8,18 +8,18 @@
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">장바구니 항목 삭제</h2>
+					class="heading-section">예약 하기</h2>
 			</div>
 		</div>
 	</div>
 </aside>
-    <form name="frm" method="post" action="delete.do">
-    	<input type="hidden" name="c_no" value=${requestScope.c_no}>
+    <form name="frm" method="post" action="reserve.do">
+    	<input type="hidden" name="user_id" value=${requestScope.user_id}>
 		<div class="content">
-			<p>장바구니 항목을 삭제하시겠습니까?</p>
+			<p>정말로 예약 하시겠습니까?</p>
 		</div>
 		<div class="bottom">
-			<input type="submit" value="삭제">
+			<input type="submit" value="예약">
 			<input type="button" value="목록" onclick="location.href='list.do'">
 		</div>
 	</form>

@@ -26,6 +26,7 @@ public class boardDAO {
 			con = dbopen.getConnection(); // DB연결
 
 			sql = new StringBuilder();
+<<<<<<< HEAD
 			sql.append(" INSERT INTO tb_bbs2(bbs_idx, bbs_img, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date) ");
 			sql.append(" VALUES(bbs_seq2.nextval, ?, ?, ?, ?, ?, sysdate) ");
 
@@ -35,6 +36,19 @@ public class boardDAO {
 			pstmt.setString(3, dto.getBbs_title());
 			pstmt.setString(4, dto.getBbs_content());
 			pstmt.setInt(5, dto.getBbs_count());
+=======
+			sql.append(" INSERT INTO tb_bbs2(bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date) ");
+			sql.append(" VALUES(bbs_seq2.nextval, ?, ?, ?, ?, ?, ?, ?, sysdate) ");
+
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getBbs_img());
+			pstmt.setString(2, dto.getBbs_img2());
+			pstmt.setString(3, dto.getBbs_img3());
+			pstmt.setString(4, dto.getBbs_id());
+			pstmt.setString(5, dto.getBbs_title());
+			pstmt.setString(6, dto.getBbs_content());
+			pstmt.setInt(7, dto.getBbs_count());
+>>>>>>> 6b287742c5b033f978834b8bf486bda3d5c0ecb5
 			cnt = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -56,7 +70,11 @@ public class boardDAO {
             sql.append(" FROM ( ");
             sql.append("        SELECT ROWNUM as RNUM, BB.* ");
             sql.append("        FROM ( ");
+<<<<<<< HEAD
             sql.append("               SELECT bbs_idx, bbs_img, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
+=======
+            sql.append("               SELECT bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
+>>>>>>> 6b287742c5b033f978834b8bf486bda3d5c0ecb5
             sql.append("               FROM tb_bbs2 ");
             sql.append("               ORDER BY bbs_date DESC ");
             sql.append("             )BB ");
@@ -117,7 +135,11 @@ public class boardDAO {
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
+<<<<<<< HEAD
 			sql.append(" SELECT bbs_idx, bbs_img, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
+=======
+			sql.append(" SELECT bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
+>>>>>>> 6b287742c5b033f978834b8bf486bda3d5c0ecb5
 			sql.append(" FROM tb_bbs2 ");
 			sql.append(" WHERE bbs_idx = ? ");
 			pstmt = con.prepareStatement(sql.toString());

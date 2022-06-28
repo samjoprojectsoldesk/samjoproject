@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import kr.co.samjo.tour.TourDTO;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
@@ -18,7 +21,7 @@ public class noticeDAO {//데이터베이스 관련 작업
     private StringBuilder sql=null;
     
     public noticeDAO() {
-        dbopen=new DBOpen();    
+        dbopen=new DBOpen();
     }//end
 
     
@@ -29,15 +32,13 @@ public class noticeDAO {//데이터베이스 관련 작업
             con=dbopen.getConnection();
             
             sql=new StringBuilder();
+
             sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date, board_readcnt) ");
-            sql.append(" VALUES (bbs_seq.nextval, ?, ?, ?, ?, ?, (SELECT NVL(MAX(board_no), 0)+1 FROM tb_board)) ");
+            sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate, (SELECT NVL(MAX(board_no), 0)+1 FROM tb_board) ) ");
 
             pstmt=con.prepareStatement(sql.toString());
-            pstmt.setInt(1, dto.getBoard_no());
-            pstmt.setString(2, dto.getBoard_title());
-            pstmt.setString(3, dto.getBoard_content());
-            pstmt.setString(4, dto.getBoard_date());
-            pstmt.setInt(5, dto.getBoard_readcnt());
+            pstmt.setString(1, dto.getBoard_title());
+            pstmt.setString(2, dto.getBoard_content());
             
             cnt=pstmt.executeUpdate();
             
@@ -62,8 +63,7 @@ public class noticeDAO {//데이터베이스 관련 작업
             sql.append("        SELECT ROWNUM as RNUM, BB.* ");
             sql.append("        FROM ( ");
             sql.append("               SELECT board_no, board_title, board_content, board_date, board_readcnt ");
-            sql.append("               FROM tb_tb_board ");
-            sql.append(" 			   WHERE t_dividecn = 1 ");
+            sql.append("               FROM tb_board ");
             sql.append("               ORDER BY board_no DESC ");
             sql.append("             )BB ");
             sql.append("      ) AA ");
@@ -132,7 +132,7 @@ public class noticeDAO {//데이터베이스 관련 작업
     
     
     
-  //delete
+//delete
     public int delete(int board_no) {
     	int cnt=0;
         try {
@@ -184,7 +184,7 @@ public class noticeDAO {//데이터베이스 관련 작업
         try {
             con=dbopen.getConnection();
             sql=new StringBuilder();
-            sql.append(" SELECT COUNT(*) FROM tb_board WHERE t_dividecn = 1 ");
+            sql.append(" SELECT COUNT(*) FROM tb_board ");
             pstmt=con.prepareStatement(sql.toString());
             rs=pstmt.executeQuery();
             if(rs.next()){
@@ -198,60 +198,36 @@ public class noticeDAO {//데이터베이스 관련 작업
         return cnt;
     }//totalRowCount() end
     
-    
-    
-//count
-    public ArrayList<noticeDTO> list2(String col, String word){
-    	ArrayList<noticeDTO> list=null;
-    	try {
-    		con=dbopen.getConnection();
-    		
-    		sql=new StringBuilder();
-    		sql.append(" SELECT board_no, board_title, board_content");
-    		sql.append(" FROM tb_board ");
-    		
-    		//검색어가 존재한다면 ------------읭ㅇㅇㅇㅇㅇ모르게뜸
-    		if(word.length()>=1) {
-    			String search="";
-    			if(col.equals("board_content")) {
-    				search+=" WHERE subject LIKE '%" + word + "%' ";
-    				search+=" or content LIKE '%" + word + "%' ";   			
-    			}else if(col.equals("board_title"))	{
-    				search+=" WHERE subject LIKE '%" + word + "%' ";
-    			}//if end
-    			sql.append(search);
-       		}//if end
-    		
-    		//-------------------
-			pstmt=con.prepareStatement(sql.toString());
-            rs=pstmt.executeQuery();
-            if(rs.next()) {
-                list=new ArrayList<noticeDTO>();
-                do {
-                	noticeDTO dto=new noticeDTO(); //한줄담기
-                    dto.setBoard_no(rs.getInt("board_no"));
-                    dto.setBoard_title(rs.getString("board_title"));
-                    dto.setBoard_content(rs.getString("board_content"));
-                    dto.setBoard_date(rs.getString("board_date"));
-                    dto.setBoard_readcnt(rs.getInt("board_readcnt"));
-                    list.add(dto); //list에 모으기
-                }while(rs.next());
-            }//list2() end
-            
-    		
-    	}catch (Exception e) {
-            System.out.println("글갯수실패:"+e);
-        }finally {
-            DBClose.close(con, pstmt, rs);
-        }//end
-        return list;
-    }//count() end
-    
 
 
 	public int bbsInsProc(noticeDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
+	
+//Update
+	public int update(noticeDTO dto) {
+        int cnt = 0;
+        try {
+          con = dbopen.getConnection();
+          sql = new StringBuilder();
+          sql.append(" UPDATE tb_board ");
+          sql.append(" SET board_title=?, board_content=? ");
+          sql.append(" WHERE board_no=? "); 
+          pstmt = con.prepareStatement(sql.toString());
+          pstmt.setString(1, dto.getBoard_title());
+          pstmt.setString(2, dto.getBoard_content());
+          pstmt.setInt(3, dto.getBoard_no());
+          cnt = pstmt.executeUpdate();
+          
+        } catch (Exception e) {
+           System.out.println("수정실패"+e);
+        } finally {
+            DBClose.close(con, pstmt);
+        }//end
+        return cnt;
+    }//update end
     
 }//class end   

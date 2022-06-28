@@ -215,8 +215,7 @@ public class TourDAO {
 				dto.setT_car(rs.getString("t_car"));
 				dto.setT_img(rs.getString("t_img"));
 				dto.setT_cont(rs.getString("t_cont"));
-				dto.setT_rdate(rs.getString("t_rdate"));;
-				dto.setReview_content(rs.getString("review_content"));
+				dto.setT_rdate(rs.getString("t_rdate"));
 			} // if end
 
 		} catch (Exception e) {
@@ -233,7 +232,7 @@ public class TourDAO {
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
-			sql.append(" UPDATE tb_tour ");
+			sql.append(" UPDATE tb_bbs2 ");
 			sql.append(" SET t_name=?, t_addr=?, t_dividecn=?, t_tel=?, t_link=?, t_sche=?, t_car=?, t_img=?, t_cont=?, t_rdate=sysdate ");
 			sql.append(" WHERE t_cn=? ");
 			
