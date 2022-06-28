@@ -1,22 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../header.jsp"%>
-<!-- 본문 시작 List.jsp -->
+<%@ include file="../header2.jsp"%>
+<!-- 본문 시작 festivalList.jsp -->
 <aside id="fh5co-hero-T" class="js-fullheight">
 	<div class="flexslider js-fullheight">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">렌트카 업체</h2>
+					class="heading-section">렌트카 업체 목록</h2>
+					<button type="button" class="btn btn-primary" onclick="location.href='/rental/Ins.do'">등록</button>
 			</div>
 		</div>
 	</div>
 
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
-		<form action="List.jsp">
+		<form action="tourist.jsp">
 			<input type="text" name="word" id="word"
 				style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
 			&nbsp;&nbsp; <input type="submit" value="검색"
@@ -29,25 +30,37 @@
 <div id="fh5co-work-section">
 	<div class="container">
 		<div class="row">
-			<c:forEach var="dto" items="${list}">
-				<div class="col-md-12 text-center project">
-					<div class="grid-project">
-						<div class="image-T">
-							<img src="../storage/${dto.u_img}" alt="Project"
-								class="img-responsive" style="width: 40%; float: left;">
-						</div>
-						<div class="desc-T">
-							<h3>${dto.u_name}</h3>
-							<span>${dto.u_phone}</span> <br> <br>
-							<span>${dto.u_office}</span> <br> <br>
-							<span>${dto.u_cont}</span> <br> <br>
-						</div>
-					</div>
+
+			<div class="col-md-12 text-center project">
+				<div class="grid-project">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">렌트카 업체 코드</th>
+								<th scope="col">렌트카 업체 이름</th>
+								<th scope="col">수정 / 삭제</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="dto" items="${list}">
+								<tr>
+									<th scope="row">${dto.u_code}</th>
+									<td>${dto.u_name}</td>
+									<td><button type="button" class="btn btn-light"
+											onclick="location.href='rentalupdate.do?u_code=${dto.u_code}'">수정</button>
+										<button type="button" class="btn btn-danger"
+											onclick="location.href='rentaldelete.do?u_code=${dto.u_code}'">삭제</button></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					
 				</div>
-			</c:forEach>
+			</div>
+
 		</div>
 	</div>
-	
+
 	<!-- 페이지 리스트 -->
 	<div class="paging">
 		<c:if test="${requestScope.count>0 }">

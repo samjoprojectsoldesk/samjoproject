@@ -27,14 +27,16 @@ public class rentalDAO {
 				con = dbopen.getConnection(); // DB연결
 
 				sql = new StringBuilder();
-				sql.append(" INSERT INTO tb_upche(u_code, u_name, u_phone, u_office) ");
-				sql.append(" VALUES(?, ?, ?, ?, sysdate) ");
+				sql.append(" INSERT INTO tb_upche(u_code, u_name, u_phone, u_office, u_img, u_cont) ");
+				sql.append(" VALUES(?, ?, ?, ?, ?, ?, sysdate) ");
 
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setString(1, dto.getU_code());
 				pstmt.setString(2, dto.getU_name());
 				pstmt.setString(3, dto.getU_phone());		
 				pstmt.setString(4, dto.getU_office());	
+				pstmt.setString(3, dto.getU_img());		
+				pstmt.setString(4, dto.getU_cont());	
 				cnt = pstmt.executeUpdate();
 
 			} catch (Exception e) {
@@ -57,7 +59,7 @@ public class rentalDAO {
 	            sql.append(" FROM ( ");
 	            sql.append("        SELECT ROWNUM as RNUM, BB.* ");
 	            sql.append("        FROM ( ");
-	            sql.append("               SELECT u_code, u_name, u_phone, u_office ");
+	            sql.append("               SELECT u_code, u_name, u_phone, u_office, u_img, u_cont ");
 	            sql.append("               FROM tb_upche ");
 	            sql.append("               ORDER BY u_code DESC ");
 	            sql.append("             )BB ");
@@ -77,6 +79,8 @@ public class rentalDAO {
 	                	dto.setU_name(rs.getString("u_name"));
 	                	dto.setU_phone(rs.getString("u_phone"));
 	                	dto.setU_office(rs.getString("u_office"));
+	                	dto.setU_img(rs.getString("u_img"));
+	                	dto.setU_cont(rs.getString("u_cont"));
 	                    list.add(dto);
 	                }while(rs.next());
 	            }//if end
@@ -119,7 +123,7 @@ public class rentalDAO {
 			try {
 				con = dbopen.getConnection();
 				sql = new StringBuilder();
-				sql.append(" SELECT u_code, u_name, u_phone, u_office ");
+				sql.append(" SELECT u_code, u_name, u_phone, u_office, u_img, u_cont ");
 				sql.append(" FROM tb_upche ");
 				sql.append(" WHERE tb_upche.u_code = ? ");
 				pstmt = con.prepareStatement(sql.toString());
@@ -131,6 +135,8 @@ public class rentalDAO {
                 	dto.setU_name(rs.getString("u_name"));
                 	dto.setU_phone(rs.getString("u_phone"));
                 	dto.setU_office(rs.getString("u_office"));
+                	dto.setU_img(rs.getString("u_img"));
+                	dto.setU_cont(rs.getString("u_cont"));
 				} // if end
 
 			} catch (Exception e) {
@@ -150,7 +156,7 @@ public class rentalDAO {
 				con = dbopen.getConnection();
 				sql = new StringBuilder();
 				sql.append(" UPDATE tb_upche ");
-				sql.append(" SET u_code=?, u_name=?, u_phone=?, u_office=? ");
+				sql.append(" SET u_code=?, u_name=?, u_phone=?, u_office=?, u_img=?, u_cont=? ");
 				sql.append(" WHERE u_code=? ");
 				
 				pstmt = con.prepareStatement(sql.toString());
@@ -158,6 +164,8 @@ public class rentalDAO {
             	dto.setU_name(rs.getString("u_name"));
             	dto.setU_phone(rs.getString("u_phone"));
             	dto.setU_office(rs.getString("u_office"));
+            	dto.setU_img(rs.getString("u_img"));
+            	dto.setU_cont(rs.getString("u_cont"));
 				cnt = pstmt.executeUpdate();
 			} catch (Exception e) {
 				System.out.println("렌트카 업체 수정 실패" + e);

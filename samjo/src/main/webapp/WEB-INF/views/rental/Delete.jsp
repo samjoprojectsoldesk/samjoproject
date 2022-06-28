@@ -10,7 +10,7 @@
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">렌트카 삭제</h2>
+					class="heading-section">렌트카 업체 삭제</h2>
 			</div>
 		</div>
 	</div>
@@ -21,14 +21,14 @@
 	<div class="col-md-12">
 		<form name="frm" method="post" action="Delete.do" class="Ins"
 			enctype="multipart/form-data">
-			<input type="hidden" name="pack_no" value="${dto.c_code}">
+			<input type="hidden" name="pack_no" value="${dto.u_code}">
 			<div class="content">
-				<p>해당 여행지(${dto.c_name}) 를 삭제하시겠습니까?</p>
+				<p>해당 여행지(${dto.u_name}) 를 삭제하시겠습니까?</p>
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">삭제</button>
 				<button type="button" class="btn btn-secondary"
-					onclick="location.href='/package/List.do'">목록</button>
+					onclick="location.href='/rental/List.do'">목록</button>
 			</div>
 		</form>
 	</div>
