@@ -23,7 +23,7 @@
 					style="width: 40%; float: left;">
 				<div class="desc-T">
 					<ul>
-						<strong>기본정보</strong>						
+						<strong>기본정보</strong>
 						<hr>
 						<li>주소&emsp;&emsp;&emsp;${dto.t_addr}</li>
 						<li>전화번호&nbsp;&nbsp;&nbsp;&nbsp;${dto.t_tel}</li>
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="col-md-12" id="tab-menu">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="col-md-4 nav-item"><a class="nav-link active"
@@ -55,12 +55,26 @@
 			<div class="tab-pane fade" id="map" role="tabpanel"
 				aria-labelledby="map-tab"></div>
 			<div class="tab-pane fade" id="review" role="tabpanel"
-				aria-labelledby="review-tab">리뷰 추가하기</div>
+				aria-labelledby="review-tab">
+				<c:forEach var="dto" items="${list}">
+				<div class="col-md-4 text-center project">
+					<a href="../tour/tourist/read.do?t_cn=${dto.t_cn}"
+						class="grid-project">
+						<div class="desc">
+							<h3>${dto.review_content}</h3>
+							<span>${dto.review_user_id}</span>
+							<br>
+							<span>${dto.review_date}</span>
+						</div>
+					</a>
+				</div>
+			</c:forEach>
+				
+				<!-- 페이지 리스트 -->
+
+			</div>
+
 		</div>
 	</div>
-</div>
-
-
-</div>
-<!-- 본문 끝 -->
-<%@ include file="../footer.jsp"%>
+	<!-- 본문 끝 -->
+	<%@ include file="../footer.jsp"%>

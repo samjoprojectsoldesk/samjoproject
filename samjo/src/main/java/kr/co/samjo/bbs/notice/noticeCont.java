@@ -26,7 +26,7 @@ public class noticeCont {
 	
 
 	
-	@RequestMapping(value = "notice/bbsIns.do", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/notice/bbsIns.do", method = RequestMethod.GET)
 	public ModelAndView bbsIns() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/bbsIns");
@@ -34,17 +34,12 @@ public class noticeCont {
 	}//bbsIns() end
 	
 	
-	@RequestMapping(value = "notice/bbsIns.do", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/notice/bbsIns.do", method = RequestMethod.POST)
 	public ModelAndView bbsIns(@ModelAttribute noticeDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/msgView");
-		
+
 		int cnt = dao.create(dto);
-<<<<<<< HEAD
-=======
-		System.out.println(dto.toString());
-		
->>>>>>> 614dcec9ca7e732178d2e3e5777bd2d87914a3e9
 		if (cnt == 0) {
 			String msg = "<p>공지사항 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";
@@ -77,7 +72,7 @@ public class noticeCont {
         int totalRowCount=dao.totalRowCount(); //총 글갯수
        
         //페이징
-        int numPerPage   = 9;    // 한 페이지당 레코드 갯수
+        int numPerPage   = 10;    // 한 페이지당 레코드 갯수
         int pagePerBlock = 10;   // 페이지 리스트
        
         String pageNum=req.getParameter("pageNum");
@@ -133,7 +128,7 @@ public class noticeCont {
 	}// read() end
 	
 	
-	@RequestMapping(value = "/notice/bbsUpdate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/bbsUpdate.do", method = RequestMethod.GET)
 	public ModelAndView bbsUpdate(int board_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/bbsUpdate");
@@ -143,7 +138,7 @@ public class noticeCont {
 	}// updateForm() end
 	
 	
-	@RequestMapping(value = "/notice/bbsDelete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/bbsDelete.do", method = RequestMethod.GET)
 	public ModelAndView bbsDelete(int board_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/bbsDelete");
@@ -153,7 +148,7 @@ public class noticeCont {
 	}// deleteForm() end
 	
 	
-	@RequestMapping(value = "/notice/bbsDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/bbsDelete.do", method = RequestMethod.POST)
 	public ModelAndView bbsDeleteProc(int board_no, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/bbsDelete");

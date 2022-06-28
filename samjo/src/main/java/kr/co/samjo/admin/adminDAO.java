@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import kr.co.samjo.bbs.notice.noticeDTO;
 import kr.co.samjo.tour.TourDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
@@ -20,11 +21,13 @@ public class adminDAO {
 		dbopen = new DBOpen();
 	}// end
 	
-	public ArrayList<TourDTO> list(int start, int end){
+	public ArrayList<TourDTO> list(int start, int end, String word){
         ArrayList<TourDTO> list=null;
         try {
             con=dbopen.getConnection();
             sql=new StringBuilder();
+            
+            word = word.trim();
            
             sql.append(" SELECT AA.* ");
             sql.append(" FROM ( ");
@@ -33,6 +36,13 @@ public class adminDAO {
             sql.append("               SELECT t_cn, t_name, t_addr, t_dividecn, t_tel, t_link, t_sche, t_car, t_img, t_cont, t_rdate ");
             sql.append("               FROM tb_tour ");
             sql.append(" 			   WHERE t_dividecn = 1 ");
+            
+            if(word.length()!=0) {
+				String search="";
+	            search += " AND t_name LIKE '%" + word + "%' ";
+	            sql.append(search);   
+			}
+            
             sql.append("               ORDER BY t_cn DESC ");
             sql.append("             )BB ");
             sql.append("      ) AA ");
@@ -90,11 +100,13 @@ public class adminDAO {
         return cnt;
     }//totalRowCount() end
     
-    public ArrayList<TourDTO> list2(int start, int end) {
+    public ArrayList<TourDTO> list2(int start, int end, String word) {
 		ArrayList<TourDTO> list=null;
         try {
             con=dbopen.getConnection();
             sql=new StringBuilder();
+            
+            word = word.trim();
            
             sql.append(" SELECT AA.* ");
             sql.append(" FROM ( ");
@@ -103,6 +115,13 @@ public class adminDAO {
             sql.append("               SELECT t_cn, t_name, t_addr, t_dividecn, t_tel, t_link, t_sche, t_car, t_img, t_cont, t_rdate ");
             sql.append("               FROM tb_tour ");
             sql.append(" 			   WHERE t_dividecn = 2 ");
+            
+            if(word.length()!=0) {
+				String search="";
+	            search += " AND t_name LIKE '%" + word + "%' ";
+	            sql.append(search);   
+			}
+            
             sql.append("               ORDER BY t_cn DESC ");
             sql.append("             )BB ");
             sql.append("      ) AA ");
@@ -159,4 +178,71 @@ public class adminDAO {
         return cnt;
     }//totalRowCoun2t() end
 
+    
+    /*공지사항*/
+    public ArrayList<noticeDTO> bbsList(int start, int end){
+        ArrayList<noticeDTO> list=null;
+        try {
+            con=dbopen.getConnection();
+            sql=new StringBuilder();
+           
+            sql.append(" SELECT AA.* ");
+            sql.append(" FROM ( ");
+            sql.append("        SELECT ROWNUM as RNUM, BB.* ");
+            sql.append("        FROM ( ");
+            sql.append("               SELECT board_no, board_title, board_content, board_date, board_readcnt ");
+            sql.append("               FROM tb_board ");
+            sql.append("               ORDER BY board_no DESC ");
+            sql.append("             )BB ");
+            sql.append("      ) AA ");
+            sql.append(" WHERE AA.RNUM >=? AND AA.RNUM<=? ");           
+           
+            pstmt=con.prepareStatement(sql.toString());
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, end);
+           
+            rs=pstmt.executeQuery();
+            if(rs.next()) {
+                list=new ArrayList<noticeDTO>();
+                do{
+                	noticeDTO dto=new noticeDTO();
+                    dto.setBoard_no(rs.getInt("board_no"));
+                    dto.setBoard_title(rs.getString("board_title"));
+                    dto.setBoard_content(rs.getString("board_content"));
+                    dto.setBoard_date(rs.getString("board_date"));
+                    dto.setBoard_readcnt(rs.getInt("board_readcnt"));
+                    list.add(dto);
+                }while(rs.next());
+            }//if end
+           
+        }catch(Exception e) {
+            System.out.println("공지사항 페이징 목록 실패: "+e);
+        }finally{
+            DBClose.close(con, pstmt, rs);
+        }//end   
+        return list;
+    }//bbsList() end
+    
+    
+    
+    //totalRowCount 
+    public int bbstotalRowCount() {
+        int cnt=0;
+        try {
+            con=dbopen.getConnection();
+            sql=new StringBuilder();
+            sql.append(" SELECT COUNT(*) FROM tb_board ");
+            pstmt=con.prepareStatement(sql.toString());
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                cnt=rs.getInt(1);            
+            }//if end          
+        }catch(Exception e){
+            System.out.println("전체 행 갯수:" + e);
+        }finally{
+            DBClose.close(con, pstmt);
+        }
+        return cnt;
+    }//bbstotalRowCount() end
+    
 }

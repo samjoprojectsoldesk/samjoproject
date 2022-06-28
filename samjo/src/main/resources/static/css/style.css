@@ -276,6 +276,12 @@ figure {
 	height: 400px;
 }
 
+/*리뷰 등록 height*/
+.fh5co-hero-R {
+	position: relative;
+	height: 200px;
+}
+
 @media screen and (max-width: 768px) {
 	.fh5co-cover, .fh5co-hero {
 		height: 700px;
@@ -283,8 +289,14 @@ figure {
 }
 
 @media screen and (max-width: 768px) {
-	.fh5co-hero-T {
+	.fh5co-hero-T,  {
 		height: 400px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.fh5co-hero-T,  {
+		height: 200px;
 	}
 }
 
@@ -1164,6 +1176,7 @@ figure {
 .tourcreate .bottom {
 	text-align: center;
 }
+
 
 #fh5co-section {
 	float: left;

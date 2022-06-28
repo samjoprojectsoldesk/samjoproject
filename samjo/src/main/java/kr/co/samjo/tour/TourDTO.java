@@ -14,7 +14,11 @@ public class TourDTO {
 	private String t_img;
 	private String t_cont;
 	private String t_rdate;
+	private String review_user_id;
 	private String review_content;
+	private String review_date;
+	private String word;
+	
 
 	public TourDTO() {
 	}
@@ -117,6 +121,23 @@ public class TourDTO {
 		this.t_rdate = t_rdate;
 	}
 
+	
+	public String getReview_user_id() {
+		return review_user_id;
+	}
+
+	public void setReview_user_id(String review_user_id) {
+		this.review_user_id = review_user_id;
+	}
+
+	public String getReview_date() {
+		return review_date;
+	}
+
+	public void setReview_date(String review_date) {
+		this.review_date = review_date;
+	}
+
 	public String getReview_content() {
 		return review_content;
 	}
@@ -124,6 +145,16 @@ public class TourDTO {
 	public void setReview_content(String review_content) {
 		this.review_content = review_content;
 	}
+
+	public String getWord() {
+		return word;
+	}
+
+	public void setWord(String word) {
+		this.word = word;
+	}
+	
+	
 	
 
 }

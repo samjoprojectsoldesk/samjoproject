@@ -105,8 +105,8 @@
 								<ul class="sf-menu" id="fh5co-primary-menu">
 									<li><a class="bold" href="index.html">여행지소개</a>
 										<ul class="fh5co-sub-menu">
-											<li><a href="../tour/tourist.do">관광지</a></li>
-											<li><a href="../tour/festivalList.do">문화행사</a></li>
+											<li><a href="/tour/tourist.do">관광지</a></li>
+											<li><a href="/tour/festivalList.do">문화행사</a></li>
 										</ul></li>
 									<li><a class="bold" href="work.html">예약</a>
 										<ul class="fh5co-sub-menu">

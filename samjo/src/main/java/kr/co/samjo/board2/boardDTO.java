@@ -22,26 +22,36 @@ public class boardDTO {//전송객체
    
     //1)스프링 파일 객체 멤버 변수 선언
     //<input type='file' name='posterMF' size='50'>
-    private MultipartFile posterMF;
-    //<input type='file' name='filenameMF' size='50'> 
-    private MultipartFile filenameMF;
+    private MultipartFile posterMF1;
+    private MultipartFile posterMF2;
+    private MultipartFile posterMF3;
+ 
    
     //2)getter와 setter함수 작성
-    public MultipartFile getPosterMF() {
-        return posterMF;
-    }
+    public MultipartFile getPosterMF1() {
+		return posterMF1;
+	}
 
-    public void setPosterMF(MultipartFile posterMF) {
-        this.posterMF = posterMF;
-    }
+	public void setPosterMF1(MultipartFile posterMF1) {
+		this.posterMF1 = posterMF1;
+	}
 
-    public MultipartFile getFilenameMF() {
-        return filenameMF;
-    }
+	public MultipartFile getPosterMF2() {
+		return posterMF2;
+	}
 
-    public void setFilenameMF(MultipartFile filenameMF) {
-        this.filenameMF = filenameMF;
-    }
+	public void setPosterMF2(MultipartFile posterMF2) {
+		this.posterMF2 = posterMF2;
+	}
+
+	public MultipartFile getPosterMF3() {
+		return posterMF3;
+	}
+
+	public void setPosterMF3(MultipartFile posterMF3) {
+		this.posterMF3 = posterMF3;
+	}
+
 //--------------------------------------------------------
 
 	public int getBbs_idx() {
@@ -128,8 +138,10 @@ public class boardDTO {//전송객체
 	public String toString() {
 		return "boardDTO [bbs_idx=" + bbs_idx + ", bbs_img=" + bbs_img + ", bbs_img2=" + bbs_img2 + ", bbs_img3="
 				+ bbs_img3 + ", bbs_id=" + bbs_id + ", bbs_title=" + bbs_title + ", bbs_content=" + bbs_content
-				+ ", bbs_count=" + bbs_count + ", bbs_date=" + bbs_date + ", bbs_userip=" + bbs_userip + ", posterMF="
-				+ posterMF + ", filenameMF=" + filenameMF + "]";
+				+ ", bbs_count=" + bbs_count + ", bbs_date=" + bbs_date + ", bbs_userip=" + bbs_userip + ", posterMF1="
+				+ posterMF1 + ", posterMF2=" + posterMF2 + ", posterMF3=" + posterMF3 + "]";
 	}
+
+
     
 }

@@ -154,7 +154,7 @@ public class boardDAO {
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
-			sql.append(" UPDATE tb_tour ");
+			sql.append(" UPDATE tb_bbs2 ");
 			sql.append(" SET bbs_img=?, bbs_img2=?, bbs_img3=?, bbs_title=?, bbs_content=?, bbs_date=sysdate ");
 			sql.append(" WHERE bbs_idx=? ");
 			
