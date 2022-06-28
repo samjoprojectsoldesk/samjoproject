@@ -6,8 +6,6 @@ import kr.co.samjo.product.rental.rentalDAO;
 import kr.co.samjo.product.rental.rentalDTO;
 import kr.co.samjo.product.sookso.SooksoDAO;
 import kr.co.samjo.product.sookso.SooksoDTO;
-import kr.co.samjo.product.sooksoproduct.SooksoProductDAO;
-import kr.co.samjo.product.sooksoproduct.SooksoProductDTO;
 
 public class cartDTO {
 
@@ -81,13 +79,8 @@ public class cartDTO {
 		if(S=='S') {
 			SooksoDAO dao = new SooksoDAO();
 			SooksoDTO dto = new SooksoDTO();
-			SooksoProductDAO pdao = new SooksoProductDAO();
-			SooksoProductDTO pdto = new SooksoProductDTO();
-			
-			//pdao 에서 pdto를 가져와서 pdto = pdao.list(scode);
-			dto = dao.list(pdto.getS_cn()).get(0); // 숙소 가져오기
-			
-			s_name = dto.getS_name() + "의 " + pdto.getRoom_num() + "호실";
+						
+			s_name = dto.getS_name() + "의 " + dto.getRoom_cn() + "호실";
 		}else if(S=='R') {
 			MaszipDAO dao = new MaszipDAO();
 			MaszipDTO dto = new MaszipDTO();
