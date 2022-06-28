@@ -19,16 +19,15 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="delete.do" class="bbsform"
+		<form name="frm" method="post" action="../notice/bbsDelete.do" class="bbsform"
 			enctype="multipart/form-data">
-			<input type="hidden" name="t_cn" value="${dto.board_no}">
+			<input type="hidden" name="board_no" value="${dto.board_no}">
 			<div class="content">
 				<p>해당 공지사항(${dto.board_title}) 를 삭제하시겠습니까?</p>
 			</div>
 			<div class='bottom'>
-				<button type="submit" class="btn btn-primary">삭제</button>
-				<button type="button" class="btn btn-secondary"
-					onclick="location.href='/notice/noticeList.do'">목록</button>
+				<button type="submit" class="btn btn-primary">예</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='/notice/bbsList.do?board_no=${dto.board_no}'">아니오</button>
 			</div>
 		</form>
 	</div>

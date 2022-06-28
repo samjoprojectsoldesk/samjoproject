@@ -26,17 +26,15 @@ public class boardDAO {
 			con = dbopen.getConnection(); // DB연결
 
 			sql = new StringBuilder();
-			sql.append(" INSERT INTO tb_bbs2(bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date) ");
-			sql.append(" VALUES(bbs_seq2.nextval, ?, ?, ?, ?, ?, ?, ?, sysdate) ");
+			sql.append(" INSERT INTO tb_bbs2(bbs_idx, bbs_img, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date) ");
+			sql.append(" VALUES(bbs_seq2.nextval, ?, ?, ?, ?, ?, sysdate) ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getBbs_img());
-			pstmt.setString(2, dto.getBbs_img2());
-			pstmt.setString(3, dto.getBbs_img3());
-			pstmt.setString(4, dto.getBbs_id());
-			pstmt.setString(5, dto.getBbs_title());
-			pstmt.setString(6, dto.getBbs_content());
-			pstmt.setInt(7, dto.getBbs_count());
+			pstmt.setString(2, dto.getBbs_id());
+			pstmt.setString(3, dto.getBbs_title());
+			pstmt.setString(4, dto.getBbs_content());
+			pstmt.setInt(5, dto.getBbs_count());
 			cnt = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -58,7 +56,7 @@ public class boardDAO {
             sql.append(" FROM ( ");
             sql.append("        SELECT ROWNUM as RNUM, BB.* ");
             sql.append("        FROM ( ");
-            sql.append("               SELECT bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
+            sql.append("               SELECT bbs_idx, bbs_img, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
             sql.append("               FROM tb_bbs2 ");
             sql.append("               ORDER BY bbs_date DESC ");
             sql.append("             )BB ");
@@ -76,8 +74,6 @@ public class boardDAO {
                 	boardDTO dto=new boardDTO();
                 	dto.setBbs_idx(rs.getInt("bbs_idx"));
 					dto.setBbs_img(rs.getString("bbs_img"));
-					dto.setBbs_img2(rs.getString("bbs_img2"));
-					dto.setBbs_img3(rs.getString("bbs_img3"));
 					dto.setBbs_id(rs.getString("bbs_id"));
 					dto.setBbs_title(rs.getString("bbs_title"));
 					dto.setBbs_content(rs.getString("bbs_content"));
@@ -121,7 +117,7 @@ public class boardDAO {
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
-			sql.append(" SELECT bbs_idx, bbs_img, bbs_img2, bbs_img3, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
+			sql.append(" SELECT bbs_idx, bbs_img, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
 			sql.append(" FROM tb_bbs2 ");
 			sql.append(" WHERE bbs_idx = ? ");
 			pstmt = con.prepareStatement(sql.toString());
@@ -131,8 +127,6 @@ public class boardDAO {
 				dto = new boardDTO();
             	dto.setBbs_idx(rs.getInt("bbs_idx"));
 				dto.setBbs_img(rs.getString("bbs_img"));
-				dto.setBbs_img2(rs.getString("bbs_img2"));
-				dto.setBbs_img3(rs.getString("bbs_img3"));
 				dto.setBbs_id(rs.getString("bbs_id"));
 				dto.setBbs_title(rs.getString("bbs_title"));
 				dto.setBbs_content(rs.getString("bbs_content"));
@@ -155,16 +149,18 @@ public class boardDAO {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
 			sql.append(" UPDATE tb_bbs2 ");
+<<<<<<< HEAD
 			sql.append(" SET bbs_img=?, bbs_img2=?, bbs_img3=?, bbs_title=?, bbs_content=?, bbs_date=sysdate ");
+=======
+			sql.append(" SET bbs_img=?, bbs_title=?, bbs_content=?, bbs_date=sysdate ");
+>>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
 			sql.append(" WHERE bbs_idx=? ");
 			
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getBbs_img());
-			pstmt.setString(2, dto.getBbs_img2());
-			pstmt.setString(3, dto.getBbs_img3());
-			pstmt.setString(4, dto.getBbs_title());
-			pstmt.setString(5, dto.getBbs_content());
-			pstmt.setInt(6, dto.getBbs_idx());
+			pstmt.setString(2, dto.getBbs_title());
+			pstmt.setString(3, dto.getBbs_content());
+			pstmt.setInt(4, dto.getBbs_idx());
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("게시판 수정 실패" + e);
@@ -184,7 +180,7 @@ public class boardDAO {
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, bbs_idx);
 			cnt = pstmt.executeUpdate();
-		} catch (Exception e) {
+		} catch (Exception e) { 
 			System.out.println("삭제 실패" + e);
 		} finally {
 			DBClose.close(con, pstmt);

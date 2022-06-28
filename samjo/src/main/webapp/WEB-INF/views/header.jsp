@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ include file="./member/auth.jsp" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -81,7 +83,7 @@
 <link rel="stylesheet" href="../../css/style.css">
 
 <!-- Modernizr JS -->
-<script src="js/modernizr-2.6.2.min.js"></script>
+<script src="../../js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -111,9 +113,9 @@
 									<li><a class="bold" href="work.html">예약</a>
 										<ul class="fh5co-sub-menu">
 											<li><a href="left-sidebar.html">숙박</a></li>
-											<li><a href="right-sidebar.html">교통</a></li>
+											<li><a href="/rentalcar/List.do">렌트카</a></li>
 											<li><a href="#" class="fh5co-sub-ddown">맛집</a></li>
-											<li><a href="#">패키지</a></li>
+											<li><a href="/packagetour/List.do">패키지</a></li>
 										</ul></li>
 									<li><a class="bold" href="services.html"
 										class="fh5co-sub-ddown">커뮤니티</a>
@@ -123,7 +125,7 @@
 										</ul></li>
 									<li><a class="bold" href="about.html">마이페이지</a>
 										<ul class="fh5co-sub-menu">
-											<li><a href="left-sidebar.html">개인정보수정</a></li>
+											<li><a href="../member/memberModify.do">개인정보수정</a></li>
 											<li><a href="right-sidebar.html">예약관리</a></li>
 										</ul></li>
 									<li><a class="bold" href="../member/loginForm.do">로그인</a></li>

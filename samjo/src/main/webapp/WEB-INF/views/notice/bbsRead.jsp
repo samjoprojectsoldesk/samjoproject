@@ -21,13 +21,22 @@
 		<table>
 			<tr>
 				<th>제목 : ${dto.board_title}</th>
-			</tr>
-			<tr>
-				<th>조회수 : ${dto.board_readcnt}</th>
-			</tr>
+			</tr>		
 			<tr>
 				<th>내용 : ${dto.board_content}</th>
 			</tr>
+			<tr>
+				<th>조회수 : ${dto.board_readcnt}</th>
+			</tr>		
+			<!-- 삭제, 수정, 목록 버튼 -->
+			<tr>
+			<td colspan="2" align="center">
+				<div class='bottom'>
+					<button type="submit" class="btn btn-primary" onclick="location.href='/notice/bbsUpdate.do?board_no=${dto.board_no}'">수정</button>
+					<button type="submit" class="btn btn-primary" onclick="location.href='/notice/bbsDelete.do?board_no=${dto.board_no}'">삭제</button>
+					<button type="button" class="btn btn-secondary" onclick="location.href='/notice/bbsList.do'">목록</button>
+				</div>			
+			</td>
 		</table>
 	</div>
 </div>

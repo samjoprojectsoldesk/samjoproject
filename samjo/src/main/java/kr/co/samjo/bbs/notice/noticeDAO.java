@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import kr.co.samjo.tour.TourDTO;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
@@ -18,7 +21,7 @@ public class noticeDAO {//데이터베이스 관련 작업
     private StringBuilder sql=null;
     
     public noticeDAO() {
-        dbopen=new DBOpen();    
+        dbopen=new DBOpen();
     }//end
 
     
@@ -29,10 +32,16 @@ public class noticeDAO {//데이터베이스 관련 작업
             con=dbopen.getConnection();
             
             sql=new StringBuilder();
+<<<<<<< HEAD
             sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date) ");
             sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate ) ");
             sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date, board_readcnt) ");
             sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate, (SELECT NVL(MAX(board_no), 0)+1 FROM tb_board)) ");
+=======
+
+            sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date, board_readcnt) ");
+            sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate, (SELECT NVL(MAX(board_no), 0)+1 FROM tb_board) ) ");
+>>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
 
             pstmt=con.prepareStatement(sql.toString());
             pstmt.setString(1, dto.getBoard_title());
@@ -130,7 +139,7 @@ public class noticeDAO {//데이터베이스 관련 작업
     
     
     
-  //delete
+//delete
     public int delete(int board_no) {
     	int cnt=0;
         try {
@@ -197,4 +206,38 @@ public class noticeDAO {//데이터베이스 관련 작업
     }//totalRowCount() end
     
 
+<<<<<<< HEAD
+=======
+
+	public int bbsInsProc(noticeDTO dto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
+	
+//Update
+	public int update(noticeDTO dto) {
+        int cnt = 0;
+        try {
+          con = dbopen.getConnection();
+          sql = new StringBuilder();
+          sql.append(" UPDATE tb_board ");
+          sql.append(" SET board_title=?, board_content=? ");
+          sql.append(" WHERE board_no=? "); 
+          pstmt = con.prepareStatement(sql.toString());
+          pstmt.setString(1, dto.getBoard_title());
+          pstmt.setString(2, dto.getBoard_content());
+          pstmt.setInt(3, dto.getBoard_no());
+          cnt = pstmt.executeUpdate();
+          
+        } catch (Exception e) {
+           System.out.println("수정실패"+e);
+        } finally {
+            DBClose.close(con, pstmt);
+        }//end
+        return cnt;
+    }//update end
+    
+>>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
 }//class end   

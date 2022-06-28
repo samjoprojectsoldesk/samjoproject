@@ -4,14 +4,24 @@
 <%@ include file="../header.jsp" %>
 <!-- 본문시작 memberModify.jsp -->
 <div class="container">
-	<h3>* 회/원/수/정 *</h3> 
+	<h3>* 회/원/정/보/수/정 *</h3> 
+	<aside id="fh5co-hero" class="js-fullheight">
+	<div class="flexslider js-fullheight">
+		<div class="container">
+			<div class="slider-text-inner desc">
+				<h2
+					style="margin-top: 300px; text-align: center; font-weight: bold;"
+					class="heading-section">로그인</h2>
+			</div>
+		</div>
+	</div>
 <%
 	dto=dao.read((String)session.getAttribute("s_id"));//loginProc.jsp 로그인성공
 	if(dto==null){
 		out.print("회원 정보 없음!!");
 	}else{//수정폼에 출력(memberForm.jsp에서 폼을 복사)
 %>	
-	<form name="memfrm" id="memfrm" action="memberModify.jsp" onsubmit="return memberCheck()"><!-- myscript.js -->
+	<form name="memfrm" id="memfrm" action="memberModify.do" onsubmit="return memberCheck()"><!-- myscript.js -->
 	<span style="color:red; font-weight: bold">* 필수입력</span>
 	<br>
 	<table class="table">

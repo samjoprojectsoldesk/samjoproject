@@ -1,4 +1,4 @@
-package kr.co.samjo.resDetail;
+package kr.co.samjo.res;
 
 public class resDetailDTO {
 
@@ -6,6 +6,7 @@ public class resDetailDTO {
     private String s_code; // varchar2(10) not null,
     private String sdate; // VARCHAR2(30) not null,
     private String fdate; // VARCHAR2(30)
+    
 	public String getRes_no() {
 		return res_no;
 	}

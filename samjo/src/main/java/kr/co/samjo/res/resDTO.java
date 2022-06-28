@@ -7,7 +7,7 @@ public class resDTO {
     private int amount; // number,
     private String pay; //varchar2(20),
     private int p_cnt; // number not null,
-    private char result; // char(1) not null,
+    private String result; // char(1) not null,
 	public String getRes_no() {
 		return res_no;
 	}
@@ -38,10 +38,10 @@ public class resDTO {
 	public void setP_cnt(int p_cnt) {
 		this.p_cnt = p_cnt;
 	}
-	public char getResult() {
+	public String getResult() {
 		return result;
 	}
-	public void setResult(char result) {
+	public void setResult(String result) {
 		this.result = result;
 	}
 	@Override

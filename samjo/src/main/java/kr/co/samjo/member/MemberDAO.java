@@ -56,7 +56,7 @@ public class MemberDAO {
 			
 			sql=new StringBuilder();
 			sql.append(" SELECT COUNT(id) as cnt ");
-			sql.append(" FROM member ");
+			sql.append(" FROM tb_user ");
 			sql.append(" WHERE id=? ");
 			
 			pstmt=con.prepareStatement(sql.toString());

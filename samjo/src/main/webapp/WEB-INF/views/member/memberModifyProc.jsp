@@ -4,7 +4,7 @@
 <%@ include file="../header.jsp" %>
 <!-- 본문시작 memberModifyProc.jsp -->
 <div class="container">
-	<h3>* 회/원/수/정 결과 *</h3>
+	<h3>* 회/원/정/보/수/정 결과 *</h3>
 <%
 	//memberProc.jsp 참조 
 	String passwd  =request.getParameter("passwd").trim();

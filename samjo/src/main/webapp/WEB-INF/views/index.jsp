@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="./member/auth.jsp" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -92,9 +93,9 @@
 									<a class="bold" href="work.html">예약</a>
 									<ul class="fh5co-sub-menu">
 									 	<li><a href="left-sidebar.html">숙박</a></li>
-									 	<li><a href="right-sidebar.html">교통</a></li>
+									 	<li><a href="/rentalcar/List.do">렌트카</a></li>
 										<li><a href="#" class="fh5co-sub-ddown">맛집</a></li>
-										<li><a href="#">패키지</a></li>
+										<li><a href="/packagetour/List.do">패키지</a></li>
 									</ul>
 								</li>
 								<li>
@@ -107,7 +108,7 @@
 								<li>
 									<a class="bold" href="about.html">마이페이지</a>
 									<ul class="fh5co-sub-menu">
-									 	<li><a href="left-sidebar.html">개인정보수정</a></li>
+									 	<li><a href="/member/memberModify.do">개인정보수정</a></li>
 									 	<li><a href="right-sidebar.html">예약관리</a></li>
 									</ul>
 								</li>
@@ -235,9 +236,11 @@
 	<script src="js/superfish.js"></script>
 	<!-- Flexslider -->
 	<script src="js/jquery.flexslider-min.js"></script>
+	<!-- myscript -->
+	<script src="../../js/myscript.js"></script>
 
 	<!-- Main JS (Do not remove) -->
-	<script src="js/main.js"></script>
+	<script src="../../js/main.js"></script>
 
 	</body>
 </html>
