@@ -11,13 +11,21 @@
 					class="heading-section">자유게시판</h2>
 				   	</div>
 			</div>
-</aside>
 
 	<div class="content">
-        <input type="button" value="글쓰기" onclick="location.href='board2/boardcreate.do?bbs_idx=${requestScope.bbs_idx}'">
+        <input type="button" value="글쓰기" onclick="location.href='boardcreate.do'">
     </div>
-   
-    <table>
+   <div style='text-align: right; height: 50px; margin-right: 50px;'>
+    <form action="bbsList.jsp">
+        <input type="text" id="txtSearch" placeholder="검색어를 입력하세요." value="" style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
+        &nbsp;&nbsp;
+        <input type="submit" value="검색"
+				class="btn btn-secondary"
+				style="font-weight: bold; font-family: Arial;">
+    </form>
+</div>
+    <div class="noticeList">
+    <table class="table table-hover">
     <tr>
         <th>번호</th>
         <th>제목</th>
@@ -29,15 +37,16 @@
     <c:forEach var="dto" items="${list}">
         <tr>
         <td>${dto.bbs_idx}</td>
-        <td><a href="board2/boardread.do?bbs_idx=${dto.bbs_idx}">${dto.bbs_title}</a></td>
+        <td><a href="boardread.do?bbs_idx=${dto.bbs_idx}">${dto.bbs_title}</a></td>
         <td>${dto.bbs_id}</td>
         <td>${dto.bbs_date}</td>
         <td>${dto.bbs_count}</td>
         </tr>
     </c:forEach>  
     </table>
+    </div>
     
-    <div class="paging">
+    <div class="paging" style="margin-left: 50%">
 		<c:if test="${requestScope.count>0 }">
 			<c:set var="pageCount" value="${requestScope.totalPage}" />
 			<c:set var="startPage" value="${requestScope.startPage}" />
@@ -62,7 +71,7 @@
 			</div>
 		</c:if>
 	</div>
-
+</aside>
 
 <!-- 본문 끝 -->
 <%@ include file="../footer.jsp"%>
