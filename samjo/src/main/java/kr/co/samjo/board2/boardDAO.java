@@ -149,11 +149,7 @@ public class boardDAO {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
 			sql.append(" UPDATE tb_bbs2 ");
-<<<<<<< HEAD
-			sql.append(" SET bbs_img=?, bbs_img2=?, bbs_img3=?, bbs_title=?, bbs_content=?, bbs_date=sysdate ");
-=======
 			sql.append(" SET bbs_img=?, bbs_title=?, bbs_content=?, bbs_date=sysdate ");
->>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
 			sql.append(" WHERE bbs_idx=? ");
 			
 			pstmt = con.prepareStatement(sql.toString());

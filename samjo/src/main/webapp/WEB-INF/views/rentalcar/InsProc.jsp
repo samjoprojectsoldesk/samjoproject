@@ -20,18 +20,18 @@
 	String C_cont	=request.getParameter("c_cont").trim();
 
 	//dto객체에 담기
-	dto.setU_code(u_code);
-	dto.setU_name(u_name);
-	dto.setU_phone(u_phone);
-	dto.setU_office(u_office);
-	dto.setC_code(c_code);
-	dto.setC_kind(c_kind);
-	dto.setC_name(c_name);
-	dto.setC_sum(c_sum);
-	dto.setC_charge(c_charge);
-	dto.setC_reserve(c_reserve);
-	dto.setC_img(c_img);
-	dto.setC_cont(c_cont);
+	dto.setU_code(U_code);
+	dto.setU_name(U_name);
+	dto.setU_phone(U_phone);
+	dto.setU_office(U_office);
+	dto.setC_code(C_code);
+	dto.setC_kind(C_kind);
+	dto.setC_name(C_name);
+	dto.setC_sum(C_sum);
+	dto.setC_charge(C_charge);
+	dto.setC_reserve(C_reserve);
+	dto.setC_img(C_img);
+	dto.setC_cont(C_cont);
 	
 	int cnt=dao.create(dto); 
     if(cnt==0){

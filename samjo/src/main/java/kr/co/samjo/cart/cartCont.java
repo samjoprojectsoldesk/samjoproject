@@ -128,20 +128,31 @@ public class cartCont {
 	}// deleteForm end
 	
 	@RequestMapping(value= "cart/reserve.do", method = RequestMethod.POST)
-	public ModelAndView reserveProc(@ModelAttribute cartDTO cdto, String user_id) {
+	public ModelAndView reserveProc(@ModelAttribute cartDTO cdto, String user_id, String pay, int p_cnt ) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("cart/msgView");
+		cdto.setScost();
 		int cost = 0;
+		char s = cdto.getS_code().charAt(0);
 		resDTO dto = new resDTO();
 		dto.setUser_id(user_id);
 		ArrayList<String> weeklist = null;
-		weeklist = dao.week(cdto.getC_no());
 		for(int i = 0 ; i<weeklist.size(); i++ ) {
-			is(weeklist.get(i).equals('주말')){
+			if(s=='S') {
+				weeklist = dao.week(cdto.getC_no());
+					if(weeklist.get(i).equals("주말")){
+						cost += cdto.getScostep();
+					}else {
+						cost += cdto.getScostdp();
+					}
 			}else {
-				
+				cost += cdto.getScostdp();
 			}
 		}
+		dto.setAmount(cost);
+		dto.setResult("Y");
+		dto.setP_cnt(p_cnt);
+		dto.setPay(pay);
 		
 		int cnt = dao2.add(dto);
 		
