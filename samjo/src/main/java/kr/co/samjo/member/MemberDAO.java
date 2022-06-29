@@ -27,7 +27,7 @@ public class MemberDAO {
 			
 			sql=new StringBuilder();
 			sql.append(" SELECT mlevel ");
-			sql.append(" FROM member ");
+			sql.append(" FROM tb_user ");
 			sql.append(" WHERE id=? and passwd=? ");
 			sql.append(" AND mlevel in ('A1', 'B1', 'C1', 'D1') ");
 			
@@ -83,7 +83,7 @@ public class MemberDAO {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-			sql.append(" INSERT INTO member(id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate) ");
+			sql.append(" INSERT INTO tb_user(id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate) ");
 			sql.append(" VALUES(?,?,?,?,?,?,?,?,?.'D1', sysdate) ");
 			
 			pstmt=con.prepareStatement(sql.toString());
@@ -117,7 +117,7 @@ public class MemberDAO {
 			
 			//이름과 이메일이 일치하는 id 가져오기
 			sql.append(" SELECT id ");
-			sql.append(" FROM member ");
+			sql.append(" FROM tb_user ");
 			sql.append(" WHERE mname=? AND email=? ");
 			
 			pstmt=con.prepareStatement(sql.toString());
@@ -144,7 +144,7 @@ public class MemberDAO {
 				
 				//임시비밀번호로 업데이트 하기
 				sql=new StringBuilder();
-				sql.append(" UPDATE member ");
+				sql.append(" UPDATE tb_user ");
 				sql.append(" SET passwd=? ");
 				sql.append(" WHERE mname=? AND email=? ");
 				pstmt=con.prepareStatement(sql.toString());
@@ -194,7 +194,7 @@ public class MemberDAO {
 			
 			sql=new StringBuilder();
 			sql.append(" SELECT passwd, mname, tel, email, zipcode, address1, address2, job ");
-			sql.append(" FROM member ");
+			sql.append(" FROM tb_user ");
 			sql.append(" WHERE id=? ");
 			
 			pstmt=con.prepareStatement(sql.toString());
@@ -231,7 +231,7 @@ public class MemberDAO {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-			sql.append(" UPDATE member ");
+			sql.append(" UPDATE tb_user ");
 			sql.append(" SET passwd=?, mname=?, tel=?, email=?, zipcode=?, address1=?, address2=?, job=? ");
 			sql.append(" WHERE id=? ");
 			
