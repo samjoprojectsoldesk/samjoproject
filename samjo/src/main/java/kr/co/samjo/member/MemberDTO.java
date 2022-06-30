@@ -1,34 +1,34 @@
 package kr.co.samjo.member;
 
 public class MemberDTO { 
-    private String id;
-    private String passwd;
+    private String user_id;
+    private String user_pw;
     private String mname;
-    private String tel;
-    private String email;
+    private String user_phone;
+    private String user_email;
     private String zipcode;
-    private String address1;
-    private String address2;
+    private String user_addr1;
+    private String user_addr2;
     private String job;
-    private String mlevel;
+    private String user_level;
     private String mdate;
     
     public MemberDTO() {}
-    
-	public String getId() {
-		return id;
+
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
-	public String getPasswd() {
-		return passwd;
+	public String getUser_pw() {
+		return user_pw;
 	}
 
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+	public void setUser_pw(String user_pw) {
+		this.user_pw = user_pw;
 	}
 
 	public String getMname() {
@@ -39,20 +39,20 @@ public class MemberDTO {
 		this.mname = mname;
 	}
 
-	public String getTel() {
-		return tel;
+	public String getUser_phone() {
+		return user_phone;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setUser_phone(String user_phone) {
+		this.user_phone = user_phone;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUser_email() {
+		return user_email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
 
 	public String getZipcode() {
@@ -63,20 +63,20 @@ public class MemberDTO {
 		this.zipcode = zipcode;
 	}
 
-	public String getAddress1() {
-		return address1;
+	public String getUser_addr1() {
+		return user_addr1;
 	}
 
-	public void setAddress1(String address1) {
-		this.address1 = address1;
+	public void setUser_addr1(String user_addr1) {
+		this.user_addr1 = user_addr1;
 	}
 
-	public String getAddress2() {
-		return address2;
+	public String getUser_addr2() {
+		return user_addr2;
 	}
 
-	public void setAddress2(String address2) {
-		this.address2 = address2;
+	public void setUser_addr2(String user_addr2) {
+		this.user_addr2 = user_addr2;
 	}
 
 	public String getJob() {
@@ -87,12 +87,12 @@ public class MemberDTO {
 		this.job = job;
 	}
 
-	public String getMlevel() {
-		return mlevel;
+	public String getUser_level() {
+		return user_level;
 	}
 
-	public void setMlevel(String mlevel) {
-		this.mlevel = mlevel;
+	public void setUser_level(String user_level) {
+		this.user_level = user_level;
 	}
 
 	public String getMdate() {
@@ -105,11 +105,13 @@ public class MemberDTO {
 
 	@Override
 	public String toString() {
-		return "MemberDTO [id=" + id + ", passwd=" + passwd + ", mname=" + mname + ", tel=" + tel + ", email=" + email
-				+ ", zipcode=" + zipcode + ", address1=" + address1 + ", address2=" + address2 + ", job=" + job
-				+ ", mlevel=" + mlevel + ", mdate=" + mdate + "]";
+		return "MemberDTO [user_id=" + user_id + ", user_pw=" + user_pw + ", mname=" + mname + ", user_phone="
+				+ user_phone + ", user_email=" + user_email + ", zipcode=" + zipcode + ", user_addr1=" + user_addr1
+				+ ", user_addr2=" + user_addr2 + ", job=" + job + ", user_level=" + user_level + ", mdate=" + mdate
+				+ "]";
 	}
-    
+
+
     
     
     
