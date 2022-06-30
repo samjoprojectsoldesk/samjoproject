@@ -6,7 +6,6 @@ public class resDTO {
     private String user_id; //varchar2(15) not null,
     private int amount; // number,
     private String pay; //varchar2(20),
-    private int p_cnt; // number not null,
     private String result; // char(1) not null,
     
 	public String getRes_no() {
@@ -33,12 +32,6 @@ public class resDTO {
 	public void setPay(String pay) {
 		this.pay = pay;
 	}
-	public int getP_cnt() {
-		return p_cnt;
-	}
-	public void setP_cnt(int p_cnt) {
-		this.p_cnt = p_cnt;
-	}
 	public String getResult() {
 		return result;
 	}
@@ -47,8 +40,8 @@ public class resDTO {
 	}
 	@Override
 	public String toString() {
-		return "resDTO [res_no=" + res_no + ", user_id=" + user_id + ", amount=" + amount + ", pay=" + pay + ", p_cnt="
-				+ p_cnt + ", result=" + result + "]";
+		return "resDTO [res_no=" + res_no + ", user_id=" + user_id + ", amount=" + amount + ", pay=" + pay + ", result="
+				+ result + "]";
 	}
-    
+	
 }

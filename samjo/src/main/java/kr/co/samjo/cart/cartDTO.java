@@ -110,5 +110,4 @@ public class cartDTO {
 				+ p_cnt + ", sdate=" + sdate + ", fdate=" + fdate + ", s_name=" + s_name + ", s_costdp=" + s_costdp
 				+ ", s_costep=" + s_costep + ", totalPrice=" + totalPrice + "]";
 	}
-	
 }

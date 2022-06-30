@@ -26,7 +26,6 @@ public class cartCont {
 
 	public cartCont() {
 		dao = new cartDAO();
-		dao2 = new resDAO();
 		System.out.println("-----cartCont객체 생성됨");
 	}
 		
