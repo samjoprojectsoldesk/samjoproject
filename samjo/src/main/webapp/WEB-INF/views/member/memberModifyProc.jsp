@@ -33,7 +33,7 @@
   	}else{
       	out.println("<script>");
       	out.println("    alert('회원 정보 수정 되었습니다~');");
-      	out.println("    location.href='loginForm.jsp'");
+      	out.println("    location.href='loginForm.do'");
       	out.println("</script>");
   	}//if end	
 	

@@ -14,12 +14,12 @@
 	String U_cont	=request.getParameter("u_cont").trim();
 
 	//dto객체에 담기
-	dto.setU_code(u_code);
-	dto.setU_name(u_name);
-	dto.setU_phone(u_phone);
-	dto.setU_office(u_office);
-	dto.setU_phone(u_img);
-	dto.setU_office(u_cont);
+	dto.setU_code(U_code);
+	dto.setU_name(U_name);
+	dto.setU_phone(U_phone);
+	dto.setU_office(U_office);
+	dto.setU_phone(U_img);
+	dto.setU_office(U_cont);
 	
 	int cnt=dao.create(dto); 
     if(cnt==0){

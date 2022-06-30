@@ -1,6 +1,7 @@
 package kr.co.samjo.member;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,7 +14,9 @@ public class MemberCont {
 	
 	private MemberDAO dao=null;
 	
+	//mymelon프로젝트의 MediagroupCont 참조하시면 됩니다~
 	public MemberCont() {
+		dao=new MemberDAO();
 		System.out.println("-----loginFormCont() 객체 생성됨");
 	}//end
 	
@@ -25,12 +28,36 @@ public class MemberCont {
 		return mav;
 	}//loginForm() end
 	
-	@RequestMapping("/member/loginProc.do")
-	public ModelAndView loginProc() {
+	
+	///////////////////////////////////////////////////////
+	// spring03_web 프로젝트 kr.co.web.test03 팩키지 참조하면 됩니다
+	///////////////////////////////////////////////////////
+	
+	//<form name="loginfrm" id="loginfrm" method="post" action="loginProc.do"> post방식으로 요청했을때
+	@RequestMapping(value = "/member/loginProc.do", method = RequestMethod.POST)
+	public ModelAndView loginProc(HttpServletRequest req, HttpSession session) {
+		//loginForm.jsp에서 입력한 아이디/비번 가져오기		
+		String user_id	 =req.getParameter("user_id").trim();
+		String user_pw   =req.getParameter("user_pw").trim();
+		
+		//dto에 담기
+		MemberDTO dto=new MemberDTO();
+		dto.setUser_id(user_id);
+		dto.setUser_pw(user_pw);
+		
+		//DB에 가서 로그인 정보 가져오기
+		String user_level=dao.loginProc(dto);
+		
+		//세션영역에 로그인 정보 올리기
+		session.setAttribute("s_id", user_id);
+		session.setAttribute("s_passwd", user_pw);
+		session.setAttribute("s_mlevel", user_level);		
+		
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/member/loginProc");
+		mav.setViewName("/member/loginForm"); //뷰페이지 이동하기
+		
 		return mav;
-	}//loginForm() end
+	}//loginProc() end
 	
 	@RequestMapping("/member/agreement.do")
 	public ModelAndView agreement() {
@@ -111,12 +138,6 @@ public class MemberCont {
 		return mav;
 	}//emailCheckProc() end
 	
-	@RequestMapping("/member/loginProc.do")
-	public ModelAndView loginProc() {
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/member/loginProc");
-		return mav;
-	}//loginProc() end
 	
 	
 }
