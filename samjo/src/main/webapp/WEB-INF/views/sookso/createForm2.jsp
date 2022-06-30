@@ -32,6 +32,10 @@
 				<input type="text" class="form-control" id="room_name" name="room_name">
 			</div>
 			<div class="form-group">
+				<label for="posterMF2">대표 이미지</label> 
+				<input type="file" class="form-control-file" id="posterMF2" name="posterMF2">
+			</div>
+			<div class="form-group">
 				<label for="room_mp">최대인원수</label> 
 				<input type="text" class="form-control" id="room_mp" name="room_mp">
 			</div>

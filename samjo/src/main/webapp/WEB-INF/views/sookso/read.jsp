@@ -58,9 +58,9 @@
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="info" role="tabpanel"
 				aria-labelledby="info-tab">
-				<form>
+				<form name="frm" method="post" action="" class="create" enctype="multipart/form-data">
 				<div class="container">
-				<input id="datepicker1" type="text"> - <input id="datepicker2" type="text">
+				<input name="" id="datepicker1" type="text"> - <input name="" id="datepicker2" type="text">
 				<script>
 				datePickerSet($("#datepicker1"), $("#datepicker2"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
 
@@ -145,21 +145,26 @@
 						<img src="../../storage/${dto.room_img}" class="img-responsive"
 						style="width: 40%; float: left;">
 							<div class="desc">
-								<div>${dto.room_name}</div>
-								<div>${dto.room_mp}</div>
-								<div>${dto.room_dp}</div>
-								<div>${dto.room_ep}</div>
+								<div>방이름 :${dto.room_name}</div>
+								<div>최대인원 :${dto.room_mp}</div>
+								<div>평일가격 :${dto.room_dp}</div>
+								<div>주말가격 :${dto.room_ep}</div>
 							</div>
-						</a>
+							<button type="submit">장바구니</button>
 					</div>
 				</c:forEach>
+				</div>
+				</form>
+				</div>
+
 
 			<div class="tab-pane fade" id="map" role="tabpanel"
 				aria-labelledby="map-tab">${dto.s_cont}</div>
 				
 			<div class="tab-pane fade" id="review" role="tabpanel"
 				aria-labelledby="review-tab">리뷰 추가하기</div>
-		</div>
+		
+	
 	</div>
 	</div>
 	</div>
