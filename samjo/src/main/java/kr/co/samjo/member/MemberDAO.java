@@ -29,11 +29,11 @@ public class MemberDAO {
 			sql.append(" SELECT user_level ");
 			sql.append(" FROM tb_user ");
 			sql.append(" WHERE user_id=? and user_pw=? ");
-			sql.append(" AND user_level in (1 , 2) ");
 <<<<<<< HEAD
-
+			sql.append(" AND user_level in ('1', '2') ");
 =======
->>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
+			sql.append(" AND user_level in (1 , 2) ");
+>>>>>>> c6f51390f5bd146725f3ed71a867dd75b857c685
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_id()); 
@@ -42,10 +42,6 @@ public class MemberDAO {
 			
 			if(rs.next()) {
 				user_level=rs.getString("user_level");
-<<<<<<< HEAD
-
-=======
->>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
 			}//if end
 			
 		}catch (Exception e) {
@@ -57,7 +53,7 @@ public class MemberDAO {
 	}//loginProc() end
 	
 	
-	public int duplecateID(String id) {
+	public int duplecateID(String user_id) {
 		int cnt=0;
 		try {
 			con=dbopen.getConnection();
@@ -68,7 +64,7 @@ public class MemberDAO {
 			sql.append(" WHERE user_id=? ");
 			
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1, id); 
+			pstmt.setString(1, user_id); 
 			
 			rs= pstmt.executeQuery();
 			if(rs.next()) {
@@ -92,8 +88,8 @@ public class MemberDAO {
 			
 			sql=new StringBuilder();
 <<<<<<< HEAD
-			sql.append(" INSERT INTO tb_user(user_idx, user_id, user_pw, user_name, user_phone, user_email, user_addr1, user_addr2, user_job, user_level, user_date) ");
-			sql.append(" VALUES(user_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, '2', sysdate) ");
+			sql.append(" INSERT INTO tb_user(user_idx, user_id, user_pw, user_name, user_phone, user_email, user_zipcode, user_addr1, user_addr2, user_job, user_level, user_date) ");
+			sql.append(" VALUES(user_seq.nextval,?,?,?,?,?,?,?,?,?, '2', sysdate) ");
 			
 			pstmt=con.prepareStatement(sql.toString());
 			//pstmt.setString(1, dto.getId()); 
@@ -104,10 +100,10 @@ public class MemberDAO {
 			//pstmt.setString(6, dto.getAddress1());
 			//pstmt.setString(7, dto.getAddress2());
 			//pstmt.setString(8, dto.getJob());
-
 =======
 			sql.append(" INSERT INTO tb_user(user_id, user_pw, user_name, user_phone, user_email, user_zipcode, user_addr1, user_addr2, user_job, user_level, user_date) ");
 			sql.append(" VALUES(?,?,?,?,?,?,?,?,?.'D1', sysdate) ");
+>>>>>>> c6f51390f5bd146725f3ed71a867dd75b857c685
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_id()); 
@@ -119,7 +115,10 @@ public class MemberDAO {
 			pstmt.setString(7, dto.getUser_addr1());
 			pstmt.setString(8, dto.getUser_addr2());
 			pstmt.setString(9, dto.getUser_job());
->>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
+<<<<<<< HEAD
+
+=======
+>>>>>>> c6f51390f5bd146725f3ed71a867dd75b857c685
 			
 			cnt= pstmt.executeUpdate();
 			
@@ -142,12 +141,11 @@ public class MemberDAO {
 			//이름과 이메일이 일치하는 id 가져오기
 			sql.append(" SELECT user_id ");
 			sql.append(" FROM tb_user ");
-<<<<<<< HEAD
 			sql.append(" WHERE user_name=? AND user_email=? ");
-
+<<<<<<< HEAD
 =======
-			sql.append(" WHERE mname=? AND user_email=? ");
->>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
+
+>>>>>>> c6f51390f5bd146725f3ed71a867dd75b857c685
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_name());
@@ -175,13 +173,8 @@ public class MemberDAO {
 				sql=new StringBuilder();
 				sql.append(" UPDATE tb_user ");
 				sql.append(" SET user_pw=? ");
-<<<<<<< HEAD
-
 				sql.append(" WHERE user_name=? AND user_email=? ");
 
-=======
-				sql.append(" WHERE mname=? AND user_email=? ");
->>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
 				pstmt=con.prepareStatement(sql.toString());
 				pstmt.setString(1, imsiPW.toString());
 				pstmt.setString(2, dto.getUser_name());

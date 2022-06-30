@@ -1,7 +1,7 @@
 package kr.co.samjo.member;
 
 public class MemberDTO { 
-	private String user_idx;
+	private int user_idx;
     private String user_id;
     private String user_pw;
     private String user_name;
@@ -16,11 +16,11 @@ public class MemberDTO {
     
     public MemberDTO() {}
 
-	public String getUser_idx() {
+	public int getUser_idx() {
 		return user_idx;
 	}
 
-	public void setUser_idx(String user_idx) {
+	public void setUser_idx(int user_idx) {
 		this.user_idx = user_idx;
 	}
 

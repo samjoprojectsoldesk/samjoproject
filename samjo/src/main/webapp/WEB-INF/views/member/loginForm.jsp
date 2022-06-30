@@ -2,7 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <%
-if (s_id.equals("guest") || s_passwd.equals("guest") || s_mlevel.equals("guest")) {
+//MemberCont.java의 loginProc()함수 참조  -> loginProc.jsp+ssi.jsp는 필요하지 않은 페이지 입니다
+//session.setAttribute("s_id", user_id);
+//session.setAttribute("s_passwd", user_pw);
+//session.setAttribute("s_mlevel", user_level);	
+
+//세션영역에 로그인 정보중에서 하나라도 null이면 로그인 하지 않았다고 판단
+if (session.getAttribute("s_id")==null ||session.getAttribute("s_passwd")==null ||session.getAttribute("s_mlevel")==null) {
 
 	//아이디저장 쿠키 확인------------------------
 	//사용자PC에 저장된 모든 쿠키값 가져오기
@@ -28,13 +34,13 @@ if (s_id.equals("guest") || s_passwd.equals("guest") || s_mlevel.equals("guest")
 						<form name="loginfrm" id="loginfrm" method="post" action="loginProc.do" onsubmit="return loginCheck()"><!-- myscript.js에서 함수 작성 -->
 							<table class="table">
 								<tr>
-									<td><input type="text" name="id" id="id" value="<%=c_id%>" placeholder="아이디" maxlength="10" required></td>
+									<td><input type="text" name="user_id" id="user_id" value="<%=c_id%>" placeholder="아이디" maxlength="10" required></td>
 									<td rowspan="2">
 										<!-- type=image의 기본속성이 submit --> <input type="image" src="../images/bt_login.gif">
 									</td>
 								</tr>
 								<tr>
-									<td><input type="password" name="passwd" id="passwd" placeholder="비밀번호" maxlength="10" required></td>
+									<td><input type="password" name="user_pw" id="user_pw" placeholder="비밀번호" maxlength="10" required></td>
 								</tr>
 								<tr>
 									<td colspan="2"><label><input type="checkbox" name="c_id" value="SAVE" <%if (!c_id.isEmpty()) {out.print("checked");}%>>아이디 저장</label>
@@ -46,19 +52,28 @@ if (s_id.equals("guest") || s_passwd.equals("guest") || s_mlevel.equals("guest")
 					</div>
 				</div>
 			</div>
-			
-		
+	</aside>
 <%
 	} else {
+%>
+
+<aside id="fh5co-hero" class="js-fullheight">
+	<div class="flexslider js-fullheight">
+		<div class="container">
+			<div class="slider-text-inner desc">
+				<h2 style="margin-top: 300px; text-align: center; font-weight: bold;" class="heading-section">로그인</h2>
+<%
 			//로그인 성공했다면
 			out.println("<strong>" + s_id + "</strong> 님");
-			out.println("<a href='logout.jsp'>[로그아웃]</a>");
+			out.println("<a href='logout.do'>[로그아웃]</a>");
 			out.println("<br><br>");
-			out.println("<a href='memberModify.jsp'>[회원정보수정]</a>");
+			out.println("<a href='memberModify.do'>[회원정보수정]</a>");
 			out.println("&nbsp;&nbsp;");
-			out.println("<a href='memberWithdraw.jsp'>[회원탈퇴]</a>");
+			out.println("<a href='memberWithdraw.do'>[회원탈퇴]</a>");
 	} //if end
 %>
+</div>
+</div>
 </div>
 </aside>
 

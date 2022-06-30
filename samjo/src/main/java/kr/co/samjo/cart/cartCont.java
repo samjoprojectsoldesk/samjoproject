@@ -43,7 +43,7 @@ public class cartCont {
 		cdto.setCnt(Integer.parseInt(request.getParameter("cnt")));
 		cdto.setP_cnt(Integer.parseInt(request.getParameter("p_cnt")));
 		cdto.setSdate(request.getParameter("sdate"));
-		cdto.setFdate(request.getParameter("fdate"));		
+		cdto.setFdate(request.getParameter("fdate"));
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("cart/msgView");

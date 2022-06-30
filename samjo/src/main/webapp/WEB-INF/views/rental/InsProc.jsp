@@ -17,6 +17,7 @@
 	String review_date		=request.getParameter("review_date").trim();
 	
 	//dto객체에 담기
+<<<<<<< HEAD
 	dto.setU_code(u_code);
 	dto.setU_name(u_name);
 	dto.setU_phone(u_phone);
@@ -26,6 +27,14 @@
 	dto.setReview_user_id(review_user_id);
 	dto.setReview_content(review_content);
 	dto.setReview_date(review_date);
+=======
+	dto.setU_code(U_code);
+	dto.setU_name(U_name);
+	dto.setU_phone(U_phone);
+	dto.setU_office(U_office);
+	dto.setU_phone(U_img);
+	dto.setU_office(U_cont);
+>>>>>>> dfb84ea9495dc01b13da11701a5adc011ff12ae1
 	
 	int cnt=dao.create(dto); 
     if(cnt==0){

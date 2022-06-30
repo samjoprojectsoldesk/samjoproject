@@ -91,19 +91,19 @@
 							<!-- START #fh5co-menu-wrap -->
 							<nav id="fh5co-menu-wrap" role="navigation">
 								<ul class="sf-menu" id="fh5co-primary-menu">
-									<li><a class="bold" href="index.html">여행지소개</a>
+									<li><a class="bold" href="#">여행지소개</a>
 										<ul class="fh5co-sub-menu">
 											<li><a href="/tour/tourist.do">관광지</a></li>
 											<li><a href="/tour/festivalList.do">문화행사</a></li>
 										</ul></li>
-									<li><a class="bold" href="work.html">예약</a>
+									<li><a class="bold" href="#">예약</a>
 										<ul class="fh5co-sub-menu">
 											<li><a href="/sookso/List.do">숙박</a></li>
 											<li><a href="/rentalcar/List.do">렌트카</a></li>
 											<li><a href="#" class="fh5co-sub-ddown">맛집</a></li>
 											<li><a href="/packagetour/List.do">패키지</a></li>
 										</ul></li>
-									<li><a class="bold" href="services.html"
+									<li><a class="bold" href="#"
 										class="fh5co-sub-ddown">커뮤니티</a>
 										<ul class="fh5co-sub-menu">
 											<li><a href="/notice/bbsList.do">공지사항</a></li>
@@ -133,7 +133,7 @@
 									<%
 									} else {
 									//로그인 성공했다면
-									out.print("<li><a class='bold' href='about.html'>마이페이지</a>");
+									out.print("<li><a class='bold' href='#'>마이페이지</a>");
 									out.print("<ul class='fh5co-sub-menu'>");
 									out.print("<li><a href='/member/memberModify.do'>개인정보수정</a></li>");
 									out.print("<li><a href='right-sidebar.html'>예약관리</a></li>");

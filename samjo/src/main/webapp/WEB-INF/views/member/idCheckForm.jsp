@@ -11,16 +11,16 @@
 	<div style="text-align: center">
 		<h3>* 아이디 중복확인 *</h3>
 		<form action="idCheckProc.do" onsubmit="return blankCheck()">
-			아이디 : <input type="text" name="id" id="id" maxlength="10" autofocus>
+			아이디 : <input type="text" name="user_id" id="user_id" maxlength="10" autofocus>
 				   <input type="submit" value="중복확인">
 		</form>
 	</div>
 	
 	<script>
 		function blankCheck() {
-			var id=document.getElementById("id").value;
-			id=id.trim();
-			if(id.lengyh<5){
+			var user_id=document.getElementById("user_id").value;
+			user_id=user_id.trim();
+			if(user_id.lengyh<5){
 				alert("아이디는 5~10글자 이내로 입력해 주세요");
 				return false;
 			}//if end
