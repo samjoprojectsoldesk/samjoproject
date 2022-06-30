@@ -21,7 +21,7 @@ public class MemberDAO {
 	
 
 	public String loginProc(MemberDTO dto) {
-		String mlevel=null;
+		String user_level=null;
 		try {
 			con=dbopen.getConnection();
 			
@@ -29,15 +29,23 @@ public class MemberDAO {
 			sql.append(" SELECT user_level ");
 			sql.append(" FROM tb_user ");
 			sql.append(" WHERE user_id=? and user_pw=? ");
+<<<<<<< HEAD
 			sql.append(" AND user_level in (1 , 2) ");
+=======
+			sql.append(" AND AA in ('A1', 'B1', 'C1', 'D1') ");
+>>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1, dto.getId()); 
-			pstmt.setString(2, dto.getPasswd()); 
+			pstmt.setString(1, dto.getUser_id()); 
+			pstmt.setString(2, dto.getUser_pw()); 
 			rs= pstmt.executeQuery();
 			
 			if(rs.next()) {
+<<<<<<< HEAD
 				mlevel=rs.getString("user_level");
+=======
+				user_level=rs.getString("user_level");
+>>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			}//if end
 			
 		}catch (Exception e) {
@@ -45,7 +53,7 @@ public class MemberDAO {
 		}finally {
 			DBClose.close(con, pstmt, rs);
 		}//end
-		return mlevel;
+		return user_level;
 	}//loginProc() end
 	
 	
@@ -83,6 +91,7 @@ public class MemberDAO {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
+<<<<<<< HEAD
 			sql.append(" INSERT INTO tb_user(user_idx, user_id, user_pw, user_name, user_phone, user_email, user_addr1, user_addr2, user_job, user_level, user_date) ");
 			sql.append(" VALUES(user_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, '2', sysdate) ");
 			
@@ -95,6 +104,21 @@ public class MemberDAO {
 			pstmt.setString(6, dto.getAddress1());
 			pstmt.setString(7, dto.getAddress2());
 			pstmt.setString(8, dto.getJob());
+=======
+			sql.append(" INSERT INTO tb_user(user_id, user_pw, user_name, user_phone, user_email, user_zipcode, user_addr1, user_addr2, user_job, user_level, user_date) ");
+			sql.append(" VALUES(?,?,?,?,?,?,?,?,?.'D1', sysdate) ");
+			
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getUser_id()); 
+			pstmt.setString(2, dto.getUser_pw());
+			pstmt.setString(3, dto.getUser_name());
+			pstmt.setString(4, dto.getUser_phone());
+			pstmt.setString(5, dto.getUser_email());
+			pstmt.setString(6, dto.getUser_zipcode());
+			pstmt.setString(7, dto.getUser_addr1());
+			pstmt.setString(8, dto.getUser_addr2());
+			pstmt.setString(9, dto.getUser_job());
+>>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			
 			cnt= pstmt.executeUpdate();
 			
@@ -117,14 +141,19 @@ public class MemberDAO {
 			//이름과 이메일이 일치하는 id 가져오기
 			sql.append(" SELECT user_id ");
 			sql.append(" FROM tb_user ");
+<<<<<<< HEAD
 			sql.append(" WHERE user_name=? AND user_email=? ");
+=======
+			sql.append(" WHERE mname=? AND user_email=? ");
+
+>>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1, dto.getMname());
-			pstmt.setString(2, dto.getEmail());
+			pstmt.setString(1, dto.getUser_name());
+			pstmt.setString(2, dto.getUser_email());
 			rs=pstmt.executeQuery();
 			if(rs.next()) { //이름과 이메일 일치되었다면
-				String id=rs.getString("id"); //1)아이디
+				String id=rs.getString("user_id"); //1)아이디
 				
 				//[임시 비밀번호 발급] - 대문자, 소문자, 숫자를 이용해서 랜덤하게 10글자를 만들기
 				String[] ch= {
@@ -145,11 +174,15 @@ public class MemberDAO {
 				sql=new StringBuilder();
 				sql.append(" UPDATE tb_user ");
 				sql.append(" SET user_pw=? ");
+<<<<<<< HEAD
 				sql.append(" WHERE user_name=? AND user_email=? ");
+=======
+				sql.append(" WHERE mname=? AND user_email=? ");
+>>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 				pstmt=con.prepareStatement(sql.toString());
 				pstmt.setString(1, imsiPW.toString());
-				pstmt.setString(2, dto.getMname());
-				pstmt.setString(3, dto.getEmail());//여기 수정했어요
+				pstmt.setString(2, dto.getUser_name());
+				pstmt.setString(3, dto.getUser_email());//여기 수정했어요
 				
 				int cnt=pstmt.executeUpdate();
 				if(cnt==1) { //임시 비밀번호로 업데이트 되었다면
@@ -192,9 +225,9 @@ public class MemberDAO {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-			sql.append(" SELECT passwd, mname, tel, email, zipcode, address1, address2, job ");
-			sql.append(" FROM member ");
-			sql.append(" WHERE id=? ");
+			sql.append(" SELECT user_pw, user_name, user_phone, user_email, user_zipcode, user_addr1, user_addr2, user_job ");
+			sql.append(" FROM tb_user ");
+			sql.append(" WHERE user_id=? ");
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, id); // 1 -> 첫번째 ?
@@ -203,14 +236,14 @@ public class MemberDAO {
 			rs=pstmt.executeQuery();  //->select문 실행할 때
 			if(rs.next()) { //행이 존재 하나요?
 				dto=new MemberDTO();
-				dto.setPasswd(rs.getString("passwd"));
-				dto.setMname(rs.getString("mname"));
-				dto.setTel(rs.getString("tel"));
-				dto.setEmail(rs.getString("email"));
-				dto.setZipcode(rs.getString("zipcode"));
-				dto.setAddress1(rs.getString("address1"));
-				dto.setAddress2(rs.getString("address2"));
-				dto.setJob(rs.getString("job"));
+				dto.setUser_pw(rs.getString("user_pw"));
+				dto.setUser_name(rs.getString("user_name"));
+				dto.setUser_phone(rs.getString("user_phone"));
+				dto.setUser_email(rs.getString("user_email"));
+				dto.setUser_zipcode(rs.getString("user_zipcode"));
+				dto.setUser_addr1(rs.getString("user_addr1"));
+				dto.setUser_addr2(rs.getString("user_addr2"));
+				dto.setUser_job(rs.getString("user_job"));
 			}//if end
 			
 		}catch (Exception e) {
@@ -230,20 +263,20 @@ public class MemberDAO {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-			sql.append(" UPDATE member ");
-			sql.append(" SET passwd=?, mname=?, tel=?, email=?, zipcode=?, address1=?, address2=?, job=? ");
-			sql.append(" WHERE id=? ");
+			sql.append(" UPDATE tb_user ");
+			sql.append(" SET user_pw=?, user_name=?, user_phone=?, user_email=?, user_zipcode=?, user_addr1=?, user_addr2=?, user_job=? ");
+			sql.append(" WHERE user_id=? ");
 			
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1, dto.getPasswd());
-			pstmt.setString(2, dto.getMname());
-			pstmt.setString(3, dto.getTel());
-			pstmt.setString(4, dto.getEmail());
-			pstmt.setString(5, dto.getZipcode());
-			pstmt.setString(6, dto.getAddress1());
-			pstmt.setString(7, dto.getAddress2());
-			pstmt.setString(8, dto.getJob());
-			pstmt.setString(9, dto.getId());
+			pstmt.setString(1, dto.getUser_pw());
+			pstmt.setString(2, dto.getUser_name());
+			pstmt.setString(3, dto.getUser_phone());
+			pstmt.setString(4, dto.getUser_email());
+			pstmt.setString(5, dto.getUser_zipcode());
+			pstmt.setString(6, dto.getUser_addr1());
+			pstmt.setString(7, dto.getUser_addr2());
+			pstmt.setString(8, dto.getUser_job());
+			pstmt.setString(9, dto.getUser_id());
 			
 			cnt=pstmt.executeUpdate(); //insert, update, delete문 실행
 			

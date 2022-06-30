@@ -37,7 +37,7 @@ public class packagetourCont {
 	
 //InsProc
 		@RequestMapping(value = "admin/packagetour.do", method = RequestMethod.POST)
-		public ModelAndView bbsIns(@ModelAttribute packagetourDTO dto) {
+		public ModelAndView bbsIns(@ModelAttribute packagetourDTO dto, HttpServletRequest req) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("packagetour/msgView");
 			
@@ -53,7 +53,7 @@ public class packagetourCont {
 			MultipartFile posterMF = dto.getPosterMF(); // 파일 가져오기
 			// storage폴더에 파일을 저장하고, 리네임된 파일명 반환
 			String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
-			dto.setC_img(poster);// 리네임된 파일명을 dto객체 담기
+			dto.setPack_img(poster);// 리네임된 파일명을 dto객체 담기
 
 			int cnt = dao.create(dto);
 			if (cnt == 0) {

@@ -1,5 +1,7 @@
 package kr.co.samjo.product.packagetour;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class packagetourDTO {
 
 	private String pack_no;		//VARCHAR2(10)	 NULL		패키지코드
@@ -12,6 +14,12 @@ public class packagetourDTO {
 	private String pack_img;	//
 	
 	public packagetourDTO() {}
+
+    private MultipartFile posterMF;
+   
+    public MultipartFile getPosterMF() {
+        return posterMF;
+    }
 
 	public String getPack_no() {
 		return pack_no;

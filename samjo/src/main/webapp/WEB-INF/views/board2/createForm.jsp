@@ -28,12 +28,17 @@
 				<input type="text" class="form-control" id="bbs_id" name="bbs_id">
 			</div>
 			<div class="form-group">
+<<<<<<< HEAD
 				<label for="posterMF">이미지</label> 
 
 				<input type="file" class="form-control-file" id="posterMF1" name="posterMF1">
 				<input type="file" class="form-control-file" id="posterMF2" name="posterMF2">
 				<input type="file" class="form-control-file" id="posterMF3" name="posterMF3">
 
+=======
+				<label for="posterMF">이미지</label>
+				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
+>>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			</div>
 			<div class="form-group">
 				<label for="bbs_content">내용</label>

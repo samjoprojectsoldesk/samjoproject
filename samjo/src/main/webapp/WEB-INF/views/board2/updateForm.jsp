@@ -31,12 +31,16 @@
 			<div class="form-group">
 				<label for="posterMF">이미지</label> 
 				<img src='../storage/${dto.bbs_img}' width='20%'>
+<<<<<<< HEAD
 				<input type="file" class="form-control-file" id="posterMF1" name="posterMF1">
 				<img src='../storage/${dto.bbs_img2}' width='20%'>
 				<input type="file" class="form-control-file" id="posterMF2" name="posterMF2">
 				<img src='../storage/${dto.bbs_img3}' width='20%'>
 				<input type="file" class="form-control-file" id="posterMF3" name="posterMF3">
 
+=======
+				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
+>>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			</div>
 			<div class="form-group">
 				<label for="bbs_content">내용</label>

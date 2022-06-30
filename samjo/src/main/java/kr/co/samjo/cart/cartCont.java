@@ -2,22 +2,20 @@ package kr.co.samjo.cart;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.samjo.res.resDAO;
-import kr.co.samjo.res.resDTO;
 
 
 @Controller
@@ -31,16 +29,26 @@ public class cartCont {
 		dao2 = new resDAO();
 		System.out.println("-----cartCont객체 생성됨");
 	}
-	
-	@RequestMapping(value = "cart/add.do", method = RequestMethod.POST)
-	public ModelAndView cartAdd(@ModelAttribute cartDTO dto, HttpSession session) {
-		String user_id = (String) session.getAttribute("user_id");
-		dto.setUser_id(user_id);
+		
+	@RequestMapping(value = "cart/addCart.do", method = RequestMethod.POST)
+	public ModelAndView addCart(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("s_id");
+		if(user_id == null) {
+			user_id = "guest";
+		}
+				
+		cartDTO cdto = new cartDTO();
+		cdto.setUser_id(user_id);
+		cdto.setS_code(request.getParameter("s_code"));
+		cdto.setCnt(Integer.parseInt(request.getParameter("cnt")));
+		cdto.setP_cnt(Integer.parseInt(request.getParameter("p_cnt")));
+		cdto.setSdate(request.getParameter("sdate"));
+		cdto.setFdate(request.getParameter("fdate"));		
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("cart/msgView");
-
-		int cnt = dao.create(dto);
+		int cnt = dao.create(cdto);
 		if (cnt == 0) {
 			String msg = "<p>장바구니 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";
@@ -62,7 +70,8 @@ public class cartCont {
 	}
 
 	@RequestMapping("/cart/list.do")
-	public ModelAndView list(@ModelAttribute cartDTO dto, HttpSession session) {
+	public ModelAndView list(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
 		Map<String, Object> map = new HashMap<String, Object>();
 		ModelAndView mav = new ModelAndView();
 		String userId = (String) session.getAttribute("s_id");
@@ -119,50 +128,4 @@ public class cartCont {
 		return mav;
 	}// deleteProc end
 
-	@RequestMapping(value = "cart/reserve.do", method = RequestMethod.GET)
-	public ModelAndView reserveForm(String user_id) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("cart/reserve");
-		mav.addObject("user_id", user_id);
-		return mav;
-	}// deleteForm end
-	
-	@RequestMapping(value= "cart/reserve.do", method = RequestMethod.POST)
-	public ModelAndView reserveProc(@ModelAttribute cartDTO cdto, String user_id) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("cart/msgView");
-		int cost = 0;
-		resDTO dto = new resDTO();
-		dto.setUser_id(user_id);
-		ArrayList<String> weeklist = null;
-		weeklist = dao.week(cdto.getC_no());
-		for(int i = 0 ; i<weeklist.size(); i++ ) {
-			is(weeklist.get(i).equals('주말')){
-			}else {
-				
-			}
-		}
-		
-		int cnt = dao2.add(dto);
-		
-		if (cnt == 0) {
-			String msg="<p>예약 실패</p>";
-			String img="<img src='../images/fail.png'>";
-			String link1="<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2="<input type='button' value='목록으로' onclick='location.href=\"/list.do\"'>";
-			mav.addObject("msg", msg);
-			mav.addObject("img", img);
-			mav.addObject("link1", link1);
-			mav.addObject("link2", link2);
-		} else {
-			String msg="<p>예약 성공</p>";
-			dao.delete(user_id);
-			String img="<img src='../images/sound.png'>";
-			String link2="<input type='button' value='목록으로' onclick='location.href=\"/list.do\"'>";
-			mav.addObject("msg", msg);
-			mav.addObject("img", img);
-			mav.addObject("link2", link2);
-		}
-		return mav;
-	}
 }
