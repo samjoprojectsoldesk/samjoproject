@@ -20,6 +20,33 @@ public class resDetailDAO {
 	public resDetailDAO() {
 		dbopen = new DBOpen();
 	}
+
+	public int create(cartDTO dto, String res_no) {
+		int cnt=0;
+		try {
+			con=dbopen.getConnection(); //DB연결
+			
+			sql=new StringBuilder();
+
+			sql.append(" INSERT INTO tb_resdetail(res_no, s_code, p_cnt, sdate, fdate) ");
+			sql.append(" VALUES( ?, ?, ?, ?, ? ) ");
+			
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, res_no);
+			pstmt.setString(2, dto.getS_code());
+			pstmt.setInt(3, dto.getP_cnt());
+			pstmt.setString(4, dto.getSdate());
+			pstmt.setString(5, dto.getFdate());
+			
+			cnt=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("장바구니등록실패" + e);
+		}finally {
+			DBClose.close(con,pstmt);
+		}
+		return cnt;
+	}
 	
 	public ArrayList<resDetailDTO> list(String res_no){
 		ArrayList<resDetailDTO> list=null;

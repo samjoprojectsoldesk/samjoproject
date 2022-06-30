@@ -17,8 +17,8 @@
 <%
 	String mname=request.getParameter("mname").trim();
 	String email=request.getParameter("email").trim();//여기 수정했음
-	dto.setMname(mname);
-	dto.setEmail(email);
+	dto.setUser_name(mname);
+	dto.setUser_email(email);
 	
 	boolean flag=dao.findID(dto);
 	if(flag==false){

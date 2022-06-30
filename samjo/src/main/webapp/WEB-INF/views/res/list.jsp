@@ -41,7 +41,7 @@
 
 			<c:forEach var="dto" items="${map.list}">
 				<tr>
-					<td>${dto.res_no}</td>
+					<td><a href="/read.do?res_no=${dto.res_no}">${dto.res_no}</a></td>
 					<td>${dto.amount}</td>
 					<td>${dto.pay}</td>
 					<td>${dto.p_cnt}</td>

@@ -18,14 +18,8 @@
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
-
-
-		<!-- 검색 시작 -->
-=======
 		
 <!-- (2) 검색 시작 -->
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 		<div style='text-align: right; height: 50px; margin-right: 50px;'>
 			<form action="bbsList.do">
 				<select class="custom-select" name="col" style="width: 150px; height: 35px; border: 2px solid gray; border-radius: 5px 5px 5px 5px">
@@ -38,50 +32,6 @@
 				<input type="submit" value="검색" class="btn btn-secondary" style="font-weight: bold; font-family: Arial;">
 			
 			</form>
-<<<<<<< HEAD
-		</div>
-		<!-- 검색 끝 -->
-		
-		<div id="fh5co-work-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center project">
-						<div class="grid-project">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th class="board_no">번호</th>
-										<th class="board_title">제목</th>
-										<th class="board_date">작성일</th>
-										<th class="board_readcnt">조회수</th>
-									</tr>
-								</thead>
-								<thead>
-									<c:forEach var="dto" items="${list }">
-										<tr>
-											<th>${dto.board_no }</th>
-											<th><a href="bbsRead.do?board_no=${dto.board_no}">${dto.board_title }</a></th>
-											<th>${dto.board_date }</th>
-											<th>${dto.board_readcnt }</th>
-										</tr>
-									</c:forEach>
-								</thead>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<!-- 페이지 리스트 -->
-
-		</div>		
-
-
-    
-
-=======
 		</div>		
 <!-- (3) 페이지 -->
     <div class="noticeList">
@@ -108,7 +58,6 @@
     </div>
     
 <!-- (4) 페이지 리스트 -->
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 		<div class="paging">
 			<c:if test="${requestScope.count>0 }">
 				<c:set var="pageCount" value="${requestScope.totalPage}" />
@@ -123,10 +72,6 @@
 					<c:if test="${startPage>0}">
 						<a href="/notice/noticeList.do?pageNum=${startPage}">[이전]</a>
 					</c:if>
-<<<<<<< HEAD
-
-=======
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 					<c:forEach var="i" begin="${startPage+1}" end="${endPage-1}">
 						<a href="/notice/noticeList.do?pageNum=${i}">[${i}]</a>
 					</c:forEach>
@@ -138,22 +83,11 @@
 			
 			</c:if>
 		</div>
-<<<<<<< HEAD
-		<!-- 공지사항 작성 -->
-		<div class="content">
-			<input type="button" value="작성" onclick="location.href='bbsIns.do'">
-		</div>
-
-	</aside>
-
-
-=======
 
 <!-- (5) 공지사항 작성 -->	
 <div class="content">
         <input type="button" value="작성" onclick="location.href='bbsIns.do'">
 </div>	
 </aside>
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 </body>
 </html>
