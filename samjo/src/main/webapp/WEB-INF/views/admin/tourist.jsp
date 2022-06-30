@@ -17,7 +17,7 @@
 
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
-		<form action="tourist.jsp">
+		<form action="tourist.do">
 			<input type="text" name="word" id="word"
 				style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
 			&nbsp;&nbsp; <input type="submit" value="검색"
@@ -44,9 +44,9 @@
 						</thead>
 						<tbody>
 							<c:forEach var="dto" items="${list}">
-								<tr onclick="location.href='../tour/tourist/read.do?t_cn=${dto.t_cn}'">
+								<tr>
 									<th scope="row">${dto.t_cn}</th>
-									<td>${dto.t_name}</td>
+									<td  onclick="location.href='../tour/tourist/read.do?t_cn=${dto.t_cn}'">${dto.t_name}</td>
 									<td>${dto.t_rdate}</td>
 									<td><button type="button" class="btn btn-light"
 											onclick="location.href='tourupdate.do?t_cn=${dto.t_cn}'">수정</button>

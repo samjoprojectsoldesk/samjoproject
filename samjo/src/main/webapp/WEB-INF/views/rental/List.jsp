@@ -9,7 +9,7 @@
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">렌트카</h2>
+					class="heading-section">렌트카 업체</h2>
 			</div>
 		</div>
 	</div>
@@ -33,17 +33,14 @@
 				<div class="col-md-12 text-center project">
 					<div class="grid-project">
 						<div class="image-T">
-							<img src="../storage/${dto.c_img}" alt="Project"
+							<img src="../storage/${dto.u_img}" alt="Project"
 								class="img-responsive" style="width: 40%; float: left;">
 						</div>
 						<div class="desc-T">
-							<h3>${dto.pack_name}</h3>
-							<span>${dto.c_name}</span> <br> <br>
-							<span>${dto.c_kind}</span> <br> <br>
-							<span>${dto.c_sum}</span> <br> <br>
-							<span>${dto.c_charge}</span> <br> <br>
-							<span>${dto.c_reserve}</span> <br> <br>
-							<span>${dto.c_cont}</span> <br> <br>
+							<h3>${dto.u_name}</h3>
+							<span>${dto.u_phone}</span> <br> <br>
+							<span>${dto.u_office}</span> <br> <br>
+							<span>${dto.u_cont}</span> <br> <br>
 						</div>
 					</div>
 				</div>
@@ -64,15 +61,15 @@
 				</c:if>
 
 				<c:if test="${startPage>0}">
-					<a href="/rentalcar/List.do?pageNum=${startPage}">[이전]</a>
+					<a href="/rental/List.do?pageNum=${startPage}">[이전]</a>
 				</c:if>
 
 				<c:forEach var="i" begin="${startPage+1}" end="${endPage-1}">
-					<a href="/rentalcar/List.do?pageNum=${i}">[${i}]</a>
+					<a href="/rental/List.do?pageNum=${i}">[${i}]</a>
 				</c:forEach>
 
 				<c:if test="${endPage<pageCount}">
-					<a href="/rentalcar/List.do?pageNum=${startPage+11}">[다음]</a>
+					<a href="/rental/List.do?pageNum=${startPage+11}">[다음]</a>
 				</c:if>
 			</div>
 		</c:if>

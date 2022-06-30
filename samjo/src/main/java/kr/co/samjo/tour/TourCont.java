@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.utility.UploadSaveManager;
+import net.utility.Utility;
 
 
 @Controller
@@ -76,10 +77,21 @@ public class TourCont {
 		} // if end
 
 		return mav;
-	}// createProc() end
+	}// create() end
 	
 	@RequestMapping("tour/tourist.do")
-    public ModelAndView list(HttpServletRequest req) {
+    public ModelAndView list(HttpServletRequest req) {//(HttpServletRequest req, String word)
+		                                              //검색버튼을 누르면 word가 존재하지만
+		                                              //index.jsp에서 관광지 버튼을 클릭하면 word가 존재하지 않음 그래서 에러 발생됨
+		                                              //그래서 String word 삭제함
+		
+		
+
+        //입력된 검색어 확인(검색어가 있으면 검색어 존재, 검색어가 없으면 빈문자열 "")
+        String word = Utility.checkNull(req.getParameter("word"));
+        //System.out.println(word);
+        
+		
         ModelAndView mav=new ModelAndView();
         mav.setViewName("tour/tourist");
        
@@ -106,11 +118,11 @@ public class TourCont {
         int Pages     = (int)Math.ceil(d_page)-1;
         int startPage = Pages*pagePerBlock;
         int endPage   = startPage+pagePerBlock+1;
-       
-       
+     
+        
         List list=null;     
         if(totalRowCount>0){           
-              list=dao.list(startRow, endRow);          
+              list=dao.list(startRow, endRow, word);        
         } else {           
               list=Collections.EMPTY_LIST;           
         }//if end
@@ -134,6 +146,10 @@ public class TourCont {
 	
 	@RequestMapping("tour/festivalList.do")
 	public ModelAndView list2(HttpServletRequest req) {
+		
+		//입력된 검색어 확인(검색어가 있으면 검색어 존재, 검색어가 없으면 빈문자열 "")
+        String word = Utility.checkNull(req.getParameter("word"));
+		
 		ModelAndView mav=new ModelAndView();
         mav.setViewName("tour/festivalList");
        
@@ -164,7 +180,7 @@ public class TourCont {
        
         List list=null;     
         if(totalRowCount>0){           
-              list=dao.list2(startRow, endRow);          
+              list=dao.list2(startRow, endRow, word);          
         } else {           
               list=Collections.EMPTY_LIST;           
         }//if end
@@ -187,11 +203,57 @@ public class TourCont {
 
 	
 	@RequestMapping("/tour/tourist/read.do")
-	public ModelAndView read(String t_cn) {
+	public ModelAndView read(String t_cn, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		TourDTO dto = dao.read(t_cn);
 		mav.setViewName("tour/read");
 		mav.addObject("dto", dto);
+		
+		int totalRowCount=dao.reviewtotalRowCount(t_cn); //총 글갯수
+	       
+        //페이징
+        int numPerPage   = 9;    // 한 페이지당 레코드 갯수
+        int pagePerBlock = 10;   // 페이지 리스트
+       
+        String pageNum=req.getParameter("pageNum");
+        if(pageNum==null){
+              pageNum="1";
+        }
+       
+        int currentPage=Integer.parseInt(pageNum);
+        int startRow   =(currentPage-1)*numPerPage+1;
+        int endRow     =currentPage*numPerPage;
+       
+        //페이지 수
+        double totcnt = (double)totalRowCount/numPerPage;
+        int totalPage = (int)Math.ceil(totcnt);
+         
+        double d_page = (double)currentPage/pagePerBlock;
+        int Pages     = (int)Math.ceil(d_page)-1;
+        int startPage = Pages*pagePerBlock;
+        int endPage   = startPage+pagePerBlock+1;
+       
+       
+        List list=null;     
+        if(totalRowCount>0){           
+              list=dao.reviewList(t_cn, startRow, endRow);          
+        } else {           
+              list=Collections.EMPTY_LIST;           
+        }//if end
+         
+        int number=0;
+        number=totalRowCount-(currentPage-1)*numPerPage;
+         
+        mav.addObject("number",    number);
+        mav.addObject("pageNum",   currentPage);
+        mav.addObject("startRow",  startRow);
+        mav.addObject("endRow",    endRow);
+        mav.addObject("count",     totalRowCount);
+        mav.addObject("pageSize",  pagePerBlock);
+        mav.addObject("totalPage", totalPage);
+        mav.addObject("startPage", startPage);
+        mav.addObject("endPage",   endPage);
+        mav.addObject("list", list);
 		return mav;
 	}// read() end
 	
@@ -212,6 +274,7 @@ public class TourCont {
 
 		String basePath = req.getRealPath("/storage");
 		TourDTO oldDTO = dao.read(dto.getT_cn()); // 기존에 저장된 정보 가져오기
+
 		// ---------------------------------------------------------------------
 		// 파일을 수정할 것인지?
 
@@ -235,13 +298,13 @@ public class TourCont {
 		if (cnt == 0) {
 			String msg = "<p>여행지 수정 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='여행지목록' onclick=\\\"location.href='/admin/tourist.do'\\\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>여행지가 수정 되었습니다</p>";
-			String link2 = "<input type='button' value='여행지목록' onclick=\\\"location.href='/admin/tourist.do'\\\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 		} // if end
@@ -270,13 +333,13 @@ public class TourCont {
 		if (cnt == 0) {
 			String msg = "<p>여행지 삭제 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/admin/tourist.do'\\\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>여행지가 삭제되었습니다</p>";
-			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/admin/tourist.do'\\\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 			// 첨부했던 파일 삭제
@@ -285,5 +348,6 @@ public class TourCont {
 		} // if end
 		return mav;
 	}// deleteProc() end
+
 
 }

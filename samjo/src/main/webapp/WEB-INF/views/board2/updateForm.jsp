@@ -10,7 +10,7 @@
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">여행지 수정</h2>
+					class="heading-section">게시글 수정</h2>
 			</div>
 		</div>
 	</div>
@@ -19,7 +19,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="update.do" class="tourcreate" enctype="multipart/form-data">
+		<form name="frm" method="post" action="updateForm.do" class="tourcreate" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="bbs_title">제목</label> 
 				<input type="text" class="form-control" id="bbs_title" name="bbs_title" value="${dto.bbs_title}">
@@ -38,8 +38,8 @@
 				<textarea class="form-control" id="bbs_content" name="bbs_content" rows="3" >${dto.bbs_content}</textarea>
 			</div>
 			<div class='bottom'>
-				<button type="submit" class="btn btn-primary">등록</button>
-				<button type="button" class="btn btn-secondary" onclick="location.href='/board2/List.do'">목록</button>
+				<button type="submit" class="btn btn-primary">수정</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='/board/List.do'">목록</button>
 			</div>
 		</form>
 	</div>

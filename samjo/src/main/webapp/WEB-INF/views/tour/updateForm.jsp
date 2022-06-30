@@ -19,7 +19,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="update.do" class="tourcreate" enctype="multipart/form-data">
+		<form name="frm" method="post" action="tourupdate.do" class="tourcreate" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="t_cn">여행지코드</label> 
 				<input type="text" class="form-control" id="t_cn" name="t_cn" value="${dto.t_cn}" readonly>

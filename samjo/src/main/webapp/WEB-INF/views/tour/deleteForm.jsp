@@ -19,7 +19,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="delete.do" class="tourcreate"
+		<form name="frm" method="post" action="tourdelete.do" class="tourcreate"
 			enctype="multipart/form-data">
 			<input type="hidden" name="t_cn" value="${dto.t_cn}">
 			<div class="content">
@@ -28,7 +28,7 @@
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">삭제</button>
 				<button type="button" class="btn btn-secondary"
-					onclick="location.href='/tour/tourist.do'">목록</button>
+					onclick="location.href='/admin/tourist.do'">목록</button>
 			</div>
 		</form>
 	</div>

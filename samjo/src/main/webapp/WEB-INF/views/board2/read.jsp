@@ -25,10 +25,9 @@
 				<div>${dto.bbs_content}</div>
 				</div>
 				<div class='bottom'>
-				<c:if test="${s_mlevel==1 || s_id.equals(bbs_id)}">
-					<input type="button" value="수정" onclick="location.href='/board2/updateForm.do?bbs_idx=${dto.bbs_idx}'">
-            		<input type="button" value="삭제" onclick="location.href='/board2/deleteForm.do?bbs_idx=${dto.bbs_idx}'">
-                </c:if>		
+					<input type="button" value="수정" onclick="location.href='/board/updateForm.do?bbs_idx=${dto.bbs_idx}'">
+            		<input type="button" value="삭제" onclick="location.href='/board/deleteForm.do?bbs_idx=${dto.bbs_idx}'">
+            			
 				<button type="button" class="btn btn-secondary" onclick="location.href='/board/List.do'">목록</button>
 				</div>
 			

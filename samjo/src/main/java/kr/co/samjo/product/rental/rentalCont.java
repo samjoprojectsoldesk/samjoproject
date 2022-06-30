@@ -38,19 +38,19 @@ public class rentalCont {
 
 				int cnt = dao.create(dto);
 				if (cnt == 0) {
-					String msg = "<p>공지사항 등록 실패</p>";
+					String msg = "<p>렌트카 업체 등록 실패</p>";
 					String img = "<img src='../images/fail.png'>";
 					String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-					String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"List.do\"'>";
+					String link2 = "<input type='button' value='렌트카 업체 목록' onclick='location.href=\"List.do\"'>";
 					mav.addObject("msg", msg);
 					mav.addObject("img", img);
 					mav.addObject("link1", link1);
 					mav.addObject("link2", link2);
 				} else {
-					String msg = "<p>공지사항 등록 성공</p>";
+					String msg = "<p>렌트카 업체 등록 성공</p>";
 					String img = "<img src='../images/sound.png'>";
 					String link1 = "<input type='button' value='계속등록' onclick='location.href=\"Ins.do\"'>";
-					String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"List.do\"'>";
+					String link2 = "<input type='button' value='렌트카 업체 목록' onclick='location.href=\"List.do\"'>";
 					mav.addObject("msg", msg);
 					mav.addObject("img", img);
 					mav.addObject("link1", link1);
@@ -150,18 +150,18 @@ public class rentalCont {
 
 				int cnt = dao.delete(u_code);
 				if (cnt == 0) {
-					String msg = "<p>공지사항 삭제 실패!!</p>";
+					String msg = "<p>렌트카 업체 삭제 실패!!</p>";
 					String img = "<img src='../images/fail.png'>";
 					String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-					String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+					String link2 = "<input type='button' value='렌트카 업체 목록' onclick=\"location.href='/../rental/List.do'\">";
 					mav.addObject("msg", msg);
 					mav.addObject("img", img);
 					mav.addObject("link1", link1);
 					mav.addObject("link2", link2);
 				} else {
-					String msg = "<p>공지사항이 삭제되었습니다</p>";
+					String msg = "<p>렌트카 업체가 삭제되었습니다</p>";
 					String img = "<img src='../images/sound.png'>";
-					String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+					String link2 = "<input type='button' value='렌트카 업체 목록' onclick=\"location.href='/../rental/List.do'\">";
 					mav.addObject("msg", msg);
 					mav.addObject("img", img);
 					mav.addObject("link2", link2);
@@ -192,18 +192,18 @@ public class rentalCont {
 				int cnt = dao.update(dto);
 				
 				if (cnt == 0) {
-					String msg = "<p>공지사항 수정 실패!!</p>";
+					String msg = "<p>렌트카 업체 수정 실패!!</p>";
 					String img = "<img src='../images/fail.png'>";
 					String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-					String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+					String link2 = "<input type='button' value='렌트카 업체 목록' onclick=\"location.href='/../rental/List.do'\">";
 					mav.addObject("msg", msg);
 					mav.addObject("img", img);
 					mav.addObject("link1", link1);
 					mav.addObject("link2", link2);
 				} else {
-					String msg = "<p>공지사항이 수정되었습니다</p>";
+					String msg = "<p>렌트카 업체가 수정되었습니다</p>";
 					String img = "<img src='../images/sound.png'>";
-					String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+					String link2 = "<input type='button' value='렌트카 업체 목록' onclick=\"location.href='/../rental/List.do'\">";
 					mav.addObject("msg", msg);
 					mav.addObject("img", img);
 					mav.addObject("link2", link2);

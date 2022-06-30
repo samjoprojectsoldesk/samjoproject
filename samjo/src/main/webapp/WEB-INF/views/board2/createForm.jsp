@@ -28,7 +28,7 @@
 				<input type="text" class="form-control" id="bbs_id" name="bbs_id">
 			</div>
 			<div class="form-group">
-				<label for="posterMF">이미지</label> 
+				<label for="posterMF">이미지</label>
 				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
 			</div>
 			<div class="form-group">

@@ -19,11 +19,6 @@ public class boardDTO {//전송객체
     public MultipartFile getPosterMF() {
         return posterMF;
     }
-
-    public void setPosterMF(MultipartFile posterMF) {
-        this.posterMF = posterMF;
-    }
-
 //--------------------------------------------------------
 
 	public int getBbs_idx() {
@@ -89,8 +84,5 @@ public class boardDTO {//전송객체
 				+ bbs_title + ", bbs_content=" + bbs_content + ", bbs_count=" + bbs_count + ", bbs_date=" + bbs_date
 				 + ", posterMF=" + posterMF + "]";
 	}
-
-	
-
-    
+   
 }

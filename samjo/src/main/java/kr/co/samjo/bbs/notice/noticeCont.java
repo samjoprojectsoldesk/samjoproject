@@ -114,7 +114,7 @@ public class noticeCont {
 		return mav;
 	}// list() end
 
-//Read	
+//Read
 	@RequestMapping("notice/bbsRead.do")
 	public ModelAndView bbsRead(int board_no) {
 		ModelAndView mav = new ModelAndView();
