@@ -157,7 +157,7 @@ public class boardCont {
 		// 파일을 수정할 것인지?
 
 		// 1)posterMF1
-		MultipartFile posterMF1 = dto.getPosterMF1();
+		MultipartFile posterMF1 = dto.getPosterMF();
 		if (posterMF1.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
 			// 기존 파일 삭제
 			UploadSaveManager.deleteFile(basePath, oldDTO.getBbs_img());
@@ -165,40 +165,12 @@ public class boardCont {
 			String poster = UploadSaveManager.saveFileSpring30(posterMF1, basePath);
 			dto.setBbs_img(poster); // 새롭게 첨부된 신규 파일명
 
-			
 		} else {
 			// 포스터 파일을 수정하지 않는 경우
 			dto.setBbs_img(oldDTO.getBbs_img()); // 기존에 저장된 파일명
 
 		} // if end
 
-		// 2)posterMF2
-		MultipartFile posterMF2 = dto.getPosterMF2();
-		if (posterMF2.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
-			// 기존 파일 삭제
-			UploadSaveManager.deleteFile(basePath, oldDTO.getBbs_img2());
-			// 신규 파일 저장
-			String poster2 = UploadSaveManager.saveFileSpring30(posterMF2, basePath);
-			dto.setBbs_img(poster2); // 새롭게 첨부된 신규 파일명
-
-		} else {
-			// 포스터 파일을 수정하지 않는 경우
-			dto.setBbs_img(oldDTO.getBbs_img2()); // 기존에 저장된 파일명
-		} // if end
-		
-		// 3)posterMF3
-				MultipartFile posterMF3 = dto.getPosterMF3();
-				if (posterMF3.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
-					// 기존 파일 삭제
-					UploadSaveManager.deleteFile(basePath, oldDTO.getBbs_img3());
-					// 신규 파일 저장
-					String poster3 = UploadSaveManager.saveFileSpring30(posterMF3, basePath);
-					dto.setBbs_img(poster3); // 새롭게 첨부된 신규 파일명
-					
-				} else {
-					// 포스터 파일을 수정하지 않는 경우
-					dto.setBbs_img(oldDTO.getBbs_img3()); // 기존에 저장된 파일명
-				} // if end
 
 		// ---------------------------------------------------------------------
 

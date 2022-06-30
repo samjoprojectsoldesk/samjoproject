@@ -5,11 +5,11 @@
 function bbsCheck(){ //게시판 유효성 검사
 
     //1)작성자 2글자 이상 입력
-    var wname=document.getElementById("wname").value; //작성자 가져오기
-    wname=wname.trim(); //좌우 공백제거하기
-    if(wname.length<2){
+    var user_name=document.getElementById("user_name").value; //작성자 가져오기
+    user_name=user_name.trim(); //좌우 공백제거하기
+    if(user_name.length<2){
         alert("작성자 2글자 이상 입력해 주세요");
-        document.getElementById("wname").focus(); //작성자칸에 커서 생성
+        document.getElementById("user_name").focus(); //작성자칸에 커서 생성
         return false; //전송하지 않음
     }//if end
 
@@ -32,11 +32,11 @@ function bbsCheck(){ //게시판 유효성 검사
     }//if end
 
     //4)비밀번호는 4글자 이상이면서, 숫자형 기호만 입력
-    var passwd=document.getElementById("passwd").value;
-    passwd=passwd.trim();
-    if(passwd.length<4 || isNaN(passwd)){
+    var user_pw=document.getElementById("user_pw").value;
+    user_pw=user_pw.trim();
+    if(passwd.length<4 || isNaN(user_pw)){
         alert("비밀번호 4글자 이상 숫자로 입력해 주세여");
-        document.getElementById("passwd").focus();
+        document.getElementById("user_pw").focus();
         return false;
     }//if end
 
@@ -45,11 +45,11 @@ function bbsCheck(){ //게시판 유효성 검사
 }//bbsCheck() end
 
 function pwCheck(){
-    var passwd=document.getElementById("passwd").value;
-    passwd=passwd.trim();
-    if(passwd.length<4 || isNaN(passwd)){
+    var user_pw=document.getElementById("user_pw").value;
+    user_pw=user_pw.trim();
+    if(passwd.length<4 || isNaN(user_pw)){
         alert("비밀번호 4글자 이상 숫자로 입력해 주세여");
-        document.getElementById("passwd").focus();
+        document.getElementById("user_pw").focus();
         return false;
     }//if end
 
@@ -66,20 +66,20 @@ function pwCheck(){
 
 function loginCheck(){ //로그인 ㅇ효성검사(아이디, 비번)
     //1)아이디 5~10글자이내인지 검사
-    var id=document.getElementById("id").value;
-    id=id.trim();
-    if(!(id.length>=5 && id.length<=10)){
+    var user_id=document.getElementById("user_id").value;
+    user_id=user_id.trim();
+    if(!(user_id.length>=5 && user_id.length<=10)){
         alert("아이디 5~20글자이내 입력해 주세요");
-        document.getElementById("id").focus();
+        document.getElementById("user_id").focus();
         return false;
     }//if end
 
     //2)비밀번호 5~10글자이내인지 검사
-    var passwd=document.getElementById("passwd").value;
-    passwd=passwd.trim();
-    if(!(passwd.length>=5 && passwd.length<=10)){
+    var user_pw=document.getElementById("user_pw").value;
+    user_pw=user_pw.trim();
+    if(!(user_pw.length>=5 && user_pw.length<=10)){
         alert("비밀번호 7~20글자이내 입력해 주세요");
-        document.getElementById("passwd").focus();
+        document.getElementById("user_pw").focus();
         return false;
     }//if end
 
@@ -114,28 +114,28 @@ function emailCheck() { //이메일 중복확인
 
 function memberCheck() { //회원가입 유효성 검사
     //1)아이디 5~10글자이내인지 검사
-    var id=document.getElementById("id").value;
-    id=id.trim();
-    if(!(id.length>=5 && id.length<=10)){
+    var user_id=document.getElementById("user_id").value;
+    user_id=user_id.trim();
+    if(!(user_id.length>=5 && user_id.length<=10)){
         alert("아이디 5~20글자이내 입력해 주세요");
-        document.getElementById("id").focus();
+        document.getElementById("user_id").focus();
         return false;
     }//if end
 
     //2)비밀번호 5~10글자이내인지 검사
-    var passwd=document.getElementById("passwd").value;
-    passwd=passwd.trim();
-    if(!(passwd.length>=5 && passwd.length<=10)){
+    var user_pw=document.getElementById("user_pw").value;
+    user_pw=user_pw.trim();
+    if(!(user_pw.length>=5 && user_pw.length<=10)){
         alert("비밀번호 6~20글자이내 입력해 주세요");
-        document.getElementById("passwd").focus();
+        document.getElementById("user_pw").focus();
         return false;
     }//if end
 	
     //3)비밀번호와 비밀번호확인이 서로 일치하는지?
 
-    var passwd = document.getElementById('passwd').value;
-    if(document.getElementById('passwd').value !='' && document.getElementById('repasswd').value!=''){
-                if(document.getElementById('passwd').value==document.getElementById('repasswd').value){
+    var user_pw = document.getElementById('user_pw').value;
+    if(document.getElementById('user_pw').value !='' && document.getElementById('user_repw').value!=''){
+                if(document.getElementById('user_pw').value==document.getElementById('user_repw').value){
                     document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
                     document.getElementById('check').style.color='blue';
                 }
@@ -151,8 +151,8 @@ function memberCheck() { //회원가입 유효성 검사
     //5)이메일 5글자 인지?
 
     //6)직업을 선택했는지?
-	var job=document.getElementById("job").vlaue;
-	if(job=="0"){
+	var user_job=document.getElementById("user_job").vlaue;
+	if(user_job=="0"){
 		alert("직업 선택해 주세요");
 		return false;
 	}//if end
@@ -208,11 +208,11 @@ function pdsCheck(){//포토갤러리 유효성 검사
 
 
 function pwCheck2(){
-    var passwd=document.getElementById("passwd").value;
-    passwd=passwd.trim();
-    if(passwd.length<4 || isNaN(passwd)){
+    var user_pw=document.getElementById("user_pw").value;
+    user_pw=user_pw.trim();
+    if(user_pw.length<4 || isNaN(user_pw)){
         alert("비밀번호 4글자 이상 숫자로 입력해 주세여");
-        document.getElementById("passwd").focus();
+        document.getElementById("user_pw").focus();
         return false;
     }//if end
 

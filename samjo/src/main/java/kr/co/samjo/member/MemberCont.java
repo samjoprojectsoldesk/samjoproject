@@ -100,5 +100,12 @@ public class MemberCont {
 		return mav;
 	}//emailCheckProc() end
 	
+	@RequestMapping("/member/loginProc.do")
+	public ModelAndView loginProc() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/member/loginProc");
+		return mav;
+	}//loginProc() end
+	
 	
 }

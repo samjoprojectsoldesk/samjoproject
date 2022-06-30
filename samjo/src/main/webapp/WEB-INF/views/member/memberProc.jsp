@@ -10,26 +10,26 @@
 				<h2 style="margin-top: 300px; text-align: center; font-weight: bold;" class="heading-section">회원가입</h2>			
 				<%
 					//1)사용자가 입력 요청한 값 가져오기
-					String id      =request.getParameter("id").trim();
-					String passwd  =request.getParameter("passwd").trim();
-					String mname   =request.getParameter("mname").trim();
-					String email   =request.getParameter("email").trim();
-					String tel     =request.getParameter("tel").trim();
-					String zipcode =request.getParameter("zipcode").trim();
-					String address1=request.getParameter("address1").trim();
-					String address2=request.getParameter("address2").trim();
-					String job     =request.getParameter("job").trim();
+					String user_id      =request.getParameter("user_id").trim();
+					String user_pw      =request.getParameter("user_pw").trim();
+					String user_name    =request.getParameter("user_name").trim();
+					String user_email   =request.getParameter("user_email").trim();
+					String user_phone   =request.getParameter("user_phone").trim();
+					String user_zipcode =request.getParameter("user_zipcode").trim();
+					String user_addr1   =request.getParameter("user_addr1").trim();
+					String user_addr2   =request.getParameter("user_addr2").trim();
+					String user_job     =request.getParameter("user_job").trim();
 				
 					//2)dto객체 담기
-					dto.setId(id);
-					dto.setPasswd(passwd);
-					dto.setMname(mname);
-					dto.setEmail(email);
-					dto.setTel(tel);
-					dto.setZipcode(zipcode);
-					dto.setAddress1(address1);
-					dto.setAddress2(address2);
-					dto.setJob(job);
+					dto.setUser_id(user_id);
+					dto.setUser_pw(user_pw);
+					dto.setUser_name(user_name);
+					dto.setUser_email(user_email);
+					dto.setUser_phone(user_phone);
+					dto.setUser_zipcode(user_zipcode);
+					dto.setUser_addr1(user_addr1);
+					dto.setUser_addr2(user_addr2);
+					dto.setUser_job(user_job);
 					
 					//3)member테이블에 추가하기
 					int cnt=dao.create(dto);
@@ -39,7 +39,7 @@
 				  	}else{
 				      	out.println("<script>");
 				      	out.println("    alert('회원 가입 되었습니다~');");
-				      	out.println("    location.href='loginForm.jsp'");
+				      	out.println("    location.href='loginForm.do'");
 				      	out.println("</script>");
 				  	}//if end	
 					

@@ -29,7 +29,7 @@ public class MemberDAO {
 			sql.append(" SELECT user_level ");
 			sql.append(" FROM tb_user ");
 			sql.append(" WHERE user_id=? and user_pw=? ");
-			sql.append(" AND AA in ('A1', 'B1', 'C1', 'D1') ");
+			sql.append(" AND user_level in ('1', '2') ");
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_id()); 
@@ -49,18 +49,18 @@ public class MemberDAO {
 	}//loginProc() end
 	
 	
-	public int duplecateID(String id) {
+	public int duplecateID(String user_id) {
 		int cnt=0;
 		try {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-			sql.append(" SELECT COUNT(id) as cnt ");
+			sql.append(" SELECT COUNT(user_id) as cnt ");
 			sql.append(" FROM tb_user ");
 			sql.append(" WHERE user_id=? ");
 			
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1, id); 
+			pstmt.setString(1, user_id); 
 			
 			rs= pstmt.executeQuery();
 			if(rs.next()) {
@@ -83,8 +83,8 @@ public class MemberDAO {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-			sql.append(" INSERT INTO tb_user(user_id, user_pw, user_name, user_phone, user_email, user_zipcode, user_addr1, user_addr2, user_job, user_level, user_date) ");
-			sql.append(" VALUES(?,?,?,?,?,?,?,?,?.'D1', sysdate) ");
+			sql.append(" INSERT INTO tb_user(user_idx, user_id, user_pw, user_name, user_phone, user_email, user_zipcode, user_addr1, user_addr2, user_job, user_level, user_date) ");
+			sql.append(" VALUES(user_seq.nextval,?,?,?,?,?,?,?,?,?, '2', sysdate) ");
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_id()); 
@@ -96,6 +96,8 @@ public class MemberDAO {
 			pstmt.setString(7, dto.getUser_addr1());
 			pstmt.setString(8, dto.getUser_addr2());
 			pstmt.setString(9, dto.getUser_job());
+
+
 			
 			cnt= pstmt.executeUpdate();
 			
