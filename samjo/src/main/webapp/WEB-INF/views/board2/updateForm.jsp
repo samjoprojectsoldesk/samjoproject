@@ -20,6 +20,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<form name="frm" method="post" action="updateForm.do" class="tourcreate" enctype="multipart/form-data">
+		<input type="hidden" name="bbs_idx" id="bbs_idx" value="${dto.bbs_idx }">
 			<div class="form-group">
 				<label for="bbs_title">제목</label> 
 				<input type="text" class="form-control" id="bbs_title" name="bbs_title" value="${dto.bbs_title}">
@@ -31,16 +32,7 @@
 			<div class="form-group">
 				<label for="posterMF">이미지</label> 
 				<img src='../storage/${dto.bbs_img}' width='20%'>
-<<<<<<< HEAD
-				<input type="file" class="form-control-file" id="posterMF1" name="posterMF1">
-				<img src='../storage/${dto.bbs_img2}' width='20%'>
-				<input type="file" class="form-control-file" id="posterMF2" name="posterMF2">
-				<img src='../storage/${dto.bbs_img3}' width='20%'>
-				<input type="file" class="form-control-file" id="posterMF3" name="posterMF3">
-
-=======
 				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			</div>
 			<div class="form-group">
 				<label for="bbs_content">내용</label>

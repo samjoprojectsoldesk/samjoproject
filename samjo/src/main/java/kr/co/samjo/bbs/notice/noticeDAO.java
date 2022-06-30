@@ -35,10 +35,7 @@ public class noticeDAO {//데이터베이스 관련 작업
 
             sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date, board_readcnt) ");
             sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate, (SELECT NVL(MAX(board_no), 0)+1 FROM tb_board) ) ");
-<<<<<<< HEAD
-            
-=======
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
+
             pstmt=con.prepareStatement(sql.toString());
             pstmt.setString(1, dto.getBoard_title());
             pstmt.setString(2, dto.getBoard_content());
@@ -222,13 +219,6 @@ public class noticeDAO {//데이터베이스 관련 작업
     }//totalRowCount() end
     
 
-<<<<<<< HEAD
-=======
-	public int bbsInsProc(noticeDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}	
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 	
 //Update
 	public int update(noticeDTO dto) {
@@ -252,9 +242,4 @@ public class noticeDAO {//데이터베이스 관련 작업
         }//end
         return cnt;
     }//update end
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 }//class end   

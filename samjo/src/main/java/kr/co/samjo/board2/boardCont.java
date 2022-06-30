@@ -48,16 +48,7 @@ public class boardCont {
 		// 파일 저장 폴더의 실제 물리적인 경로 가져오기
 		String basePath = req.getRealPath("/storage");
 
-		// 1)<input type='file' name='posterMF' size='50'>
-<<<<<<< HEAD
-		MultipartFile posterMF1 = dto.getPosterMF1(); // 파일 가져오기
-		
-		// storage폴더에 파일을 저장하고, 리네임된 파일명 반환
-		String poster1 = UploadSaveManager.saveFileSpring30(posterMF1, basePath);
 
-		dto.setBbs_img(poster1);// 리네임된 파일명을 dto객체 담기
-
-=======
 		MultipartFile posterMF = dto.getPosterMF(); // 파일 가져오기
 		
 		// storage폴더에 파일을 저장하고, 리네임된 파일명 반환
@@ -65,7 +56,6 @@ public class boardCont {
 
 		dto.setBbs_img(poster);// 리네임된 파일명을 dto객체 담기
 		
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 		int cnt = dao.create(dto);
 		if (cnt == 0) {
 			String msg = "<p>게시판 등록 실패</p>";
@@ -166,29 +156,24 @@ public class boardCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board2/msgView");
 
+		System.out.println(dto.toString());
 		String basePath = req.getRealPath("/storage");
 		boardDTO oldDTO = dao.read(dto.getBbs_idx()); // 기존에 저장된 정보 가져오기
+		System.out.println(oldDTO.toString());
 
 		// ---------------------------------------------------------------------
 		// 파일을 수정할 것인지?
 
 		// 1)posterMF1
-		MultipartFile posterMF1 = dto.getPosterMF1();
-		if (posterMF1.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
+		MultipartFile posterMF = dto.getPosterMF();
+		if (posterMF.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
 			// 기존 파일 삭제
 			UploadSaveManager.deleteFile(basePath, oldDTO.getBbs_img());
-<<<<<<< HEAD
 
-=======
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			// 신규 파일 저장
-			String poster = UploadSaveManager.saveFileSpring30(posterMF1, basePath);
+			String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
 			dto.setBbs_img(poster); // 새롭게 첨부된 신규 파일명
 
-<<<<<<< HEAD
-=======
-			
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 		} else {
 			// 포스터 파일을 수정하지 않는 경우
 			dto.setBbs_img(oldDTO.getBbs_img()); // 기존에 저장된 파일명
@@ -243,13 +228,10 @@ public class boardCont {
 			String msg = "<p>게시판 삭제 실패!!</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-<<<<<<< HEAD
 
 			String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='/board/List.do'\">";
 
-=======
-			String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='/board/List.do'\">";
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
+
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -257,13 +239,9 @@ public class boardCont {
 		} else {
 			String msg = "<p>게시판이 삭제되었습니다</p>";
 			String img = "<img src='../images/sound.png'>";
-<<<<<<< HEAD
 
 			String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='/board/List.do'\">";
 
-=======
-			String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='/board/List.do'\">";
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);

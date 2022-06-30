@@ -13,36 +13,22 @@ public class boardDTO {//전송객체
     private String bbs_date;
     
     public boardDTO() {}
-<<<<<<< HEAD
 
   //--------------------------------------------------------
     //첨부된 파일을 저장하기 위해서(createForm.jsp참조)
    
-    //1)스프링 파일 객체 멤버 변수 선언
-    //<input type='file' name='posterMF' size='50'>
-    private MultipartFile posterMF1;
- 
-   
-    //2)getter와 setter함수 작성
-    public MultipartFile getPosterMF1() {
-		return posterMF1;
-	}
-
-	public void setPosterMF1(MultipartFile posterMF1) {
-		this.posterMF1 = posterMF1;
-	}
-   
-
-
-=======
     
     private MultipartFile posterMF;
    
-    public MultipartFile getPosterMF() {
-        return posterMF;
-    }
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
+	public MultipartFile getPosterMF() {
+		return posterMF;
+	}
+
+	public void setPosterMF(MultipartFile posterMF) {
+		this.posterMF = posterMF;
+	}  
 //--------------------------------------------------------
+
 
 	public int getBbs_idx() {
 		return bbs_idx;
@@ -104,12 +90,7 @@ public class boardDTO {//전송객체
 	public String toString() {
 		return "boardDTO [bbs_idx=" + bbs_idx + ", bbs_img=" + bbs_img + ", bbs_id=" + bbs_id + ", bbs_title="
 				+ bbs_title + ", bbs_content=" + bbs_content + ", bbs_count=" + bbs_count + ", bbs_date=" + bbs_date
-				+ ", posterMF1=" + posterMF1 + "]";
+				+ ", posterMF=" + posterMF + "]";
 	}
-<<<<<<< HEAD
 
-    
-=======
-   
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 }
