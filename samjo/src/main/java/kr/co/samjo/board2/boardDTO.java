@@ -13,6 +13,7 @@ public class boardDTO {//전송객체
     private String bbs_date;
     
     public boardDTO() {}
+<<<<<<< HEAD
 
     //--------------------------------------------------------
     //첨부된 파일을 저장하기 위해서(createForm.jsp참조)
@@ -28,6 +29,14 @@ public class boardDTO {//전송객체
 		this.posterMF = posterMF;
 	}  
    
+=======
+    
+    private MultipartFile posterMF;
+   
+    public MultipartFile getPosterMF() {
+        return posterMF;
+    }
+>>>>>>> c6f51390f5bd146725f3ed71a867dd75b857c685
 //--------------------------------------------------------
 
 

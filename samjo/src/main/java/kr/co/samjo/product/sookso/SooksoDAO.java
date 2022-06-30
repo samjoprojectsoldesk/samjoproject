@@ -202,8 +202,8 @@ public int create2(SooksoDTO dto) {
 		con = dbopen.getConnection(); // DB연결
 
 		sql = new StringBuilder();
-		sql.append(" INSERT INTO tb_room(room_cn, s_cn ,room_name, room_mp, room_dp, room_ep) ");
-		sql.append(" VALUES(?, ?, ?, ?, ?, ?) ");
+		sql.append(" INSERT INTO tb_room(room_cn, s_cn ,room_name, room_mp, room_dp, room_ep, room_img) ");
+		sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?) ");
 
 		pstmt = con.prepareStatement(sql.toString());
 		pstmt.setString(1, dto.getRoom_cn());
@@ -212,6 +212,7 @@ public int create2(SooksoDTO dto) {
 		pstmt.setInt(4, dto.getRoom_mp());
 		pstmt.setInt(5, dto.getRoom_dp());
 		pstmt.setInt(6, dto.getRoom_ep());
+		pstmt.setString(7, dto.getRoom_img());
 
 		cnt = pstmt.executeUpdate();
 
@@ -223,7 +224,7 @@ public int create2(SooksoDTO dto) {
 	return cnt;
 }// create() end
 	
-	public ArrayList<SooksoDTO> list2(int start, int end){
+	public ArrayList<SooksoDTO> list2(int start, int end, String s_cn){
 	    ArrayList<SooksoDTO> list=null;
 	    try {
 	        con=dbopen.getConnection();
@@ -233,16 +234,18 @@ public int create2(SooksoDTO dto) {
 	        sql.append(" FROM ( ");
 	        sql.append("        SELECT ROWNUM as RNUM, BB.* ");
 	        sql.append("        FROM ( ");
-	        sql.append("               SELECT room_cn, s_cn ,room_name, room_mp, room_dp, room_ep ");
+	        sql.append("               SELECT room_cn, s_cn ,room_name, room_mp, room_dp, room_ep, room_img ");
 	        sql.append("               FROM tb_room ");
+	        sql.append("               where s_cn = ? ");
 	        sql.append("               ORDER BY room_cn DESC ");
 	        sql.append("             )BB ");
 	        sql.append("      ) AA ");
 	        sql.append(" WHERE AA.RNUM >=? AND AA.RNUM<=? ");           
 	       
 	        pstmt=con.prepareStatement(sql.toString());
-	        pstmt.setInt(1, start);
-	        pstmt.setInt(2, end);
+	        pstmt.setInt(2, start);
+	        pstmt.setString(1, s_cn);
+	        pstmt.setInt(3, end);
 	       
 	        rs=pstmt.executeQuery();
 	        if(rs.next()) {
@@ -255,6 +258,7 @@ public int create2(SooksoDTO dto) {
 					dto.setRoom_mp(rs.getInt("room_mp"));
 					dto.setRoom_dp(rs.getInt("room_dp"));
 					dto.setRoom_ep(rs.getInt("room_ep"));
+					dto.setRoom_img(rs.getString("room_img"));
 	                list.add(dto);
 	            }while(rs.next());
 	        }//if end
@@ -272,7 +276,7 @@ public int create2(SooksoDTO dto) {
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
-			sql.append(" UPDATE tb_sookso ");
+			sql.append(" UPDATE tb_room ");
 			sql.append(" SET s_name=?, s_addr=?, s_tel=?, s_link=?, s_cont0=?, s_img=? ");
 			sql.append(" WHERE s_cn=? ");
 			

@@ -78,7 +78,7 @@ public class SooksoDTO {
 	private MultipartFile posterMF2;
 	
 	public MultipartFile getPosterMF2() {
-        return posterMF;
+        return posterMF2;
     }
 
     public void setPosterMF2(MultipartFile posterMF2) {
@@ -121,6 +121,10 @@ public class SooksoDTO {
 	public String getRoom_img() {
 		return room_img;
 	}
+	public void setRoom_img(String room_img) {
+		this.room_img = room_img;
+	}
+
 	public void setRoom_cont(String room_img) {
 		this.room_img = room_img;
 	}

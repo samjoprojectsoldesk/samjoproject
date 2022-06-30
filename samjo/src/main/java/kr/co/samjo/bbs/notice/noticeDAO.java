@@ -218,7 +218,10 @@ public class noticeDAO {//데이터베이스 관련 작업
         return cnt;
     }//totalRowCount() end
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> c6f51390f5bd146725f3ed71a867dd75b857c685
 	public int bbsInsProc(noticeDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;

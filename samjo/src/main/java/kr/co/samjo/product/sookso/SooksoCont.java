@@ -79,6 +79,14 @@ public class SooksoCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/msgView");
 		
+		String basePath = req.getRealPath("/storage");
+
+		// 1)<input type='file' name='posterMF' size='50'>
+		MultipartFile posterMF = dto.getPosterMF2(); // 파일 가져오기
+		// storage폴더에 파일을 저장하고, 리네임된 파일명 반환
+		String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
+		dto.setRoom_img(poster);// 리네임된 파일명을 dto객체 담기
+		
 		int cnt = dao.create2(dto);
 		if (cnt == 0) {
 			String msg = "<p>방 등록 실패</p>";
@@ -187,7 +195,7 @@ public class SooksoCont {
        
         List list=null;     
         if(totalRowCount>0){           
-              list=dao.list2(startRow, endRow);          
+              list=dao.list2(startRow, endRow, s_cn);          
         } else {           
               list=Collections.EMPTY_LIST;           
         }//if end
