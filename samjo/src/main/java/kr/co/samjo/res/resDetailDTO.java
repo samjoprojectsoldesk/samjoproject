@@ -4,6 +4,7 @@ public class resDetailDTO {
 
     private String res_no; // timestamp not null,
     private String s_code; // varchar2(10) not null,
+    private int p_cnt;
     private String sdate; // VARCHAR2(30) not null,
     private String fdate; // VARCHAR2(30)
     
@@ -19,6 +20,12 @@ public class resDetailDTO {
 	public void setS_code(String s_code) {
 		this.s_code = s_code;
 	}
+	public int getP_cnt() {
+		return p_cnt;
+	}
+	public void setP_cnt(int p_cnt) {
+		this.p_cnt = p_cnt;
+	}
 	public String getSdate() {
 		return sdate;
 	}
@@ -33,7 +40,7 @@ public class resDetailDTO {
 	}
 	@Override
 	public String toString() {
-		return "resDetailDTO [res_no=" + res_no + ", s_code=" + s_code + ", sdate=" + sdate + ", fdate=" + fdate + "]";
-	}
-    
+		return "resDetailDTO [res_no=" + res_no + ", s_code=" + s_code + ", p_cnt=" + p_cnt + ", sdate=" + sdate
+				+ ", fdate=" + fdate + "]";
+	}    
 }

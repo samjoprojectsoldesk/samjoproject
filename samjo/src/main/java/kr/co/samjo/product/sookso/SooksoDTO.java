@@ -73,8 +73,17 @@ public class SooksoDTO {
 	private int room_mp;
 	private int room_dp;
 	private int room_ep;
-	private String room_cont;
+	private String room_img;
 	
+	private MultipartFile posterMF2;
+	
+	public MultipartFile getPosterMF2() {
+        return posterMF;
+    }
+
+    public void setPosterMF2(MultipartFile posterMF2) {
+        this.posterMF2 = posterMF2;
+    }
 	
 	public String getRoom_cn() {
 		return room_cn;
@@ -109,11 +118,11 @@ public class SooksoDTO {
 	public void setRoom_ep(int room_ep) {
 		this.room_ep = room_ep;
 	}
-	public String getRoom_cont() {
-		return room_cont;
+	public String getRoom_img() {
+		return room_img;
 	}
-	public void setRoom_cont(String room_cont) {
-		this.room_cont = room_cont;
+	public void setRoom_cont(String room_img) {
+		this.room_img = room_img;
 	}
 
 	@Override
@@ -121,7 +130,7 @@ public class SooksoDTO {
 		return "SooksoDTO [s_cn=" + s_cn + ", s_name=" + s_name + ", s_addr=" + s_addr + ", s_tel=" + s_tel
 				+ ", s_link=" + s_link + ", s_cont=" + s_cont + ", s_img=" + s_img + ", posterMF=" + posterMF
 				+ ", room_cn=" + room_cn + ", room_name=" + room_name + ", room_mp=" + room_mp + ", room_dp=" + room_dp
-				+ ", room_ep=" + room_ep + ", room_cont=" + room_cont + "]";
+				+ ", room_ep=" + room_ep + ", room_img=" + room_img + "]";
 	}
 
 }

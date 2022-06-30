@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../header.jsp" %>
+<%@ include file="../header.jsp"%>
 <head>
 <title>공 지 사 항</title>
 </head>
@@ -21,12 +21,16 @@
 		
 <!-- (2) 검색 시작 -->
 		<div style='text-align: right; height: 50px; margin-right: 50px;'>
-			<form action="tourist.jsp">
-				<input type="text" name="word" id="word"
-					style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
-				&nbsp;&nbsp; <input type="submit" value="검색"
-					class="btn btn-secondary"
-					style="font-weight: bold; font-family: Arial;">
+			<form action="bbsList.do">
+				<select class="custom-select" name="col" style="width: 150px; height: 35px; border: 2px solid gray; border-radius: 5px 5px 5px 5px">
+					<option value="subject_content">제목 + 내용 
+					<option value="subject">제목
+					<option value="content">내용
+				</select>
+				<input type="text" name="word" id="word" style="border: 2px solid gray; border-radius: 5px 5px 5px 5px">
+				&nbsp;&nbsp; 
+				<input type="submit" value="검색" class="btn btn-secondary" style="font-weight: bold; font-family: Arial;">
+			
 			</form>
 		</div>		
 <!-- (3) 페이지 -->
@@ -71,6 +75,12 @@
 					<c:forEach var="i" begin="${startPage+1}" end="${endPage-1}">
 						<a href="/notice/noticeList.do?pageNum=${i}">[${i}]</a>
 					</c:forEach>
+					
+					<c:if test="${endPage<pageCount}">
+					<a href="/notice/noticeList.do?pageNum=${startPage+11}">[다음]</a>
+				</c:if>
+				
+			
 			</c:if>
 		</div>
 

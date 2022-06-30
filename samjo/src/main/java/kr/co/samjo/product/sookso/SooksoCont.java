@@ -24,18 +24,9 @@ public class SooksoCont {
 		dao = new SooksoDAO();//DB연결 객체 생성
 		System.out.println("-----SooksoCont() 객체 생성됨");
 	}//end
+
 	
-	/*
-	@RequestMapping("tour/tourist.do")
-	public ModelAndView list() {
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("tour/tourist");
-		mav.addObject("list", dao.list());
-		return mav;
-	}//list() end
-	*/
-	
-	@RequestMapping(value = "admin/Sooksoreate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/Sooksocreate.do", method = RequestMethod.GET)
 	public String createFrom() {
 		return "sookso/createForm";
 	}//createForm() end
@@ -62,14 +53,14 @@ public class SooksoCont {
 		if (cnt == 0) {
 			String msg = "<p>숙소 등록 실패</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/List.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/sookso/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>숙소 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/sookso/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
@@ -78,7 +69,37 @@ public class SooksoCont {
 		return mav;
 	}// createProc() end
 	
-	@RequestMapping("sookso/List.do")
+	@RequestMapping(value = "admin/Sooksocreate2.do", method = RequestMethod.GET)
+	public String createFrom2() {
+		return "sookso/createForm2";
+	}//createForm() end
+
+	@RequestMapping(value = "/admin/Sooksocreate2.do", method = RequestMethod.POST)
+	public ModelAndView create2(@ModelAttribute SooksoDTO dto, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("sookso/msgView");
+		
+		int cnt = dao.create2(dto);
+		if (cnt == 0) {
+			String msg = "<p>방 등록 실패</p>";
+			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/sookso/List.do'\">";
+			mav.addObject("msg", msg);
+			mav.addObject("link1", link1);
+			mav.addObject("link2", link2);
+		} else {
+			String msg = "<p>방 등록 성공</p>";
+			String img = "<img src='../images/sound.png'>";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/sookso/List.do'\">";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link2", link2);
+		} // if end
+
+		return mav;
+	}// createProc() end
+	
+	@RequestMapping("/sookso/List.do")
     public ModelAndView list(HttpServletRequest req) {
         ModelAndView mav=new ModelAndView();
         mav.setViewName("sookso/List");
@@ -131,14 +152,62 @@ public class SooksoCont {
         return mav;
     }//list() end
 	
+	
 	@RequestMapping("/sookso/List/read.do")
-	public ModelAndView read(String s_cn) {
+	public ModelAndView read(String s_cn, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		SooksoDTO dto = dao.read(s_cn);
 		mav.setViewName("sookso/read");
 		mav.addObject("dto", dto);
-		return mav;
-	}// read() end
+		
+		int totalRowCount=dao.totalRowCount(); //총 글갯수
+	       
+        //페이징
+        int numPerPage   = 9;    // 한 페이지당 레코드 갯수
+        int pagePerBlock = 10;   // 페이지 리스트
+       
+        String pageNum=req.getParameter("pageNum");
+        if(pageNum==null){
+              pageNum="1";
+        }
+       
+        int currentPage=Integer.parseInt(pageNum);
+        int startRow   =(currentPage-1)*numPerPage+1;
+        int endRow     =currentPage*numPerPage;
+       
+        //페이지 수
+        double totcnt = (double)totalRowCount/numPerPage;
+        int totalPage = (int)Math.ceil(totcnt);
+         
+        double d_page = (double)currentPage/pagePerBlock;
+        int Pages     = (int)Math.ceil(d_page)-1;
+        int startPage = Pages*pagePerBlock;
+        int endPage   = startPage+pagePerBlock+1;
+       
+       
+        List list=null;     
+        if(totalRowCount>0){           
+              list=dao.list2(startRow, endRow);          
+        } else {           
+              list=Collections.EMPTY_LIST;           
+        }//if end
+         
+        int number=0;
+        number=totalRowCount-(currentPage-1)*numPerPage;
+         
+        mav.addObject("number",    number);
+        mav.addObject("pageNum",   currentPage);
+        mav.addObject("startRow",  startRow);
+        mav.addObject("endRow",    endRow);
+        mav.addObject("count",     totalRowCount);
+        mav.addObject("pageSize",  pagePerBlock);
+        mav.addObject("totalPage", totalPage);
+        mav.addObject("startPage", startPage);
+        mav.addObject("endPage",   endPage);
+        mav.addObject("list", list);
+        return mav;
+    }//list() end
+
 	
 
 	@RequestMapping(value = "/admin/Sooksoupdate.do", method = RequestMethod.GET)

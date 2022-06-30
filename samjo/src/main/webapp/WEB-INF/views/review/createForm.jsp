@@ -25,6 +25,10 @@
 				<input type="text" class="form-control" id="s_code" name="s_code" readonly>
 			</div>
 			<div class="form-group">
+				<label for="review_user_id">아이디</label> 
+				<input type="text" class="form-control" id="review_user_id" name="review_user_id" readonly>
+			</div>
+			<div class="form-group">
 				<label for="review_content">리뷰 내용</label>
 				<textarea class="form-control" id="review_content" name="review_content" rows="3"></textarea>
 			</div>

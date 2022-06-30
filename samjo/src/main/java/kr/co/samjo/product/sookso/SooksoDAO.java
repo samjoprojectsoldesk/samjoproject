@@ -40,13 +40,12 @@ public class SooksoDAO {
 			cnt = pstmt.executeUpdate();
 
 		} catch (Exception e) {
-			System.out.println("여행지 등록 실패: " + e);
+			System.out.println("숙소 등록 실패: " + e);
 		} finally {
 			DBClose.close(con, pstmt);
 		} // end
 		return cnt;
 	}// create() end
-	
 	
 	public ArrayList<SooksoDTO> list(int start, int end){
         ArrayList<SooksoDTO> list=null;
@@ -118,9 +117,10 @@ public class SooksoDAO {
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
-			sql.append(" SELECT s_cn, s_name, s_addr, s_tel, s_link, s_cont, s_img ");
-			sql.append(" FROM tb_sookso ");
-			sql.append(" WHERE tb_tour.s_cn = ? ");
+			sql.append(" select * ");
+			sql.append(" from tb_sookso left join tb_room ");
+			sql.append(" on tb_sookso.s_cn = tb_room.s_cn ");
+			sql.append(" WHERE tb_sookso.s_cn = ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, s_cn);
 			rs = pstmt.executeQuery();
@@ -133,6 +133,11 @@ public class SooksoDAO {
 				dto.setS_link(rs.getString("s_link"));
 				dto.setS_cont(rs.getString("s_cont"));
 				dto.setS_img(rs.getString("s_img"));
+				dto.setRoom_cn(rs.getString("room_cn"));
+				dto.setRoom_name(rs.getString("room_name"));
+				dto.setRoom_mp(rs.getInt("room_mp"));
+				dto.setRoom_dp(rs.getInt("room_dp"));
+				dto.setRoom_ep(rs.getInt("room_ep"));
 			} // if end
 
 		} catch (Exception e) {
@@ -180,6 +185,126 @@ public class SooksoDAO {
 			sql.append(" WHERE t_cn=? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, s_cn);
+			cnt = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("삭제 실패" + e);
+		} finally {
+			DBClose.close(con, pstmt);
+		} // end
+		return cnt;
+	}// delete() end
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+public int create2(SooksoDTO dto) {
+	int cnt = 0;
+	try {
+		con = dbopen.getConnection(); // DB연결
+
+		sql = new StringBuilder();
+		sql.append(" INSERT INTO tb_room(room_cn, s_cn ,room_name, room_mp, room_dp, room_ep) ");
+		sql.append(" VALUES(?, ?, ?, ?, ?, ?) ");
+
+		pstmt = con.prepareStatement(sql.toString());
+		pstmt.setString(1, dto.getRoom_cn());
+		pstmt.setString(2, dto.getS_cn());
+		pstmt.setString(3, dto.getRoom_name());
+		pstmt.setInt(4, dto.getRoom_mp());
+		pstmt.setInt(5, dto.getRoom_dp());
+		pstmt.setInt(6, dto.getRoom_ep());
+
+		cnt = pstmt.executeUpdate();
+
+	} catch (Exception e) {
+		System.out.println("방 등록 실패: " + e);
+	} finally {
+		DBClose.close(con, pstmt);
+	} // end
+	return cnt;
+}// create() end
+	
+	public ArrayList<SooksoDTO> list2(int start, int end){
+	    ArrayList<SooksoDTO> list=null;
+	    try {
+	        con=dbopen.getConnection();
+	        sql=new StringBuilder();
+	       
+	        sql.append(" SELECT AA.* ");
+	        sql.append(" FROM ( ");
+	        sql.append("        SELECT ROWNUM as RNUM, BB.* ");
+	        sql.append("        FROM ( ");
+	        sql.append("               SELECT room_cn, s_cn ,room_name, room_mp, room_dp, room_ep ");
+	        sql.append("               FROM tb_room ");
+	        sql.append("               ORDER BY room_cn DESC ");
+	        sql.append("             )BB ");
+	        sql.append("      ) AA ");
+	        sql.append(" WHERE AA.RNUM >=? AND AA.RNUM<=? ");           
+	       
+	        pstmt=con.prepareStatement(sql.toString());
+	        pstmt.setInt(1, start);
+	        pstmt.setInt(2, end);
+	       
+	        rs=pstmt.executeQuery();
+	        if(rs.next()) {
+	            list=new ArrayList<SooksoDTO>();
+	            do{
+	            	SooksoDTO dto=new SooksoDTO();
+	            	dto.setRoom_cn(rs.getString("room_cn"));
+					dto.setS_cn(rs.getString("s_cn"));
+					dto.setRoom_name(rs.getString("room_name"));
+					dto.setRoom_mp(rs.getInt("room_mp"));
+					dto.setRoom_dp(rs.getInt("room_dp"));
+					dto.setRoom_ep(rs.getInt("room_ep"));
+	                list.add(dto);
+	            }while(rs.next());
+	        }//if end
+	       
+	    }catch(Exception e) {
+	        System.out.println("방 페이징 목록 실패: "+e);
+	    }finally{
+	        DBClose.close(con, pstmt, rs);
+	    }//end   
+	    return list;
+	}//list() end
+	
+	public int update2(SooksoDTO dto) {
+		int cnt = 0;
+		try {
+			con = dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" UPDATE tb_sookso ");
+			sql.append(" SET s_name=?, s_addr=?, s_tel=?, s_link=?, s_cont0=?, s_img=? ");
+			sql.append(" WHERE s_cn=? ");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getS_name());
+			pstmt.setString(2, dto.getS_addr());
+			pstmt.setString(3, dto.getS_tel());
+			pstmt.setString(4, dto.getS_link());
+			pstmt.setString(5, dto.getS_cont());
+			pstmt.setString(6, dto.getS_img());
+			pstmt.setString(7, dto.getS_cn());
+
+			cnt = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("숙소 수정 실패" + e);
+		} finally {
+			DBClose.close(con, pstmt);
+		} // end
+		return cnt;
+	}// update() end
+	
+	
+	
+	public int delete2(String room_cn) {
+		int cnt = 0;
+		try {
+			con = dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" DELETE FROM tb_room");
+			sql.append(" WHEREroom_cn=? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, room_cn);
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("삭제 실패" + e);

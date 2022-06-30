@@ -3,17 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp"%>
 <!-- 본문 시작 tourist.jsp -->
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
-				<h2
-					style="margin-top: 300px; text-align: center; font-weight: bold;"
+				<h2 style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">숙박</h2>
 			</div>
 		</div>
 	</div>
-
+</aside>
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
 		<form action="tourist.jsp">
@@ -25,16 +24,13 @@
 		</form>
 	</div>
 	<!-- 검색 끝 -->
-</aside>
 <div id="fh5co-work-section">
-
 	<div class="container">
 		<div class="row">
 			<c:forEach var="dto" items="${list}">
 				<div class="col-md-4 text-center project">
-					<a href="../product/sookso/read.do?s_cn=${dto.s_cn}" class="grid-project">
-							<img src="../storage/${dto.s_img}" alt="Project"
-								class="img-responsive" style="margin: 0 auto; height:300px;">
+					<a href="../sookso/List/read.do?s_cn=${dto.s_cn}" class="grid-project">
+							<img src="../storage/${dto.s_img}" alt="Project" class="img-responsive" style="margin: 0 auto; height:300px;">
 						</div>
 						</div>
 						<div class="desc">
@@ -73,7 +69,7 @@
 			</div>
 		</c:if>
 	</div>
-</div>
+
 
 
 <!-- 본문 끝 -->

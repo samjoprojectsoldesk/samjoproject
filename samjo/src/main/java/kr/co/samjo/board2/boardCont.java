@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.utility.UploadSaveManager;
+import net.utility.Utility;
 
 @Controller
 public class boardCont {
@@ -47,7 +48,11 @@ public class boardCont {
 		// 파일 저장 폴더의 실제 물리적인 경로 가져오기
 		String basePath = req.getRealPath("/storage");
 
+<<<<<<< HEAD
+
+=======
 		// 1)<input type='file' name='posterMF' size='50'>
+>>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
 		MultipartFile posterMF = dto.getPosterMF(); // 파일 가져오기
 		
 		// storage폴더에 파일을 저장하고, 리네임된 파일명 반환
@@ -77,6 +82,11 @@ public class boardCont {
 
 	@RequestMapping("/board/List.do")
 	public ModelAndView list(HttpServletRequest req) {
+		
+		//입력된 검색어 확인(검색어가 있으면 검색어 존재, 검색어가 없으면 빈문자열 "")
+        String word = Utility.checkNull(req.getParameter("word"));
+        String col = Utility.checkNull(req.getParameter("col"));
+        
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board2/List");
 
@@ -106,7 +116,7 @@ public class boardCont {
 
 		List list = null;
 		if (totalRowCount > 0) {
-			list = dao.list(startRow, endRow);
+			list = dao.list(startRow, endRow, col, word);
 		} else {
 			list = Collections.EMPTY_LIST;
 		} // if end
@@ -150,19 +160,30 @@ public class boardCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board2/msgView");
 
+		System.out.println(dto.toString());
 		String basePath = req.getRealPath("/storage");
 		boardDTO oldDTO = dao.read(dto.getBbs_idx()); // 기존에 저장된 정보 가져오기
+		System.out.println(oldDTO.toString());
 
 		// ---------------------------------------------------------------------
 		// 파일을 수정할 것인지?
 
 		// 1)posterMF1
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		MultipartFile posterMF = dto.getPosterMF();
+		if (posterMF.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
+=======
+>>>>>>> 121ebc38e8d4943af5e8ed8e7d5dc999c7600182
 		MultipartFile posterMF1 = dto.getPosterMF();
 		if (posterMF1.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
+>>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
 			// 기존 파일 삭제
 			UploadSaveManager.deleteFile(basePath, oldDTO.getBbs_img());
+
 			// 신규 파일 저장
-			String poster = UploadSaveManager.saveFileSpring30(posterMF1, basePath);
+			String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
 			dto.setBbs_img(poster); // 새롭게 첨부된 신규 파일명
 
 		} else {
@@ -219,7 +240,13 @@ public class boardCont {
 			String msg = "<p>게시판 삭제 실패!!</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+
 			String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='/board/List.do'\">";
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -227,7 +254,14 @@ public class boardCont {
 		} else {
 			String msg = "<p>게시판이 삭제되었습니다</p>";
 			String img = "<img src='../images/sound.png'>";
+<<<<<<< HEAD
+
 			String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='/board/List.do'\">";
+
+=======
+
+			String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='/board/List.do'\">";
+>>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);

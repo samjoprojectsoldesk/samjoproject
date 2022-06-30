@@ -5,6 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import kr.co.samjo.product.rentalcar.rentalcarDAO;
+import kr.co.samjo.product.rentalcar.rentalcarDTO;
+import kr.co.samjo.product.sookso.SooksoDAO;
+import kr.co.samjo.product.sookso.SooksoDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
@@ -168,6 +172,40 @@ public class cartDAO {
             DBClose.close(con, pstmt, rs);
         }//end		
 		return list;
+	}
+
+	public long amount(ArrayList<cartDTO> list) {
+		int sum = 0;
+		String s_code = null;
+		ArrayList<String> tmplist = new ArrayList<String>();
+		for(int i=0; i<list.size(); i++) {
+			tmplist = week(list.get(i).getC_no());
+			s_code = list.get(i).getS_code();
+			if(s_code.charAt(0)=='S') {
+				SooksoDAO sdao = new SooksoDAO();
+				SooksoDTO sdto = new SooksoDTO();
+				sdto = sdao.read(s_code);
+				for(int j=0; j<tmplist.size(); j++) {
+					if(tmplist.get(j)=="주말") {
+						sum += sdto.getRoom_ep();
+					}else {
+						sum += sdto.getRoom_dp();
+					}
+				}
+			}else if(s_code.charAt(0)=='C'){
+				rentalcarDAO rcdao = new rentalcarDAO();
+				rentalcarDTO rcdto = new rentalcarDTO();
+				rcdto = rcdao.read(s_code);
+				sum += rcdto.getC_sum();
+				if(tmplist.size()>1) {
+					sum += (tmplist.size()-1)*24;
+				}
+			}else {
+				sum += 0;
+			}
+		}
+		
+		return sum;
 	}
 	
 }

@@ -9,7 +9,7 @@
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">여행지 등록</h2>
+					class="heading-section">숙소 등록</h2>
 			</div>
 		</div>
 	</div>
@@ -18,7 +18,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="create.do" class="create" enctype="multipart/form-data">
+		<form name="frm" method="post" action="Sooksocreate.do" class="create" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="s_cn">숙소 코드</label> 
 				<input type="text" class="form-control" id="s_cn" name="s_cn" placeholder="S000">

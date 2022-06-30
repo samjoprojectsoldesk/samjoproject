@@ -276,7 +276,7 @@ public class TourCont {
 		TourDTO oldDTO = dao.read(dto.getT_cn()); // 기존에 저장된 정보 가져오기
 
 		// ---------------------------------------------------------------------
-		// 파일을 수정할 것인지?
+		// 파일을 수정할 것인지?kkk
 
 		// 1)
 		MultipartFile posterMF = dto.getPosterMF();
