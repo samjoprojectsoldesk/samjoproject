@@ -192,7 +192,7 @@ public class cartDAO {
 						sum += sdto.getRoom_dp();
 					}
 				}
-			}else {
+			}else if(s_code.charAt(0)=='C'){
 				rentalcarDAO rcdao = new rentalcarDAO();
 				rentalcarDTO rcdto = new rentalcarDTO();
 				rcdto = rcdao.read(s_code);
@@ -200,6 +200,8 @@ public class cartDAO {
 				if(tmplist.size()>1) {
 					sum += (tmplist.size()-1)*24;
 				}
+			}else {
+				sum += 0;
 			}
 		}
 		

@@ -29,11 +29,7 @@ public class MemberDAO {
 			sql.append(" SELECT user_level ");
 			sql.append(" FROM tb_user ");
 			sql.append(" WHERE user_id=? and user_pw=? ");
-<<<<<<< HEAD
 			sql.append(" AND user_level in (1 , 2) ");
-=======
-			sql.append(" AND AA in ('A1', 'B1', 'C1', 'D1') ");
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_id()); 
@@ -41,11 +37,7 @@ public class MemberDAO {
 			rs= pstmt.executeQuery();
 			
 			if(rs.next()) {
-<<<<<<< HEAD
-				mlevel=rs.getString("user_level");
-=======
 				user_level=rs.getString("user_level");
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			}//if end
 			
 		}catch (Exception e) {
@@ -91,20 +83,6 @@ public class MemberDAO {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-<<<<<<< HEAD
-			sql.append(" INSERT INTO tb_user(user_idx, user_id, user_pw, user_name, user_phone, user_email, user_addr1, user_addr2, user_job, user_level, user_date) ");
-			sql.append(" VALUES(user_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, '2', sysdate) ");
-			
-			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1, dto.getId()); 
-			pstmt.setString(2, dto.getPasswd());
-			pstmt.setString(3, dto.getMname());
-			pstmt.setString(4, dto.getTel());
-			pstmt.setString(5, dto.getEmail());
-			pstmt.setString(6, dto.getAddress1());
-			pstmt.setString(7, dto.getAddress2());
-			pstmt.setString(8, dto.getJob());
-=======
 			sql.append(" INSERT INTO tb_user(user_id, user_pw, user_name, user_phone, user_email, user_zipcode, user_addr1, user_addr2, user_job, user_level, user_date) ");
 			sql.append(" VALUES(?,?,?,?,?,?,?,?,?.'D1', sysdate) ");
 			
@@ -118,7 +96,6 @@ public class MemberDAO {
 			pstmt.setString(7, dto.getUser_addr1());
 			pstmt.setString(8, dto.getUser_addr2());
 			pstmt.setString(9, dto.getUser_job());
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			
 			cnt= pstmt.executeUpdate();
 			
@@ -141,12 +118,7 @@ public class MemberDAO {
 			//이름과 이메일이 일치하는 id 가져오기
 			sql.append(" SELECT user_id ");
 			sql.append(" FROM tb_user ");
-<<<<<<< HEAD
-			sql.append(" WHERE user_name=? AND user_email=? ");
-=======
 			sql.append(" WHERE mname=? AND user_email=? ");
-
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_name());
@@ -174,11 +146,7 @@ public class MemberDAO {
 				sql=new StringBuilder();
 				sql.append(" UPDATE tb_user ");
 				sql.append(" SET user_pw=? ");
-<<<<<<< HEAD
-				sql.append(" WHERE user_name=? AND user_email=? ");
-=======
 				sql.append(" WHERE mname=? AND user_email=? ");
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 				pstmt=con.prepareStatement(sql.toString());
 				pstmt.setString(1, imsiPW.toString());
 				pstmt.setString(2, dto.getUser_name());
@@ -288,12 +256,5 @@ public class MemberDAO {
 		return cnt;
 		
 	}//modifyProc() end
-	
-	
-	
-	
-	
-	
-	
 	
 }//class end
