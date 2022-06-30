@@ -53,7 +53,7 @@ public class resCont {
 			map.put("count", list.size());
 		}
 		
-		mav.setViewName("/res/reserve");
+		mav.setViewName("../res/reserve");
 		mav.addObject("map", map);		
 		return mav;
 	}
@@ -81,7 +81,7 @@ public class resCont {
 			String msg = "<p>장바구니 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"list.do\"'>";
+			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"../cart/list.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -89,7 +89,7 @@ public class resCont {
 		} else {
 			String msg = "<p>장바구니 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"list.do\"'>";
+			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"/res/list.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
