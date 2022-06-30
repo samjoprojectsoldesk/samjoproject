@@ -49,7 +49,7 @@ public class MemberDAO {
 	}//loginProc() end
 	
 	
-	public int duplecateID(String id) {
+	public int duplecateID(String user_id) {
 		int cnt=0;
 		try {
 			con=dbopen.getConnection();
@@ -60,7 +60,7 @@ public class MemberDAO {
 			sql.append(" WHERE user_id=? ");
 			
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1, id); 
+			pstmt.setString(1, user_id); 
 			
 			rs= pstmt.executeQuery();
 			if(rs.next()) {

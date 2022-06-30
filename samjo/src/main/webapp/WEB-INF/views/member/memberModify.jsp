@@ -28,7 +28,7 @@
 	<tr>
 	    <th>*아이디</th>
 	    <td style="text-align: left">
-		    <input type="text" name="id" id="id" size="15" value="<%=(String)session.getAttribute("s_id") %>" readonly>
+		    <input type="text" name="user_id" id="user_id" size="15" value="<%=(String)session.getAttribute("s_id") %>" readonly>
 		  <!--id는 수정할 수 없음
 		    <input type="button" value="ID중복확인" onclick="idCheck()"><!-- myscript.js -->
 		  -->
@@ -36,53 +36,53 @@
 	</tr>
 	<tr>
 	    <th>*비밀번호</th>
-	    <td style="text-align: left"><input type="password" value="<%=dto.getPasswd()%>" name="passwd" id="passwd" size="15" required></td>
+	    <td style="text-align: left"><input type="password" value="<%=dto.getUser_pw()%>" name="user_pw" id="user_pw" size="15" required></td>
 	</tr>
 	<tr>
 	    <th>*비밀번호 확인</th>
-	    <td style="text-align: left"><input type="password" name="repasswd" id="repasswd" size="15" required></td>
+	    <td style="text-align: left"><input type="password" name="user_repw" id="user_repw" size="15" required></td>
 	</tr>
 	<tr>
 	    <th>*이름</th>
-	    <td style="text-align: left"><input type="text" value="<%=dto.getMname()%>" name="mname" id="mname" size="15" maxlength="20" required></td>
+	    <td style="text-align: left"><input type="text" value="<%=dto.getUser_name()%>" name="user_name" id="user_name" size="15" maxlength="20" required></td>
 	</tr>
 	<tr>
 	    <th>*이메일</th>
 	    <td style="text-align: left">
-	      <input type="email" name="email" id="email" size="30" value="<%=dto.getEmail()%>" readonly>
+	      <input type="email" name="user_email" id="user_email" size="30" value="<%=dto.getUser_email()%>" readonly>
 	      <input type="button" value="Email 중복확인" onclick="emailCheck()"><!-- myscript.js -->
 	    </td>
 	</tr>
 	<tr>
 	    <th>전화번호</th>
-	    <td style="text-align: left"><input type="text" name="tel" id="tel" value="<%=dto.getTel()%>" size="15"></td>
+	    <td style="text-align: left"><input type="text" name="user_phone" id="user_phone" value="<%=dto.getUser_phone()%>" size="15"></td>
 	</tr>
 	<tr>
 	    <th>우편번호</th>
 	    <td style="text-align: left">
-	      <input type="text" name="zipcode" id="zipcode" size="7" value="<%=dto.getZipcode()%>"  readonly>
+	      <input type="text" name="user_zipcode" id="user_zipcode" size="7" value="<%=dto.getUser_zipcode()%>"  readonly>
 	      <input type="button" value="주소찾기" onclick="DaumPostcode()">    
 	    </td>
 	</tr>
 	<tr>  
 	  <th>주소</th>
-	  <td style="text-align: left"><input type="text" name="address1" id="address1" value="<%=dto.getAddress1()%>" size="45" readonly></td>
+	  <td style="text-align: left"><input type="text" name="user_addr1" id="user_addr1" value="<%=dto.getUser_addr1()%>" size="45" readonly></td>
 	</tr>
 	<tr>  
 	  <th>나머지주소</th>
-	  <td style="text-align: left"><input type="text" name="address2" id="address2" value="<%=dto.getAddress2()%>" size="45" ></td>
+	  <td style="text-align: left"><input type="text" name="user_addr2" id="user_addr2" value="<%=dto.getUser_addr2()%>" size="45" ></td>
 	</tr>
 	<tr>  
 	  <th>직업</th>
 	  <td style="text-align: left"><!-- basic04_web 프로젝트 /sungjukbean/sungjukUpdate.jsp참조 -->
-	  		<% String job=dto.getJob(); %>
-	        <select name="job"  id="job">
+	  		<% String user_job=dto.getUser_job(); %>
+	        <select name="user_job"  id="user_job">
 	          <option value="0">선택하세요.</option>
-	          <option value="A01" <%if (job.equals("A01")) {out.print("selected");}%>>회사원</option>
-	          <option value="A02" <%if (job.equals("A02")) {out.print("selected");}%>>IT관련직</option>
-	          <option value="A03" <%if (job.equals("A03")) {out.print("selected");}%>>학생</option>
-	          <option value="A04" <%if (job.equals("A04")) {out.print("selected");}%>>주부</option>
-	          <option value="A05" <%if (job.equals("A05")) {out.print("selected");}%>>기타</option>
+	          <option value="A01" <%if (user_job.equals("A01")) {out.print("selected");}%>>회사원</option>
+	          <option value="A02" <%if (user_job.equals("A02")) {out.print("selected");}%>>IT관련직</option>
+	          <option value="A03" <%if (user_job.equals("A03")) {out.print("selected");}%>>학생</option>
+	          <option value="A04" <%if (user_job.equals("A04")) {out.print("selected");}%>>주부</option>
+	          <option value="A05" <%if (user_job.equals("A05")) {out.print("selected");}%>>기타</option>
 	        </select>
 	  </td>
 	</tr>
@@ -136,8 +136,8 @@
 	                }
 	
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
-	                document.getElementById('address1').value = fullAddr;
+	                document.getElementById('user_zipcode').value = data.zonecode; //5자리 새우편번호 사용
+	                document.getElementById('user_addr1').value = fullAddr;
 	
 	                // iframe을 넣은 element를 안보이게 한다.
 	                // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
@@ -146,7 +146,7 @@
 	                // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
 	                document.body.scrollTop = currentScroll;
 	                
-	                $('#address2').focus();
+	                $('#user_addr2').focus();
 	            },
 	            // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
 	            onresize : function(size) {

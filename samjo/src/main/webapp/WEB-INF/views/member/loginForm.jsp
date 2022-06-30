@@ -28,13 +28,13 @@ if (s_id.equals("guest") || s_passwd.equals("guest") || s_mlevel.equals("guest")
 						<form name="loginfrm" id="loginfrm" method="post" action="loginProc.do" onsubmit="return loginCheck()"><!-- myscript.js에서 함수 작성 -->
 							<table class="table">
 								<tr>
-									<td><input type="text" name="id" id="id" value="<%=c_id%>" placeholder="아이디" maxlength="10" required></td>
+									<td><input type="text" name="user_id" id="user_id" value="<%=c_id%>" placeholder="아이디" maxlength="10" required></td>
 									<td rowspan="2">
 										<!-- type=image의 기본속성이 submit --> <input type="image" src="../images/bt_login.gif">
 									</td>
 								</tr>
 								<tr>
-									<td><input type="password" name="passwd" id="passwd" placeholder="비밀번호" maxlength="10" required></td>
+									<td><input type="password" name="user_pw" id="user_pw" placeholder="비밀번호" maxlength="10" required></td>
 								</tr>
 								<tr>
 									<td colspan="2"><label><input type="checkbox" name="c_id" value="SAVE" <%if (!c_id.isEmpty()) {out.print("checked");}%>>아이디 저장</label>
@@ -52,11 +52,11 @@ if (s_id.equals("guest") || s_passwd.equals("guest") || s_mlevel.equals("guest")
 	} else {
 			//로그인 성공했다면
 			out.println("<strong>" + s_id + "</strong> 님");
-			out.println("<a href='logout.jsp'>[로그아웃]</a>");
+			out.println("<a href='logout.do'>[로그아웃]</a>");
 			out.println("<br><br>");
-			out.println("<a href='memberModify.jsp'>[회원정보수정]</a>");
+			out.println("<a href='memberModify.do'>[회원정보수정]</a>");
 			out.println("&nbsp;&nbsp;");
-			out.println("<a href='memberWithdraw.jsp'>[회원탈퇴]</a>");
+			out.println("<a href='memberWithdraw.do'>[회원탈퇴]</a>");
 	} //if end
 %>
 </div>
