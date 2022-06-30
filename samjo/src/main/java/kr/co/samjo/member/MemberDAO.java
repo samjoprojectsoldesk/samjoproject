@@ -26,17 +26,10 @@ public class MemberDAO {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-<<<<<<< HEAD
 			sql.append(" SELECT user_level ");
 			sql.append(" FROM tb_user ");
 			sql.append(" WHERE user_id=? and user_pw=? ");
 			sql.append(" AND AA in ('A1', 'B1', 'C1', 'D1') ");
-=======
-			sql.append(" SELECT mlevel ");
-			sql.append(" FROM tb_user ");
-			sql.append(" WHERE id=? and passwd=? ");
-			sql.append(" AND mlevel in ('A1', 'B1', 'C1', 'D1') ");
->>>>>>> 37fbda619c562c6756c7cac7aa0ec8d900d9da25
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_id()); 
@@ -64,11 +57,7 @@ public class MemberDAO {
 			sql=new StringBuilder();
 			sql.append(" SELECT COUNT(id) as cnt ");
 			sql.append(" FROM tb_user ");
-<<<<<<< HEAD
 			sql.append(" WHERE user_id=? ");
-=======
-			sql.append(" WHERE id=? ");
->>>>>>> 37fbda619c562c6756c7cac7aa0ec8d900d9da25
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, id); 
@@ -94,23 +83,19 @@ public class MemberDAO {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-<<<<<<< HEAD
-			sql.append(" INSERT INTO tb_user(user_id, user_pw, mname, user_phone, user_email, zipcode, user_addr1, user_addr2, job, user_level, mdate) ");
-=======
-			sql.append(" INSERT INTO tb_user(id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate) ");
->>>>>>> 37fbda619c562c6756c7cac7aa0ec8d900d9da25
+			sql.append(" INSERT INTO tb_user(user_id, user_pw, user_name, user_phone, user_email, user_zipcode, user_addr1, user_addr2, user_job, user_level, user_date) ");
 			sql.append(" VALUES(?,?,?,?,?,?,?,?,?.'D1', sysdate) ");
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_id()); 
 			pstmt.setString(2, dto.getUser_pw());
-			pstmt.setString(3, dto.getMname());
+			pstmt.setString(3, dto.getUser_name());
 			pstmt.setString(4, dto.getUser_phone());
 			pstmt.setString(5, dto.getUser_email());
-			pstmt.setString(6, dto.getZipcode());
+			pstmt.setString(6, dto.getUser_zipcode());
 			pstmt.setString(7, dto.getUser_addr1());
 			pstmt.setString(8, dto.getUser_addr2());
-			pstmt.setString(9, dto.getJob());
+			pstmt.setString(9, dto.getUser_job());
 			
 			cnt= pstmt.executeUpdate();
 			
@@ -131,18 +116,13 @@ public class MemberDAO {
 			sql=new StringBuilder();
 			
 			//이름과 이메일이 일치하는 id 가져오기
-<<<<<<< HEAD
 			sql.append(" SELECT user_id ");
 			sql.append(" FROM tb_user ");
 			sql.append(" WHERE mname=? AND user_email=? ");
-=======
-			sql.append(" SELECT id ");
-			sql.append(" FROM tb_user ");
-			sql.append(" WHERE mname=? AND email=? ");
->>>>>>> 37fbda619c562c6756c7cac7aa0ec8d900d9da25
+
 			
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1, dto.getMname());
+			pstmt.setString(1, dto.getUser_name());
 			pstmt.setString(2, dto.getUser_email());
 			rs=pstmt.executeQuery();
 			if(rs.next()) { //이름과 이메일 일치되었다면
@@ -166,16 +146,11 @@ public class MemberDAO {
 				//임시비밀번호로 업데이트 하기
 				sql=new StringBuilder();
 				sql.append(" UPDATE tb_user ");
-<<<<<<< HEAD
 				sql.append(" SET user_pw=? ");
 				sql.append(" WHERE mname=? AND user_email=? ");
-=======
-				sql.append(" SET passwd=? ");
-				sql.append(" WHERE mname=? AND email=? ");
->>>>>>> 37fbda619c562c6756c7cac7aa0ec8d900d9da25
 				pstmt=con.prepareStatement(sql.toString());
 				pstmt.setString(1, imsiPW.toString());
-				pstmt.setString(2, dto.getMname());
+				pstmt.setString(2, dto.getUser_name());
 				pstmt.setString(3, dto.getUser_email());//여기 수정했어요
 				
 				int cnt=pstmt.executeUpdate();
@@ -219,15 +194,9 @@ public class MemberDAO {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-<<<<<<< HEAD
-			sql.append(" SELECT user_pw, mname, user_phone, user_email, zipcode, user_addr1, user_addr2, job ");
+			sql.append(" SELECT user_pw, user_name, user_phone, user_email, user_zipcode, user_addr1, user_addr2, user_job ");
 			sql.append(" FROM tb_user ");
 			sql.append(" WHERE user_id=? ");
-=======
-			sql.append(" SELECT passwd, mname, tel, email, zipcode, address1, address2, job ");
-			sql.append(" FROM tb_user ");
-			sql.append(" WHERE id=? ");
->>>>>>> 37fbda619c562c6756c7cac7aa0ec8d900d9da25
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, id); // 1 -> 첫번째 ?
@@ -237,13 +206,13 @@ public class MemberDAO {
 			if(rs.next()) { //행이 존재 하나요?
 				dto=new MemberDTO();
 				dto.setUser_pw(rs.getString("user_pw"));
-				dto.setMname(rs.getString("mname"));
+				dto.setUser_name(rs.getString("user_name"));
 				dto.setUser_phone(rs.getString("user_phone"));
 				dto.setUser_email(rs.getString("user_email"));
-				dto.setZipcode(rs.getString("zipcode"));
+				dto.setUser_zipcode(rs.getString("user_zipcode"));
 				dto.setUser_addr1(rs.getString("user_addr1"));
 				dto.setUser_addr2(rs.getString("user_addr2"));
-				dto.setJob(rs.getString("job"));
+				dto.setUser_job(rs.getString("user_job"));
 			}//if end
 			
 		}catch (Exception e) {
@@ -264,23 +233,18 @@ public class MemberDAO {
 			
 			sql=new StringBuilder();
 			sql.append(" UPDATE tb_user ");
-<<<<<<< HEAD
-			sql.append(" SET user_pw=?, mname=?, user_phone=?, user_email=?, zipcode=?, user_addr1=?, user_addr2=?, job=? ");
+			sql.append(" SET user_pw=?, user_name=?, user_phone=?, user_email=?, user_zipcode=?, user_addr1=?, user_addr2=?, user_job=? ");
 			sql.append(" WHERE user_id=? ");
-=======
-			sql.append(" SET passwd=?, mname=?, tel=?, email=?, zipcode=?, address1=?, address2=?, job=? ");
-			sql.append(" WHERE id=? ");
->>>>>>> 37fbda619c562c6756c7cac7aa0ec8d900d9da25
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_pw());
-			pstmt.setString(2, dto.getMname());
+			pstmt.setString(2, dto.getUser_name());
 			pstmt.setString(3, dto.getUser_phone());
 			pstmt.setString(4, dto.getUser_email());
-			pstmt.setString(5, dto.getZipcode());
+			pstmt.setString(5, dto.getUser_zipcode());
 			pstmt.setString(6, dto.getUser_addr1());
 			pstmt.setString(7, dto.getUser_addr2());
-			pstmt.setString(8, dto.getJob());
+			pstmt.setString(8, dto.getUser_job());
 			pstmt.setString(9, dto.getUser_id());
 			
 			cnt=pstmt.executeUpdate(); //insert, update, delete문 실행

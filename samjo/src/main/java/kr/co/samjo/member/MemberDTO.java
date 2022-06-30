@@ -1,19 +1,28 @@
 package kr.co.samjo.member;
 
 public class MemberDTO { 
+	private String user_idx;
     private String user_id;
     private String user_pw;
-    private String mname;
+    private String user_name;
     private String user_phone;
     private String user_email;
-    private String zipcode;
+    private String user_zipcode;
     private String user_addr1;
     private String user_addr2;
-    private String job;
+    private String user_job;
     private String user_level;
-    private String mdate;
+    private String user_date;
     
     public MemberDTO() {}
+
+	public String getUser_idx() {
+		return user_idx;
+	}
+
+	public void setUser_idx(String user_idx) {
+		this.user_idx = user_idx;
+	}
 
 	public String getUser_id() {
 		return user_id;
@@ -31,12 +40,12 @@ public class MemberDTO {
 		this.user_pw = user_pw;
 	}
 
-	public String getMname() {
-		return mname;
+	public String getUser_name() {
+		return user_name;
 	}
 
-	public void setMname(String mname) {
-		this.mname = mname;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
 	public String getUser_phone() {
@@ -55,12 +64,12 @@ public class MemberDTO {
 		this.user_email = user_email;
 	}
 
-	public String getZipcode() {
-		return zipcode;
+	public String getUser_zipcode() {
+		return user_zipcode;
 	}
 
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
+	public void setUser_zipcode(String user_zipcode) {
+		this.user_zipcode = user_zipcode;
 	}
 
 	public String getUser_addr1() {
@@ -79,12 +88,12 @@ public class MemberDTO {
 		this.user_addr2 = user_addr2;
 	}
 
-	public String getJob() {
-		return job;
+	public String getUser_job() {
+		return user_job;
 	}
 
-	public void setJob(String job) {
-		this.job = job;
+	public void setUser_job(String user_job) {
+		this.user_job = user_job;
 	}
 
 	public String getUser_level() {
@@ -95,22 +104,23 @@ public class MemberDTO {
 		this.user_level = user_level;
 	}
 
-	public String getMdate() {
-		return mdate;
+	public String getUser_date() {
+		return user_date;
 	}
 
-	public void setMdate(String mdate) {
-		this.mdate = mdate;
+	public void setUser_date(String user_date) {
+		this.user_date = user_date;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberDTO [user_id=" + user_id + ", user_pw=" + user_pw + ", mname=" + mname + ", user_phone="
-				+ user_phone + ", user_email=" + user_email + ", zipcode=" + zipcode + ", user_addr1=" + user_addr1
-				+ ", user_addr2=" + user_addr2 + ", job=" + job + ", user_level=" + user_level + ", mdate=" + mdate
-				+ "]";
+		return "MemberDTO [user_idx=" + user_idx + ", user_id=" + user_id + ", user_pw=" + user_pw + ", user_name="
+				+ user_name + ", user_phone=" + user_phone + ", user_email=" + user_email + ", user_zipcode="
+				+ user_zipcode + ", user_addr1=" + user_addr1 + ", user_addr2=" + user_addr2 + ", user_job=" + user_job
+				+ ", user_level=" + user_level + ", user_date=" + user_date + "]";
 	}
 
+	
 
     
     
