@@ -20,7 +20,7 @@ public class rentalcarCont {
 		System.out.println("-----rentalcarCont객체 생성됨");
 	}
 	//Ins	
-	@RequestMapping(value = "rentalcar/Ins.do", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/rentalcarIns.do", method = RequestMethod.GET)
 	public ModelAndView Ins() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("rentalcar/Ins");
@@ -30,26 +30,26 @@ public class rentalcarCont {
 
 	
 //InsProc
-		@RequestMapping(value = "rentalcar/Ins.do", method = RequestMethod.POST)
+		@RequestMapping(value = "admin/rentalcarIns.do", method = RequestMethod.POST)
 		public ModelAndView Ins(@ModelAttribute rentalcarDTO dto) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("rentalcar/msgView");
 
 			int cnt = dao.create(dto);
 			if (cnt == 0) {
-				String msg = "<p>공지사항 등록 실패</p>";
+				String msg = "<p>렌트카 등록 실패</p>";
 				String img = "<img src='../images/fail.png'>";
 				String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-				String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"List.do\"'>";
+				String link2 = "<input type='button' value='렌트카 목록' onclick='location.href=\"List.do\"'>";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link1", link1);
 				mav.addObject("link2", link2);
 			} else {
-				String msg = "<p>공지사항 등록 성공</p>";
+				String msg = "<p>렌트카 등록 성공</p>";
 				String img = "<img src='../images/sound.png'>";
 				String link1 = "<input type='button' value='계속등록' onclick='location.href=\"Ins.do\"'>";
-				String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"List.do\"'>";
+				String link2 = "<input type='button' value='렌트카 목록' onclick='location.href=\"List.do\"'>";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link1", link1);
@@ -116,18 +116,64 @@ public class rentalcarCont {
 		
 //Read	
 		@RequestMapping("rentalcar/Read.do")
-			public ModelAndView Read(String c_code) {
+			public ModelAndView Read(String c_code, HttpServletRequest req) {
 			ModelAndView mav = new ModelAndView();
 			rentalcarDTO dto = dao.read(c_code);
 			mav.setViewName("rentalcar/Read");
 			mav.addObject("dto", dto);
+
+			int totalRowCount=dao.reviewtotalRowCount(c_code); //총 글갯수
+		       
+	        //페이징
+	        int numPerPage   = 9;    // 한 페이지당 레코드 갯수
+	        int pagePerBlock = 10;   // 페이지 리스트
+	       
+	        String pageNum=req.getParameter("pageNum");
+	        if(pageNum==null){
+	              pageNum="1";
+	        }
+	       
+	        int currentPage=Integer.parseInt(pageNum);
+	        int startRow   =(currentPage-1)*numPerPage+1;
+	        int endRow     =currentPage*numPerPage;
+	       
+	        //페이지 수
+	        double totcnt = (double)totalRowCount/numPerPage;
+	        int totalPage = (int)Math.ceil(totcnt);
+	         
+	        double d_page = (double)currentPage/pagePerBlock;
+	        int Pages     = (int)Math.ceil(d_page)-1;
+	        int startPage = Pages*pagePerBlock;
+	        int endPage   = startPage+pagePerBlock+1;
+	       
+	       
+	        List list=null;     
+	        if(totalRowCount>0){           
+	              list=dao.reviewList(c_code, startRow, endRow);          
+	        } else {           
+	              list=Collections.EMPTY_LIST;           
+	        }//if end
+	         
+	        int number=0;
+	        number=totalRowCount-(currentPage-1)*numPerPage;
+	         
+	        mav.addObject("number",    number);
+	        mav.addObject("pageNum",   currentPage);
+	        mav.addObject("startRow",  startRow);
+	        mav.addObject("endRow",    endRow);
+	        mav.addObject("count",     totalRowCount);
+	        mav.addObject("pageSize",  pagePerBlock);
+	        mav.addObject("totalPage", totalPage);
+	        mav.addObject("startPage", startPage);
+	        mav.addObject("endPage",   endPage);
+	        mav.addObject("list", list);
 			return mav;
 		}// read() end
 		
 		
 		
 //Delete	
-		@RequestMapping(value = "/rentalcar/Delete.do", method = RequestMethod.GET)
+		@RequestMapping(value = "/admin/rentalcarDelete.do", method = RequestMethod.GET)
 		public ModelAndView Delete(String c_code) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("rentalcar/Delete");
@@ -139,7 +185,7 @@ public class rentalcarCont {
 		
 		
 //DeleteProc	
-		@RequestMapping(value = "/rentalcar/Delete.do", method = RequestMethod.POST)
+		@RequestMapping(value = "admin/rentalcarDelete.do", method = RequestMethod.POST)
 		public ModelAndView DeleteProc(String c_code, HttpServletRequest req) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("rentalcar/msgView");
@@ -149,18 +195,18 @@ public class rentalcarCont {
 
 			int cnt = dao.delete(c_code);
 			if (cnt == 0) {
-				String msg = "<p>공지사항 삭제 실패!!</p>";
+				String msg = "<p>렌트카 삭제 실패!!</p>";
 				String img = "<img src='../images/fail.png'>";
 				String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-				String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+				String link2 = "<input type='button' value='렌트카 목록' onclick=\"location.href='/../packagetour/List.do'\">";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link1", link1);
 				mav.addObject("link2", link2);
 			} else {
-				String msg = "<p>공지사항이 삭제되었습니다</p>";
+				String msg = "<p>렌트카가 삭제되었습니다</p>";
 				String img = "<img src='../images/sound.png'>";
-				String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+				String link2 = "<input type='button' value='렌트카 목록' onclick=\"location.href='/../packagetour/List.do'\">";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link2", link2);
@@ -171,7 +217,7 @@ public class rentalcarCont {
 		
 		
 //Update	
-		@RequestMapping(value = "/rentalcar/Update.do", method = RequestMethod.GET)
+		@RequestMapping(value = "admin/rentalcarUpdate.do", method = RequestMethod.GET)
 		public ModelAndView Update(String c_code) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("rentalcar/Update");
@@ -183,7 +229,7 @@ public class rentalcarCont {
 		
 		
 //UpdateProc
-		@RequestMapping(value = "/rentalcar/Update.do", method = RequestMethod.POST)
+		@RequestMapping(value = "admin/rentalcarUpdate.do", method = RequestMethod.POST)
 		public ModelAndView updateProc(@ModelAttribute rentalcarDTO dto) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("rentalcar/msgView");
@@ -191,18 +237,18 @@ public class rentalcarCont {
 			int cnt = dao.update(dto);
 			
 			if (cnt == 0) {
-				String msg = "<p>공지사항 수정 실패!!</p>";
+				String msg = "<p>렌트카 수정 실패!!</p>";
 				String img = "<img src='../images/fail.png'>";
 				String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-				String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+				String link2 = "<input type='button' value='렌트카 목록' onclick=\"location.href='/../packagetour/List.do'\">";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link1", link1);
 				mav.addObject("link2", link2);
 			} else {
-				String msg = "<p>공지사항이 수정되었습니다</p>";
+				String msg = "<p>렌트카가 수정되었습니다</p>";
 				String img = "<img src='../images/sound.png'>";
-				String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+				String link2 = "<input type='button' value='렌트카 목록' onclick=\"location.href='/../packagetour/List.do'\">";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link2", link2);

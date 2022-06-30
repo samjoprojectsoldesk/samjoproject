@@ -100,7 +100,7 @@
 											<li><a href="left-sidebar.html">숙박</a></li>
 											<li><a href="/rentalcar/List.do">렌트카</a></li>
 											<li><a href="#" class="fh5co-sub-ddown">맛집</a></li>
-											<li><a href="/packagetour/List.do">패키지</a></li>
+											<li><a href="/admin/packagetourList.do">패키지</a></li>
 										</ul></li>
 									<li><a class="bold" href="#" class="fh5co-sub-ddown">커뮤니티
 											관리</a>

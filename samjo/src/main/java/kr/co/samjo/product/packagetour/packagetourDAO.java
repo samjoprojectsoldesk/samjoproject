@@ -100,6 +100,31 @@ public class packagetourDAO {
 	
 	
 	
+	
+// reviewtotalRowCount
+			public int reviewtotalRowCount(String pack_no) {
+				int cnt = 0;
+				try {
+					con = dbopen.getConnection();
+					sql = new StringBuilder();
+					sql.append(" SELECT COUNT(*) FROM tb_review WHERE review_code = ? ");
+					pstmt = con.prepareStatement(sql.toString());
+					pstmt.setString(1, pack_no);
+					rs = pstmt.executeQuery();
+					if (rs.next()) {
+						cnt = rs.getInt(1);
+					} // if end
+				} catch (Exception e) {
+					System.out.println("전체 행 갯수:" + e);
+				} finally {
+					DBClose.close(con, pstmt);
+				}
+				return cnt;
+			}// reviewtotalRowCount() end	
+	
+	
+	
+	
 //totalRowCount	
 	public int totalRowCount() {
         int cnt=0;
@@ -153,6 +178,60 @@ public class packagetourDAO {
 		} // end
 		return dto;
 	}// read() end
+	
+	
+// reviewList() end	
+	public ArrayList<packagetourDTO> reviewList(String pack_no, int start, int end) {
+		ArrayList<packagetourDTO> list = null;
+		try {
+			con = dbopen.getConnection();
+			sql = new StringBuilder();
+
+			sql.append(" SELECT AA.* ");
+			sql.append(" FROM ( ");
+			sql.append("        SELECT ROWNUM as RNUM, BB.* ");
+			sql.append("        FROM ( ");
+			sql.append(
+					"               SELECT pack_no, pack_name, pack_cose, pack_plan, pack_price, pack_people, pack_cont, pack_img, review_no, review_user_id, review_content, review_date ");
+			sql.append("               FROM tb_package left outer join tb_review ");
+			sql.append(" 			   ON tb_package.pack_no = tb_review.review_code ");
+			sql.append("			   WHERE tb_package.pack_no = ? ");
+			sql.append("             )BB ");
+			sql.append("      ) AA ");
+			sql.append(" WHERE AA.RNUM >=? AND AA.RNUM<=? ");
+
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, pack_no);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				list = new ArrayList<packagetourDTO>();
+				do {
+					packagetourDTO dto = new packagetourDTO();
+					dto.setPack_no(rs.getString("pack_no"));
+	            	dto.setPack_name(rs.getString("pack_name"));
+	            	dto.setPack_cose(rs.getString("pack_cose"));
+	            	dto.setPack_plan(rs.getString("pack_plan"));
+	            	dto.setPack_price(rs.getInt("pack_price"));
+	            	dto.setPack_people(rs.getInt("pack_people"));
+	            	dto.setPack_cont(rs.getString("pack_cont"));
+	            	dto.setPack_img(rs.getString("pack_img"));
+					dto.setReview_user_id(rs.getString("review_user_id"));
+					dto.setReview_content(rs.getString("review_content"));
+					dto.setReview_date(rs.getString("review_date"));
+					list.add(dto);
+				} while (rs.next());
+			} // if end
+
+		} catch (Exception e) {
+			System.out.println("패키지 여행 리뷰 전체 목록 실패: " + e);
+		} finally {
+			DBClose.close(con, pstmt, rs);
+		} // end
+		return list;
+	}// reviewList() end
 	
 	
 	

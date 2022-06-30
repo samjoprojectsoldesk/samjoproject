@@ -6,32 +6,31 @@
 <%
 	
 	//사용자가 입력 요청한 정보를 가져오기
-	String U_code		=request.getParameter("u_code").trim();
-	String U_name		=request.getParameter("u_name").trim();
-	String U_phone		=request.getParameter("u_phone").trim();
-	String U_office		=request.getParameter("u_office").trim();
-	String C_code		=request.getParameter("c_code").trim();
-	String C_kind		=request.getParameter("c_kind").trim();
-	String C_name		=request.getParameter("c_name").trim();
-	int C_sum			=Integer.parseInt(request.getParameter("c_sum").trim());
-	int C_charge		=Integer.parseInt(request.getParameter("c_charge").trim());
-	int C_reserve		=Integer.parseInt(request.getParameter("c_reserve").trim());
-	String C_img		=request.getParameter("c_img").trim();
-	String C_cont	=request.getParameter("c_cont").trim();
+	String c_code		=request.getParameter("c_code").trim();
+	String c_kind		=request.getParameter("c_kind").trim();
+	String c_name		=request.getParameter("c_name").trim();
+	int c_sum			=Integer.parseInt(request.getParameter("c_sum").trim());
+	int c_charge		=Integer.parseInt(request.getParameter("c_charge").trim());
+	int c_reserve		=Integer.parseInt(request.getParameter("c_reserve").trim());
+	String c_img		=request.getParameter("c_img").trim();
+	String c_cont		=request.getParameter("c_cont").trim();
+	String review_user_id	=request.getParameter("review_user_id").trim();
+	String review_content 	=request.getParameter("review_content").trim();
+	String review_date		=request.getParameter("review_date").trim();
+	
 
 	//dto객체에 담기
-	dto.setU_code(U_code);
-	dto.setU_name(U_name);
-	dto.setU_phone(U_phone);
-	dto.setU_office(U_office);
-	dto.setC_code(C_code);
-	dto.setC_kind(C_kind);
-	dto.setC_name(C_name);
-	dto.setC_sum(C_sum);
-	dto.setC_charge(C_charge);
-	dto.setC_reserve(C_reserve);
-	dto.setC_img(C_img);
-	dto.setC_cont(C_cont);
+	dto.setC_code(c_code);
+	dto.setC_kind(c_kind);
+	dto.setC_name(c_name);
+	dto.setC_sum(c_sum);
+	dto.setC_charge(c_charge);
+	dto.setC_reserve(c_reserve);
+	dto.setC_img(c_img);
+	dto.setC_cont(c_cont);
+	dto.setReview_user_id(review_user_id);
+	dto.setReview_content(review_content);
+	dto.setReview_date(review_date);
 	
 	int cnt=dao.create(dto); 
     if(cnt==0){

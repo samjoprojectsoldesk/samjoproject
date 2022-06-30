@@ -12,10 +12,37 @@ public class packagetourDTO {
 	private int pack_people;	//NUMBER 		 NOT NULL 	모집인원
 	private String pack_cont; 	//VARCHAR2(4000) NOT NULL	내용
 	private String pack_img;	//
+	private String review_user_id;
+	private String review_content;
+	private String review_date;
 	
 	public packagetourDTO() {}
+	
+    public String getReview_user_id() {
+		return review_user_id;
+	}
 
-    private MultipartFile posterMF;
+	public void setReview_user_id(String review_user_id) {
+		this.review_user_id = review_user_id;
+	}
+
+	public String getReview_content() {
+		return review_content;
+	}
+
+	public void setReview_content(String review_content) {
+		this.review_content = review_content;
+	}
+
+	public String getReview_date() {
+		return review_date;
+	}
+
+	public void setReview_date(String review_date) {
+		this.review_date = review_date;
+	}
+
+	private MultipartFile posterMF;
    
     public MultipartFile getPosterMF() {
         return posterMF;
@@ -89,7 +116,10 @@ public class packagetourDTO {
 	public String toString() {
 		return "packagetourDTO [pack_no=" + pack_no + ", pack_name=" + pack_name + ", pack_cose=" + pack_cose
 				+ ", pack_plan=" + pack_plan + ", pack_price=" + pack_price + ", pack_people=" + pack_people
-				+ ", pack_cont=" + pack_cont + ", pack_img=" + pack_img + "]";
+				+ ", pack_cont=" + pack_cont + ", pack_img=" + pack_img + ", review_user_id=" + review_user_id
+				+ ", review_content=" + review_content + ", review_date=" + review_date + ", posterMF=" + posterMF
+				+ "]";
 	}
 
+	
 }

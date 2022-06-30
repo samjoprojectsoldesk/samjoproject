@@ -24,11 +24,8 @@ public class noticeCont {
 		dao = new noticeDAO();// DB연결 객체 생성
 		System.out.println("-----noticeCont객체 생성됨");
 	}// end
-
-<<<<<<< HEAD
+	
 //bbsIns
-=======
->>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
 	@RequestMapping(value = "notice/bbsIns.do", method = RequestMethod.GET)
 	public ModelAndView bbsIns() {
 		ModelAndView mav = new ModelAndView();
@@ -123,11 +120,9 @@ public class noticeCont {
 		return mav;
 	}// list() end
 
-<<<<<<< HEAD
+
 
 //Read
-=======
->>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
 	@RequestMapping("notice/bbsRead.do")
 	public ModelAndView bbsRead(int board_no) {
 		ModelAndView mav = new ModelAndView();
@@ -136,10 +131,9 @@ public class noticeCont {
 		mav.addObject("dto", dto);
 		return mav;
 	}// read() end
-<<<<<<< HEAD
-
-=======
->>>>>>> 1b36cb50226e922d4ebc5db5645425061934dbc4
+	
+	
+	
 //Delete	
 	@RequestMapping(value = "/notice/bbsDelete.do", method = RequestMethod.GET)
 	public ModelAndView bbsDelete(int board_no) {

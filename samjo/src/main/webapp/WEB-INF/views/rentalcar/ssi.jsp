@@ -10,10 +10,8 @@
 <%@ page import="kr.co.samjo.product.rentalcar.*"%>
 <%@ page import="kr.co.samjo.product.rental.*"%>
 
-<jsp:useBean id="dao" class="kr.co.samjo.product.rental.rentalDAO" scope="page"></jsp:useBean>    
-<jsp:useBean id="dto" class="kr.co.samjo.product.rental.rentalDTO" scope="page"></jsp:useBean>
-<jsp:useBean id="dao1" class="kr.co.samjo.product.rentalcar.rentalcarDAO" scope="page"></jsp:useBean>    
-<jsp:useBean id="dto1" class="kr.co.samjo.product.rentalcar.rentalcarDTO" scope="page"></jsp:useBean>
+<jsp:useBean id="dao" class="kr.co.samjo.product.rentalcar.rentalcarDAO" scope="page"></jsp:useBean>    
+<jsp:useBean id="dto" class="kr.co.samjo.product.rentalcar.rentalcarDTO" scope="page"></jsp:useBean>
 
 
 <%request.setCharacterEncoding("UTF-8");%>

@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.samjo.bbs.notice.noticeDTO;
+import kr.co.samjo.tour.TourDTO;
+import net.utility.DBClose;
 import net.utility.UploadSaveManager;
+import net.utility.Utility;
 
 @Controller
 public class packagetourCont {
@@ -83,6 +85,7 @@ public class packagetourCont {
 //List	
 		@RequestMapping("packagetour/List.do")
 		public ModelAndView bbsList(HttpServletRequest req) {
+			String word = Utility.checkNull(req.getParameter("word"));
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("packagetour/List");
 
@@ -132,22 +135,70 @@ public class packagetourCont {
 			mav.addObject("list", list);
 			return mav;
 		}// list() end
+			
+		
 		
 		
 //Read	
-		@RequestMapping("packagetour/Read.do")
-			public ModelAndView Read(String pack_no) {
+		@RequestMapping("/packagetour/List/read.do")
+		public ModelAndView read(String pack_no, HttpServletRequest req) {
 			ModelAndView mav = new ModelAndView();
 			packagetourDTO dto = dao.read(pack_no);
 			mav.setViewName("packagetour/Read");
 			mav.addObject("dto", dto);
+			
+			int totalRowCount=dao.reviewtotalRowCount(pack_no); //총 글갯수
+		       
+	        //페이징
+	        int numPerPage   = 9;    // 한 페이지당 레코드 갯수
+	        int pagePerBlock = 10;   // 페이지 리스트
+	       
+	        String pageNum=req.getParameter("pageNum");
+	        if(pageNum==null){
+	              pageNum="1";
+	        }
+	       
+	        int currentPage=Integer.parseInt(pageNum);
+	        int startRow   =(currentPage-1)*numPerPage+1;
+	        int endRow     =currentPage*numPerPage;
+	       
+	        //페이지 수
+	        double totcnt = (double)totalRowCount/numPerPage;
+	        int totalPage = (int)Math.ceil(totcnt);
+	         
+	        double d_page = (double)currentPage/pagePerBlock;
+	        int Pages     = (int)Math.ceil(d_page)-1;
+	        int startPage = Pages*pagePerBlock;
+	        int endPage   = startPage+pagePerBlock+1;
+	       
+	       
+	        List list=null;     
+	        if(totalRowCount>0){           
+	              list=dao.reviewList(pack_no, startRow, endRow);          
+	        } else {           
+	              list=Collections.EMPTY_LIST;           
+	        }//if end
+	         
+	        int number=0;
+	        number=totalRowCount-(currentPage-1)*numPerPage;
+	         
+	        mav.addObject("number",    number);
+	        mav.addObject("pageNum",   currentPage);
+	        mav.addObject("startRow",  startRow);
+	        mav.addObject("endRow",    endRow);
+	        mav.addObject("count",     totalRowCount);
+	        mav.addObject("pageSize",  pagePerBlock);
+	        mav.addObject("totalPage", totalPage);
+	        mav.addObject("startPage", startPage);
+	        mav.addObject("endPage",   endPage);
+	        mav.addObject("list", list);
 			return mav;
 		}// read() end
 		
 		
 		
 //Delete	
-		@RequestMapping(value = "/packagetour/Delete.do", method = RequestMethod.GET)
+		@RequestMapping(value = "/admin/packagetourDelete.do", method = RequestMethod.GET)
 		public ModelAndView Delete(String pack_no) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("packagetour/Delete");
@@ -159,7 +210,7 @@ public class packagetourCont {
 		
 		
 //DeleteProc	
-		@RequestMapping(value = "/packagetour/Delete.do", method = RequestMethod.POST)
+		@RequestMapping(value = "/admin/packagetourDelete.do", method = RequestMethod.POST)
 		public ModelAndView bbsDeleteProc(String pack_no, HttpServletRequest req) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("packagetour/msgView");
@@ -191,7 +242,7 @@ public class packagetourCont {
 		
 		
 //Update	
-		@RequestMapping(value = "/packagetour/Update.do", method = RequestMethod.GET)
+		@RequestMapping(value = "/admin/packagetourUpdate.do", method = RequestMethod.GET)
 		public ModelAndView bbsUpdate(String pack_no) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("packagetour/Update");
@@ -203,7 +254,7 @@ public class packagetourCont {
 		
 		
 //UpdateProc
-		@RequestMapping(value = "/packagetour/Update.do", method = RequestMethod.POST)
+		@RequestMapping(value = "/admin/packagetourUpdate.do", method = RequestMethod.POST)
 		public ModelAndView updateProc(@ModelAttribute packagetourDTO dto) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("packagetour/msgView");
@@ -211,7 +262,7 @@ public class packagetourCont {
 			int cnt = dao.update(dto);
 			
 			if (cnt == 0) {
-				String msg = "<p>공지사항 수정 실패!!</p>";
+				String msg = "<p>패키지 여행 수정 실패!!</p>";
 				String img = "<img src='../images/fail.png'>";
 				String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
 				String link2 = "<input type='button' value='패키지여행 목록' onclick=\"location.href='/../packagetour/List.do'\">";
@@ -220,7 +271,7 @@ public class packagetourCont {
 				mav.addObject("link1", link1);
 				mav.addObject("link2", link2);
 			} else {
-				String msg = "<p>공지사항이 수정되었습니다</p>";
+				String msg = "<p>패키지 여행이 수정되었습니다</p>";
 				String img = "<img src='../images/sound.png'>";
 				String link2 = "<input type='button' value='패키지여행 목록' onclick=\"location.href='/../packagetour/List.do'\">";
 				mav.addObject("msg", msg);

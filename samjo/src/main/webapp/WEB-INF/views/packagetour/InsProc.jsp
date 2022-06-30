@@ -14,7 +14,10 @@
 	int pack_people		=Integer.parseInt(request.getParameter("pack_people").trim());
 	String pack_cont	=request.getParameter("pack_cont").trim();
 	String pack_img	 	=request.getParameter("pack_img").trim();
-
+	String review_user_id	=request.getParameter("review_user_id").trim();
+	String review_content 	=request.getParameter("review_content").trim();
+	String review_date		=request.getParameter("review_date").trim();
+	
 	//dto객체에 담기
 	dto.setPack_no(pack_no);
 	dto.setPack_name(pack_name);
@@ -24,6 +27,9 @@
 	dto.setPack_people(pack_people);
 	dto.setPack_cont(pack_cont);
 	dto.setPack_img(pack_img);
+	dto.setReview_user_id(review_user_id);
+	dto.setReview_content(review_content);
+	dto.setReview_date(review_date);
 	
 	int cnt=dao.create(dto); 
     if(cnt==0){

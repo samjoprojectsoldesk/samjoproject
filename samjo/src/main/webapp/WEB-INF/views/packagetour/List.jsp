@@ -30,22 +30,24 @@
 	<div class="container">
 		<div class="row">
 			<c:forEach var="dto" items="${list}">
-				<div class="col-md-12 text-center project">
-					<div class="grid-project">
-						<div class="image-T">
-							<img src="../storage/${dto.t_img}" alt="Project"
-								class="img-responsive" style="width: 40%; float: left;">
+				<div class="col-md-4 text-center project">
+					<a href="../packagetour/List/read.do?pack_no=${dto.pack_no}"
+						class="grid-project">
+						<div class="image">
+							<img src="../storage/${dto.pack_img}" alt="Project"
+								class="img-responsive" style="margin: 0 auto; height:300px;">
 						</div>
-						<div class="desc-T">
+						<div class="desc">
 							<h3>${dto.pack_name}</h3>
 							<span>${dto.pack_cose}</span> <br> <br>
 							<span>${dto.pack_plan}</span> <br> <br>
 							<span>${dto.pack_cont}</span> <br> <br>
 						</div>
-					</div>
+					</a>
 				</div>
 			</c:forEach>
 		</div>
+	</div>
 	</div>
 	
 	<!-- 페이지 리스트 -->
@@ -61,15 +63,15 @@
 				</c:if>
 
 				<c:if test="${startPage>0}">
-					<a href="/tour/festivalList.do?pageNum=${startPage}">[이전]</a>
+					<a href="/tour/packagetourList.do?pageNum=${startPage}">[이전]</a>
 				</c:if>
 
 				<c:forEach var="i" begin="${startPage+1}" end="${endPage-1}">
-					<a href="/tour/festivalList.do?pageNum=${i}">[${i}]</a>
+					<a href="/tour/packagetourList.do?pageNum=${i}">[${i}]</a>
 				</c:forEach>
 
 				<c:if test="${endPage<pageCount}">
-					<a href="/tour/festivalList.do?pageNum=${startPage+11}">[다음]</a>
+					<a href="/tour/packagetourList.do?pageNum=${startPage+11}">[다음]</a>
 				</c:if>
 			</div>
 		</c:if>
