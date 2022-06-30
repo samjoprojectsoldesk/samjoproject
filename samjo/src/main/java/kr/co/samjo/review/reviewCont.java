@@ -54,6 +54,27 @@ public class reviewCont {
 		return mav;
 	}// create() end
 	
+	
+	@RequestMapping(value = "reviewread.do", method = RequestMethod.GET)
+	public ModelAndView read() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("review/read");
+		return mav; 
+	}//read() end
+	
+	@RequestMapping(value = "reviewupdate.do", method = RequestMethod.GET)
+	public ModelAndView update() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("review/updateForm");
+		return mav; 
+	}//update() end
+	
+	@RequestMapping(value = "reviewdelete.do", method = RequestMethod.GET)
+	public ModelAndView delete() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("review/deleteForm");
+		return mav; 
+	}//delete() end
 
 	
 }

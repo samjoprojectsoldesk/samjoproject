@@ -32,17 +32,10 @@ public class noticeDAO {//데이터베이스 관련 작업
             con=dbopen.getConnection();
             
             sql=new StringBuilder();
-<<<<<<< HEAD
-            sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date) ");
-            sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate ) ");
-            sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date, board_readcnt) ");
-            sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate, (SELECT NVL(MAX(board_no), 0)+1 FROM tb_board)) ");
-=======
 
             sql.append(" INSERT INTO tb_board(board_no, board_title, board_content, board_date, board_readcnt) ");
             sql.append(" VALUES (board_seq.nextval, ?, ?, sysdate, (SELECT NVL(MAX(board_no), 0)+1 FROM tb_board) ) ");
->>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
-
+            
             pstmt=con.prepareStatement(sql.toString());
             pstmt.setString(1, dto.getBoard_title());
             pstmt.setString(2, dto.getBoard_content());
@@ -59,11 +52,13 @@ public class noticeDAO {//데이터베이스 관련 작업
     
     
 //list
-    public ArrayList<noticeDTO> list(int start, int end){
+    public ArrayList<noticeDTO> list(int start, int end, String col, String word){
         ArrayList<noticeDTO> list=null;
         try {
             con=dbopen.getConnection();
             sql=new StringBuilder();
+            
+            word = word.trim();
            
             sql.append(" SELECT AA.* ");
             sql.append(" FROM ( ");
@@ -71,6 +66,24 @@ public class noticeDAO {//데이터베이스 관련 작업
             sql.append("        FROM ( ");
             sql.append("               SELECT board_no, board_title, board_content, board_date, board_readcnt ");
             sql.append("               FROM tb_board ");
+            
+
+			
+            if(word.length()!=0) {
+            	String search="";
+	            if(col.equals("subject")) {
+	                search += " WHERE board_title LIKE '%" + word + "%' ";
+	            }else if(col.equals("content")) {
+	                search += " WHERE board_content LIKE '%" + word + "%' ";
+	            }else if(col.equals("subject_content")) {
+	                search += " WHERE board_title LIKE '%" + word + "%' ";
+	                search += " OR board_content LIKE '%" + word + "%' ";
+	            }//if end
+	            sql.append(search);
+			}//if end
+            
+             
+            
             sql.append("               ORDER BY board_no DESC ");
             sql.append("             )BB ");
             sql.append("      ) AA ");
@@ -206,15 +219,6 @@ public class noticeDAO {//데이터베이스 관련 작업
     }//totalRowCount() end
     
 
-<<<<<<< HEAD
-=======
-
-	public int bbsInsProc(noticeDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	
 	
 //Update
 	public int update(noticeDTO dto) {
@@ -238,6 +242,5 @@ public class noticeDAO {//데이터베이스 관련 작업
         }//end
         return cnt;
     }//update end
-    
->>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
+
 }//class end   

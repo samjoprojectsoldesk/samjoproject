@@ -27,7 +27,7 @@ public class boardDAO {
 
 			sql = new StringBuilder();
 			sql.append(" INSERT INTO tb_bbs2(bbs_idx, bbs_img, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date) ");
-			sql.append(" VALUES(bbs_seq2.nextval, ?, ?, ?, ?, ?, sysdate) ");
+			sql.append(" VALUES(bbs_seq2.nextval, ?, ?, ?, ?, ?, ?, ?, sysdate) ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getBbs_img());
@@ -46,11 +46,13 @@ public class boardDAO {
 	}// create() end
 	
 	
-	public ArrayList<boardDTO> list(int start, int end){
+	public ArrayList<boardDTO> list(int start, int end, String col, String word){
         ArrayList<boardDTO> list=null;
         try {
             con=dbopen.getConnection();
             sql=new StringBuilder();
+            
+            word = word.trim();
            
             sql.append(" SELECT AA.* ");
             sql.append(" FROM ( ");
@@ -58,6 +60,21 @@ public class boardDAO {
             sql.append("        FROM ( ");
             sql.append("               SELECT bbs_idx, bbs_img, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
             sql.append("               FROM tb_bbs2 ");
+            
+            if(word.length()!=0) {
+				String search="";
+				if(col.equals("subject")) {
+	                search += " WHERE bbs_title LIKE '%" + word + "%' ";
+	            }else if(col.equals("content")) {
+	                search += " WHERE bbs_content LIKE '%" + word + "%' ";
+	            }else if(col.equals("wname")) {
+	                search += " WHERE bbs_id LIKE '%" + word + "%' ";
+	            }else if(col.equals("subject_content")) {
+	                search += " WHERE bbs_title LIKE '%" + word + "%' ";
+	                search += " OR bbs_content LIKE '%" + word + "%' ";
+	            }//if end
+	            sql.append(search);   
+			}
             sql.append("               ORDER BY bbs_date DESC ");
             sql.append("             )BB ");
             sql.append("      ) AA ");
@@ -149,11 +166,9 @@ public class boardDAO {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
 			sql.append(" UPDATE tb_bbs2 ");
-<<<<<<< HEAD
-			sql.append(" SET bbs_img=?, bbs_img2=?, bbs_img3=?, bbs_title=?, bbs_content=?, bbs_date=sysdate ");
-=======
+
 			sql.append(" SET bbs_img=?, bbs_title=?, bbs_content=?, bbs_date=sysdate ");
->>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
+
 			sql.append(" WHERE bbs_idx=? ");
 			
 			pstmt = con.prepareStatement(sql.toString());

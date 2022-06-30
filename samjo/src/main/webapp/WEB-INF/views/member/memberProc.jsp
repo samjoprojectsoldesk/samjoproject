@@ -39,7 +39,7 @@
 				  	}else{
 				      	out.println("<script>");
 				      	out.println("    alert('회원 가입 되었습니다~');");
-				      	out.println("    location.href='loginForm.jsp'");
+				      	out.println("    location.href='loginForm.do'");
 				      	out.println("</script>");
 				  	}//if end	
 					

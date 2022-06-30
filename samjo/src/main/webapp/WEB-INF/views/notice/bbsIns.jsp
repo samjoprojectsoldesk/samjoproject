@@ -4,12 +4,9 @@
 <!-- 본문시작 bbsIns.jsp -->
 <p><a href="bbsList.do">[글목록]</a></p>
 <div class="container">
-<<<<<<< HEAD
 	<form name="bbsIns" id="bbsIns" method="post" action="notice/bbsIns.do" onsubmit="return bbsCheck()"><!-- ★myscript.js에 함수 작성함 -->
 
-=======
-	<form name="bbsIns" id="bbsIns" method="post" action="bbsIns.do" onsubmit="return bbsCheck()"><!-- ★myscript.js에 함수 작성함 -->
->>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
+
 	<table class="table">
 	<tr>
 		<th class="success">제목</th>

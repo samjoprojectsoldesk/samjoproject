@@ -1,6 +1,9 @@
 package kr.co.samjo.member;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +22,13 @@ public class MemberCont {
 	public ModelAndView loginForm() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/member/loginForm");
+		return mav;
+	}//loginForm() end
+	
+	@RequestMapping("/member/loginProc.do")
+	public ModelAndView loginProc() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/member/loginProc");
 		return mav;
 	}//loginForm() end
 	
@@ -51,9 +61,10 @@ public class MemberCont {
 	}//memberForm() end
 	
 	@RequestMapping("/member/memberProc.do")
-	public ModelAndView memberProc() {
+	public ModelAndView memberProc(@ModelAttribute MemberDTO dto, HttpServletRequest req) {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/member/memberProc");
+
 		return mav;
 	}//memberProc() end
 	

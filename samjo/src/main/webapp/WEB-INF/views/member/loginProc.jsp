@@ -51,7 +51,7 @@
 		//첫페이지로 이동
 		//http://localhost:9090/myweb/index.jsp
 		String root=Utility.getRoot(); //  /myweb반환
-		response.sendRedirect(root+"/index.do");
+		response.sendRedirect("/index.do");
 		
 	}//if end
 	

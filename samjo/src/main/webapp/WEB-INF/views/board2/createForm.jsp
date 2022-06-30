@@ -3,8 +3,8 @@
 <%@ include file="../header.jsp"%>
 <!-- 본문 시작 -->
 
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
@@ -29,13 +29,11 @@
 			</div>
 			<div class="form-group">
 				<label for="posterMF">이미지</label> 
-<<<<<<< HEAD
+
 				<input type="file" class="form-control-file" id="posterMF1" name="posterMF1">
 				<input type="file" class="form-control-file" id="posterMF2" name="posterMF2">
 				<input type="file" class="form-control-file" id="posterMF3" name="posterMF3">
-=======
-				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
->>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
+
 			</div>
 			<div class="form-group">
 				<label for="bbs_content">내용</label>

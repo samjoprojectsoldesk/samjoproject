@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../header.jsp" %>
+<%@ include file="../header.jsp"%>
 <head>
 <title>공 지 사 항</title>
 </head>
@@ -18,25 +18,24 @@
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
 
 
 		<!-- 검색 시작 -->
-=======
-		
-<!-- (2) 검색 시작 -->
->>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
 		<div style='text-align: right; height: 50px; margin-right: 50px;'>
-			<form action="tourist.jsp">
-				<input type="text" name="word" id="word"
-					style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
-				&nbsp;&nbsp; <input type="submit" value="검색"
-					class="btn btn-secondary"
-					style="font-weight: bold; font-family: Arial;">
+			<form action="bbsList.do">
+				<select class="custom-select" name="col" style="width: 150px; height: 35px; border: 2px solid gray; border-radius: 5px 5px 5px 5px">
+					<option value="subject_content">제목 + 내용 
+					<option value="subject">제목
+					<option value="content">내용
+				</select>
+				<input type="text" name="word" id="word" style="border: 2px solid gray; border-radius: 5px 5px 5px 5px">
+				&nbsp;&nbsp; 
+				<input type="submit" value="검색" class="btn btn-secondary" style="font-weight: bold; font-family: Arial;">
+			
 			</form>
-<<<<<<< HEAD
 		</div>
 		<!-- 검색 끝 -->
+		
 		<div id="fh5co-work-section">
 			<div class="container">
 				<div class="row">
@@ -70,36 +69,12 @@
 
 
 		<!-- 페이지 리스트 -->
-=======
-		</div>		
-		
 
-<!-- (3) 페이지 -->
-    <div class="noticeList">
-    <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th class="board_no">일련번호</th>
-                    <th class="board_title">제목</th>
-                    <th class="board_date">작성일</th>
-                    <th class="board_readcnt">조회수</th>
-                </tr>
-            </thead>
-            <thead>
-            	<c:forEach var="dto" items="${list }">
-            	<tr>
-            		<th>${dto.board_no }</th>
-            		<th><a href="bbsRead.do?board_no=${dto.board_no}">${dto.board_title }</a></th>
-            		<th>${dto.board_date }</th>
-            		<th>${dto.board_readcnt }</th>
-            	</tr>
-            	</c:forEach>
-            </thead>
-    </table>
-    </div>
+		</div>		
+
+
     
-<!-- (4) 페이지 리스트 -->
->>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
+
 		<div class="paging">
 			<c:if test="${requestScope.count>0 }">
 				<c:set var="pageCount" value="${requestScope.totalPage}" />
@@ -114,29 +89,25 @@
 					<c:if test="${startPage>0}">
 						<a href="/notice/noticeList.do?pageNum=${startPage}">[이전]</a>
 					</c:if>
-<<<<<<< HEAD
 
-=======
->>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
 					<c:forEach var="i" begin="${startPage+1}" end="${endPage-1}">
 						<a href="/notice/noticeList.do?pageNum=${i}">[${i}]</a>
 					</c:forEach>
+					
+					<c:if test="${endPage<pageCount}">
+					<a href="/notice/noticeList.do?pageNum=${startPage+11}">[다음]</a>
+				</c:if>
+				
+			
 			</c:if>
 		</div>
-<<<<<<< HEAD
 		<!-- 공지사항 작성 -->
 		<div class="content">
 			<input type="button" value="작성" onclick="location.href='bbsIns.do'">
 		</div>
 
 	</aside>
-=======
 
-<!-- (5) 공지사항 작성 -->	
-<div class="content">
-        <input type="button" value="작성" onclick="location.href='bbsIns.do'">
-</div>	
-</aside>
->>>>>>> c3f8d50ebc8143095c98381e390e1a5eb71b14d7
+
 </body>
 </html>

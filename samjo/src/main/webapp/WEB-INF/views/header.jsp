@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<%@ include file="./member/auth.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="./member/auth.jsp"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -19,22 +19,6 @@
 	content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 <meta name="author" content="FREEHTML5.CO" />
 
-<!-- 내가 추가 -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	crossorigin="anonymous"></script>
 <!-- 
 	//////////////////////////////////////////////////////
 
@@ -62,6 +46,7 @@
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <link rel="shortcut icon" href="favicon.ico">
+
 <link
 	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900'
 	rel='stylesheet' type='text/css'>
@@ -70,20 +55,21 @@
 	rel="stylesheet">
 
 <!-- Animate.css -->
-<link rel="stylesheet" href="../../css/animate.css">
+<link rel="stylesheet" href="../css/animate.css">
 <!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="../../css/icomoon.css">
+<link rel="stylesheet" href="../css/icomoon.css">
 <!-- Bootstrap  -->
-<link rel="stylesheet" href="../../css/bootstrap.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
 <!-- Superfish -->
-<link rel="stylesheet" href="../../css/superfish.css">
+<link rel="stylesheet" href="../css/superfish.css">
 <!-- Flexslider  -->
-<link rel="stylesheet" href="../../css/flexslider.css">
+<link rel="stylesheet" href="../css/flexslider.css">
 
-<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../css/style.css">
+
 
 <!-- Modernizr JS -->
-<script src="../../js/modernizr-2.6.2.min.js"></script>
+<script src="js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -120,30 +106,61 @@
 									<li><a class="bold" href="services.html"
 										class="fh5co-sub-ddown">커뮤니티</a>
 										<ul class="fh5co-sub-menu">
-											<li><a href="../notice/bbsList.do">공지사항</a></li>
+											<li><a href="/notice/bbsList.do">공지사항</a></li>
 											<li><a href="/board/List.do">자유게시판</a></li>
 										</ul></li>
-									<li><a class="bold" href="about.html">마이페이지</a>
-										<ul class="fh5co-sub-menu">
-											<li><a href="../member/memberModify.do">개인정보수정</a></li>
-											<li><a href="right-sidebar.html">예약관리</a></li>
-										</ul></li>
-									<li><a class="bold" href="../member/loginForm.do">로그인</a></li>
-									<li><a class="bold" href="../cart/list.do">장바구니</a></li>
+
+									<%
+									if (s_id.equals("guest") || s_passwd.equals("guest") || s_mlevel.equals("guest")) {
+
+										//아이디저장 쿠키 확인------------------------
+										//사용자PC에 저장된 모든 쿠키값 가져오기
+										Cookie[] cookies = request.getCookies();
+										String c_id = "";
+										if (cookies != null) {
+											for (int i = 0; i < cookies.length; i++) { //모든 쿠키값 가져오기
+										Cookie cookie = cookies[i]; //쿠키 하나씩 가져오기
+										if (cookie.getName().equals("c_id") == true) {
+											c_id = cookie.getValue();//쿠키변수값 가져오기
+										} //if end
+											} //for end
+										} //if end
+											//--------------------------------------
+									%>
+									<li><a class="bold" href="/member/loginForm.do">로그인</a></li>
+
+
+									<%
+									} else {
+									//로그인 성공했다면
+									out.print("<li><a class='bold' href='about.html'>마이페이지</a>");
+									out.print("<ul class='fh5co-sub-menu'>");
+									out.print("<li><a href='/member/memberModify.do'>개인정보수정</a></li>");
+									out.print("<li><a href='right-sidebar.html'>예약관리</a></li>");
+									out.print("</ul></li>");
+									out.print("<li>");
+									out.print("<a class='bold' href='/member/loginForm.do'>로그아웃</a>");
+									out.print("</li>");
+									out.print("<li><a class='bold' href='../cart/list.do'>장바구니</a></li>");
+									} //if end
+									%>
+
+									<c:if test="${user_level == 1}">
+										<li><a class="bold" href="/admin/index.do">관리자 페이지</a></li>
+									</c:if>
 								</ul>
 							</nav>
 						</div>
 						<div class="bottomMenu">
 							<div class="searchWrap">
 								<div class="search">
-									<form method="post" name="RsaSearchForm"
-										action="https://search.gyeongju.go.kr/tour/front/Search.jsp"
-										target="_blank" onsubmit="return ">
-										<input type="hidden" name="menu" id="menu2" value="통합검색" /> <label
+									<form method="post" name="SearchForm" action="" target="_blank"
+										onsubmit="return ">
+										<input type="hidden" name="menu" id="menu" value="통합검색" /> <label
 											class="hidden" for="qt2">검색어 입력</label> <input type="text"
 											name="qt" id="qt2" value="필요한 정보를 검색해보세요." onfocus="value=''" />
-										<a href="#self" title="새창" class="btn"
-											onclick="checkSerData2(document.RsaSearchForm)">검색</a>
+										<input type="submit" value="검색" class="btn btn-secondary"
+											style="font-weight: bold; font-family: Arial; width: 100px;">
 									</form>
 								</div>
 							</div>
@@ -158,4 +175,4 @@
 
 				</header>
 			</div>
-	<!-- end:fh5co-header -->
+			<!-- end:fh5co-header -->
