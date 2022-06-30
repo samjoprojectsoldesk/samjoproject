@@ -12,13 +12,13 @@
 				<tr>
 				   <th>이름</th>
 				   <td>
-				      <input type="text" name="mname" id="mname" placeholder="이름" maxlength="20" required>
+				      <input type="text" name="user_name" id="user_name" placeholder="이름" maxlength="20" required>
 				   </td>
 				</tr>
 				<tr>
 				   <th>이메일</th>
 				   <td>
-				      <input type="email" name="email" id="email" placeholder="이메일" required>
+				      <input type="email" name="user_email" id="user_email" placeholder="이메일" required>
 				   </td>
 				</tr>
 				<tr>
