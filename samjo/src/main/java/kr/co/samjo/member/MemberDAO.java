@@ -30,10 +30,7 @@ public class MemberDAO {
 			sql.append(" FROM tb_user ");
 			sql.append(" WHERE user_id=? and user_pw=? ");
 			sql.append(" AND user_level in (1 , 2) ");
-<<<<<<< HEAD
 
-=======
->>>>>>> a4c334f4a0ef8fdf428f515b9e95abe3620f3995
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_id()); 
@@ -42,10 +39,7 @@ public class MemberDAO {
 			
 			if(rs.next()) {
 				user_level=rs.getString("user_level");
-<<<<<<< HEAD
 
-=======
->>>>>>> a4c334f4a0ef8fdf428f515b9e95abe3620f3995
 			}//if end
 			
 		}catch (Exception e) {
@@ -91,8 +85,8 @@ public class MemberDAO {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-			sql.append(" INSERT INTO tb_user(user_id, user_pw, user_name, user_phone, user_email, user_zipcode, user_addr1, user_addr2, user_job, user_level, user_date) ");
-			sql.append(" VALUES(?,?,?,?,?,?,?,?,?.'D1', sysdate) ");
+			sql.append(" INSERT INTO tb_user(user_idx, user_id, user_pw, user_name, user_phone, user_email, user_zipcode, user_addr1, user_addr2, user_job, user_level, user_date) ");
+			sql.append(" VALUES(user_seq.nextval,?,?,?,?,?,?,?,?,?,2, sysdate) ");
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_id()); 
@@ -259,7 +253,7 @@ public class MemberDAO {
 			cnt=pstmt.executeUpdate(); //insert, update, delete문 실행
 			
 		}catch (Exception e) {
-			System.out.println("회원 정보 가져오기 실패 :" + e);
+			System.out.println("회원 정보 수정 실패 :" + e);
 		}finally {
 			DBClose.close(con, pstmt);
 		}//end

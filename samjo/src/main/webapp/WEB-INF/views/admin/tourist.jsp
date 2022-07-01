@@ -37,7 +37,8 @@
 						<thead>
 							<tr>
 								<th scope="col">관광지 코드</th>
-								<th scope="col">관광지 이름</th>
+								<th scope="col" style="text-align: center;" >이미지</th>
+								<th scope="col" style="width:25%;">관광지 이름</th>
 								<th scope="col">등록일</th>
 								<th scope="col">수정 / 삭제</th>
 							</tr>
@@ -46,6 +47,7 @@
 							<c:forEach var="dto" items="${list}">
 								<tr>
 									<th scope="row">${dto.t_cn}</th>
+									<td style="text-align: center;"><img src="../storage/${dto.t_img}" style="width:25%;"></td>
 									<td  onclick="location.href='../tour/tourist/read.do?t_cn=${dto.t_cn}'">${dto.t_name}</td>
 									<td>${dto.t_rdate}</td>
 									<td><button type="button" class="btn btn-light"

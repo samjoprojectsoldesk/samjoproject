@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp"%>
 <!-- 본문 시작 list.jsp -->
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
@@ -149,6 +149,34 @@
 								<div>최대인원 :${dto.room_mp}</div>
 								<div>평일가격 :${dto.room_dp}</div>
 								<div>주말가격 :${dto.room_ep}</div>
+								<div>
+									인원수
+									<select class="form-control" id="p_cnt" name="p_cnt">
+								      <option>1</option>
+								      <option>2</option>
+								      <option>3</option>
+								      <option>4</option>
+							      	  <option>5</option>
+							      	  <option>6</option>
+								      <option>7</option>
+								      <option>8</option>
+								      <option>9</option>
+							        </select>
+						    	</div>
+						    	<div>
+									객실
+									<select class="form-control" id="cnt" name="cnt">
+								      <option>1</option>
+								      <option>2</option>
+								      <option>3</option>
+								      <option>4</option>
+							      	  <option>5</option>
+							      	  <option>6</option>
+								      <option>7</option>
+								      <option>8</option>
+								      <option>9</option>
+							        </select>
+						    	</div>
 							</div>
 							<button type="submit">장바구니</button>
 					</div>

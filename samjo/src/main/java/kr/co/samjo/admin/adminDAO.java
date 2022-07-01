@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import kr.co.samjo.bbs.notice.noticeDTO;
+import kr.co.samjo.product.sookso.SooksoDTO;
 import kr.co.samjo.tour.TourDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
@@ -177,6 +178,51 @@ public class adminDAO {
         }
         return cnt;
     }//totalRowCoun2t() end
+    
+    public ArrayList<SooksoDTO> list(int start, int end){
+        ArrayList<SooksoDTO> list=null;
+        try {
+            con=dbopen.getConnection();
+            sql=new StringBuilder();
+           
+            sql.append(" SELECT AA.* ");
+            sql.append(" FROM ( ");
+            sql.append("        SELECT ROWNUM as RNUM, BB.* ");
+            sql.append("        FROM ( ");
+            sql.append("               SELECT s_cn, s_name, s_addr, s_tel, s_link, s_cont, s_img ");
+            sql.append("               FROM tb_sookso ");
+            sql.append("               ORDER BY s_cn DESC ");
+            sql.append("             )BB ");
+            sql.append("      ) AA ");
+            sql.append(" WHERE AA.RNUM >=? AND AA.RNUM<=? ");           
+           
+            pstmt=con.prepareStatement(sql.toString());
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, end);
+           
+            rs=pstmt.executeQuery();
+            if(rs.next()) {
+                list=new ArrayList<SooksoDTO>();
+                do{
+                	SooksoDTO dto=new SooksoDTO();
+                	dto.setS_cn(rs.getString("s_cn"));
+					dto.setS_name(rs.getString("s_name"));
+					dto.setS_addr(rs.getString("s_addr"));
+					dto.setS_tel(rs.getString("s_tel"));
+					dto.setS_link(rs.getString("s_link"));
+					dto.setS_cont(rs.getString("s_cont"));
+					dto.setS_img(rs.getString("s_img"));
+                    list.add(dto);
+                }while(rs.next());
+            }//if end
+           
+        }catch(Exception e) {
+            System.out.println("숙소 페이징 목록 실패: "+e);
+        }finally{
+            DBClose.close(con, pstmt, rs);
+        }//end   
+        return list;
+    }//list() end
 
     
     /*공지사항*/

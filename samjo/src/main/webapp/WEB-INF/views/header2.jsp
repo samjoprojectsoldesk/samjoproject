@@ -97,7 +97,7 @@
 										</ul></li>
 									<li><a class="bold" href="#">예약 상품 관리</a>
 										<ul class="fh5co-sub-menu">
-											<li><a href="left-sidebar.html">숙박</a></li>
+											<li><a href="admin/sooksoList.do">숙박</a></li>
 											<li><a href="/rentalcar/List.do">렌트카</a></li>
 											<li><a href="#" class="fh5co-sub-ddown">맛집</a></li>
 											<li><a href="/packagetour/List.do">패키지</a></li>

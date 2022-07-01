@@ -147,6 +147,58 @@ public class adminCont {
         return mav;
 	}//list2() end
 
+	@RequestMapping("/admin/sooksoList.do")
+    public ModelAndView sooksolist(HttpServletRequest req) {
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("sookso/List");
+       
+        int totalRowCount=dao.totalRowCount(); //총 글갯수
+       
+        //페이징
+        int numPerPage   = 9;    // 한 페이지당 레코드 갯수
+        int pagePerBlock = 10;   // 페이지 리스트
+       
+        String pageNum=req.getParameter("pageNum");
+        if(pageNum==null){
+              pageNum="1";
+        }
+       
+        int currentPage=Integer.parseInt(pageNum);
+        int startRow   =(currentPage-1)*numPerPage+1;
+        int endRow     =currentPage*numPerPage;
+       
+        //페이지 수
+        double totcnt = (double)totalRowCount/numPerPage;
+        int totalPage = (int)Math.ceil(totcnt);
+         
+        double d_page = (double)currentPage/pagePerBlock;
+        int Pages     = (int)Math.ceil(d_page)-1;
+        int startPage = Pages*pagePerBlock;
+        int endPage   = startPage+pagePerBlock+1;
+       
+       
+        List list=null;     
+        if(totalRowCount>0){           
+              list=dao.list(startRow, endRow);          
+        } else {           
+              list=Collections.EMPTY_LIST;           
+        }//if end
+         
+        int number=0;
+        number=totalRowCount-(currentPage-1)*numPerPage;
+         
+        mav.addObject("number",    number);
+        mav.addObject("pageNum",   currentPage);
+        mav.addObject("startRow",  startRow);
+        mav.addObject("endRow",    endRow);
+        mav.addObject("count",     totalRowCount);
+        mav.addObject("pageSize",  pagePerBlock);
+        mav.addObject("totalPage", totalPage);
+        mav.addObject("startPage", startPage);
+        mav.addObject("endPage",   endPage);
+        mav.addObject("list", list);
+        return mav;
+    }//list() end
 	
 	@RequestMapping("admin/notice.do")
     public ModelAndView bbsList(HttpServletRequest req) {
