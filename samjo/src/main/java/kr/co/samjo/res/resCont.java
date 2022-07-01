@@ -32,6 +32,7 @@ public class resCont {
 		System.out.println("-----resCont객체 생성됨");
 	}
 	
+	//장바구니 예약페이지 이동
 	@RequestMapping(value = "/res/reseve.do", method = RequestMethod.GET)
 	public ModelAndView reserve(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -58,6 +59,7 @@ public class resCont {
 		return mav;
 	}
 	
+	//장바구니 물품 예약
 	@RequestMapping(value = "/res/reseve.do", method = RequestMethod.POST)
 	public ModelAndView reserveProc(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
@@ -105,6 +107,7 @@ public class resCont {
 		return mav;
 	}
 
+	//예약리스트
 	@RequestMapping("/res/list.do")
 	public ModelAndView list(@ModelAttribute resDTO dto, HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -128,6 +131,7 @@ public class resCont {
 		return mav;
 	}// list end
 	
+	//예약상세보기
 	@RequestMapping("res/read.do")
 	public ModelAndView read(String res_no) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -142,6 +146,35 @@ public class resCont {
 		}else {
 			map.put("list", list);
 			map.put("count", list.size());
+		}
+		
+		return mav;
+	}
+	
+	//예약취소
+	@RequestMapping("res/delete.do")
+	public ModelAndView delete(String res_no) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/res/msgView");
+				
+		int cnt = dao.delete(res_no);
+
+		if (cnt == 0) {
+			String msg = "<p>예약 취소 실패</p>";
+			String img = "<img src='../images/fail.png'>";
+			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"../cart/list.do\"'>";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link1", link1);
+			mav.addObject("link2", link2);
+		} else {
+			String msg = "<p>예약 취소 성공</p>";
+			String img = "<img src='../images/sound.png'>";
+			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"/res/list.do\"'>";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link2", link2);
 		}
 		
 		return mav;
