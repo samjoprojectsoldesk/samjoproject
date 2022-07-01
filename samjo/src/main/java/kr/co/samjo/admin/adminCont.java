@@ -205,7 +205,7 @@ public class adminCont {
 	
 //packagetourList	
 	@RequestMapping("admin/packagetourList.do")
-    public ModelAndView list(HttpServletRequest req) {
+    public ModelAndView list3(HttpServletRequest req) {
 		
 		//입력된 검색어 확인(검색어가 있으면 검색어 존재, 검색어가 없으면 빈문자열 "")
         String word = Utility.checkNull(req.getParameter("word"));
