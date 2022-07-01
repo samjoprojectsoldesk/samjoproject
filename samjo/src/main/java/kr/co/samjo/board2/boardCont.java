@@ -165,16 +165,10 @@ public class boardCont {
 		// 파일을 수정할 것인지?
 
 		// 1)posterMF1
-<<<<<<< HEAD
 
-		MultipartFile posterMF = dto.getPosterMF();
-		if (posterMF.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
-
-=======
 		MultipartFile posterMF1 = dto.getPosterMF();
 		if (posterMF1.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
 			// 기존 파일 삭제
->>>>>>> c6f51390f5bd146725f3ed71a867dd75b857c685
 			UploadSaveManager.deleteFile(basePath, oldDTO.getBbs_img());
 
 			// 신규 파일 저장

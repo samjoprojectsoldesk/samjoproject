@@ -137,10 +137,5 @@ public class MemberCont {
 		mav.setViewName("/member/emailCheckProc");
 		return mav;
 	}//emailCheckProc() end
-<<<<<<< HEAD
-	
-	
-	
-=======
->>>>>>> c6f51390f5bd146725f3ed71a867dd75b857c685
+
 }
