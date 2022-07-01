@@ -10,7 +10,7 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">렌트카 업체 목록</h2>
-					<button type="button" class="btn btn-primary" onclick="location.href='/rental/Ins.do'">등록</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='rentalIns.do'">등록</button>
 			</div>
 		</div>
 	</div>

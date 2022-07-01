@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import net.utility.UploadSaveManager;
 
 @Controller
 public class rentalCont {
@@ -17,7 +20,7 @@ public class rentalCont {
 
 	public rentalCont() {
 		dao = new rentalDAO();
-		System.out.println("-----rental객체 생성됨");
+		System.out.println("-----rentalCont객체 생성됨");
 	}
 
 // Ins
@@ -30,10 +33,24 @@ public class rentalCont {
 
 // InsProc
 	@RequestMapping(value = "admin/rentalIns.do", method = RequestMethod.POST)
-	public ModelAndView Ins(@ModelAttribute rentalDTO dto) {
+	public ModelAndView Ins(@ModelAttribute rentalDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("rental/msgView");
 
+		// ----------------------------------------------------------------------------
+					// 첨부된 파일 처리
+					// ->실제 파일은 /storage폴더에 저장
+					// ->저장된 파일 관련 정보는 media테이블에 저장
+
+					// 파일 저장 폴더의 실제 물리적인 경로 가져오기
+					String basePath = req.getRealPath("/storage");
+
+					// 1)<input type='file' name='posterMF' size='50'>
+					MultipartFile posterMF = dto.getPosterMF(); // 파일 가져오기
+					// storage폴더에 파일을 저장하고, 리네임된 파일명 반환
+					String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
+					dto.setU_img(poster);// 리네임된 파일명을 dto객체 담기
+		
 		int cnt = dao.create(dto);
 		if (cnt == 0) {
 			String msg = "<p>렌트카 업체 등록 실패</p>";

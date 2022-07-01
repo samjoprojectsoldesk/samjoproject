@@ -1,5 +1,8 @@
 package kr.co.samjo.product.packagetour;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 public class packagetourDTO {
@@ -7,7 +10,10 @@ public class packagetourDTO {
 	private String pack_no;		//VARCHAR2(10)	 NULL		패키지코드
 	private String pack_name;	//VARCHAR2(50)	 NOT NULL	패키지이름
 	private String pack_cose;	//VARCHAR2(4000) NOT NULL	여행코스
-	private String pack_plan;	//VARCHAR2(1000) NOT NULL	모집일정
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date pack_plan_start;	//VARCHAR2(1000) NOT NULL	모집일정
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date pack_plan_end;	//VARCHAR2(1000) NOT NULL	모집일정
 	private int pack_price;		//NUMBER 		 NOT NULL 	비용
 	private int pack_people;	//NUMBER 		 NOT NULL 	모집인원
 	private String pack_cont; 	//VARCHAR2(4000) NOT NULL	내용
@@ -43,6 +49,10 @@ public class packagetourDTO {
 	}
 
 	private MultipartFile posterMF;
+	
+	public void setPosterMF(MultipartFile posterMF) {
+		this.posterMF = posterMF;
+	}
    
     public MultipartFile getPosterMF() {
         return posterMF;
@@ -72,12 +82,20 @@ public class packagetourDTO {
 		this.pack_cose = pack_cose;
 	}
 
-	public String getPack_plan() {
-		return pack_plan;
+	public Date getPack_plan_start() {
+		return pack_plan_start;
 	}
 
-	public void setPack_plan(String pack_plan) {
-		this.pack_plan = pack_plan;
+	public void setPack_plan_start(Date pack_plan_start) {
+		this.pack_plan_start = pack_plan_start;
+	}
+
+	public Date getPack_plan_end() {
+		return pack_plan_end;
+	}
+
+	public void setPack_plan_end(Date pack_plan_end) {
+		this.pack_plan_end = pack_plan_end;
 	}
 
 	public int getPack_price() {
@@ -115,11 +133,10 @@ public class packagetourDTO {
 	@Override
 	public String toString() {
 		return "packagetourDTO [pack_no=" + pack_no + ", pack_name=" + pack_name + ", pack_cose=" + pack_cose
-				+ ", pack_plan=" + pack_plan + ", pack_price=" + pack_price + ", pack_people=" + pack_people
-				+ ", pack_cont=" + pack_cont + ", pack_img=" + pack_img + ", review_user_id=" + review_user_id
-				+ ", review_content=" + review_content + ", review_date=" + review_date + ", posterMF=" + posterMF
-				+ "]";
+				+ ", pack_plan_start=" + pack_plan_start + ", pack_plan_end=" + pack_plan_end + ", pack_price="
+				+ pack_price + ", pack_people=" + pack_people + ", pack_cont=" + pack_cont + ", pack_img=" + pack_img
+				+ ", review_user_id=" + review_user_id + ", review_content=" + review_content + ", review_date="
+				+ review_date + ", posterMF=" + posterMF + "]";
 	}
 
-	
 }

@@ -18,34 +18,42 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="Ins.do" class="Ins" enctype="multipart/form-data">
+		<form name="frm" method="post" action="packagetourIns.do" class="Ins" enctype="multipart/form-data">
 			<div class="form-group">
-				<label for="package_no">패키지코드</label> 
-				<input type="text" class="form-control" id="package_no" name="package_no" placeholder="T000">
+				<label for="pack_no">패키지코드</label> 
+				<input type="text" class="form-control" id="pack_no" name="pack_no" placeholder="P000">
 			</div>
 			<div class="form-group">
-				<label for="package_name">패키지이름</label> 
-				<input type="text" class="form-control" id="package_name" name="package_name">
+				<label for="pack_name">패키지이름</label> 
+				<input type="text" class="form-control" id="pack_name" name="pack_name">
 			</div>
 			<div class="form-group">
-				<label for="package_course">여행코스</label> 
-				<input type="text" class="form-control" id="package_course" name="package_course">
+				<label for="pack_cose">여행코스</label> 
+				<input type="text" class="form-control" id="pack_cose" name="pack_cose">
 			</div>
 			<div class="form-group">
-				<label for="package_schedule">모집일정</label> 
-				<input type="number" class="form-control" id="package_schedule" name="package_schedule">
+				<label for="pack_plan_start">모집일정(출발)</label> 
+				<input type="date" class="form-control" id="pack_plan_start" name="pack_plan_start">
 			</div>
 			<div class="form-group">
-				<label for="package_price">비용</label> 
-				<input type="text" class="form-control" id="package_price" name="package_price">
+				<label for="pack_plan_end">모집일정(도착)</label> 
+				<input type="date" class="form-control" id="pack_plan_end" name="pack_plan_end">
 			</div>
 			<div class="form-group">
-				<label for="package_recruitment">모집 인원</label> 
-				<input type="text" class="form-control" id="package_recruitment" name="package_recruitment">
+				<label for="pack_price">비용</label> 
+				<input type="text" class="form-control" id="pack_price" name="pack_price">
 			</div>
 			<div class="form-group">
-				<label for="package_content">상세 정보 및 내용</label>
-				<textarea class="form-control" id="package_content" name="package_content" rows="3"></textarea>
+				<label for="pack_people">모집 인원</label> 
+				<input type="text" class="form-control" id="pack_people" name="pack_people">
+			</div>
+			<div class="form-group">
+				<label for="posterMF">대표 이미지</label> 
+				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
+			</div>
+			<div class="form-group">
+				<label for="pack_cont">상세 정보 및 내용</label>
+				<textarea class="form-control" id="pack_cont" name="pack_cont" rows="3"></textarea>
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">등록</button>

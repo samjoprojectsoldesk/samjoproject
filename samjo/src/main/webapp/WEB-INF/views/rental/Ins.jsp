@@ -21,7 +21,7 @@
 		<form name="frm" method="post" action="Ins.do" class="Ins" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="u_code">업체코드</label> 
-				<input type="text" class="form-control" id="u_code" name="u_code" placeholder="T000">
+				<input type="text" class="form-control" id="u_code" name="u_code" placeholder="C000">
 			</div>
 			<div class="form-group">
 				<label for="u_name">업체명</label> 

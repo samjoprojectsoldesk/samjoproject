@@ -1,5 +1,7 @@
 package kr.co.samjo.product.rental;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class rentalDTO {
 
 	private String u_code;	//VARCHAR2(10)	NOT NULL	업체코드
@@ -92,6 +94,11 @@ public class rentalDTO {
 		return "rentalDTO [u_code=" + u_code + ", u_name=" + u_name + ", u_phone=" + u_phone + ", u_office=" + u_office
 				+ ", u_img=" + u_img + ", u_cont=" + u_cont + ", review_user_id=" + review_user_id + ", review_content="
 				+ review_content + ", review_date=" + review_date + "]";
+	}
+
+	public MultipartFile getPosterMF() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
