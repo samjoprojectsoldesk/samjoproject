@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +27,8 @@ public class cartCont {
 		dao = new cartDAO();
 		System.out.println("-----cartCont객체 생성됨");
 	}
-		
+	
+	//장바구니 등록
 	@RequestMapping(value = "cart/addCart.do", method = RequestMethod.POST)
 	public ModelAndView addCart(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -68,6 +68,7 @@ public class cartCont {
 		return mav;
 	}
 
+	//장바구니 목록
 	@RequestMapping("/cart/list.do")
 	public ModelAndView list(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
@@ -77,13 +78,16 @@ public class cartCont {
 		if(userId==null) {userId="guest";}
 		ArrayList<cartDTO> list = new ArrayList<cartDTO>();
 		list = dao.list(userId.trim());
+		long amount = dao.amount(list);
 		
 		if(list==null) {
 			map.put("list", list);
 			map.put("count", 0);
+			map.put("amount", amount);
 		}else {
 			map.put("list", list);
 			map.put("count", list.size());
+			map.put("amount", amount);
 		}
 		
 		mav.setViewName("cart/list");
@@ -92,6 +96,7 @@ public class cartCont {
 		return mav;
 	}// list end
 
+	//장바구니 삭제페이지 이동
 	@RequestMapping(value = "cart/delete.do", method = RequestMethod.GET)
 	public ModelAndView deleteForm(int c_no) {
 		ModelAndView mav = new ModelAndView();
@@ -100,6 +105,7 @@ public class cartCont {
 		return mav;
 	}// deleteForm end
 
+	//장바구니 삭제
 	@RequestMapping(value = "cart/delete.do", method = RequestMethod.POST)
 	public ModelAndView deleteProc(int c_no) {
 		ModelAndView mav = new ModelAndView();
