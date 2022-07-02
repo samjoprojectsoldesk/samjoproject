@@ -16,9 +16,7 @@ public class MemberDAO {
 	
 	public MemberDAO() {
 		dbopen=new DBOpen();
-	}//end
-
-	
+	}//end	
 
 	public String loginProc(MemberDTO dto) {
 		String user_level=null;
@@ -29,12 +27,17 @@ public class MemberDAO {
 			sql.append(" SELECT user_level ");
 			sql.append(" FROM tb_user ");
 			sql.append(" WHERE user_id=? and user_pw=? ");
+<<<<<<< HEAD
 			sql.append(" AND user_level in (1 , 2) ");
 
 			//sql.append(" AND user_level in ('1', '2') ");
 
 
 			
+=======
+			sql.append(" AND user_level in ('1', '2') ");
+						
+>>>>>>> 2f9d82b0cb01261bcb0c454fd7b8a48d22c96efc
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_id()); 
 			pstmt.setString(2, dto.getUser_pw()); 
@@ -274,5 +277,36 @@ public class MemberDAO {
 		return cnt;
 		
 	}//modifyProc() end
+	
+	public boolean memberWithdraw(String id) {
+
+		boolean flag = false;
+
+		String sql = "DELETE FROM tb_user WHERE user_id=?";
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = dbopen.getConnection();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			int i = pstmt.executeUpdate();
+
+			if(i == 1) {
+				flag = true;
+			} else {
+				flag = false;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(con, pstmt);;
+		}
+		return flag;
+	}
+	
 	
 }//class end

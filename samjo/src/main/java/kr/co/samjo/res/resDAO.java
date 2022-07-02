@@ -85,5 +85,28 @@ public class resDAO {
 		} // end
 		return list;
 	}
+	
+	public int delete(String res_no) {
+		int cnt=0;
+		try {
+			con=dbopen.getConnection(); //DB연결
+			sql=new StringBuilder();
+			sql.append(" UPDATE tb_reserve ");
+			sql.append(" SET result=? ");
+			sql.append(" WHERE res_no=? ");
 
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, "c");
+			pstmt.setString(2, res_no);
+			
+			cnt=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+            System.out.println("예약취소실패:"+e);
+        } finally {
+            DBClose.close(con, pstmt);
+        }//end
+		return cnt;
+	}
+	
 }

@@ -3,6 +3,7 @@ package kr.co.samjo.product.packagetour;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import kr.co.samjo.tour.TourDTO;
@@ -15,6 +16,7 @@ public class packagetourDAO {
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
 	private StringBuilder sql=null;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");
 	
 	public packagetourDAO() {
 		dbopen=new DBOpen();
@@ -28,18 +30,19 @@ public class packagetourDAO {
 			con = dbopen.getConnection(); // DB연결
 
 			sql = new StringBuilder();
-			sql.append(" INSERT INTO tb_tour(pack_no, pack_name, pack_cose, pack_plan, pack_price, pack_people, pack_cont, pack_img) ");
-			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, sysdate) ");
+			sql.append(" INSERT INTO tb_package(pack_no, pack_name, pack_cose, pack_plan_start, pack_plan_end, pack_price, pack_people, pack_cont, pack_img) ");
+			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?) ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getPack_no());
 			pstmt.setString(2, dto.getPack_name());
 			pstmt.setString(3, dto.getPack_cose());		
-			pstmt.setString(4, dto.getPack_plan());	
-			pstmt.setInt(5, dto.getPack_price());
-			pstmt.setInt(6, dto.getPack_people());
-			pstmt.setString(7, dto.getPack_img());
+			pstmt.setString(4, dto.getPack_plan_start().toLocaleString());		
+			pstmt.setString(5, dto.getPack_plan_end().toLocaleString());	
+			pstmt.setInt(6, dto.getPack_price());
+			pstmt.setInt(7, dto.getPack_people());
 			pstmt.setString(8, dto.getPack_cont());
+			pstmt.setString(9, dto.getPack_img());
 			cnt = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -62,7 +65,7 @@ public class packagetourDAO {
             sql.append(" FROM ( ");
             sql.append("        SELECT ROWNUM as RNUM, BB.* ");
             sql.append("        FROM ( ");
-            sql.append("               SELECT pack_no, pack_name, pack_cose, pack_plan, pack_price, pack_people, pack_cont, pack_img ");
+            sql.append("               SELECT pack_no, pack_name, pack_cose, pack_plan_start, pack_plan_end, pack_price, pack_people, pack_cont, pack_img ");
             sql.append("               FROM tb_package ");
             sql.append("               ORDER BY pack_no DESC ");
             sql.append("             )BB ");
@@ -81,7 +84,8 @@ public class packagetourDAO {
                 	dto.setPack_no(rs.getString("pack_no"));
                 	dto.setPack_name(rs.getString("pack_name"));
                 	dto.setPack_cose(rs.getString("pack_cose"));
-                	dto.setPack_plan(rs.getString("pack_plan"));
+                	dto.setPack_plan_start(sdf.parse(rs.getString("pack_plan_start")));
+                	dto.setPack_plan_end(sdf.parse(rs.getString("pack_plan_end")));
                 	dto.setPack_price(rs.getInt("pack_price"));
                 	dto.setPack_people(rs.getInt("pack_people"));
                 	dto.setPack_cont(rs.getString("pack_cont"));
@@ -153,7 +157,7 @@ public class packagetourDAO {
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
-			sql.append(" SELECT pack_no, pack_name, pack_cose, pack_plan, pack_price, pack_people, pack_cont, pack_img ");
+			sql.append(" SELECT pack_no, pack_name, pack_cose, pack_plan_start, pack_plan_end, pack_price, pack_people, pack_cont, pack_img ");
 			sql.append(" FROM tb_package ");
 			sql.append(" WHERE tb_package.pack_no = ? ");
 			pstmt = con.prepareStatement(sql.toString());
@@ -164,7 +168,8 @@ public class packagetourDAO {
 				dto.setPack_no(rs.getString("pack_no"));
             	dto.setPack_name(rs.getString("pack_name"));
             	dto.setPack_cose(rs.getString("pack_cose"));
-            	dto.setPack_plan(rs.getString("pack_plan"));
+            	dto.setPack_plan_start(sdf.parse(rs.getString("pack_plan_start")));
+            	dto.setPack_plan_end(sdf.parse(rs.getString("pack_plan_end")));
             	dto.setPack_price(rs.getInt("pack_price"));
             	dto.setPack_people(rs.getInt("pack_people"));
             	dto.setPack_cont(rs.getString("pack_cont"));
@@ -192,7 +197,7 @@ public class packagetourDAO {
 			sql.append("        SELECT ROWNUM as RNUM, BB.* ");
 			sql.append("        FROM ( ");
 			sql.append(
-					"               SELECT pack_no, pack_name, pack_cose, pack_plan, pack_price, pack_people, pack_cont, pack_img, review_no, review_user_id, review_content, review_date ");
+					"               SELECT pack_no, pack_name, pack_cose, pack_plan_start, pack_plan_end, pack_price, pack_people, pack_cont, pack_img, review_no, review_user_id, review_content, review_date ");
 			sql.append("               FROM tb_package left outer join tb_review ");
 			sql.append(" 			   ON tb_package.pack_no = tb_review.review_code ");
 			sql.append("			   WHERE tb_package.pack_no = ? ");
@@ -213,7 +218,8 @@ public class packagetourDAO {
 					dto.setPack_no(rs.getString("pack_no"));
 	            	dto.setPack_name(rs.getString("pack_name"));
 	            	dto.setPack_cose(rs.getString("pack_cose"));
-	            	dto.setPack_plan(rs.getString("pack_plan"));
+                	dto.setPack_plan_start(sdf.parse(rs.getString("pack_plan_start")));
+                	dto.setPack_plan_end(sdf.parse(rs.getString("pack_plan_end")));
 	            	dto.setPack_price(rs.getInt("pack_price"));
 	            	dto.setPack_people(rs.getInt("pack_people"));
 	            	dto.setPack_cont(rs.getString("pack_cont"));
@@ -242,14 +248,15 @@ public class packagetourDAO {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
 			sql.append(" UPDATE tb_package ");
-			sql.append(" SET pack_no=?, pack_name=?, pack_cose=?, pack_plan=?, pack_price=?, pack_people=?, pack_cont=?, pack_img=? ");
+			sql.append(" SET pack_no=?, pack_name=?, pack_cose=?, pack_plan_start=?, pack_plan_end=?, pack_price=?, pack_people=?, pack_cont=?, pack_img=? ");
 			sql.append(" WHERE pack_no=? ");
 			
 			pstmt = con.prepareStatement(sql.toString());
 			dto.setPack_no(rs.getString("pack_no"));
         	dto.setPack_name(rs.getString("pack_name"));
         	dto.setPack_cose(rs.getString("pack_cose"));
-        	dto.setPack_plan(rs.getString("pack_plan"));
+        	dto.setPack_plan_start(sdf.parse(rs.getString("pack_plan_start")));
+        	dto.setPack_plan_end(sdf.parse(rs.getString("pack_plan_end")));
         	dto.setPack_price(rs.getInt("pack_price"));
         	dto.setPack_people(rs.getInt("pack_people"));
         	dto.setPack_cont(rs.getString("pack_cont"));

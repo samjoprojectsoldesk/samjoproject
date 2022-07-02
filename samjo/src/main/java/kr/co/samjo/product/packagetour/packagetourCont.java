@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.samjo.tour.TourDTO;
-import net.utility.DBClose;
 import net.utility.UploadSaveManager;
 import net.utility.Utility;
 
@@ -38,7 +37,7 @@ public class packagetourCont {
 
 	
 //InsProc
-		@RequestMapping(value = "admin/packagetour.do", method = RequestMethod.POST)
+		@RequestMapping(value = "admin/packagetourIns.do", method = RequestMethod.POST)
 		public ModelAndView bbsIns(@ModelAttribute packagetourDTO dto, HttpServletRequest req) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("packagetour/msgView");
@@ -49,6 +48,7 @@ public class packagetourCont {
 			// ->저장된 파일 관련 정보는 media테이블에 저장
 
 			// 파일 저장 폴더의 실제 물리적인 경로 가져오기
+			
 			String basePath = req.getRealPath("/storage");
 
 			// 1)<input type='file' name='posterMF' size='50'>
@@ -62,7 +62,7 @@ public class packagetourCont {
 				String msg = "<p>패키지여행 등록 실패</p>";
 				String img = "<img src='../images/fail.png'>";
 				String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-				String link2 = "<input type='button' value='패키지여행 목록' onclick='location.href=\"List.do\"'>";
+				String link2 = "<input type='button' value='패키지여행 목록' onclick='location.href=\"packagetourList.do\"'>";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link1", link1);
@@ -70,8 +70,8 @@ public class packagetourCont {
 			} else {
 				String msg = "<p>패키지여행 등록 성공</p>";
 				String img = "<img src='../images/sound.png'>";
-				String link1 = "<input type='button' value='계속등록' onclick='location.href=\"Ins.do\"'>";
-				String link2 = "<input type='button' value='패키지여행 목록' onclick='location.href=\"List.do\"'>";
+				String link1 = "<input type='button' value='계속등록' onclick='location.href=\"packagetourIns.do\"'>";
+				String link2 = "<input type='button' value='패키지여행 목록' onclick='location.href=\"packagetourList.do\"'>";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link1", link1);

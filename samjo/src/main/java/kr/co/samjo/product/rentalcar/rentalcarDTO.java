@@ -1,19 +1,22 @@
 package kr.co.samjo.product.rentalcar;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class rentalcarDTO {
 
-	private String c_code;		//VARCHAR2(10)	NOT NULL	차량코드
-	private String u_code;		//VARCHAR2(10)	NOT NULL	업체코드
-	private String c_kind;		//VARCHAR2(20) 	NOT NULL	차종
-	private String c_name;		//VARCHAR2(20)	NOT NULL	차량명
-	private int c_sum;			//NUMBER 		NOT NULL 	금액(1일)
-	private int c_charge;		//NUMBER 		NOT NULL 	추가요금(1시간당)
-	private int c_reserve;		//NUMBER 		NOT NULL 	예약가능 차량수
-	private String c_img;
-	private String c_cont;	//VARCHAR2(4000)NOT NULL	내용
-	private String review_user_id;
-	private String review_content;
-	private String review_date;
+	private String c_code;			//VARCHAR2(10)	NOT NULL	차량코드
+	private String u_code;			//VARCHAR2(10)	NOT NULL	업체코드
+	private String c_kind;			//VARCHAR2(20) 	NOT NULL	차종
+	private String c_name;			//VARCHAR2(20)	NOT NULL	차량명
+	private int c_sum;				//NUMBER 		NOT NULL 	금액(1일)
+	private int c_charge;			//NUMBER 		NOT NULL 	추가요금(1시간당)
+	private int c_reserve;			//NUMBER 		NOT NULL 	예약가능 차량수
+	private String c_img;			//VARCHAR2(255) 			이미지
+	private String c_cont;			//VARCHAR2(4000)NOT NULL	내용
+	private String review_user_id; 	//VARCHAR2(15)
+	private String review_content;	//VARCHAR2(4000)
+	private String review_date; 	//DATE 			NOT NULL
+	private String c_date;			//DATE 			NOT NULL	예약날짜
 	
 	public rentalcarDTO() {}
 	
@@ -137,7 +140,11 @@ public class rentalcarDTO {
 				+ ", review_date=" + review_date + "]";
 	}
 
-	
 
-	
+
+	public MultipartFile getPosterMF() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

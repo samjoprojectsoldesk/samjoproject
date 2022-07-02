@@ -3,11 +3,17 @@ package kr.co.samjo.admin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import kr.co.samjo.bbs.notice.noticeDTO;
+<<<<<<< HEAD
 import kr.co.samjo.board2.boardDTO;
 import kr.co.samjo.product.sookso.SooksoDTO;
+=======
+import kr.co.samjo.product.packagetour.packagetourDTO;
+>>>>>>> 2f9d82b0cb01261bcb0c454fd7b8a48d22c96efc
 import kr.co.samjo.tour.TourDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
@@ -375,7 +381,10 @@ public class adminDAO {
         return list;
     }//bbsList() end
     
+<<<<<<< HEAD
     
+=======
+>>>>>>> 2f9d82b0cb01261bcb0c454fd7b8a48d22c96efc
     //totalRowCount 
     public int bbstotalRowCount() {
         int cnt=0;
@@ -395,6 +404,54 @@ public class adminDAO {
         }
         return cnt;
     }//bbstotalRowCount() end
+
+	public ArrayList<packagetourDTO> list4(int start, int end){
+        ArrayList<packagetourDTO> list=null;
+        try {
+            con=dbopen.getConnection();
+            sql=new StringBuilder();
+           
+            sql.append(" SELECT AA.* ");
+            sql.append(" FROM ( ");
+            sql.append("        SELECT ROWNUM as RNUM, BB.* ");
+            sql.append("        FROM ( ");
+            sql.append("               SELECT pack_no, pack_name, pack_cose, pack_plan_start, pack_plan_end, pack_price, pack_people, pack_cont, pack_img ");
+            sql.append("               FROM tb_package ");
+            sql.append("               ORDER BY pack_no DESC ");
+            sql.append("             )BB ");
+            sql.append("      ) AA ");
+            sql.append(" WHERE AA.RNUM >=? AND AA.RNUM<=? ");           
+           
+            pstmt=con.prepareStatement(sql.toString());
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, end);
+           
+            rs=pstmt.executeQuery();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");
+            if(rs.next()) {
+                list=new ArrayList<packagetourDTO>();
+                do{
+                	packagetourDTO dto=new packagetourDTO();
+                	dto.setPack_no(rs.getString("pack_no"));
+                	dto.setPack_name(rs.getString("pack_name"));
+                	dto.setPack_cose(rs.getString("pack_cose"));
+                	dto.setPack_plan_start(sdf.parse(rs.getString("pack_plan_start")));
+                	dto.setPack_plan_end(sdf.parse(rs.getString("pack_plan_end")));
+                	dto.setPack_price(rs.getInt("pack_price"));
+                	dto.setPack_people(rs.getInt("pack_people"));
+                	dto.setPack_cont(rs.getString("pack_cont"));
+                	dto.setPack_img(rs.getString("pack_img"));
+                    list.add(dto);
+                }while(rs.next());
+            }//if end
+           
+        }catch(Exception e) {
+            System.out.println("패키지 여행 페이징 목록 실패: "+e);
+        }finally{
+            DBClose.close(con, pstmt, rs);
+        }//end   
+        return list;
+    }//list() end
     
     
     public ArrayList<boardDTO> boardlist(int start, int end, String col, String word){

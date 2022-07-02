@@ -69,7 +69,7 @@ if (session.getAttribute("s_id")==null ||session.getAttribute("s_passwd")==null 
 			out.println("<br><br>");
 			out.println("<a href='memberModify.do'>[회원정보수정]</a>");
 			out.println("&nbsp;&nbsp;");
-			out.println("<a href='memberWithdraw.do'>[회원탈퇴]</a>");
+			out.println("<a href='memberWithdraw_re.do'>[회원탈퇴]</a>");
 	} //if end
 %>
 </div>
