@@ -4,13 +4,13 @@
 
 <!-- 본문 시작 -->
 
-<aside id="fh5co-hero-T">
-	<div class="flexslider">
+<aside id="fh5co-hero-T" class="js-fullheight">
+	<div class="flexslider js-fullheight">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">숙소 삭제</h2>
+					class="heading-section">게시판 삭제</h2>
 			</div>
 		</div>
 	</div>
@@ -19,16 +19,15 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="sooksodelete.do" class="tourcreate"
+		<form name="frm" method="post" action="deleteForm.do" class="tourcreate"
 			enctype="multipart/form-data">
-			<input type="hidden" name="s_cn" value="${dto.s_cn}">
+			<input type="hidden" name="bbs_idx" value="${dto.bbs_idx}">
 			<div class="content">
-				<p>해당 숙소(${dto.s_name}) 를 삭제하시겠습니까?</p>
+				<p>해당 게시판을 삭제하시겠습니까?</p>
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">삭제</button>
-				<button type="button" class="btn btn-secondary"
-					onclick="location.href='/sookso/List.do'">목록</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='/admin/boardList.do'">목록</button>
 			</div>
 		</form>
 	</div>

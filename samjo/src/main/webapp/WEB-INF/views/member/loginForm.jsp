@@ -2,7 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <%
-if (s_id.equals("guest") || s_passwd.equals("guest") || s_mlevel.equals("guest")) {
+//MemberCont.java의 loginProc()함수 참조  -> loginProc.jsp+ssi.jsp는 필요하지 않은 페이지 입니다
+//session.setAttribute("s_id", user_id);
+//session.setAttribute("s_passwd", user_pw);
+//session.setAttribute("s_mlevel", user_level);	
+
+//세션영역에 로그인 정보중에서 하나라도 null이면 로그인 하지 않았다고 판단
+if (session.getAttribute("s_id")==null ||session.getAttribute("s_passwd")==null ||session.getAttribute("s_mlevel")==null) {
 
 	//아이디저장 쿠키 확인------------------------
 	//사용자PC에 저장된 모든 쿠키값 가져오기
@@ -46,10 +52,17 @@ if (s_id.equals("guest") || s_passwd.equals("guest") || s_mlevel.equals("guest")
 					</div>
 				</div>
 			</div>
-			
-		
+	</aside>
 <%
 	} else {
+%>
+
+<aside id="fh5co-hero" class="js-fullheight">
+	<div class="flexslider js-fullheight">
+		<div class="container">
+			<div class="slider-text-inner desc">
+				<h2 style="margin-top: 300px; text-align: center; font-weight: bold;" class="heading-section">로그인</h2>
+<%
 			//로그인 성공했다면
 			out.println("<strong>" + s_id + "</strong> 님");
 			out.println("<a href='logout.do'>[로그아웃]</a>");
@@ -59,6 +72,8 @@ if (s_id.equals("guest") || s_passwd.equals("guest") || s_mlevel.equals("guest")
 			out.println("<a href='memberWithdraw.do'>[회원탈퇴]</a>");
 	} //if end
 %>
+</div>
+</div>
 </div>
 </aside>
 

@@ -14,8 +14,14 @@ public class boardDTO {//전송객체
     
     public boardDTO() {}
 
-    
+
+    //--------------------------------------------------------
+    //첨부된 파일을 저장하기 위해서(createForm.jsp참조)
     private MultipartFile posterMF;
+    
+	public void setPosterMF(MultipartFile posterMF) {
+		this.posterMF = posterMF;
+	}  
    
     public MultipartFile getPosterMF() {
         return posterMF;

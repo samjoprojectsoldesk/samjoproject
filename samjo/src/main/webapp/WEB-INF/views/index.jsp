@@ -103,8 +103,7 @@
 											<li><a href="#" class="fh5co-sub-ddown">맛집</a></li>
 											<li><a href="/packagetour/List.do">패키지</a></li>
 										</ul></li>
-									<li><a class="bold" href="#"
-										class="fh5co-sub-ddown">커뮤니티</a>
+									<li><a class="bold" href="#" class="fh5co-sub-ddown">커뮤니티</a>
 										<ul class="fh5co-sub-menu">
 											<li><a href="/notice/bbsList.do">공지사항</a></li>
 											<li><a href="/board/List.do">자유게시판</a></li>
@@ -142,12 +141,13 @@
 									out.print("<a class='bold' href='/member/loginForm.do'>로그아웃</a>");
 									out.print("</li>");
 									out.print("<li><a class='bold' href='../cart/list.do'>장바구니</a></li>");
+									if (s_mlevel.equals("1")) {
+										out.print("<li><a class='bold' href='/admin/index.do'>관리자 페이지</a></li>");
+									}
 									} //if end
 									%>
 
-									<c:if test="${user_level == 1}">
-										<li><a class="bold" href="/admin/index.do">관리자 페이지</a></li>
-									</c:if>
+
 								</ul>
 							</nav>
 						</div>

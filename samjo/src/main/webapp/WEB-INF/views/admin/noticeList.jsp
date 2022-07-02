@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../header.jsp"%>
+<%@ include file="../header2.jsp"%>
 <!-- 본문 시작 tourist.jsp -->
 <aside id="fh5co-hero-T">
 	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
-				<h2 style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">숙박</h2>
+				<h2
+					style="margin-top: 300px; text-align: center; font-weight: bold;"
+					class="heading-section">공지사항 목록</h2>
+					<button type="button" class="btn btn-primary" onclick="location.href='notice/bbsIns.do'">등록</button>
 			</div>
 		</div>
 	</div>
-</aside>
+
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
 		<form action="tourist.jsp">
@@ -24,22 +26,41 @@
 		</form>
 	</div>
 	<!-- 검색 끝 -->
+</aside>
 <div id="fh5co-work-section">
+
 	<div class="container">
 		<div class="row">
-			<c:forEach var="dto" items="${list}">
-				<div class="col-md-4 text-center project">
-					<a href="../sookso/List/read.do?s_cn=${dto.s_cn}" class="grid-project">
-							<img src="../storage/${dto.s_img}" alt="Project" class="img-responsive" style="margin: 0 auto; height:300px;">
-						</div>
-						</div>
-						<div class="desc">
-							<h3>${dto.s_name}</h3>
-							<span>${dto.s_addr}</span>
-						</div>
-					</a>
+			<div class="col-md-12 text-center project">
+				<div class="grid-project">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">번호</th>
+								<th scope="col">제목</th>
+								<th scope="col">내용</th>
+								<th scope="col">등록일</th>
+								<th scope="col">수정 / 삭제</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="dto" items="${list}">
+								<tr>
+									<th scope="row">${dto.board_no}</th>
+									<td onclick="location.href='/notice/bbsRead.do?board_no=${dto.board_no}'">${dto.board_title}</td>
+									<td>${dto.board_content}</td>
+									<td>${dto.board_date}</td>
+									<td><button type="button" class="btn btn-light"
+											onclick="location.href='bbsUpdate.do?board_no=${dto.board_no}'">수정</button>
+										<button type="button" class="btn btn-danger"
+											onclick="location.href='bbsDelete.do?board_no=${dto.board_no}'">삭제</button></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					
 				</div>
-			</c:forEach>
+			</div>
 		</div>
 	</div>
 
@@ -69,7 +90,7 @@
 			</div>
 		</c:if>
 	</div>
-
+</div>
 
 
 <!-- 본문 끝 -->

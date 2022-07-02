@@ -247,5 +247,51 @@ public class boardCont {
 		} // if end
 		return mav;
 	}// deleteProc() end
+	
+	
+	//관리자 페이지에서 자유게시판 글 삭제
+	@RequestMapping(value = "/admin/deleteForm.do", method = RequestMethod.GET)
+	public ModelAndView deleteForm2(int bbs_idx) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("board2/deleteForm2");
+		boardDTO dto = dao.read(bbs_idx);// 수정하고자 하는 행 가져오기
+		mav.addObject("dto", dto);
+		return mav;
+	}// deleteForm() end
+
+	@RequestMapping(value = "/admin/deleteForm.do", method = RequestMethod.POST)
+	public ModelAndView deleteProc2(int bbs_idx, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("board2/msgView");
+
+		// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
+		boardDTO oldDTO = dao.read(bbs_idx);
+
+		int cnt = dao.delete(bbs_idx);
+		if (cnt == 0) {
+			String msg = "<p>게시판 삭제 실패!!</p>";
+			String img = "<img src='../images/fail.png'>";
+			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+			String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='/board/List.do'\">";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link1", link1);
+			mav.addObject("link2", link2);
+		} else {
+			String msg = "<p>게시판이 삭제되었습니다</p>";
+			String img = "<img src='../images/sound.png'>";
+			String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='/board/List.do'\">";
+
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link2", link2);
+			// 첨부했던 파일 삭제
+			String basePath = req.getRealPath("/storage");
+			UploadSaveManager.deleteFile(basePath, oldDTO.getBbs_img());
+
+		} // if end
+		return mav;
+	}// deleteProc() end
+
 
 }

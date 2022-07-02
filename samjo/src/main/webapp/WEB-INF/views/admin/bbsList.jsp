@@ -3,13 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header2.jsp"%>
 <!-- 본문 시작 tourist.jsp -->
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">공지사항 목록</h2>
+					class="heading-section">자유게시판 목록</h2>
 					<button type="button" class="btn btn-primary" onclick="location.href='notice/bbsIns.do'">등록</button>
 			</div>
 		</div>
@@ -38,22 +38,20 @@
 							<tr>
 								<th scope="col">번호</th>
 								<th scope="col">제목</th>
-								<th scope="col">내용</th>
+								<th scope="col">작성자</th>
 								<th scope="col">등록일</th>
-								<th scope="col">수정 / 삭제</th>
+								<th scope="col">삭제</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="dto" items="${list}">
 								<tr>
-									<th scope="row">${dto.board_no}</th>
-									<td onclick="location.href='/notice/bbsRead.do?board_no=${dto.board_no}'">${dto.board_title}</td>
-									<td>${dto.board_content}</td>
-									<td>${dto.board_date}</td>
-									<td><button type="button" class="btn btn-light"
-											onclick="location.href='bbsUpdate.do?board_no=${dto.board_no}'">수정</button>
-										<button type="button" class="btn btn-danger"
-											onclick="location.href='bbsDelete.do?board_no=${dto.board_no}'">삭제</button></td>
+									<th scope="row">${dto.bbs_idx}</th>
+									<td onclick="location.href='admin/boardread.do?bbs_idx=${dto.bbs_idx}'">${dto.bbs_title}</td>
+									<td>${dto.bbs_id}</td>
+									<td>${dto.bbs_date}</td>
+									<td><button type="button" class="btn btn-danger"
+											onclick="location.href='deleteForm.do?bbs_idx=${dto.bbs_idx}'">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

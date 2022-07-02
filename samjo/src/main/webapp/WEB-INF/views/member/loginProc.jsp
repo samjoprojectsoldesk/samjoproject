@@ -26,7 +26,7 @@
 								//다른페이지에서 로그인 상태정보를 공유할 수 있도록(session)
 								session.setAttribute("s_id", user_id);
 								session.setAttribute("s_passwd", user_pw);
-								session.setAttribute("s_user_level", user_level);
+								session.setAttribute("s_mlevel", user_level);
 								
 								//쿠키시작----------------------------------------
 								//->웹서버가 사용자PC에 저장하는 텍스트 파일로 된 정보
@@ -53,8 +53,10 @@
 								
 								//첫페이지로 이동
 								//http://localhost:9090/myweb/index.jsp
+
 								String root=Utility.getRoot(); //  /myweb반환
-								response.sendRedirect("/index.do");
+
+								response.sendRedirect("./loginForm.do");
 								
 							}//if end
 							
@@ -63,5 +65,6 @@
 			</div>
 		</div>
 </aside>
+
 <!-- 본문끝 -->
 <%@ include file="../footer.jsp" %>

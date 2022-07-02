@@ -8,7 +8,35 @@ public class rentalDTO {
 	private String u_office;//VARCHAR2(200)	NOT NULL	사무실
 	private String u_img;
 	private String u_cont;
+	private String review_user_id;
+	private String review_content;
+	private String review_date;
 	
+	
+	public String getReview_user_id() {
+		return review_user_id;
+	}
+
+	public void setReview_user_id(String review_user_id) {
+		this.review_user_id = review_user_id;
+	}
+
+	public String getReview_content() {
+		return review_content;
+	}
+
+	public void setReview_content(String review_content) {
+		this.review_content = review_content;
+	}
+
+	public String getReview_date() {
+		return review_date;
+	}
+
+	public void setReview_date(String review_date) {
+		this.review_date = review_date;
+	}
+
 	public String getU_img() {
 		return u_img;
 	}
@@ -62,8 +90,11 @@ public class rentalDTO {
 	@Override
 	public String toString() {
 		return "rentalDTO [u_code=" + u_code + ", u_name=" + u_name + ", u_phone=" + u_phone + ", u_office=" + u_office
-				+ ", u_img=" + u_img + ", u_cont=" + u_cont + "]";
+				+ ", u_img=" + u_img + ", u_cont=" + u_cont + ", review_user_id=" + review_user_id + ", review_content="
+				+ review_content + ", review_date=" + review_date + "]";
 	}
+
+	
 	
 	
 }

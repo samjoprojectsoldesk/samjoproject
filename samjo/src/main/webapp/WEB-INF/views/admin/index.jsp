@@ -101,14 +101,14 @@
 										<ul class="fh5co-sub-menu">
 											<li><a href="/admin/sooksoList.do">숙박</a></li>
 											<li><a href="/admin/rentalcarList.do">렌트카</a></li>
-											<li><a href="#" class="fh5co-sub-ddown">맛집</a></li>
+											<li><a href="#">맛집</a></li>
 											<li><a href="/admin/packagetourList.do">패키지</a></li>
 										</ul></li>
 									<li><a class="bold" href="#"
 										class="fh5co-sub-ddown">커뮤니티 관리</a>
 										<ul class="fh5co-sub-menu">
 											<li><a href="/admin/notice.do">공지사항</a></li>
-											<li><a href="/board/boardList.do">자유게시판</a></li>
+											<li><a href="/admin/boardList.do">자유게시판</a></li>
 										</ul>
 									</li>
 									<li><a class="bold" href="#">예약 관리</a>

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import kr.co.samjo.bbs.notice.noticeDTO;
+import kr.co.samjo.board2.boardDTO;
 import kr.co.samjo.product.sookso.SooksoDTO;
 import kr.co.samjo.tour.TourDTO;
 import net.utility.DBClose;
@@ -179,7 +180,7 @@ public class adminDAO {
         return cnt;
     }//totalRowCoun2t() end
     
-    public ArrayList<SooksoDTO> list(int start, int end){
+    public ArrayList<SooksoDTO> sooksolist(int start, int end){
         ArrayList<SooksoDTO> list=null;
         try {
             con=dbopen.getConnection();
@@ -223,7 +224,112 @@ public class adminDAO {
         }//end   
         return list;
     }//list() end
+    
+    
+    public int sooksototalRowCount() {
+        int cnt=0;
+        try {
+            con=dbopen.getConnection();
+            sql=new StringBuilder();
+            sql.append(" SELECT COUNT(*) FROM tb_sookso ");
+            pstmt=con.prepareStatement(sql.toString());
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                cnt=rs.getInt(1);            
+            }//if end          
+        }catch(Exception e){
+            System.out.println("전체 행 갯수:" + e);
+        }finally{
+            DBClose.close(con, pstmt);
+        }
+        return cnt;
+    }//totalRowCount() end
+    
+    public SooksoDTO sooksoread(String s_cn) {
+		SooksoDTO dto = null;
+		try {
+			con = dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" select * ");
+			sql.append(" from tb_sookso left join tb_room ");
+			sql.append(" on tb_sookso.s_cn = tb_room.s_cn ");
+			sql.append(" WHERE tb_sookso.s_cn = ? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, s_cn);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto = new SooksoDTO();
+				dto.setS_cn(rs.getString("s_cn"));
+				dto.setS_name(rs.getString("s_name"));
+				dto.setS_addr(rs.getString("s_addr"));
+				dto.setS_tel(rs.getString("s_tel"));
+				dto.setS_link(rs.getString("s_link"));
+				dto.setS_cont(rs.getString("s_cont"));
+				dto.setS_img(rs.getString("s_img"));
+				dto.setRoom_cn(rs.getString("room_cn"));
+				dto.setRoom_img(rs.getString("room_img"));
+				dto.setRoom_name(rs.getString("room_name"));
+				dto.setRoom_mp(rs.getInt("room_mp"));
+				dto.setRoom_dp(rs.getInt("room_dp"));
+				dto.setRoom_ep(rs.getInt("room_ep"));
+			} // if end
 
+		} catch (Exception e) {
+			System.out.println("상세보기실패" + e);
+		} finally {
+			DBClose.close(con, pstmt, rs);
+		} // end
+		return dto;
+	}// read() end
+    
+    public ArrayList<SooksoDTO> roomlist(int start, int end, String s_cn){
+	    ArrayList<SooksoDTO> list=null;
+	    try {
+	        con=dbopen.getConnection();
+	        sql=new StringBuilder();
+	       
+	        sql.append(" SELECT AA.* ");
+	        sql.append(" FROM ( ");
+	        sql.append("        SELECT ROWNUM as RNUM, BB.* ");
+	        sql.append("        FROM ( ");
+	        sql.append("               SELECT room_cn, s_cn ,room_name, room_mp, room_dp, room_ep, room_img ");
+	        sql.append("               FROM tb_room ");
+	        sql.append("               where s_cn = ? ");
+	        sql.append("               ORDER BY room_cn DESC ");
+	        sql.append("             )BB ");
+	        sql.append("      ) AA ");
+	        sql.append(" WHERE AA.RNUM >=? AND AA.RNUM<=? ");           
+	       
+	        pstmt=con.prepareStatement(sql.toString());
+	        pstmt.setInt(2, start);
+	        pstmt.setString(1, s_cn);
+	        pstmt.setInt(3, end);
+	       
+	        rs=pstmt.executeQuery();
+	        if(rs.next()) {
+	            list=new ArrayList<SooksoDTO>();
+	            do{
+	            	SooksoDTO dto=new SooksoDTO();
+	            	dto.setRoom_cn(rs.getString("room_cn"));
+					dto.setS_cn(rs.getString("s_cn"));
+					dto.setRoom_name(rs.getString("room_name"));
+					dto.setRoom_mp(rs.getInt("room_mp"));
+					dto.setRoom_dp(rs.getInt("room_dp"));
+					dto.setRoom_ep(rs.getInt("room_ep"));
+					dto.setRoom_img(rs.getString("room_img"));
+	                list.add(dto);
+	            }while(rs.next());
+	        }//if end
+	       
+	    }catch(Exception e) {
+	        System.out.println("방 페이징 목록 실패: "+e);
+	    }finally{
+	        DBClose.close(con, pstmt, rs);
+	    }//end   
+	    return list;
+	}//list() end
+    
+    
     
     /*공지사항*/
     public ArrayList<noticeDTO> bbsList(int start, int end){
@@ -270,7 +376,6 @@ public class adminDAO {
     }//bbsList() end
     
     
-    
     //totalRowCount 
     public int bbstotalRowCount() {
         int cnt=0;
@@ -291,4 +396,86 @@ public class adminDAO {
         return cnt;
     }//bbstotalRowCount() end
     
+    
+    public ArrayList<boardDTO> boardlist(int start, int end, String col, String word){
+        ArrayList<boardDTO> list=null;
+        try {
+            con=dbopen.getConnection();
+            sql=new StringBuilder();
+            
+            word = word.trim();
+           
+            sql.append(" SELECT AA.* ");
+            sql.append(" FROM ( ");
+            sql.append("        SELECT ROWNUM as RNUM, BB.* ");
+            sql.append("        FROM ( ");
+            sql.append("               SELECT bbs_idx, bbs_img, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date ");
+            sql.append("               FROM tb_bbs2 ");
+            
+            if(word.length()!=0) {
+				String search="";
+				if(col.equals("subject")) {
+	                search += " WHERE bbs_title LIKE '%" + word + "%' ";
+	            }else if(col.equals("content")) {
+	                search += " WHERE bbs_content LIKE '%" + word + "%' ";
+	            }else if(col.equals("wname")) {
+	                search += " WHERE bbs_id LIKE '%" + word + "%' ";
+	            }else if(col.equals("subject_content")) {
+	                search += " WHERE bbs_title LIKE '%" + word + "%' ";
+	                search += " OR bbs_content LIKE '%" + word + "%' ";
+	            }//if end
+	            sql.append(search);   
+			}
+            sql.append("               ORDER BY bbs_date DESC ");
+            sql.append("             )BB ");
+            sql.append("      ) AA ");
+            sql.append(" WHERE AA.RNUM >=? AND AA.RNUM<=? ");           
+           
+            pstmt=con.prepareStatement(sql.toString());
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, end);
+           
+            rs=pstmt.executeQuery();
+            if(rs.next()) {
+                list=new ArrayList<boardDTO>();
+                do{
+                	boardDTO dto=new boardDTO();
+                	dto.setBbs_idx(rs.getInt("bbs_idx"));
+					dto.setBbs_img(rs.getString("bbs_img"));
+					dto.setBbs_id(rs.getString("bbs_id"));
+					dto.setBbs_title(rs.getString("bbs_title"));
+					dto.setBbs_content(rs.getString("bbs_content"));
+					dto.setBbs_count(rs.getInt("bbs_count"));
+					dto.setBbs_date(rs.getString("bbs_date"));
+                    list.add(dto); 
+                }while(rs.next());
+            }//if end
+           
+        }catch(Exception e) {
+            System.out.println("게시판 페이징 목록 실패: "+e);
+        }finally{
+            DBClose.close(con, pstmt, rs);
+        }//end   
+        return list;
+    }//boardlist() end
+    
+    
+    public int boardtotalRowCount() {
+        int cnt=0;
+        try {
+            con=dbopen.getConnection();
+            sql=new StringBuilder();
+            sql.append(" SELECT COUNT(*) FROM tb_bbs2 ");
+            pstmt=con.prepareStatement(sql.toString());
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                cnt=rs.getInt(1);            
+            }//if end          
+        }catch(Exception e){
+            System.out.println("전체 행 갯수:" + e);
+        }finally{
+            DBClose.close(con, pstmt);
+        }
+        return cnt;
+    }//boardtotalRowCount() end
 }

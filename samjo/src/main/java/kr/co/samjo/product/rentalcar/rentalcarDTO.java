@@ -11,8 +11,49 @@ public class rentalcarDTO {
 	private int c_reserve;		//NUMBER 		NOT NULL 	예약가능 차량수
 	private String c_img;
 	private String c_cont;	//VARCHAR2(4000)NOT NULL	내용
-
+	private String review_user_id;
+	private String review_content;
+	private String review_date;
+	
 	public rentalcarDTO() {}
+	
+	
+
+	public String getReview_user_id() {
+		return review_user_id;
+	}
+
+
+
+	public void setReview_user_id(String review_user_id) {
+		this.review_user_id = review_user_id;
+	}
+
+
+
+	public String getReview_content() {
+		return review_content;
+	}
+
+
+
+	public void setReview_content(String review_content) {
+		this.review_content = review_content;
+	}
+
+
+
+	public String getReview_date() {
+		return review_date;
+	}
+
+
+
+	public void setReview_date(String review_date) {
+		this.review_date = review_date;
+	}
+
+
 
 	public String getC_code() {
 		return c_code;
@@ -86,12 +127,17 @@ public class rentalcarDTO {
 		this.c_cont = c_cont;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "rentalcarDTO [c_code=" + c_code + ", u_code=" + u_code + ", c_kind=" + c_kind + ", c_name=" + c_name
 				+ ", c_sum=" + c_sum + ", c_charge=" + c_charge + ", c_reserve=" + c_reserve + ", c_img=" + c_img
-				+ ", c_cont=" + c_cont + "]";
+				+ ", c_cont=" + c_cont + ", review_user_id=" + review_user_id + ", review_content=" + review_content
+				+ ", review_date=" + review_date + "]";
 	}
+
+	
 
 	
 }

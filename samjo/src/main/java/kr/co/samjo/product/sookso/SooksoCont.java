@@ -218,7 +218,7 @@ public class SooksoCont {
 
 	
 
-	@RequestMapping(value = "/admin/Sooksoupdate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/sooksoupdate.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(String s_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/updateForm");
@@ -227,7 +227,7 @@ public class SooksoCont {
 		return mav;
 	}// updateForm() end
 
-	@RequestMapping(value = "/admin/Sooksoupdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/sooksoupdate.do", method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute SooksoDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("tour/msgView");
@@ -257,13 +257,13 @@ public class SooksoCont {
 		if (cnt == 0) {
 			String msg = "<p>숙소 수정 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='여행지목록' onclick=\\\"location.href='/admin/tourist.do'\\\">";
+			String link2 = "<input type='button' value='숙소목록' onclick=\"location.href='/admin/sooksoList.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>여행지가 수정 되었습니다</p>";
-			String link2 = "<input type='button' value='여행지목록' onclick=\\\"location.href='/admin/tourist.do'\\\">";
+			String link2 = "<input type='button' value='숙소목록' onclick=\"location.href='/admin/sooksoList.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 		} // if end
@@ -292,13 +292,13 @@ public class SooksoCont {
 		if (cnt == 0) {
 			String msg = "<p>숙소 삭제 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/admin/List.do'\\\">";
+			String link2 = "<input type='button' value='숙소목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>숙소가 삭제되었습니다</p>";
-			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/admin/List.do'\\\">";
+			String link2 = "<input type='button' value='숙소목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 			// 첨부했던 파일 삭제

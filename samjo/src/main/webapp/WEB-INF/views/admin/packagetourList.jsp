@@ -3,21 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header2.jsp"%>
 <!-- 본문 시작 festivalList.jsp -->
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">패키지투어 목록</h2>
-					<button type="button" class="btn btn-primary" onclick="location.href='/packagetour/Ins.do'">등록</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='packagetourIns.do'">등록</button>
 			</div>
 		</div>
 	</div>
 
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
-		<form action="tourist.jsp">
+		<form action="packagetourList.jsp">
 			<input type="text" name="word" id="word"
 				style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
 			&nbsp;&nbsp; <input type="submit" value="검색"

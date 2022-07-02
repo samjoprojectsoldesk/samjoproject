@@ -148,12 +148,11 @@
 									out.print("<a class='bold' href='/member/loginForm.do'>로그아웃</a>");
 									out.print("</li>");
 									out.print("<li><a class='bold' href='../cart/list.do'>장바구니</a></li>");
+									if (s_mlevel.equals("1")) {
+										out.print("<li><a class='bold' href='/admin/index.do'>관리자 페이지</a></li>");
+									}
 									} //if end
 									%>
-
-									<c:if test="${user_level == 1}">
-										<li><a class="bold" href="/admin/index.do">관리자 페이지</a></li>
-									</c:if>
 								</ul>
 							</nav>
 						</div>

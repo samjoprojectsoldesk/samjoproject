@@ -135,6 +135,7 @@ public class SooksoDAO {
 				dto.setS_img(rs.getString("s_img"));
 				dto.setRoom_cn(rs.getString("room_cn"));
 				dto.setRoom_name(rs.getString("room_name"));
+				dto.setRoom_img(rs.getString("room_img"));
 				dto.setRoom_mp(rs.getInt("room_mp"));
 				dto.setRoom_dp(rs.getInt("room_dp"));
 				dto.setRoom_ep(rs.getInt("room_ep"));
@@ -155,7 +156,7 @@ public class SooksoDAO {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
 			sql.append(" UPDATE tb_sookso ");
-			sql.append(" SET s_name=?, s_addr=?, s_tel=?, s_link=?, s_cont0=?, s_img=? ");
+			sql.append(" SET s_name=?, s_addr=?, s_tel=?, s_link=?, s_cont=?, s_img=? ");
 			sql.append(" WHERE s_cn=? ");
 			
 			pstmt = con.prepareStatement(sql.toString());
@@ -182,7 +183,7 @@ public class SooksoDAO {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
 			sql.append(" DELETE FROM tb_sookso");
-			sql.append(" WHERE t_cn=? ");
+			sql.append(" WHERE s_cn=? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, s_cn);
 			cnt = pstmt.executeUpdate();
@@ -277,7 +278,7 @@ public int create2(SooksoDTO dto) {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
 			sql.append(" UPDATE tb_room ");
-			sql.append(" SET s_name=?, s_addr=?, s_tel=?, s_link=?, s_cont0=?, s_img=? ");
+			sql.append(" SET s_name=?, s_addr=?, s_tel=?, s_link=?, s_cont=?, s_img=? ");
 			sql.append(" WHERE s_cn=? ");
 			
 			pstmt = con.prepareStatement(sql.toString());

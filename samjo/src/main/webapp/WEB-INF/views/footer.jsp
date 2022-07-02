@@ -43,15 +43,9 @@
 	<script src="../../js/superfish.js"></script>
 	<!-- Flexslider -->
 	<script src="../../js/jquery.flexslider-min.js"></script>
-<<<<<<< HEAD
-
-	<!-- myscript -->
-	<script src="../../js/myscript.js"></script>
-=======
 	<!-- myscript -->
 	<script src="../../js/myscript.js"></script>
 
->>>>>>> 2bf5b97b69fe95ae746155cfc79d93f2953cc175
 	<!-- Main JS (Do not remove) -->
 	<script src="../../js/main.js"></script>
 

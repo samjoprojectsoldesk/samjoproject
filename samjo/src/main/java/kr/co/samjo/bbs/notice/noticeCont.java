@@ -119,8 +119,12 @@ public class noticeCont {
 		mav.addObject("list", list);
 		return mav;
 	}// list() end
-//Read
 
+
+
+
+
+//Read
 	@RequestMapping("notice/bbsRead.do")
 	public ModelAndView bbsRead(int board_no) {
 		ModelAndView mav = new ModelAndView();
@@ -129,6 +133,7 @@ public class noticeCont {
 		mav.addObject("dto", dto);
 		return mav;
 	}// read() end
+
 //Delete	
 	@RequestMapping(value = "/notice/bbsDelete.do", method = RequestMethod.GET)
 	public ModelAndView bbsDelete(int board_no) {

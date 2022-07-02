@@ -80,7 +80,6 @@ public class SooksoDTO {
 	public MultipartFile getPosterMF2() {
         return posterMF2;
     }
-
     public void setPosterMF2(MultipartFile posterMF2) {
         this.posterMF2 = posterMF2;
     }

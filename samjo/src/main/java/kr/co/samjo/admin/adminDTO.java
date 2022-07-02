@@ -3,8 +3,8 @@ package kr.co.samjo.admin;
 import org.springframework.web.multipart.MultipartFile;
 
 public class adminDTO {
-	
-	/*여행지 시작*/
+
+	/* 여행지 시작 */
 	private String t_cn;
 	private String t_name;
 	private String t_addr;
@@ -21,15 +21,15 @@ public class adminDTO {
 	}
 
 	private MultipartFile posterMF;
-	
-	public MultipartFile getPosterMF() {
-        return posterMF;
-    }
 
-    public void setPosterMF(MultipartFile posterMF) {
-        this.posterMF = posterMF;
-    }
-	
+	public MultipartFile getPosterMF() {
+		return posterMF;
+	}
+
+	public void setPosterMF(MultipartFile posterMF) {
+		this.posterMF = posterMF;
+	}
+
 	public String getT_cn() {
 		return t_cn;
 	}
@@ -117,13 +117,13 @@ public class adminDTO {
 	public void setT_rdate(String t_rdate) {
 		this.t_rdate = t_rdate;
 	}
-	/*여행지 끝*/
+	/* 여행지 끝 */
 
-	/*공지사항 시작*/
-	private int board_no;		   //NUMBER 		NULL 		일련번호
-	private String board_title;    //VARCHAR2(200)  NOT NULL	제목
-	private String board_content;  //VARCHAR2(4000) NOT NULL	내용
-	private String board_date;     //date 			NOT NULL	작성일
+	/* 공지사항 시작 */
+	private int board_no; // NUMBER NULL 일련번호
+	private String board_title; // VARCHAR2(200) NOT NULL 제목
+	private String board_content; // VARCHAR2(4000) NOT NULL 내용
+	private String board_date; // date NOT NULL 작성일
 	private int board_readcnt;
 
 	public int getBoard_no() {
@@ -165,9 +165,11 @@ public class adminDTO {
 	public void setBoard_readcnt(int board_readcnt) {
 		this.board_readcnt = board_readcnt;
 	}
-	
-	
-	/*공지사항 끝*/
-	
-}
 
+	/* 공지사항 끝 */
+
+	/* 자유게시판 시작 */
+
+	/* 자유게시판 끝 */
+
+}
