@@ -8,7 +8,7 @@
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">장바구니 항목 삭제</h2>
+					class="heading-section">예약 취소</h2>
 			</div>
 		</div>
 	</div>
