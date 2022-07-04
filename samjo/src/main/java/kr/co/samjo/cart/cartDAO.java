@@ -3,6 +3,7 @@ package kr.co.samjo.cart;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import kr.co.samjo.product.rentalcar.rentalcarDAO;
@@ -19,6 +20,7 @@ public class cartDAO {
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
 	private StringBuilder sql=null;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");
 	
 	public cartDAO() {
 		dbopen = new DBOpen();
@@ -39,8 +41,8 @@ public class cartDAO {
 			pstmt.setString(2, dto.getS_code());
 			pstmt.setInt(3, dto.getCnt());
 			pstmt.setInt(4, dto.getP_cnt());
-			pstmt.setString(5, dto.getSdate());
-			pstmt.setString(6, dto.getFdate());
+			pstmt.setString(5, dto.getSdate().toLocaleString());
+			pstmt.setString(6, dto.getFdate().toLocaleString());
 			
 			cnt=pstmt.executeUpdate();
 			
@@ -99,8 +101,8 @@ public class cartDAO {
                 	dto.setS_code(rs.getString("s_code"));
                 	dto.setCnt(rs.getInt("cnt"));
                 	dto.setP_cnt(rs.getInt("p_cnt"));
-                	dto.setSdate(rs.getString("sdate"));
-                	dto.setFdate(rs.getString("fdate"));
+                	dto.setSdate(sdf.parse(rs.getString("sdate")));
+                	dto.setFdate(sdf.parse(rs.getString("fdate")));
                     list.add(dto); //list에 모으기
                 }while(rs.next());
             }

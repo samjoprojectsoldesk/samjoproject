@@ -1,5 +1,7 @@
 package kr.co.samjo.cart;
 
+import java.util.Date;
+
 import kr.co.samjo.product.rentalcar.rentalcarDAO;
 import kr.co.samjo.product.rentalcar.rentalcarDTO;
 
@@ -10,8 +12,8 @@ public class cartDTO {
 	private String s_code;// VARCHAR2(10) NOT NULL 	상품코드
 	private int cnt;// NUMBER 						수량
 	private int p_cnt;// NUMBER NOT NULL 			인원
-	private String sdate;// VARCHAR2(30) NOT NULL 	이용시작일
-	private String fdate;// VARCHAR2(30)			이용끝일
+	private Date sdate;// VARCHAR2(30) NOT NULL 	이용시작일
+	private Date fdate;// VARCHAR2(30)			이용끝일
 	private String s_name;// 상품명
 	public cartDTO() {}
 	
@@ -55,19 +57,19 @@ public class cartDTO {
 		this.p_cnt = p_cnt;
 	}
 
-	public String getSdate() {
+	public Date getSdate() {
 		return sdate;
 	}
 
-	public void setSdate(String sdate) {
+	public void setSdate(Date sdate) {
 		this.sdate = sdate;
 	}
 
-	public String getFdate() {
+	public Date getFdate() {
 		return fdate;
 	}
 
-	public void setFdate(String fdate) {
+	public void setFdate(Date fdate) {
 		this.fdate = fdate;
 	}
 

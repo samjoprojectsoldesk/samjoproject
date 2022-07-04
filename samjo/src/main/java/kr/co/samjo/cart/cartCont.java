@@ -1,6 +1,9 @@
 package kr.co.samjo.cart;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +24,7 @@ public class cartCont {
 	
 	cartDAO dao = null;
 	resDAO dao2 = null;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");
 
 	public cartCont() {
 		dao = new cartDAO();
@@ -28,7 +33,7 @@ public class cartCont {
 	
 	//장바구니 등록
 	@RequestMapping(value = "cart/addCart.do", method = RequestMethod.POST)
-	public ModelAndView addCart(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView addCart(@ModelAttribute cartDTO dto, HttpServletRequest request, HttpServletResponse response) throws ParseException {
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("s_id");
 		if(user_id == null) {
@@ -40,8 +45,8 @@ public class cartCont {
 		cdto.setS_code(request.getParameter("s_code"));
 		cdto.setCnt(Integer.parseInt(request.getParameter("cnt")));
 		cdto.setP_cnt(Integer.parseInt(request.getParameter("p_cnt")));
-		cdto.setSdate(request.getParameter("sdate"));
-		cdto.setFdate(request.getParameter("fdate"));
+		cdto.setSdate(sdf.parse(request.getParameter("sdate")));
+		cdto.setFdate(sdf.parse(request.getParameter("fdate")));
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("cart/msgView");
