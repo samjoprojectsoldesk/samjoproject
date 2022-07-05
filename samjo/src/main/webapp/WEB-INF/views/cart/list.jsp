@@ -53,7 +53,7 @@
 			</c:forEach>
 			<tr>
 				<th>총 금액 : ${map.amount}</th>
-				<td colspan="1"><input type="button" value="예약" onclick="location.href='../res/reserve.do'"></td>
+				<td colspan="1"><input type="button" value="예약" onclick="location.href='/res/reserve.do'"></td>
 			</tr>
 		</table>
 	</div>
