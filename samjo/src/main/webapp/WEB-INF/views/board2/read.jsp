@@ -26,12 +26,37 @@
 				</div>
 				<div class='bottom'>
 					<input type="button" value="수정" onclick="location.href='/board/updateForm.do?bbs_idx=${dto.bbs_idx}'">
-            		<input type="button" value="삭제" onclick="location.href='/board/deleteForm.do?bbs_idx=${dto.bbs_idx}'">
-            			
-				<button type="button" class="btn btn-secondary" onclick="location.href='/board/List.do'">목록</button>
+            		<input type="button" value="삭제" onclick="location.href='/board/deleteForm.do?bbs_idx=${dto.bbs_idx}'">	
+					<button type="button" class="btn btn-secondary" onclick="location.href='/board/List.do'">목록</button>
 				</div>
-			
 		</div>
+		<div class="col-md-12" id="tab-menu">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="col-md-4 nav-item"><a class="nav-link active"
+				id="info-tab" data-toggle="tab" href="#info" role="tab"
+				aria-controls="info" aria-selected="true">댓글</a></li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="info" role="tabpanel"
+				aria-labelledby="info-tab">
+
+			<c:forEach var="dto" items="${list}">
+				<div class="col-md-4 text-center project">
+					<a href="../tour/tourist/read.do?t_cn=${dto.t_cn}"
+						class="grid-project">
+						<div class="desc">
+							<h3>${dto.t_name}</h3>
+							<span>${dto.t_addr}</span>
+						</div>
+					</a>
+				</div>
+			</c:forEach>
+			</div>	
+		</div>
+		</div>
+	</div>
+</div>
+		
 	</div>
 </div>
 </aside>

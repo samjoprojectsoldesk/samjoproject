@@ -24,10 +24,10 @@
 						style="width: 40%; float: left;">
 					<div class="desc-T">
 						<ul>
-					
 							<strong>기본정보</strong>						
 							<hr>
 							<li>주소&emsp;&emsp;&emsp;${dto.s_addr}</li>
+							<li>상세주소&nbsp;&nbsp;&nbsp;&nbsp;${dto.s_addr2}</li>
 							<li>전화번호&nbsp;&nbsp;&nbsp;&nbsp;${dto.s_tel}</li>
 							<li>홈페이지&nbsp;&nbsp;&nbsp;&nbsp; <a class="textLink"
 								href="${dto.s_link}" target="_blank">${dto.s_link}</a>
@@ -37,164 +37,211 @@
 				</div>
 			</div>
 		</div>
-		
+		<input type="button" value="수정" onclick="location.href='/admin/Sooksoupdate.do?s_cn=${dto.s_cn}'">
+        <input type="button" value="삭제" onclick="location.href='/admin/Sooksodelete.do?s_cn=${dto.s_cn}'">
+        <input type="button" value="방생성" onclick="location.href='/admin/Sooksocreate2.do?s_cn=${dto.s_cn}'">
 	
 	<div class="col-md-12" id="tab-menu">
-		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="col-md-4 nav-item"><a class="nav-link active"
-				id="info-tab" data-toggle="tab" href="#info" role="tab"
-				aria-controls="info" aria-selected="true">객실안내/예약</a>
-			</li>
-			<li class="col-md-4 nav-item"><a class="nav-link" id="map-tab"
-				data-toggle="tab" href="#map" role="tab" aria-controls="map"
-				aria-selected="false">숙소 정보</a>	
-			</li>
-			<li class="col-md-4 nav-item"><a class="nav-link"
-				id="review-tab" data-toggle="tab" href="#review" role="tab"
-				aria-controls="review" aria-selected="false">리뷰</a>
-			</li>
-		</ul>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+         <li class="col-md-4 nav-item"><a class="nav-link active"
+            id="map-tab" data-toggle="tab" href="#map" role="tab"
+            aria-controls="map" aria-selected="true">지도에서 보기</a></li>
+         <li class="col-md-4 nav-item"><a class="nav-link" id="info-tab"
+            data-toggle="tab" href="#info" role="tab" aria-controls="info"
+            aria-selected="false">상세정보</a></li>
+         <li class="col-md-4 nav-item"><a class="nav-link"
+            id="review-tab" data-toggle="tab" href="#review" role="tab"
+            aria-controls="review" aria-selected="false">리뷰보기</a></li>
+      </ul>
 
-		<div class="tab-content" id="myTabContent">
-			<div class="tab-pane fade show active" id="info" role="tabpanel"
-				aria-labelledby="info-tab">
-				<form name="frm" method="post" action="" class="create" enctype="multipart/form-data">
-				<div class="container">
-				<input name="" id="datepicker1" type="text"> - <input name="" id="datepicker2" type="text">
-				<script>
-				datePickerSet($("#datepicker1"), $("#datepicker2"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
+      <div class="tab-content" id="myTabContent">
+         <div class="tab-pane fade active in" id="map" role="tabpanel"
+            aria-labelledby="map-tab" style="margin-top:30px;">
 
-				/*
-				    * 달력 생성기
-				    * @param sDate 파라미터만 넣으면 1개짜리 달력 생성
-				    * @example   datePickerSet($("#datepicker"));
-				    * 
-				    * 
-				    * @param sDate, 
-				    * @param eDate 2개 넣으면 연결달력 생성되어 서로의 날짜를 넘어가지 않음
-				    * @example   datePickerSet($("#datepicker1"), $("#datepicker2"));
-				    */
-				function datePickerSet(sDate, eDate, flag) {
+            <div id="map"></div>
+            <div id="store_address" data-address="${dto.s_addr}"></div>
+            <div id="store_name" data-name="${dto.s_name}"></div>
+			<div>${dto.s_cont}</div>
+			
+         </div>
 
-				    //시작 ~ 종료 2개 짜리 달력 datepicker	
-				    if (!isValidStr(sDate) && !isValidStr(eDate) && sDate.length > 0 && eDate.length > 0) {
-				        var sDay = sDate.val();
-				        var eDay = eDate.val();
+         <div class="tab-pane fade" id="info" role="tabpanel"
+            aria-labelledby="info-tab" style="margin-top:30px;">
+			
+			<form name="frm" method="post" action="/cart/addCart.do" class="create" enctype="multipart/form-data">
+            <div class="container">
+                           <div>
+                              <input type="date" class="" id="sdate" name="sdate"> - 
+                              <input type="date" class="" id="fdate" name="fdate">
+                           </div>
+               <c:forEach var="dto" items="${list}">
+               <div class="col-md-4 text-center project">
+                  <img src="../../storage/${dto.room_img}" class="img-responsive"
+                  style="width: 100%; float: left;">
+                     <div class="desc">
+                     <input type="hidden" name="s_code" id="s_code" value="${dto.room_cn}">
+                        <div class="form-group">
+                           <label for="room_name">이름</label> 
+                           <input type="text" class="form-control" id="s_name" name="s_name" value="${dto.room_name}" readonly>
+                        </div>
+                        <div class="form-group">
+                           <label for="pack_no">최대인원</label> 
+                           <input type="text" class="form-control" id="pack_no" name="pack_no" value="${dto.room_mp}" readonly>
+                        </div>
+                        <div class="form-group">
+                           <label for="pack_no">평일가격</label> 
+                           <input type="text" class="form-control" id="pack_no" name="pack_no" value="${dto.room_dp}" readonly>
+                        </div>
+                        <div class="form-group">
+                           <label for="pack_no">주말가격</label> 
+                           <input type="text" class="form-control" id="pack_no" name="pack_no" value="${dto.room_ep}" readonly>
+                        </div>
+                        <div class="form-group">
+                           인원수
+                           <select class="form-control" id="p_cnt" name="p_cnt">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                              <option>7</option>
+                              <option>8</option>
+                              <option>9</option>
+                             </select>
+                         </div>
+                         <div class="form-group">
+                           객실
+                           <select class="form-control" id="cnt" name="cnt">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                              <option>7</option>
+                              <option>8</option>
+                              <option>9</option>
+                             </select>
+                         </div>
 
-				        if (flag && !isValidStr(sDay) && !isValidStr(eDay)) { //처음 입력 날짜 설정, update...			
-				            var sdp = sDate.datepicker().data("datepicker");
-				            sdp.selectDate(new Date(sDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
+                     </div>
+                     <button type="submit">장바구니</button>
+                     <input type="button" value="수정" onclick="location.href='/admin/Sooksoupdate2.do?s_cn=${dto.s_cn}'">
+                        <input type="button" value="삭제" onclick="location.href='/admin/Sooksodelete2.do?s_cn=${dto.s_cn}'">
+          
+               </div>
+            </c:forEach>
+            </div>
+            </form>
+			
+		</div>
 
-				            var edp = eDate.datepicker().data("datepicker");
-				            edp.selectDate(new Date(eDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
-				        }
-
-				        //시작일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
-				        if (!isValidStr(eDay)) {
-				            sDate.datepicker({
-				                maxDate: new Date(eDay.replace(/-/g, "/"))
-				            });
-				        }
-				        sDate.datepicker({
-				            language: 'ko',
-				            autoClose: true,
-				            onSelect: function () {
-				                datePickerSet(sDate, eDate);
-				            }
-				        });
-
-				        //종료일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
-				        if (!isValidStr(sDay)) {
-				            eDate.datepicker({
-				                minDate: new Date(sDay.replace(/-/g, "/"))
-				            });
-				        }
-				        eDate.datepicker({
-				            language: 'ko',
-				            autoClose: true,
-				            onSelect: function () {
-				                datePickerSet(sDate, eDate);
-				            }
-				        });
-
-				        //한개짜리 달력 datepicker
-				    } else if (!isValidStr(sDate)) {
-				        var sDay = sDate.val();
-				        if (flag && !isValidStr(sDay)) { //처음 입력 날짜 설정, update...			
-				            var sdp = sDate.datepicker().data("datepicker");
-				            sdp.selectDate(new Date(sDay.replace(/-/g, "/"))); //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
-				        }
-
-				        sDate.datepicker({
-				            language: 'ko',
-				            autoClose: true
-				        });
-				    }
+         <div class="tab-pane fade" id="review" role="tabpanel"
+            aria-labelledby="review-tab" style="margin-top:30px;">
+            <c:forEach var="dto" items="${list2}">
+               <div class="col-md-4 text-center project">
+                  <a href="../sookso/List/read.do?s_cn=${dto.s_cn}"
+                     class="grid-project">
+                     <div class="desc">
+                        <h3>${dto.review_content}</h3>
+                        <span>${dto.review_user_id}</span> <br> <span>${dto.review_date}</span>
+                     </div>
+                  </a>
+               </div>
+            </c:forEach>
+         </div>
 
 
-				    function isValidStr(str) {
-				        if (str == null || str == undefined || str == "")
-				            return true;
-				        else
-				            return false;
-				    }
-				}
+      </div>
+
+   </div>
+
+</div>
+
+
+
+<script type="text/javascript"
+   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=276bc655d3f8825cf97ab166b436c29b&libraries=services"></script>
+<script>
+   $(document)
+         .ready(
+               function() {
+
+                  var storeAddress = $("#store_address").data("address");
+
+                  var storeName = $("#store_name").data("name");
+
+                  var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+
+                  mapOption = {
+                     center : new kakao.maps.LatLng(33.25110701,
+                           126.570667), // 지도의 중심좌표
+                     level : 3
+                  // 지도의 확대 레벨
+                  };
+
+                  // 지도를 생성합니다    
+                  var map = new kakao.maps.Map(mapContainer, mapOption);
+                  // 주소-좌표 변환 객체를 생성합니다   
+                  var geocoder = new kakao.maps.services.Geocoder();
+
+                  // 지도를 표시하는 div 크기를 변경하는 함수입니다
+                  function resizeMap() {
+                     mapContainer.style.width = '650px';
+                     mapContainer.style.height = '650px';
+                  }
+
+                  function relayout() {
+
+                     // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+                     // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+                     // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+                     map.relayout();
+                  }
+
+                  // 주소로 좌표를 검색합니다
+                  geocoder
+                        .addressSearch(
+                              storeAddress,
+                              function(result, status) {
+
+                                 // 정상적으로 검색이 완료됐으면 
+                                 if (status === kakao.maps.services.Status.OK) {
+
+                                    var coords = new kakao.maps.LatLng(
+                                          result[0].y,
+                                          result[0].x);
+
+                                    // 결과값으로 받은 위치를 마커로 표시합니다
+                                    var marker = new kakao.maps.Marker(
+                                          {
+                                             map : map,
+                                             position : coords
+                                          });
+
+                                    // 인포윈도우로 장소에 대한 설명을 표시합니다
+                                    var infowindow = new kakao.maps.InfoWindow(
+                                          {
+                                             content : '<div style="width:200px;text-align:center;padding:3px 0;">'
+                                                   + storeName
+                                                   + '</div>'
+                                          });
+                                    infowindow.open(map, marker);
+
+                                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                                    map.setCenter(coords);
+
+                                    $(".storePosition").click(
+                                          function() {
+                                             map.panTo(coords);
+                                          })
+
+                                 }
+
+                              });
+
+               })
 </script>
-					<c:forEach var="dto" items="${list}">
-					<div class="col-md-4 text-center project">
-						<img src="../../storage/${dto.room_img}" class="img-responsive"
-						style="width: 40%; float: left;">
-							<div class="desc">
-								<div>방이름 :${dto.room_name}</div>
-								<div>최대인원 :${dto.room_mp}</div>
-								<div>평일가격 :${dto.room_dp}</div>
-								<div>주말가격 :${dto.room_ep}</div>
-								<div>
-									인원수
-									<select class="form-control" id="p_cnt" name="p_cnt">
-								      <option>1</option>
-								      <option>2</option>
-								      <option>3</option>
-								      <option>4</option>
-							      	  <option>5</option>
-							      	  <option>6</option>
-								      <option>7</option>
-								      <option>8</option>
-								      <option>9</option>
-							        </select>
-						    	</div>
-						    	<div>
-									객실
-									<select class="form-control" id="cnt" name="cnt">
-								      <option>1</option>
-								      <option>2</option>
-								      <option>3</option>
-								      <option>4</option>
-							      	  <option>5</option>
-							      	  <option>6</option>
-								      <option>7</option>
-								      <option>8</option>
-								      <option>9</option>
-							        </select>
-						    	</div>
-							</div>
-							<button type="submit">장바구니</button>
-					</div>
-				</c:forEach>
-				</div>
-				</form>
-				</div>
-
-
-			<div class="tab-pane fade" id="map" role="tabpanel"
-				aria-labelledby="map-tab">${dto.s_cont}</div>
-				
-			<div class="tab-pane fade" id="review" role="tabpanel"
-				aria-labelledby="review-tab">리뷰 추가하기</div>
-		
-	
-	</div>
-	</div>
-	</div>
 <!-- 본문 끝 -->
 <%@ include file="../footer.jsp"%>

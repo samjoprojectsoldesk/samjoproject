@@ -27,17 +27,8 @@ public class MemberDAO {
 			sql.append(" SELECT user_level ");
 			sql.append(" FROM tb_user ");
 			sql.append(" WHERE user_id=? and user_pw=? ");
-<<<<<<< HEAD
-			sql.append(" AND user_level in (1 , 2) ");
-
-			//sql.append(" AND user_level in ('1', '2') ");
-
-
-			
-=======
 			sql.append(" AND user_level in ('1', '2') ");
 						
->>>>>>> 2f9d82b0cb01261bcb0c454fd7b8a48d22c96efc
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getUser_id()); 
 			pstmt.setString(2, dto.getUser_pw()); 

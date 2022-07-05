@@ -18,15 +18,16 @@
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
 		<form action="tourist.do">
-			<input type="text" name="word" id="word" style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
-			&nbsp;&nbsp; 
-			<input type="submit" value="검색" class="btn btn-secondary" style="font-weight: bold; font-family: Arial;">
+			<input type="text" name="word" id="word"
+				style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
+			&nbsp;&nbsp; <input type="submit" value="검색"
+				class="btn btn-secondary"
+				style="font-weight: bold; font-family: Arial;">
 		</form>
 	</div>
 	<!-- 검색 끝 -->
 </aside>
 <div id="fh5co-work-section">
-
 	<div class="container">
 		<div class="row">
 			<c:forEach var="dto" items="${list}">
@@ -35,7 +36,7 @@
 						class="grid-project">
 						<div class="image">
 							<img src="../storage/${dto.t_img}" alt="Project"
-								class="img-responsive" style="margin: 0 auto; height:300px;">
+								class="img-responsive" style="margin: 0 auto; height: 300px;">
 						</div>
 						<div class="desc">
 							<h3>${dto.t_name}</h3>
@@ -73,7 +74,7 @@
 			</div>
 		</c:if>
 	</div>
-	
+
 </div>
 
 

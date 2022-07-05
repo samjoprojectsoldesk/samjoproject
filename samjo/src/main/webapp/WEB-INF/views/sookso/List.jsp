@@ -15,7 +15,7 @@
 </aside>
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
-		<form action="tourist.jsp">
+		<form action="/sookso/List.do">
 			<input type="text" name="word" id="word"
 				style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
 			&nbsp;&nbsp; <input type="submit" value="검색"
@@ -31,8 +31,6 @@
 				<div class="col-md-4 text-center project">
 					<a href="../sookso/List/read.do?s_cn=${dto.s_cn}" class="grid-project">
 							<img src="../storage/${dto.s_img}" alt="Project" class="img-responsive" style="margin: 0 auto; height:300px;">
-						</div>
-						</div>
 						<div class="desc">
 							<h3>${dto.s_name}</h3>
 							<span>${dto.s_addr}</span>

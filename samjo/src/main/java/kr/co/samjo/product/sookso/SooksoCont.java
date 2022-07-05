@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.samjo.cart.cartDAO;
+import kr.co.samjo.cart.cartDTO;
 import net.utility.UploadSaveManager;
+import net.utility.Utility;
 
 
 @Controller
@@ -109,6 +113,7 @@ public class SooksoCont {
 	
 	@RequestMapping("/sookso/List.do")
     public ModelAndView list(HttpServletRequest req) {
+		String word = Utility.checkNull(req.getParameter("word"));
         ModelAndView mav=new ModelAndView();
         mav.setViewName("sookso/List");
        
@@ -139,7 +144,7 @@ public class SooksoCont {
        
         List list=null;     
         if(totalRowCount>0){           
-              list=dao.list(startRow, endRow);          
+              list=dao.list(startRow, endRow, word);          
         } else {           
               list=Collections.EMPTY_LIST;           
         }//if end
@@ -162,9 +167,9 @@ public class SooksoCont {
 	
 	
 	@RequestMapping("/sookso/List/read.do")
-	public ModelAndView read(String s_cn, HttpServletRequest req) {
+	public ModelAndView read(String s_cn, String room_cn, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		SooksoDTO dto = dao.read(s_cn);
+		SooksoDTO dto = dao.read(s_cn, room_cn);
 		mav.setViewName("sookso/read");
 		mav.addObject("dto", dto);
 		
@@ -195,9 +200,16 @@ public class SooksoCont {
        
         List list=null;     
         if(totalRowCount>0){           
-              list=dao.list2(startRow, endRow, s_cn);          
+              list=dao.list2(startRow, endRow, s_cn);
         } else {           
               list=Collections.EMPTY_LIST;           
+        }//if end
+        
+        List list2=null;     
+        if(totalRowCount>0){           
+              list2=dao.reviewList(startRow, endRow, s_cn);
+        } else {           
+              list2=Collections.EMPTY_LIST;           
         }//if end
          
         int number=0;
@@ -213,27 +225,71 @@ public class SooksoCont {
         mav.addObject("startPage", startPage);
         mav.addObject("endPage",   endPage);
         mav.addObject("list", list);
+        mav.addObject("list2", list2);
+        System.out.println(list);
+        System.out.println(list2);
+       
+		
         return mav;
+    }//read() end
+
+	@RequestMapping("/cart/addCart.do")
+	public ModelAndView cart(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("s_id");
+		if(user_id == null) {
+			user_id = "guest";
+		}
+				
+		cartDTO cdto = new cartDTO();
+		cdto.setUser_id(user_id);
+		cdto.setS_code(request.getParameter("s_code"));
+		cdto.setCnt(Integer.parseInt(request.getParameter("cnt")));
+		cdto.setP_cnt(Integer.parseInt(request.getParameter("p_cnt")));
+		cdto.setSdate(request.getParameter("sdate"));
+		cdto.setFdate(request.getParameter("fdate"));
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("cart/msgView1");
+		int cnt = dao.create(cdto);
+
+		if (cnt == 0) {
+			String msg = "<p>장바구니 등록 실패</p>";
+			String img = "<img src='../images/fail.png'>";
+			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"list.do\"'>";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link1", link1);
+			mav.addObject("link2", link2);
+		} else {
+			String msg = "<p>장바구니 등록 성공</p>";
+			String img = "<img src='../images/sound.png'>";
+			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"list.do\"'>";
+			mav.addObject("msg", msg);
+			mav.addObject("img", img);
+			mav.addObject("link2", link2);
+		}
+
+		return mav;
     }//list() end
 
-	
-
-	@RequestMapping(value = "/admin/sooksoupdate.do", method = RequestMethod.GET)
-	public ModelAndView updateForm(String s_cn) {
+	@RequestMapping(value = "/admin/Sooksoupdate.do", method = RequestMethod.GET)
+	public ModelAndView updateForm(String s_cn, String room_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/updateForm");
-		SooksoDTO dto = dao.read(s_cn);// 수정하고자 하는 행 가져오기
+		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기
 		mav.addObject("dto", dto);
 		return mav;
 	}// updateForm() end
 
-	@RequestMapping(value = "/admin/sooksoupdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/Sooksoupdate.do", method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute SooksoDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("tour/msgView");
 
 		String basePath = req.getRealPath("/storage");
-		SooksoDTO oldDTO = dao.read(dto.getS_cn()); // 기존에 저장된 정보 가져오기
+		SooksoDTO oldDTO = dao.read(dto.getS_cn(), dto.getRoom_cn()); // 기존에 저장된 정보 가져오기
 		// ---------------------------------------------------------------------
 		// 파일을 수정할 것인지?
 
@@ -257,13 +313,13 @@ public class SooksoCont {
 		if (cnt == 0) {
 			String msg = "<p>숙소 수정 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='숙소목록' onclick=\"location.href='/admin/sooksoList.do'\">";
+			String link2 = "<input type='button' value='숙소목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>여행지가 수정 되었습니다</p>";
-			String link2 = "<input type='button' value='숙소목록' onclick=\"location.href='/admin/sooksoList.do'\">";
+			String link2 = "<input type='button' value='숙소목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 		} // if end
@@ -271,39 +327,132 @@ public class SooksoCont {
 		return mav;
 	}// updateProc() end
 	
-	@RequestMapping(value = "/admin/sooksodelete.do", method = RequestMethod.GET)
-	public ModelAndView deleteForm(String s_cn) {
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping(value = "/admin/Sooksoupdate2.do", method = RequestMethod.GET)
+	public ModelAndView updateForm2(String s_cn, String room_cn) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("sookso/updateForm2");
+		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기 
+		mav.addObject("dto", dto);
+		return mav;
+	}// updateForm() end
+
+	@RequestMapping(value = "/admin/Sooksoupdate2.do", method = RequestMethod.POST)
+	public ModelAndView update2(@ModelAttribute SooksoDTO dto, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("tour/msgView");
+
+		String basePath = req.getRealPath("/storage");
+		SooksoDTO oldDTO = dao.read(dto.getS_cn(), dto.getRoom_cn()); // 기존에 저장된 정보 가져오기
+		// ---------------------------------------------------------------------
+		// 파일을 수정할 것인지?
+
+		// 1)
+		MultipartFile posterMF2 = dto.getPosterMF2();
+		if (posterMF2.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
+			// 기존 파일 삭제
+			UploadSaveManager.deleteFile(basePath, oldDTO.getRoom_img());
+			// 신규 파일 저장
+			String poster = UploadSaveManager.saveFileSpring30(posterMF2, basePath);
+			dto.setRoom_img(poster); // 새롭게 첨부된 신규 파일명
+			
+		} else {
+			// 포스터 파일을 수정하지 않는 경우
+			dto.setRoom_img(oldDTO.getRoom_img()); // 기존에 저장된 파일명
+		} // if end
+
+			// ---------------------------------------------------------------------
+
+		int cnt = dao.update2(dto);
+		if (cnt == 0) {
+			String msg = "<p>방 수정 실패!!</p>";
+			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+			String link2 = "<input type='button' value='방목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
+			mav.addObject("msg", msg);
+			mav.addObject("link1", link1);
+			mav.addObject("link2", link2);
+		} else {
+			String msg = "<p>방 수정 되었습니다</p>";
+			String link2 = "<input type='button' value='방목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
+			mav.addObject("msg", msg);
+			mav.addObject("link2", link2);
+		} // if end
+
+		return mav;
+	}// updateProc() end
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping(value = "/admin/Sooksodelete.do", method = RequestMethod.GET)
+	public ModelAndView deleteForm(String s_cn, String room_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/deleteForm");
-		SooksoDTO dto = dao.read(s_cn);// 수정하고자 하는 행 가져오기
+		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기
 		mav.addObject("dto", dto);
 		return mav;
 	}// deleteForm() end
 
-	@RequestMapping(value = "/admin/sooksodelete.do", method = RequestMethod.POST)
-	public ModelAndView deleteProc(String s_cn, HttpServletRequest req) {
+	@RequestMapping(value = "/admin/Sooksodelete.do", method = RequestMethod.POST)
+	public ModelAndView deleteProc(String s_cn,String room_cn, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/msgView");
 
 		// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
-		SooksoDTO oldDTO = dao.read(s_cn);
+		SooksoDTO oldDTO = dao.read(s_cn, room_cn);
 
 		int cnt = dao.delete(s_cn);
 		if (cnt == 0) {
 			String msg = "<p>숙소 삭제 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='숙소목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
+			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/admin/List.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>숙소가 삭제되었습니다</p>";
-			String link2 = "<input type='button' value='숙소목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
+			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/admin/List.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 			// 첨부했던 파일 삭제
 			String basePath = req.getRealPath("/storage");
 			UploadSaveManager.deleteFile(basePath, oldDTO.getS_img());
+		} // if end
+		return mav;
+	}// deleteProc() end
+	
+	////////////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping(value = "/admin/Sooksodelete2.do", method = RequestMethod.GET)
+	public ModelAndView deleteForm2(String s_cn, String room_cn) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("sookso/deleteForm2");
+		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기
+		mav.addObject("dto", dto);
+		return mav;
+	}// deleteForm() end
+
+	@RequestMapping(value = "/admin/Sooksodelete2.do", method = RequestMethod.POST)
+	public ModelAndView deleteProc2(String s_cn,String room_cn, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("sookso/msgView");
+
+		// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
+		SooksoDTO oldDTO = dao.read(s_cn, room_cn);
+
+		int cnt = dao.delete2(room_cn);
+		if (cnt == 0) {
+			String msg = "<p>방 삭제 실패!!</p>";
+			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+			String link2 = "<input type='button' value='목록' onclick=\\\"location.href='/admin/List.do'\\\">";
+			mav.addObject("msg", msg);
+			mav.addObject("link1", link1);
+			mav.addObject("link2", link2);
+		} else {
+			String msg = "<p>숙소가 삭제되었습니다</p>";
+			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/admin/List.do'\\\">";
+			mav.addObject("msg", msg);
+			mav.addObject("link2", link2);
+			// 첨부했던 파일 삭제
+			String basePath = req.getRealPath("/storage");
+			UploadSaveManager.deleteFile(basePath, oldDTO.getRoom_img());
 		} // if end
 		return mav;
 	}// deleteProc() end

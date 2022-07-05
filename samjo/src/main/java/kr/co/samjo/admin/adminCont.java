@@ -92,8 +92,60 @@ public class adminCont {
 
 	@RequestMapping("admin/festivalList.do")
 	public ModelAndView list2(HttpServletRequest req) {
+		// 입력된 검색어 확인(검색어가 있으면 검색어 존재, 검색어가 없으면 빈문자열 "")
+				String word = Utility.checkNull(req.getParameter("word"));
 
-<<<<<<< HEAD
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName("admin/festivalList");
+
+				int totalRowCount = dao.totalRowCount(); // 총 글갯수
+
+				// 페이징
+				int numPerPage = 10; // 한 페이지당 레코드 갯수
+				int pagePerBlock = 10; // 페이지 리스트
+
+				String pageNum = req.getParameter("pageNum");
+				if (pageNum == null) {
+					pageNum = "1";
+				}
+
+				int currentPage = Integer.parseInt(pageNum);
+				int startRow = (currentPage - 1) * numPerPage + 1;
+				int endRow = currentPage * numPerPage;
+
+				// 페이지 수
+				double totcnt = (double) totalRowCount / numPerPage;
+				int totalPage = (int) Math.ceil(totcnt);
+
+				double d_page = (double) currentPage / pagePerBlock;
+				int Pages = (int) Math.ceil(d_page) - 1;
+				int startPage = Pages * pagePerBlock;
+				int endPage = startPage + pagePerBlock + 1;
+
+				List list = null;
+				if (totalRowCount > 0) {
+					list = dao.list(startRow, endRow, word);
+				} else {
+					list = Collections.EMPTY_LIST;
+				} // if end
+
+				int number = 0;
+				number = totalRowCount - (currentPage - 1) * numPerPage;
+
+				mav.addObject("number", number);
+				mav.addObject("pageNum", currentPage);
+				mav.addObject("startRow", startRow);
+				mav.addObject("endRow", endRow);
+				mav.addObject("count", totalRowCount);
+				mav.addObject("pageSize", pagePerBlock);
+				mav.addObject("totalPage", totalPage);
+				mav.addObject("startPage", startPage);
+				mav.addObject("endPage", endPage);
+				mav.addObject("list", list);
+				return mav;
+	}//list2() end
+
+
 	@RequestMapping("/admin/sooksoList.do")
     public ModelAndView sooksolist(HttpServletRequest req) {
         ModelAndView mav=new ModelAndView();
@@ -261,117 +313,6 @@ public class adminCont {
 	
 //packagetourList	
 	@RequestMapping("admin/packagetourList.do")
-    public ModelAndView packagelist(HttpServletRequest req) {
-=======
-		// 입력된 검색어 확인(검색어가 있으면 검색어 존재, 검색어가 없으면 빈문자열 "")
-		String word = Utility.checkNull(req.getParameter("word"));
-
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/festivalList");
-
-		int totalRowCount = dao.totalRowCount2(); // 총 글갯수
-
-		// 페이징
-		int numPerPage = 10; // 한 페이지당 레코드 갯수
-		int pagePerBlock = 10; // 페이지 리스트
-
-		String pageNum = req.getParameter("pageNum");
-		if (pageNum == null) {
-			pageNum = "1";
-		}
-
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1) * numPerPage + 1;
-		int endRow = currentPage * numPerPage;
-
-		// 페이지 수
-		double totcnt = (double) totalRowCount / numPerPage;
-		int totalPage = (int) Math.ceil(totcnt);
-
-		double d_page = (double) currentPage / pagePerBlock;
-		int Pages = (int) Math.ceil(d_page) - 1;
-		int startPage = Pages * pagePerBlock;
-		int endPage = startPage + pagePerBlock + 1;
-
-		List list = null;
-		if (totalRowCount > 0) {
-			list = dao.list2(startRow, endRow, word);
-		} else {
-			list = Collections.EMPTY_LIST;
-		} // if end
-
-		int number = 0;
-		number = totalRowCount - (currentPage - 1) * numPerPage;
-
-		mav.addObject("number", number);
-		mav.addObject("pageNum", currentPage);
-		mav.addObject("startRow", startRow);
-		mav.addObject("endRow", endRow);
-		mav.addObject("count", totalRowCount);
-		mav.addObject("pageSize", pagePerBlock);
-		mav.addObject("totalPage", totalPage);
-		mav.addObject("startPage", startPage);
-		mav.addObject("endPage", endPage);
-		mav.addObject("list", list);
-		return mav;
-	}// list2() end
-
-	@RequestMapping("admin/notice.do")
-	public ModelAndView bbsList(HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/bbsList");
-
-		int totalRowCount = dao.bbstotalRowCount(); // 총 글갯수
-
-		// 페이징
-		int numPerPage = 10; // 한 페이지당 레코드 갯수
-		int pagePerBlock = 10; // 페이지 리스트
-
-		String pageNum = req.getParameter("pageNum");
-		if (pageNum == null) {
-			pageNum = "1";
-		}
-
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1) * numPerPage + 1;
-		int endRow = currentPage * numPerPage;
-
-		// 페이지 수
-		double totcnt = (double) totalRowCount / numPerPage;
-		int totalPage = (int) Math.ceil(totcnt);
-
-		double d_page = (double) currentPage / pagePerBlock;
-		int Pages = (int) Math.ceil(d_page) - 1;
-		int startPage = Pages * pagePerBlock;
-		int endPage = startPage + pagePerBlock + 1;
-
-		List list = null;
-		if (totalRowCount > 0) {
-			list = dao.bbsList(startRow, endRow);
-		} else {
-			list = Collections.EMPTY_LIST;
-		} // if end
-
-		int number = 0;
-		number = totalRowCount - (currentPage - 1) * numPerPage;
-
-		mav.addObject("number", number);
-		mav.addObject("pageNum", currentPage);
-		mav.addObject("startRow", startRow);
-		mav.addObject("endRow", endRow);
-		mav.addObject("count", totalRowCount);
-		mav.addObject("pageSize", pagePerBlock);
-		mav.addObject("totalPage", totalPage);
-		mav.addObject("startPage", startPage);
-		mav.addObject("endPage", endPage);
-		mav.addObject("list", list);
-		System.out.println(list);
-		return mav;
-	}// list() end
-
-//packagetourList	
-	@RequestMapping("admin/packagetourList.do")
-<<<<<<< HEAD
 	public ModelAndView list3(HttpServletRequest req) {
 
 		// 입력된 검색어 확인(검색어가 있으면 검색어 존재, 검색어가 없으면 빈문자열 "")
@@ -545,64 +486,7 @@ public class adminCont {
 		return mav;
 	}// rentalcarList() end
 
-=======
-    public ModelAndView list3(HttpServletRequest req) {
->>>>>>> 2f9d82b0cb01261bcb0c454fd7b8a48d22c96efc
-		
-		//입력된 검색어 확인(검색어가 있으면 검색어 존재, 검색어가 없으면 빈문자열 "")
-        String word = Utility.checkNull(req.getParameter("word"));
-        
-        ModelAndView mav=new ModelAndView();
-        mav.setViewName("admin/packagetourList");
-       
-        int totalRowCount=dao.totalRowCount(); //총 글갯수
-       
-        //페이징
-        int numPerPage   = 10;    // 한 페이지당 레코드 갯수
-        int pagePerBlock = 10;   // 페이지 리스트
-       
-        String pageNum=req.getParameter("pageNum");
-        if(pageNum==null){
-              pageNum="1";
-        }
-       
-        int currentPage=Integer.parseInt(pageNum);
-        int startRow   =(currentPage-1)*numPerPage+1;
-        int endRow     =currentPage*numPerPage;
-       
-        //페이지 수
-        double totcnt = (double)totalRowCount/numPerPage;
-        int totalPage = (int)Math.ceil(totcnt);
-         
-        double d_page = (double)currentPage/pagePerBlock;
-        int Pages     = (int)Math.ceil(d_page)-1;
-        int startPage = Pages*pagePerBlock;
-        int endPage   = startPage+pagePerBlock+1;
-       
-       
-        List list=null;     
-        if(totalRowCount>0){           
-              list=dao.list(startRow, endRow, word);          
-        } else {           
-              list=Collections.EMPTY_LIST;           
-        }//if end
-         
-        int number=0;
-        number=totalRowCount-(currentPage-1)*numPerPage;
-         
-        mav.addObject("number",    number);
-        mav.addObject("pageNum",   currentPage);
-        mav.addObject("startRow",  startRow);
-        mav.addObject("endRow",    endRow);
-        mav.addObject("count",     totalRowCount);
-        mav.addObject("pageSize",  pagePerBlock);
-        mav.addObject("totalPage", totalPage);
-        mav.addObject("startPage", startPage);
-        mav.addObject("endPage",   endPage);
-        mav.addObject("list", list);
-        return mav;
-    }//packagetourList() end
-<<<<<<< HEAD
+    
 	
 	
 	@RequestMapping("/admin/boardList.do")
@@ -661,9 +545,5 @@ public class adminCont {
 		mav.addObject("list", list);
 		return mav;
 	}// list() end
-	
-	
-=======
->>>>>>> 030a5bd50115456a1917a20b7aa525bd842dc326
->>>>>>> 2f9d82b0cb01261bcb0c454fd7b8a48d22c96efc
+
 }

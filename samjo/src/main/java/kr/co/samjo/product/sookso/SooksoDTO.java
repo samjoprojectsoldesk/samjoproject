@@ -7,10 +7,12 @@ public class SooksoDTO {
 	private String s_cn;
 	private String s_name;
 	private String s_addr;
+	private String s_addr2;
 	private String s_tel;
 	private String s_link;
 	private String s_cont;
 	private String s_img;
+	
 	
 	public SooksoDTO() {}
 	
@@ -43,6 +45,15 @@ public class SooksoDTO {
 	public void setS_addr(String s_addr) {
 		this.s_addr = s_addr;
 	}
+	
+	public String getS_addr2() {
+		return s_addr2;
+	}
+
+	public void setS_addr2(String s_addr2) {
+		this.s_addr2 = s_addr2;
+	}
+
 	public String getS_tel() {
 		return s_tel;
 	}
@@ -80,6 +91,7 @@ public class SooksoDTO {
 	public MultipartFile getPosterMF2() {
         return posterMF2;
     }
+
     public void setPosterMF2(MultipartFile posterMF2) {
         this.posterMF2 = posterMF2;
     }
@@ -126,6 +138,80 @@ public class SooksoDTO {
 
 	public void setRoom_cont(String room_img) {
 		this.room_img = room_img;
+	}
+
+	private String review_no;
+	private String review_res_no;
+	private String review_code;
+	private String review_user_id;
+	private String review_content;
+	private String review_date;
+	private String review_asterion;
+	private String word;
+	
+
+	public String getReview_no() {
+		return review_no;
+	}
+
+	public void setReview_no(String review_no) {
+		this.review_no = review_no;
+	}
+
+	public String getReview_res_no() {
+		return review_res_no;
+	}
+
+	public void setReview_res_no(String review_res_no) {
+		this.review_res_no = review_res_no;
+	}
+
+	public String getReview_code() {
+		return review_code;
+	}
+
+	public void setReview_code(String review_code) {
+		this.review_code = review_code;
+	}
+
+	public String getReview_user_id() {
+		return review_user_id;
+	}
+
+	public void setReview_user_id(String review_user_id) {
+		this.review_user_id = review_user_id;
+	}
+
+	public String getReview_content() {
+		return review_content;
+	}
+
+	public void setReview_content(String review_content) {
+		this.review_content = review_content;
+	}
+
+	public String getReview_date() {
+		return review_date;
+	}
+
+	public void setReview_date(String review_date) {
+		this.review_date = review_date;
+	}
+
+	public String getReview_asterion() {
+		return review_asterion;
+	}
+
+	public void setReview_asterion(String review_asterion) {
+		this.review_asterion = review_asterion;
+	}
+
+	public String getWord() {
+		return word;
+	}
+
+	public void setWord(String word) {
+		this.word = word;
 	}
 
 	@Override

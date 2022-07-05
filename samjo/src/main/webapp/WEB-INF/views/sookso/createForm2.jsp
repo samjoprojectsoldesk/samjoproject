@@ -21,7 +21,7 @@
 		<form name="frm" method="post" action="Sooksocreate2.do" class="create" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="s_cn">해당 숙소 코드</label> 
-				<input type="text" class="form-control" id="s_cn" name="s_cn">
+				<input type="text" class="form-control" id="s_cn" name="s_cn" value="${dto.s_cn}">
 			</div>
 			<div class="form-group">
 				<label for="room_cn">방코드</label> 

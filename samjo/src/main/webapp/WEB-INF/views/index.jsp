@@ -186,7 +186,7 @@
 									class="col-md-5 col-sm-6 col-xs-12 js-fullheight slider-text">
 									<div class="slider-text-inner">
 										<div class="desc">
-											<h2>6월 경주, 다채로움</h2>
+											<h2>7월 경주, 다채로움</h2>
 											<p>
 												<a href="#" class="btn btn-primary btn-outline">View
 													Details</a>

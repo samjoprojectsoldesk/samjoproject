@@ -200,4 +200,40 @@ public class boardDAO {
 		} // end
 		return cnt;
 	}// delete() end
+	
+	public ArrayList<CmtDTO> list(){
+		ArrayList<CmtDTO> list=null;
+		try {
+			con=dbopen.getConnection();
+			
+			sql = new StringBuilder();
+			sql.append(" SELECT cmt_idx, cmt_id, cmt_content, cmt_bbs_idx, cmt_ref, cmt_re_setp,cmt_level,cmt_date ");
+			sql.append(" FROM tb_cmt ");
+			sql.append(" ORDER BY grpno DESC, ansnum ASC ");
+				
+			pstmt = con.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery(); 
+			if(rs.next()) { 
+				list=new ArrayList<CmtDTO>();//전체 행을 저장
+				do {
+					CmtDTO dto= new CmtDTO();//커서가 가리키는 한 줄 저장
+					dto.setCmt_idx(rs.getInt("cmt_idx"));
+					dto.setCmt_id(rs.getString("cmt_id"));
+					dto.setCmt_content(rs.getString("cmt_content"));
+					dto.setCmt_bbs_idx(rs.getInt("cmt_bbs_idx"));
+					dto.setCmt_ref(rs.getInt("cmt_ref"));
+					dto.setCmt_re_setp(rs.getInt("cmt_re_setp"));
+					dto.setCmt_level(rs.getInt("cmt_level"));
+					dto.setCmt_date(rs.getString("cmt_date"));
+					list.add(dto); //list저장
+				}while(rs.next());
+			}//if end
+			
+		}catch(Exception e) {
+			System.out.println("전체 목록 실패: " + e);
+		}finally {
+			DBClose.close(con, pstmt, rs);
+		}//end
+		return list;
+	}//list() end
 }

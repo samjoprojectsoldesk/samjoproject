@@ -29,9 +29,8 @@
 						<hr>
 						<li>주소&emsp;&emsp;&emsp;${dto.t_addr}</li>
 						<li>전화번호&nbsp;&nbsp;&nbsp;&nbsp;${dto.t_tel}</li>
-						<li>홈페이지&nbsp;&nbsp;&nbsp;&nbsp; <a class="textLink"
-							href="${dto.t_link}" target="_blank">${dto.t_link}</a>
-						</li>
+						<li>홈페이지&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li><a class="textLink" href="${dto.t_link}" target="_blank">${dto.t_link}</a></li>
 						<li>주차&emsp;&emsp;&emsp;${dto.t_car}</li>
 					</ul>
 				</div>
@@ -42,26 +41,34 @@
 	<div class="col-md-12" id="tab-menu">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="col-md-4 nav-item"><a class="nav-link active"
-				id="info-tab" data-toggle="tab" href="#info" role="tab"
-				aria-controls="info" aria-selected="true">상세정보</a></li>
-			<li class="col-md-4 nav-item"><a class="nav-link" id="map-tab"
-				data-toggle="tab" href="#map" role="tab" aria-controls="map"
-				aria-selected="false">지도에서 보기</a></li>
+				id="map-tab" data-toggle="tab" href="#map" role="tab"
+				aria-controls="map" aria-selected="true">지도에서 보기</a></li>
+			<li class="col-md-4 nav-item"><a class="nav-link" id="info-tab"
+				data-toggle="tab" href="#info" role="tab" aria-controls="info"
+				aria-selected="false">상세정보</a></li>
 			<li class="col-md-4 nav-item"><a class="nav-link"
 				id="review-tab" data-toggle="tab" href="#review" role="tab"
-				aria-controls="review" aria-selected="false">리뷰</a></li>
+				aria-controls="review" aria-selected="false">리뷰보기</a></li>
 		</ul>
+
 		<div class="tab-content" id="myTabContent">
-			<div class="tab-pane fade show active" id="info" role="tabpanel"
-				aria-labelledby="info-tab">${dto.t_cont}</div>
-			<div class="tab-pane fade" id="map" role="tabpanel"
-				aria-labelledby="map-tab"></div>
+			<div class="tab-pane fade active in" id="map" role="tabpanel"
+				aria-labelledby="map-tab" style="margin-top:30px;">
+
+				<div id="map"></div>
+				<div id="store_address" data-address="${dto.t_addr}"></div>
+				<div id="store_name" data-name="${dto.t_name}"></div>
+
+			</div>
+
+			<div class="tab-pane fade" id="info" role="tabpanel"
+				aria-labelledby="info-tab" style="margin-top:30px;">${dto.t_cont}</div>
+
 			<div class="tab-pane fade" id="review" role="tabpanel"
-				aria-labelledby="review-tab">
+				aria-labelledby="review-tab" style="margin-top:30px;">
 				<c:forEach var="dto" items="${list}">
 					<div class="col-md-4 text-center project">
-						<a href="../tour/tourist/read.do?t_cn=${dto.t_cn}"
-							class="grid-project">
+						<a class="grid-project">
 							<div class="desc">
 								<h3>${dto.review_content}</h3>
 								<span>${dto.review_user_id}</span> <br> <span>${dto.review_date}</span>
@@ -70,7 +77,97 @@
 					</div>
 				</c:forEach>
 			</div>
+
+
 		</div>
+
 	</div>
-	<!-- 본문 끝 -->
-	<%@ include file="../footer.jsp"%>
+
+</div>
+
+
+
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=276bc655d3f8825cf97ab166b436c29b&libraries=services"></script>
+<script>
+	$(document)
+			.ready(
+					function() {
+
+						var storeAddress = $("#store_address").data("address");
+
+						var storeName = $("#store_name").data("name");
+
+						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+
+						mapOption = {
+							center : new kakao.maps.LatLng(33.25110701,
+									126.570667), // 지도의 중심좌표
+							level : 3
+						// 지도의 확대 레벨
+						};
+
+						// 지도를 생성합니다    
+						var map = new kakao.maps.Map(mapContainer, mapOption);
+						// 주소-좌표 변환 객체를 생성합니다	
+						var geocoder = new kakao.maps.services.Geocoder();
+
+						// 지도를 표시하는 div 크기를 변경하는 함수입니다
+						function resizeMap() {
+							mapContainer.style.width = '650px';
+							mapContainer.style.height = '650px';
+						}
+
+						function relayout() {
+
+							// 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+							// 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+							// window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+							map.relayout();
+						}
+
+						// 주소로 좌표를 검색합니다
+						geocoder
+								.addressSearch(
+										storeAddress,
+										function(result, status) {
+
+											// 정상적으로 검색이 완료됐으면 
+											if (status === kakao.maps.services.Status.OK) {
+
+												var coords = new kakao.maps.LatLng(
+														result[0].y,
+														result[0].x);
+
+												// 결과값으로 받은 위치를 마커로 표시합니다
+												var marker = new kakao.maps.Marker(
+														{
+															map : map,
+															position : coords
+														});
+
+												// 인포윈도우로 장소에 대한 설명을 표시합니다
+												var infowindow = new kakao.maps.InfoWindow(
+														{
+															content : '<div style="width:200px;text-align:center;padding:3px 0;">'
+																	+ storeName
+																	+ '</div>'
+														});
+												infowindow.open(map, marker);
+
+												// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+												map.setCenter(coords);
+
+												$(".storePosition").click(
+														function() {
+															map.panTo(coords);
+														})
+
+											}
+
+										});
+
+					})
+</script>
+<!-- 본문 끝 -->
+<%@ include file="../footer.jsp"%>

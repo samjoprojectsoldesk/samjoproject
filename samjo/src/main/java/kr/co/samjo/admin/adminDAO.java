@@ -8,12 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import kr.co.samjo.bbs.notice.noticeDTO;
-<<<<<<< HEAD
 import kr.co.samjo.board2.boardDTO;
 import kr.co.samjo.product.sookso.SooksoDTO;
-=======
 import kr.co.samjo.product.packagetour.packagetourDTO;
->>>>>>> 2f9d82b0cb01261bcb0c454fd7b8a48d22c96efc
 import kr.co.samjo.tour.TourDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
@@ -381,10 +378,7 @@ public class adminDAO {
         return list;
     }//bbsList() end
     
-<<<<<<< HEAD
-    
-=======
->>>>>>> 2f9d82b0cb01261bcb0c454fd7b8a48d22c96efc
+
     //totalRowCount 
     public int bbstotalRowCount() {
         int cnt=0;

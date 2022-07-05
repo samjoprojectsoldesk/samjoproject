@@ -996,6 +996,7 @@ figure {
 	width: 100%;
 	margin-bottom: 40px;
 	float: left;
+	z-index: 99;
 }
 
 .grid-project .image {
@@ -1022,7 +1023,6 @@ figure {
 }
 
 .grid-project .image-T:after {
-	position: absolute;
 	content: '';
 	top: 0;
 	bottom: 0;
@@ -1137,24 +1137,24 @@ figure {
 	border-bottom: 1px solid #FA7E0A;
 }
 
-.row-read #tab-menu {
+#tab-menu {
 	margin-top: 70px;
 }
 
-.row-read #tab-menu ul {
+#tab-menu ul {
 	font-family: "Roboto Slab", Arial, sans-serif;
 	font-weight: bold;
 	text-align: center;
 }
 
-.row-read #tab-menu .tab-content {
+#tab-menu .tab-content {
 	font-family: "Roboto Slab", Arial, sans-serif;
 	margin-bottom: 50px;
 }
 
-.row-read #tab-menu .tab-content div {
+#tab-menu .tab-content div {
 	font-weight: 500;
-	margin-top: 50px;
+	/*margin-top: 50px;*/
 	font-size: 18px;
 }
 
