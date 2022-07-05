@@ -10,7 +10,7 @@
 						<h2 style="margin-top: 300px; text-align: center; font-weight: bold;" class="heading-section">로그인결과</h2>
 						<%
 							String user_id	 =request.getParameter("user_id").trim();
-							String user_pw    =request.getParameter("user_pw").trim();
+							String user_pw   =request.getParameter("user_pw").trim();
 							dto.setUser_id(user_id);
 							dto.setUser_pw(user_pw);
 							
