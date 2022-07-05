@@ -19,7 +19,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="Delete.do" class="Ins"
+		<form name="frm" method="post" action="packagetourDelete.do" class="Ins"
 			enctype="multipart/form-data">
 			<input type="hidden" name="pack_no" value="${dto.pack_no}">
 			<div class="content">
@@ -28,7 +28,7 @@
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">삭제</button>
 				<button type="button" class="btn btn-secondary"
-					onclick="location.href='/package/List.do'">목록</button>
+					onclick="location.href='/packagetour/List.do'">목록</button>
 			</div>
 		</form>
 	</div>

@@ -35,13 +35,15 @@ public class resDetailDAO {
 			pstmt.setString(1, res_no);
 			pstmt.setString(2, dto.getS_code());
 			pstmt.setInt(3, dto.getP_cnt());
-			pstmt.setString(4, dto.getSdate());
-			pstmt.setString(5, dto.getFdate());
+			pstmt.setString(4, dto.getSdate().toLocaleString());
+        	if(dto.getFdate()!=null) {
+			pstmt.setString(5, dto.getFdate().toLocaleString());}
+        	else {pstmt.setString(5, "NULL");}
 			
 			cnt=pstmt.executeUpdate();
 			
 		} catch (Exception e) {
-			System.out.println("장바구니등록실패" + e);
+			System.out.println("예약상세등록실패" + e);
 		}finally {
 			DBClose.close(con,pstmt);
 		}

@@ -29,15 +29,15 @@ public class rentalDAO {
 
 			sql = new StringBuilder();
 			sql.append(" INSERT INTO tb_upche(u_code, u_name, u_phone, u_office, u_img, u_cont) ");
-			sql.append(" VALUES(?, ?, ?, ?, ?, ?, sysdate) ");
+			sql.append(" VALUES(?, ?, ?, ?, ?, ?) ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getU_code());
 			pstmt.setString(2, dto.getU_name());
 			pstmt.setString(3, dto.getU_phone());
 			pstmt.setString(4, dto.getU_office());
-			pstmt.setString(3, dto.getU_img());
-			pstmt.setString(4, dto.getU_cont());
+			pstmt.setString(5, dto.getU_img());
+			pstmt.setString(6, dto.getU_cont());
 			cnt = pstmt.executeUpdate();
 
 		} catch (Exception e) {

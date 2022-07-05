@@ -3,6 +3,7 @@ package kr.co.samjo.cart;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import kr.co.samjo.product.rentalcar.rentalcarDAO;
@@ -19,6 +20,7 @@ public class cartDAO {
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
 	private StringBuilder sql=null;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");
 	
 	public cartDAO() {
 		dbopen = new DBOpen();
@@ -40,8 +42,8 @@ public class cartDAO {
 			pstmt.setString(2, dto.getS_code());
 			pstmt.setInt(3, dto.getCnt());
 			pstmt.setInt(4, dto.getP_cnt());
-			pstmt.setString(5, dto.getSdate());
-			pstmt.setString(6, dto.getFdate());
+			pstmt.setString(5, dto.getSdate().toLocaleString());
+			pstmt.setString(6, dto.getFdate().toLocaleString());
 			
 			cnt=pstmt.executeUpdate();
 			
@@ -100,8 +102,9 @@ public class cartDAO {
                 	dto.setS_code(rs.getString("s_code"));
                 	dto.setCnt(rs.getInt("cnt"));
                 	dto.setP_cnt(rs.getInt("p_cnt"));
-                	dto.setSdate(rs.getString("sdate"));
-                	dto.setFdate(rs.getString("fdate"));
+                	dto.setSdate(sdf.parse(rs.getString("sdate")));
+                	if(rs.getString("fdate")!=null) {
+                	dto.setFdate(sdf.parse(rs.getString("fdate")));}
                     list.add(dto); //list에 모으기
                 }while(rs.next());
             }
@@ -142,19 +145,20 @@ public class cartDAO {
             
             sql=new StringBuilder();
             sql.append(" with dt_w as ( ");
-            sql.append(" select to_char(to_date(st_dt, 'yyyymmdd') + LEVEL -1, 'yyyymmdd') as dt ");
+            sql.append(" select to_char(to_date(st_dt, 'yyyymmdd.') + LEVEL -1, 'yyyymmdd') as dt ");
             sql.append(" from(  ");
-            sql.append(" (select sdate from tb_cart where c_no=?) as st_dt, ");
-            sql.append(" (SELECT fdate from tb_cart where c_no=?) as end_dt ");
+            sql.append(" select '(select sdate from tb_cart where c_no = ?)' as st_dt, ");
+            sql.append(" select '(select fdate from tb_cart where c_no = ?)' as end_dt ");
             sql.append(" from dual ) ");
             sql.append(" connect by LEVEL <= to_date(end_dt, 'yyyymmdd') - to_date(st_dt, 'yyyymmdd') + 1 ");
             sql.append(" ) ");
-            sql.append(" select case when to_char(to_date(dt),'d') in ('1', '7') ");
+            sql.append(" select case when to_char(to_date(d.dt),'d') in ('1', '7') ");
          	sql.append(" then '주말' ");
             sql.append(" else '평일' end as week_day ");
             sql.append(" from dt_w d; ");
             
             pstmt=con.prepareStatement(sql.toString());
+            System.out.println(sql.toString());
             pstmt.setInt(1, c_no);
             pstmt.setInt(2, c_no);
             

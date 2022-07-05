@@ -45,9 +45,13 @@
 					<td>${dto.amount}</td>
 					<td>${dto.pay}</td>
 					<td>${dto.p_cnt}</td>
-					<td>${dto.result}</td>
+					<c:choose>
+						<c:when test="${dto.result eq 'Y' }"><td>예약완료</td></c:when>
+						<c:when test="${dto.result eq 'C' }"><td>예약취소</td></c:when>
+						<c:when test="${dto.result eq 'U' }"><td>사용완료</td></c:when>
+					</c:choose>
 					<td><input type="button" value="예약취소"
-						onclick="location.href='delete.do?c_no=${dto.c_no}'"></td>
+						onclick="location.href='delete.do?c_no=${dto.res_no}'"></td>
 				</tr>
 			</c:forEach>
 			<tr>

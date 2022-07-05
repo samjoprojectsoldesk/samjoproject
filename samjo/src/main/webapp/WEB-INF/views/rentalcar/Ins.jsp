@@ -18,7 +18,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="Ins.do" class="Ins" enctype="multipart/form-data">
+		<form name="frm" method="post" action="rentalcarIns.do" class="Ins" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="u_code">업체코드</label> 
 				<input type="text" class="form-control" id="package_no" name="package_no" placeholder="C000">
@@ -46,6 +46,14 @@
 			<div class="form-group">
 				<label for="c_name">차량명</label> 
 				<input type="text" class="form-control" id="c_name" name="c_name">
+			</div>
+			<div class="form-group">
+				<label for="pack_plan_start">모집일정(출발)</label> 
+				<input type="date" class="form-control" id="pack_plan_start" name="pack_plan_start">
+			</div>
+			<div class="form-group">
+				<label for="pack_plan_end">모집일정(도착)</label> 
+				<input type="date" class="form-control" id="pack_plan_end" name="pack_plan_end">
 			</div>
 			<div class="form-group">
 				<label for="c_sum">금액(1일)</label> 

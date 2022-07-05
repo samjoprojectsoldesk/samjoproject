@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+
 <%
 //MemberCont.java의 loginProc()함수 참조  -> loginProc.jsp+ssi.jsp는 필요하지 않은 페이지 입니다
 //session.setAttribute("s_id", user_id);
@@ -43,7 +44,7 @@ if (session.getAttribute("s_id")==null ||session.getAttribute("s_passwd")==null 
 									<td><input type="password" name="user_pw" id="user_pw" placeholder="비밀번호" maxlength="10" required></td>
 								</tr>
 								<tr>
-									<td colspan="2"><label><input type="checkbox" name="c_id" value="SAVE" <%if (!c_id.isEmpty()) {out.print("checked");}%>>아이디 저장</label>
+									<td colspan="2">
 										&nbsp;&nbsp;&nbsp; <a href="agreement.do">회원가입</a>
 										&nbsp;&nbsp;&nbsp; <a href="findID.do">아이디/비밀번호찾기</a></td>
 								</tr>

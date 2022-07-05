@@ -21,10 +21,35 @@ public class MemberCont {
 	}//end
 	
 	
-	@RequestMapping("/member/loginForm.do")
-	public ModelAndView loginForm() {
-		ModelAndView mav=new ModelAndView();
+	@RequestMapping(value = "/member/loginForm.do", method=RequestMethod.GET)
+	public ModelAndView loginForm_repage() {
+		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/member/loginForm");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/member/loginForm.do", method = RequestMethod.POST)
+	public ModelAndView loginForm(HttpServletRequest req, HttpSession session) {
+		//loginForm.jsp에서 입력한 아이디/비번 가져오기		
+		String user_id	 =req.getParameter("user_id").trim();
+		String user_pw   =req.getParameter("user_pw").trim();
+		
+		//dto에 담기
+		MemberDTO dto=new MemberDTO();
+		dto.setUser_id(user_id);
+		dto.setUser_pw(user_pw);
+		
+		//DB에 가서 로그인 정보 가져오기
+		String user_level=dao.loginProc(dto);
+		
+		//세션영역에 로그인 정보 올리기
+		session.setAttribute("s_id", user_id);
+		session.setAttribute("s_passwd", user_pw);
+		session.setAttribute("s_mlevel", user_level);		
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/member/loginForm"); //뷰페이지 이동하기
+		
 		return mav;
 	}//loginForm() end
 	

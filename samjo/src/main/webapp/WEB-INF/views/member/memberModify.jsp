@@ -27,11 +27,11 @@
 					</tr>
 					<tr>
 					    <th>*비밀번호</th>
-					    <td style="text-align: left"><input type="password" value="<%=dto.getUser_pw()%>" name="user_pw" id="user_pw" size="15" required></td>
+					    <td style="text-align: left"><input type="password" value="<%=dto.getUser_pw()%>" name="user_pw" id="user_pw" size="15" required onchange="memberCheck()"></td>
 					</tr>
 					<tr>
 					    <th>*비밀번호 확인</th>
-					    <td style="text-align: left"><input type="password" name="user_repw" id="user_repw" size="15" required></td>
+					    <td style="text-align: left"><input type="password" name="user_repw" id="user_repw" size="15" required onchange="memberCheck()">&nbsp;<span id="check"></td>
 					</tr>
 					<tr>
 					    <th>*이름</th>

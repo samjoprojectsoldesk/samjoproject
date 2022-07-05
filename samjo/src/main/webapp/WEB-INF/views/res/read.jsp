@@ -34,18 +34,14 @@
 				<th>상품 이름</th>
 				<th>이용시작일</th>
 				<th>이용종료일</th>
-				<th>취소</th>
 			</tr>
 
 			<c:forEach var="dto" items="${map.list}">
 				<tr>
-					<td>${dto.c_no}</td>
+					<td>${dto.res_no}</td>
 					<td>${dto.s_name}</td>
 					<td>${dto.sdate}</td>
 					<td>${dto.fdate}</td>
-					<td><input type="button" value="예약내역취소"
-						onclick="location.href='delete.do?c_no=${dto.c_no}'"></td>
-				</tr>
 			</c:forEach>
 			<tr>
 				<td><input type="button" value="결제하기" onclick="location.href='cost.do'"></td>

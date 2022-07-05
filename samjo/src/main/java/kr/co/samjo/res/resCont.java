@@ -33,7 +33,7 @@ public class resCont {
 	}
 	
 	//장바구니 예약페이지 이동
-	@RequestMapping(value = "/res/reseve.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/res/reserve.do", method = RequestMethod.GET)
 	public ModelAndView reserve(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
@@ -54,13 +54,13 @@ public class resCont {
 			map.put("count", list.size());
 		}
 		
-		mav.setViewName("../res/reserve");
+		mav.setViewName("/res/reserve");
 		mav.addObject("map", map);		
 		return mav;
 	}
 	
 	//장바구니 물품 예약
-	@RequestMapping(value = "/res/reseve.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/res/reserve.do", method = RequestMethod.POST)
 	public ModelAndView reserveProc(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
@@ -80,7 +80,7 @@ public class resCont {
 		int cnt = dao.add(rdto);
 		
 		if (cnt == 0) {
-			String msg = "<p>장바구니 등록 실패</p>";
+			String msg = "<p>예약 실패</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
 			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"../cart/list.do\"'>";
@@ -89,7 +89,7 @@ public class resCont {
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
-			String msg = "<p>장바구니 등록 성공</p>";
+			String msg = "<p>예약 성공</p>";
 			String img = "<img src='../images/sound.png'>";
 			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"/res/list.do\"'>";
 			mav.addObject("msg", msg);
@@ -163,7 +163,7 @@ public class resCont {
 			String msg = "<p>예약 취소 실패</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"../cart/list.do\"'>";
+			String link2 = "<input type='button' value='예약목록' onclick='location.href=\"../res/list.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -171,7 +171,7 @@ public class resCont {
 		} else {
 			String msg = "<p>예약 취소 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"/res/list.do\"'>";
+			String link2 = "<input type='button' value='예약목록' onclick='location.href=\"/res/list.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
