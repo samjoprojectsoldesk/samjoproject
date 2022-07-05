@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header2.jsp"%>
-<!-- 본문 시작 festivalList.jsp -->
+<!-- 본문 시작 packagetourList.jsp -->
 <aside id="fh5co-hero-T">
 	<div class="flexslider">
 		<div class="container">

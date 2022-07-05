@@ -38,7 +38,7 @@ public class resDetailDAO {
 			pstmt.setString(4, dto.getSdate().toLocaleString());
         	if(dto.getFdate()!=null) {
 			pstmt.setString(5, dto.getFdate().toLocaleString());}
-        	else {pstmt.setString(5, "NULL");
+        	else {pstmt.setString(5, "NULL");}
 			
 			cnt=pstmt.executeUpdate();
 			

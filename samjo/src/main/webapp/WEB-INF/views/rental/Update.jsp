@@ -19,10 +19,10 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="Ins.do" class="Ins" enctype="multipart/form-data">
+		<form name="frm" method="post" action="rentalUpdate.do" class="Ins" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="u_code">업체코드</label> 
-				<input type="text" class="form-control" id="u_code" name="u_code" placeholder="T000">
+				<input type="text" class="form-control" id="u_code" name="u_code" placeholder="C000">
 			</div>
 			<div class="form-group">
 				<label for="u_name">업체명</label> 
@@ -38,7 +38,7 @@
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">등록</button>
-				<button type="button" class="btn btn-secondary" onclick="location.href='/rentalcar/List.do'">목록</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='/rental/List.do'">목록</button>
 			</div>
 		</form>
 	</div>

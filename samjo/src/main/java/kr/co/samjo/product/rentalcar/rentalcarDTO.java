@@ -1,5 +1,8 @@
 package kr.co.samjo.product.rentalcar;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 public class rentalcarDTO {
@@ -13,18 +16,201 @@ public class rentalcarDTO {
 	private int c_reserve;			//NUMBER 		NOT NULL 	예약가능 차량수
 	private String c_img;			//VARCHAR2(255) 			이미지
 	private String c_cont;			//VARCHAR2(4000)NOT NULL	내용
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date c_plan_start;	//VARCHAR2(1000) NOT NULL	모집일정
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date c_plan_end;	//VARCHAR2(1000) NOT NULL	모집일정
 	private String review_user_id; 	//VARCHAR2(15)
 	private String review_content;	//VARCHAR2(4000)
 	private String review_date; 	//DATE 			NOT NULL
-	private String c_date;			//DATE 			NOT NULL	예약날짜
 	
 	public rentalcarDTO() {}
 	
 	
 
+
+
+	public String getC_code() {
+		return c_code;
+	}
+
+
+
+
+
+	public void setC_code(String c_code) {
+		this.c_code = c_code;
+	}
+
+
+
+
+
+	public String getU_code() {
+		return u_code;
+	}
+
+
+
+
+
+	public void setU_code(String u_code) {
+		this.u_code = u_code;
+	}
+
+
+
+
+
+	public String getC_kind() {
+		return c_kind;
+	}
+
+
+
+
+
+	public void setC_kind(String c_kind) {
+		this.c_kind = c_kind;
+	}
+
+
+
+
+
+	public String getC_name() {
+		return c_name;
+	}
+
+
+
+
+
+	public void setC_name(String c_name) {
+		this.c_name = c_name;
+	}
+
+
+
+
+
+	public int getC_sum() {
+		return c_sum;
+	}
+
+
+
+
+
+	public void setC_sum(int c_sum) {
+		this.c_sum = c_sum;
+	}
+
+
+
+
+
+	public int getC_charge() {
+		return c_charge;
+	}
+
+
+
+
+
+	public void setC_charge(int c_charge) {
+		this.c_charge = c_charge;
+	}
+
+
+
+
+
+	public int getC_reserve() {
+		return c_reserve;
+	}
+
+
+
+
+
+	public void setC_reserve(int c_reserve) {
+		this.c_reserve = c_reserve;
+	}
+
+
+
+
+
+	public String getC_img() {
+		return c_img;
+	}
+
+
+
+
+
+	public void setC_img(String c_img) {
+		this.c_img = c_img;
+	}
+
+
+
+
+
+	public String getC_cont() {
+		return c_cont;
+	}
+
+
+
+
+
+	public void setC_cont(String c_cont) {
+		this.c_cont = c_cont;
+	}
+
+
+
+
+
+	public Date getC_plan_start() {
+		return c_plan_start;
+	}
+
+
+
+
+
+	public void setC_plan_start(Date c_plan_start) {
+		this.c_plan_start = c_plan_start;
+	}
+
+
+
+
+
+	public Date getC_plan_end() {
+		return c_plan_end;
+	}
+
+
+
+
+
+	public void setC_plan_end(Date c_plan_end) {
+		this.c_plan_end = c_plan_end;
+	}
+
+
+
+
+
 	public String getReview_user_id() {
 		return review_user_id;
 	}
+
+
 
 
 
@@ -34,9 +220,13 @@ public class rentalcarDTO {
 
 
 
+
+
 	public String getReview_content() {
 		return review_content;
 	}
+
+
 
 
 
@@ -46,9 +236,13 @@ public class rentalcarDTO {
 
 
 
+
+
 	public String getReview_date() {
 		return review_date;
 	}
+
+
 
 
 
@@ -58,87 +252,16 @@ public class rentalcarDTO {
 
 
 
-	public String getC_code() {
-		return c_code;
-	}
-
-	public void setC_code(String c_code) {
-		this.c_code = c_code;
-	}
-
-	public String getU_code() {
-		return u_code;
-	}
-
-	public void setU_code(String u_code) {
-		this.u_code = u_code;
-	}
-
-	public String getC_kind() {
-		return c_kind;
-	}
-
-	public void setC_kind(String c_kind) {
-		this.c_kind = c_kind;
-	}
-
-	public String getC_name() {
-		return c_name;
-	}
-
-	public void setC_name(String c_name) {
-		this.c_name = c_name;
-	}
-
-	public int getC_sum() {
-		return c_sum;
-	}
-
-	public void setC_sum(int c_sum) {
-		this.c_sum = c_sum;
-	}
-
-	public int getC_charge() {
-		return c_charge;
-	}
-
-	public void setC_charge(int c_charge) {
-		this.c_charge = c_charge;
-	}
-
-	public int getC_reserve() {
-		return c_reserve;
-	}
-
-	public void setC_reserve(int c_reserve) {
-		this.c_reserve = c_reserve;
-	}
-
-	public String getC_img() {
-		return c_img;
-	}
-
-	public void setC_img(String c_img) {
-		this.c_img = c_img;
-	}
-
-	public String getC_cont() {
-		return c_cont;
-	}
-
-	public void setC_cont(String c_cont) {
-		this.c_cont = c_cont;
-	}
-
-
-
 	@Override
 	public String toString() {
 		return "rentalcarDTO [c_code=" + c_code + ", u_code=" + u_code + ", c_kind=" + c_kind + ", c_name=" + c_name
 				+ ", c_sum=" + c_sum + ", c_charge=" + c_charge + ", c_reserve=" + c_reserve + ", c_img=" + c_img
-				+ ", c_cont=" + c_cont + ", review_user_id=" + review_user_id + ", review_content=" + review_content
-				+ ", review_date=" + review_date + "]";
+				+ ", c_cont=" + c_cont + ", c_plan_start=" + c_plan_start + ", c_plan_end=" + c_plan_end
+				+ ", review_user_id=" + review_user_id + ", review_content=" + review_content + ", review_date="
+				+ review_date + "]";
 	}
+
+
 
 
 

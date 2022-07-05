@@ -19,11 +19,11 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="Delete.do" class="Ins"
+		<form name="frm" method="post" action="rentalcarDelete.do" class="Ins"
 			enctype="multipart/form-data">
-			<input type="hidden" name="pack_no" value="${dto.c_code}">
+			<input type="hidden" name="c_code" value="${dto.c_code}">
 			<div class="content">
-				<p>해당 여행지(${dto.c_name}) 를 삭제하시겠습니까?</p>
+				<p>해당 렌트카(${dto.c_name}) 를 삭제하시겠습니까?</p>
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">삭제</button>

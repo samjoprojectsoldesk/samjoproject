@@ -3,6 +3,7 @@ package kr.co.samjo.product.rentalcar;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import kr.co.samjo.product.packagetour.packagetourDTO;
@@ -16,6 +17,7 @@ public class rentalcarDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	private StringBuilder sql = null;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");
 
 	public rentalcarDAO() {
 		dbopen = new DBOpen();
@@ -28,8 +30,8 @@ public class rentalcarDAO {
 			con = dbopen.getConnection(); // DB연결
 
 			sql = new StringBuilder();
-			sql.append(" INSERT INTO tb_car(c_code, c_kind, c_name, c_sum, c_charge, c_reserve, c_img, c_cont) ");
-			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, sysdate) ");
+			sql.append(" INSERT INTO tb_car(c_code, u_code, c_kind, c_name, c_sum, c_charge, c_reserve, c_img, c_cont, c_plan_start, c_plan_end ) ");
+			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getC_code());
@@ -40,6 +42,8 @@ public class rentalcarDAO {
 			pstmt.setInt(6, dto.getC_reserve());
 			pstmt.setString(7, dto.getC_img());
 			pstmt.setString(8, dto.getC_cont());
+			pstmt.setString(9, dto.getC_plan_start().toLocaleString());		
+			pstmt.setString(10, dto.getC_plan_end().toLocaleString());	
 			cnt = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -61,7 +65,7 @@ public class rentalcarDAO {
 			sql.append(" FROM ( ");
 			sql.append("        SELECT ROWNUM as RNUM, BB.* ");
 			sql.append("        FROM ( ");
-			sql.append("               SELECT c_code, c_kind, c_name, c_sum, c_charge, c_reserve, c_img, c_cont ");
+			sql.append("               SELECT c_code, u_code, c_kind, c_name, c_sum, c_charge, c_reserve, c_img, c_cont, c_plan_start, c_plan_end ");
 			sql.append("               FROM tb_car ");
 			sql.append("               ORDER BY c_code DESC ");
 			sql.append("             )BB ");
@@ -78,6 +82,7 @@ public class rentalcarDAO {
 				do {
 					rentalcarDTO dto = new rentalcarDTO();
 					dto.setC_code(rs.getString("c_code"));
+					dto.setU_code(rs.getString("u_code"));
 					dto.setC_kind(rs.getString("c_kind"));
 					dto.setC_name(rs.getString("c_name"));
 					dto.setC_sum(rs.getInt("c_sum"));
@@ -85,6 +90,8 @@ public class rentalcarDAO {
 					dto.setC_reserve(rs.getInt("c_reserve"));
 					dto.setC_img(rs.getString("c_img"));
 					dto.setC_cont(rs.getString("c_cont"));
+					dto.setC_plan_start(sdf.parse(rs.getString("c_plan_start")));
+                	dto.setC_plan_end(sdf.parse(rs.getString("c_plan_end")));
 					list.add(dto);
 				} while (rs.next());
 			} // if end
@@ -144,7 +151,7 @@ public class rentalcarDAO {
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
-			sql.append(" SELECT c_code, c_kind, c_name, c_sum, c_charge, c_reserve, c_img, c_cont ");
+			sql.append(" SELECT c_code, u_code, c_kind, c_name, c_sum, c_charge, c_reserve, c_img, c_cont, c_plan_start, c_plan_end ");
 			sql.append(" FROM tb_car ");
 			sql.append(" WHERE tb_car.c_code = ? ");
 			pstmt = con.prepareStatement(sql.toString());
@@ -153,6 +160,7 @@ public class rentalcarDAO {
 			if (rs.next()) {
 				dto = new rentalcarDTO();
 				dto.setC_code(rs.getString("c_code"));
+				dto.setU_code(rs.getString("u_code"));
 				dto.setC_kind(rs.getString("c_kind"));
 				dto.setC_name(rs.getString("c_name"));
 				dto.setC_sum(rs.getInt("c_sum"));
@@ -160,6 +168,8 @@ public class rentalcarDAO {
 				dto.setC_reserve(rs.getInt("c_reserve"));
 				dto.setC_img(rs.getString("c_img"));
 				dto.setC_cont(rs.getString("c_cont"));
+				dto.setC_plan_start(sdf.parse(rs.getString("c_plan_start")));
+            	dto.setC_plan_end(sdf.parse(rs.getString("c_plan_end")));
 			} // if end
 
 		} catch (Exception e) {
@@ -184,7 +194,7 @@ public class rentalcarDAO {
 			sql.append("        SELECT ROWNUM as RNUM, BB.* ");
 			sql.append("        FROM ( ");
 			sql.append(
-					"               SELECT c_code, c_kind, c_name, c_sum, c_charge, c_reserve, c_img, c_cont, review_no, review_user_id, review_content, review_date ");
+					"               SELECT c_code, c_kind, c_name, c_sum, c_charge, c_reserve, c_img, c_cont, c_plan_start, c_plan_end review_no, review_user_id, review_content, review_date ");
 			sql.append("               FROM tb_car left outer join tb_review ");
 			sql.append(" 			   ON tb_car.c_code = tb_review.review_code ");
 			sql.append("			   WHERE tb_car.c_code = ? ");
@@ -203,6 +213,7 @@ public class rentalcarDAO {
 				do {
 					rentalcarDTO dto = new rentalcarDTO();
 					dto.setC_code(rs.getString("c_code"));
+					dto.setU_code(rs.getString("u_code"));
 					dto.setC_kind(rs.getString("c_kind"));
 					dto.setC_name(rs.getString("c_name"));
 					dto.setC_sum(rs.getInt("c_sum"));
@@ -210,6 +221,8 @@ public class rentalcarDAO {
 					dto.setC_reserve(rs.getInt("c_reserve"));
 					dto.setC_img(rs.getString("c_img"));
 					dto.setC_cont(rs.getString("c_cont"));
+					dto.setC_plan_start(sdf.parse(rs.getString("c_plan_start")));
+                	dto.setC_plan_end(sdf.parse(rs.getString("c_plan_end")));
 					dto.setReview_user_id(rs.getString("review_user_id"));
 					dto.setReview_content(rs.getString("review_content"));
 					dto.setReview_date(rs.getString("review_date"));
@@ -234,11 +247,12 @@ public class rentalcarDAO {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
 			sql.append(" UPDATE tb_car ");
-			sql.append(" SET c_code=?, c_kind=?, c_name=?, c_sum=?, c_charge=?, c_reserve=?, c_img=?, c_cont=? ");
+			sql.append(" SET c_code=?, c_kind=?, c_name=?, c_sum=?, c_charge=?, c_reserve=?, c_img=?, c_cont=?, c_plan_start=?, c_plan_end=? ");
 			sql.append(" WHERE c_code=? ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			dto.setC_code(rs.getString("c_code"));
+			dto.setU_code(rs.getString("u_code"));
 			dto.setC_kind(rs.getString("c_kind"));
 			dto.setC_name(rs.getString("c_name"));
 			dto.setC_sum(rs.getInt("c_sum"));
@@ -246,6 +260,8 @@ public class rentalcarDAO {
 			dto.setC_reserve(rs.getInt("c_reserve"));
 			dto.setC_img(rs.getString("c_img"));
 			dto.setC_cont(rs.getString("c_cont"));
+			dto.setC_plan_start(sdf.parse(rs.getString("c_plan_start")));
+        	dto.setC_plan_end(sdf.parse(rs.getString("c_plan_end")));
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("렌트카 수정 실패" + e);

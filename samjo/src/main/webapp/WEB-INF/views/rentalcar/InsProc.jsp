@@ -1,10 +1,12 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="ssi.jsp" %> 
 <%@ include file="../header.jsp" %>    
 <!-- 본문시작 InsProc.jsp -->
 <%
-	
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");	
 	//사용자가 입력 요청한 정보를 가져오기
 	String c_code		=request.getParameter("c_code").trim();
 	String c_kind		=request.getParameter("c_kind").trim();
@@ -14,6 +16,8 @@
 	int c_reserve		=Integer.parseInt(request.getParameter("c_reserve").trim());
 	String c_img		=request.getParameter("c_img").trim();
 	String c_cont		=request.getParameter("c_cont").trim();
+	Date pack_plan_start = sdf.parse(request.getParameter("c_plan_start"));
+	Date pack_plan_end = sdf.parse(request.getParameter("c_plan_end"));
 	String review_user_id	=request.getParameter("review_user_id").trim();
 	String review_content 	=request.getParameter("review_content").trim();
 	String review_date		=request.getParameter("review_date").trim();
@@ -28,6 +32,8 @@
 	dto.setC_reserve(c_reserve);
 	dto.setC_img(c_img);
 	dto.setC_cont(c_cont);
+	dto.setC_plan_start(pack_plan_start);
+	dto.setC_plan_end(pack_plan_end);
 	dto.setReview_user_id(review_user_id);
 	dto.setReview_content(review_content);
 	dto.setReview_date(review_date);

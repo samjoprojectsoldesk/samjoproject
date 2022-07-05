@@ -47,7 +47,7 @@
 		</ul>
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="info" role="tabpanel"
-				aria-labelledby="info-tab">${dto.pack_cont}</div>
+				aria-labelledby="info-tab">${dto.c_cont}</div>
 			<div class="tab-pane fade" id="map" role="tabpanel"
 				aria-labelledby="map-tab"></div>
 			<div class="tab-pane fade" id="review" role="tabpanel"

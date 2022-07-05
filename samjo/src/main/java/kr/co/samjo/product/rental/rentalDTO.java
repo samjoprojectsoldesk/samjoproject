@@ -14,6 +14,17 @@ public class rentalDTO {
 	private String review_content;
 	private String review_date;
 	
+
+	private MultipartFile posterMF;
+	
+	public void setPosterMF(MultipartFile posterMF) {
+		this.posterMF = posterMF;
+	}
+   
+    public MultipartFile getPosterMF() {
+        return posterMF;
+    }
+	
 	
 	public String getReview_user_id() {
 		return review_user_id;
@@ -96,10 +107,6 @@ public class rentalDTO {
 				+ review_content + ", review_date=" + review_date + "]";
 	}
 
-	public MultipartFile getPosterMF() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	
 	

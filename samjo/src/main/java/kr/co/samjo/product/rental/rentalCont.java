@@ -56,7 +56,7 @@ public class rentalCont {
 			String msg = "<p>렌트카 업체 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='렌트카 업체 목록' onclick='location.href=\"List.do\"'>";
+			String link2 = "<input type='button' value='렌트카 업체 목록' onclick='location.href=\"rentalList.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -64,8 +64,8 @@ public class rentalCont {
 		} else {
 			String msg = "<p>렌트카 업체 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link1 = "<input type='button' value='계속등록' onclick='location.href=\"Ins.do\"'>";
-			String link2 = "<input type='button' value='렌트카 업체 목록' onclick='location.href=\"List.do\"'>";
+			String link1 = "<input type='button' value='계속등록' onclick='location.href=\"rentalIns.do\"'>";
+			String link2 = "<input type='button' value='렌트카 업체 목록' onclick='location.href=\"rentalList.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
