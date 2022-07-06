@@ -235,12 +235,12 @@ public class rentalDAO {
 			sql.append(" WHERE u_code=? ");
 
 			pstmt = con.prepareStatement(sql.toString());
-			dto.setU_code(rs.getString("u_code"));
-			dto.setU_name(rs.getString("u_name"));
-			dto.setU_phone(rs.getString("u_phone"));
-			dto.setU_office(rs.getString("u_office"));
-			dto.setU_img(rs.getString("u_img"));
-			dto.setU_cont(rs.getString("u_cont"));
+			pstmt.setString(1, dto.getU_code());
+			pstmt.setString(2, dto.getU_name());
+			pstmt.setString(3, dto.getU_phone());
+			pstmt.setString(4, dto.getU_office());
+			pstmt.setString(5, dto.getU_img());
+			pstmt.setString(6, dto.getU_cont());
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("렌트카 업체 수정 실패" + e);

@@ -21,7 +21,7 @@
 	<div class="col-md-12">
 		<form name="frm" method="post" action="packagetourUpdate.do" class="Ins" enctype="multipart/form-data">
 			<div class="form-group">
-				<label for="t_cn">패키지코드</label> 
+				<label for="pack_no">패키지코드</label> 
 				<input type="text" class="form-control" id="pack_no" name="pack_no" value="${dto.pack_no}" readonly>
 			</div>
 			<div class="form-group">
@@ -55,7 +55,7 @@
 			</div>
 			<div class="form-group">
 				<label for="pack_cont">내용</label>
-				<textarea class="form-control" id="pack_cont" name="pack_cont" rows="3">${dto.t_cont}</textarea>
+				<textarea class="form-control" id="pack_cont" name="pack_cont" rows="3">${dto.pack_cont}</textarea>
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">수정</button>
