@@ -139,7 +139,7 @@ public class rentalDAO {
 	}// totalRowCount() end
 
 //read	
-	public rentalDTO read(String pack_no) {
+	public rentalDTO read(String u_code) {
 		rentalDTO dto = null;
 		try {
 			con = dbopen.getConnection();
@@ -148,7 +148,7 @@ public class rentalDAO {
 			sql.append(" FROM tb_upche ");
 			sql.append(" WHERE tb_upche.u_code = ? ");
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, pack_no);
+			pstmt.setString(1, u_code);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				dto = new rentalDTO();

@@ -17,7 +17,6 @@
 
 <div class="row-read">
 	<div class="col-md-12 text-center project">
-		<div class="grid-project">
 			<div class="image-T">
 				<img src="../../storage/${dto.u_img}" class="img-responsive"
 					style="width: 40%; float: left;">

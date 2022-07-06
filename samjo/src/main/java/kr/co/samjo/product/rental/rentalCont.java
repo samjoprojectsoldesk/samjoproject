@@ -24,7 +24,7 @@ public class rentalCont {
 	}
 
 // Ins
-	@RequestMapping(value = "admin/rentalIns.do", method = RequestMethod.GET)
+	@RequestMapping(value = "rentalIns.do", method = RequestMethod.GET) // /admin/
 	public ModelAndView Ins() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("rental/Ins");
@@ -32,7 +32,7 @@ public class rentalCont {
 	}// Ins() end
 
 // InsProc
-	@RequestMapping(value = "admin/rentalIns.do", method = RequestMethod.POST)
+	@RequestMapping(value = "rentalIns.do", method = RequestMethod.POST) // /admin/
 	public ModelAndView Ins(@ModelAttribute rentalDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("rental/msgView");
@@ -75,10 +75,10 @@ public class rentalCont {
 	}// InsProc() end
 
 //List	
-	@RequestMapping("rental/List.do")
+	@RequestMapping("rental/List.do") 
 	public ModelAndView List(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("rental/List");
+		mav.setViewName("rental/List"); 
 
 		int totalRowCount = dao.totalRowCount(); // 총 글갯수
 
@@ -185,7 +185,7 @@ public class rentalCont {
 	
 	
 //Delete	
-	@RequestMapping(value = "/admin/rentalDelete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "rentalDelete.do", method = RequestMethod.GET)// /admin/
 	public ModelAndView Delete(String u_code) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("rental/Delete");
@@ -197,7 +197,7 @@ public class rentalCont {
 	
 	
 	// DeleteProc
-	@RequestMapping(value = "/admin/rentalDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "rentalDelete.do", method = RequestMethod.POST)// /admin/
 	public ModelAndView DeleteProc(String u_code, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("rental/msgView");
@@ -229,7 +229,7 @@ public class rentalCont {
 	
 	
 // Update
-	@RequestMapping(value = "/admin/rentalUpdate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "rentalUpdate.do", method = RequestMethod.GET)// /admin/
 	public ModelAndView Update(String u_code) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("rental/Update");
@@ -241,7 +241,7 @@ public class rentalCont {
 	
 	
 // UpdateProc
-	@RequestMapping(value = "/admin/rentalUpdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "rentalUpdate.do", method = RequestMethod.POST)// /admin/
 	public ModelAndView updateProc(@ModelAttribute rentalDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("rental/msgView");

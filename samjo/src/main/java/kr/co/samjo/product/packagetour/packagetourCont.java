@@ -142,7 +142,7 @@ public class packagetourCont {
 		
 		
 //Read	
-		@RequestMapping("/packagetour/List/read.do")
+		@RequestMapping("/packagetour/List/Read.do")
 		public ModelAndView read(String pack_no, HttpServletRequest req) {
 			ModelAndView mav = new ModelAndView();
 			packagetourDTO dto = dao.read(pack_no);

@@ -16,7 +16,7 @@
 
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
-		<form action="List.jsp">
+		<form action="List.do">
 			<input type="text" name="word" id="word"
 				style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
 			&nbsp;&nbsp; <input type="submit" value="검색"
@@ -31,7 +31,7 @@
 		<div class="row">
 			<c:forEach var="dto" items="${list}">
 				<div class="col-md-4 text-center project">
-					<a href="../packagetour/List/read.do?pack_no=${dto.pack_no}"
+					<a href="../packagetour/List/Read.do?pack_no=${dto.pack_no}"
 						class="grid-project">
 						<div class="image">
 							<img src="../storage/${dto.pack_img}" alt="Project"

@@ -49,12 +49,12 @@
 				<input type="text" class="form-control" id="c_name" name="c_name">
 			</div>
 			<div class="form-group">
-				<label for="pack_plan_start">모집일정(출발)</label> 
-				<input type="date" class="form-control" id="pack_plan_start" name="pack_plan_start">
+				<label for="c_plan_start">모집일정(출발)</label> 
+				<input type="date" class="form-control" id="c_plan_start" name="c_plan_start">
 			</div>
 			<div class="form-group">
-				<label for="pack_plan_end">모집일정(도착)</label> 
-				<input type="date" class="form-control" id="pack_plan_end" name="pack_plan_end">
+				<label for="c_plan_end">모집일정(도착)</label> 
+				<input type="date" class="form-control" id="c_plan_end" name="c_plan_end">
 			</div>
 			<div class="form-group">
 				<label for="c_sum">금액(1일)</label> 

@@ -45,7 +45,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");
     }else{
         out.println("<script>");
         out.println("    alert('게시글이 추가되었습니다');");
-        out.println("    location.href='List.jsp';");//목록페이지 이동
+        out.println("    location.href='rentalcar/List.do';");//목록페이지 이동
         out.println("</script>");
     }//if end
 %>
