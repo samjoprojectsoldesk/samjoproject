@@ -251,17 +251,16 @@ public class rentalcarDAO {
 			sql.append(" WHERE c_code=? ");
 
 			pstmt = con.prepareStatement(sql.toString());
-			dto.setC_code(rs.getString("c_code"));
-			dto.setU_code(rs.getString("u_code"));
-			dto.setC_kind(rs.getString("c_kind"));
-			dto.setC_name(rs.getString("c_name"));
-			dto.setC_sum(rs.getInt("c_sum"));
-			dto.setC_charge(rs.getInt("c_charge"));
-			dto.setC_reserve(rs.getInt("c_reserve"));
-			dto.setC_img(rs.getString("c_img"));
-			dto.setC_cont(rs.getString("c_cont"));
-			dto.setC_plan_start(sdf.parse(rs.getString("c_plan_start")));
-        	dto.setC_plan_end(sdf.parse(rs.getString("c_plan_end")));
+			pstmt.setString(1, dto.getC_code());
+			pstmt.setString(2, dto.getC_kind());
+			pstmt.setString(3, dto.getC_name());
+			pstmt.setInt(4, dto.getC_sum());
+			pstmt.setInt(5, dto.getC_charge());
+			pstmt.setInt(6, dto.getC_reserve());
+			pstmt.setString(7, dto.getC_img());
+			pstmt.setString(8, dto.getC_cont());
+			pstmt.setString(9, dto.getC_plan_start().toLocaleString());		
+			pstmt.setString(10, dto.getC_plan_end().toLocaleString());	
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("렌트카 수정 실패" + e);
