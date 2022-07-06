@@ -43,7 +43,7 @@
 					<td>${dto.s_name}</td>
 					<td>${dto.sdate}</td>
 					<td>${dto.fdate}</td>
-					<td><a href="review/reviewcreate">리뷰쓰기</a></td>
+					<td><a href="review/reviewcreate?res_no=${dto.detail_no}">리뷰쓰기</a></td>
 			</c:forEach>
 			<tr>
 				<td><input type="button" value="결제하기" onclick="location.href='cost.do'"></td>

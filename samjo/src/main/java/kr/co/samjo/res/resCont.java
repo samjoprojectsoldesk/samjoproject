@@ -33,7 +33,7 @@ public class resCont {
 	}
 	
 	//장바구니 예약페이지 이동
-	@RequestMapping(value = "/res/reserve.do", method = RequestMethod.GET)
+	@RequestMapping("/res/reserve.do")
 	public ModelAndView reserve(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
