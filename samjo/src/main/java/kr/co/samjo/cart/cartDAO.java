@@ -189,7 +189,7 @@ public class cartDAO {
 			if(s_code.charAt(0)=='S') {
 				SooksoDAO sdao = new SooksoDAO();
 				SooksoDTO sdto = new SooksoDTO();
-				//sdto = sdao.read(s_code);
+				sdto = sdao.read(s_code);
 				for(int j=0; j<tmplist.size(); j++) {
 					if(tmplist.get(j)=="주말") {
 						sum += sdto.getRoom_ep();
