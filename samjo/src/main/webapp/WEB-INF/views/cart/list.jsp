@@ -12,19 +12,13 @@
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">장바구니 목록</h2>
 			</div>
-		</div>
-	</div>
-</aside>
-<script>
-	$(document).ready(function() {
-		$("#btnList").click(function() {
-			location.href = "../cart/list.do";
-		});
-	});
-</script>
+			
+			
 <c:choose>
 	<c:when test="${map.count ==0}">
+	<div class="row-read">
 		장바구니가 비었습니다.
+		</div>
 	</c:when>
 	<c:otherwise>
 	<div class="row-read">
@@ -59,5 +53,15 @@
 	</div>
 	</c:otherwise>
 </c:choose>
+		</div>
+	</div>
+</aside>
+<script>
+	$(document).ready(function() {
+		$("#btnList").click(function() {
+			location.href = "../cart/list.do";
+		});
+	});
+</script>
 <!-- 본문 끝 -->
 <%@ include file="../footer.jsp"%>
