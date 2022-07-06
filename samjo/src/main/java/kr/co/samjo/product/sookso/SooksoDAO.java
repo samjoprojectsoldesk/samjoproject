@@ -127,7 +127,7 @@ public class SooksoDAO {
         return cnt;
     }//totalRowCount() end
     
-	public SooksoDTO read(String s_cn, String room_cn) {
+	public SooksoDTO read(String s_cn) {
 		SooksoDTO dto = null;
 		try {
 			con = dbopen.getConnection();

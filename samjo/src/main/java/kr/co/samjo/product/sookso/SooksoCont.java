@@ -173,7 +173,7 @@ public class SooksoCont {
 	@RequestMapping("/sookso/List/read.do")
 	public ModelAndView read(String s_cn, String room_cn, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		SooksoDTO dto = dao.read(s_cn, room_cn);
+		SooksoDTO dto = dao.read(s_cn);
 		mav.setViewName("sookso/read");
 		mav.addObject("dto", dto);
 		
@@ -244,7 +244,7 @@ public class SooksoCont {
 	public ModelAndView updateForm(String s_cn, String room_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/updateForm");
-		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기
+		SooksoDTO dto = dao.read(s_cn);// 수정하고자 하는 행 가져오기
 		mav.addObject("dto", dto);
 		return mav;
 	}// updateForm() end
@@ -255,7 +255,7 @@ public class SooksoCont {
 		mav.setViewName("sookso/msgView");
 
 		String basePath = req.getRealPath("/storage");
-		SooksoDTO oldDTO = dao.read(dto.getS_cn(), dto.getRoom_cn()); // 기존에 저장된 정보 가져오기
+		SooksoDTO oldDTO = dao.read(dto.getS_cn()); // 기존에 저장된 정보 가져오기
 		// ---------------------------------------------------------------------
 		// 파일을 수정할 것인지?
 
@@ -299,7 +299,7 @@ public class SooksoCont {
 	public ModelAndView updateForm2(String s_cn, String room_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/updateForm2");
-		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기 
+		SooksoDTO dto = dao.read(s_cn);// 수정하고자 하는 행 가져오기 
 		mav.addObject("dto", dto);
 		return mav;
 	}// updateForm() end
@@ -310,7 +310,7 @@ public class SooksoCont {
 		mav.setViewName("tour/msgView");
 
 		String basePath = req.getRealPath("/storage");
-		SooksoDTO oldDTO = dao.read(dto.getS_cn(), dto.getRoom_cn()); // 기존에 저장된 정보 가져오기
+		SooksoDTO oldDTO = dao.read(dto.getS_cn()); // 기존에 저장된 정보 가져오기
 		// ---------------------------------------------------------------------
 		// 파일을 수정할 것인지?
 
@@ -352,7 +352,7 @@ public class SooksoCont {
 	public ModelAndView deleteForm(String s_cn, String room_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/deleteForm");
-		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기
+		SooksoDTO dto = dao.read(s_cn);// 수정하고자 하는 행 가져오기
 		mav.addObject("dto", dto);
 		return mav;
 	}// deleteForm() end
@@ -363,7 +363,7 @@ public class SooksoCont {
 		mav.setViewName("sookso/msgView");
 
 		// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
-		SooksoDTO oldDTO = dao.read(s_cn, room_cn);
+		SooksoDTO oldDTO = dao.read(s_cn);
 
 		int cnt = dao.delete(s_cn);
 		if (cnt == 0) {
@@ -390,7 +390,7 @@ public class SooksoCont {
 	public ModelAndView deleteForm2(String s_cn, String room_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/deleteForm2");
-		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기
+		SooksoDTO dto = dao.read(s_cn);// 수정하고자 하는 행 가져오기
 		mav.addObject("dto", dto);
 		return mav;
 	}// deleteForm() end
@@ -401,7 +401,7 @@ public class SooksoCont {
 		mav.setViewName("sookso/msgView");
 
 		// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
-		SooksoDTO oldDTO = dao.read(s_cn, room_cn);
+		SooksoDTO oldDTO = dao.read(s_cn);
 
 		int cnt = dao.delete2(room_cn);
 		if (cnt == 0) {
