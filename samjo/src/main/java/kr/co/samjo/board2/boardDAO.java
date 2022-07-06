@@ -27,7 +27,7 @@ public class boardDAO {
 
 			sql = new StringBuilder();
 			sql.append(" INSERT INTO tb_bbs2(bbs_idx, bbs_img, bbs_id, bbs_title, bbs_content, bbs_count, bbs_date) ");
-			sql.append(" VALUES(bbs_seq2.nextval, ?, ?, ?, ?, ?, ?, ?, sysdate) ");
+			sql.append(" VALUES(bbs_seq2.nextval, ?, ?, ?, ?, ?, sysdate) ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getBbs_img());

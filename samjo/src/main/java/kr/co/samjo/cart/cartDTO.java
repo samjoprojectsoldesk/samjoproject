@@ -2,6 +2,8 @@ package kr.co.samjo.cart;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import kr.co.samjo.product.rentalcar.rentalcarDAO;
 import kr.co.samjo.product.rentalcar.rentalcarDTO;
 
@@ -12,7 +14,9 @@ public class cartDTO {
 	private String s_code;// VARCHAR2(10) NOT NULL 	상품코드
 	private int cnt;// NUMBER 						수량
 	private int p_cnt;// NUMBER NOT NULL 			인원
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date sdate;// VARCHAR2(30) NOT NULL 	이용시작일
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fdate;// VARCHAR2(30)			이용끝일
 	private String s_name;// 상품명
 	public cartDTO() {}

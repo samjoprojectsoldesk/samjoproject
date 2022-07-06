@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.samjo.tour.TourDTO;
 import net.utility.UploadSaveManager;
 import net.utility.Utility;
 
@@ -236,6 +237,9 @@ public class packagetourCont {
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link2", link2);
+				// 첨부했던 파일 삭제
+				String basePath = req.getRealPath("/storage");
+				UploadSaveManager.deleteFile(basePath, oldDTO.getPack_img());
 			} // if end
 			return mav;
 		}// deleteProc() end
@@ -256,10 +260,29 @@ public class packagetourCont {
 		
 //UpdateProc
 		@RequestMapping(value = "/admin/packagetourUpdate.do", method = RequestMethod.POST)
-		public ModelAndView updateProc(@ModelAttribute packagetourDTO dto) {
+		public ModelAndView updateProc(@ModelAttribute packagetourDTO dto, HttpServletRequest req) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("packagetour/msgView");
 
+			String basePath = req.getRealPath("/storage");
+			packagetourDTO oldDTO = dao.read(dto.getPack_no()); // 기존에 저장된 정보
+			
+			// 파일을 수정할 것인지?
+
+			// 1)
+			MultipartFile posterMF = dto.getPosterMF();
+			if (posterMF.getSize() > 0) { // 새로운 포스터 파일이 첨부되서 전송되었는지?
+				// 기존 파일 삭제
+				UploadSaveManager.deleteFile(basePath, oldDTO.getPack_img());
+				// 신규 파일 저장
+				String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
+				dto.setPack_img(poster); // 새롭게 첨부된 신규 파일명
+				
+			} else {
+				// 포스터 파일을 수정하지 않는 경우
+				dto.setPack_img(oldDTO.getPack_img()); // 기존에 저장된 파일명
+			} // if end
+			
 			int cnt = dao.update(dto);
 			
 			if (cnt == 0) {

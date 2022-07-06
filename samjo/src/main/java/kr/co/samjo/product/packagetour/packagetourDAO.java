@@ -252,15 +252,16 @@ public class packagetourDAO {
 			sql.append(" WHERE pack_no=? ");
 			
 			pstmt = con.prepareStatement(sql.toString());
-			dto.setPack_no(rs.getString("pack_no"));
-        	dto.setPack_name(rs.getString("pack_name"));
-        	dto.setPack_cose(rs.getString("pack_cose"));
-        	dto.setPack_plan_start(sdf.parse(rs.getString("pack_plan_start")));
-        	dto.setPack_plan_end(sdf.parse(rs.getString("pack_plan_end")));
-        	dto.setPack_price(rs.getInt("pack_price"));
-        	dto.setPack_people(rs.getInt("pack_people"));
-        	dto.setPack_cont(rs.getString("pack_cont"));
-        	dto.setPack_img(rs.getString("pack_img"));
+			pstmt.setString(1, dto.getPack_no());
+			pstmt.setString(2, dto.getPack_name());
+			pstmt.setString(3, dto.getPack_cose());
+			pstmt.setString(4, dto.getPack_plan_start().toLocaleString());
+			pstmt.setString(5, dto.getPack_plan_end().toLocaleString());
+			pstmt.setInt(6, dto.getPack_price());
+			pstmt.setInt(7, dto.getPack_people());
+			pstmt.setString(8, dto.getPack_img());
+			pstmt.setString(9, dto.getPack_cont());
+			pstmt.setString(10, dto.getPack_no());
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("패키지 여행 수정 실패" + e);

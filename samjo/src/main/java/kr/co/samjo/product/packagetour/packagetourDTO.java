@@ -49,14 +49,15 @@ public class packagetourDTO {
 	}
 
 	private MultipartFile posterMF;
-	
-	public void setPosterMF(MultipartFile posterMF) {
-		this.posterMF = posterMF;
-	}
+
    
     public MultipartFile getPosterMF() {
         return posterMF;
     }
+	
+	public void setPosterMF(MultipartFile posterMF) {
+		this.posterMF = posterMF;
+	}
 
 	public String getPack_no() {
 		return pack_no;

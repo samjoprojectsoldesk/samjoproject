@@ -468,35 +468,7 @@ public int create2(SooksoDTO dto) {
 	}// reviewtotalRowCount() end
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	public int create3(cartDTO dto) {
-		int cnt=0;
-		try {
-			con=dbopen.getConnection(); //DB연결
-			
-			sql=new StringBuilder();
 
-			sql.append(" INSERT INTO tb_cart(c_no, user_id, s_code, cnt, p_cnt, sdate, fdate) ");
-			sql.append(" VALUES( cart_seq.nextval, ?, ?, ?, ?, ?, ?) ");
-			
-			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1, dto.getUser_id());
-			pstmt.setString(2, dto.getS_code());
-			pstmt.setInt(3, dto.getCnt());
-			pstmt.setInt(4, dto.getP_cnt());
-			pstmt.setString(5, dto.getSdate());
-			pstmt.setString(6, dto.getFdate());
-			
-			cnt=pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			System.out.println("장바구니등록실패" + e);
-		}finally {
-			DBClose.close(con,pstmt);
-		}
-		return cnt;
-	}
-	
 	public int create(cartDTO dto) {
 		int cnt=0;
 		try {
@@ -512,8 +484,8 @@ public int create2(SooksoDTO dto) {
 			pstmt.setString(2, dto.getS_code());
 			pstmt.setInt(3, dto.getCnt());
 			pstmt.setInt(4, dto.getP_cnt());
-			pstmt.setString(5, dto.getSdate());
-			pstmt.setString(6, dto.getFdate());
+			pstmt.setString(5, dto.getSdate().toLocaleString());
+			pstmt.setString(6, dto.getFdate().toLocaleString());
 			
 			cnt=pstmt.executeUpdate();
 			
@@ -524,4 +496,6 @@ public int create2(SooksoDTO dto) {
 		}
 		return cnt;
 	}
+	
+	
 }

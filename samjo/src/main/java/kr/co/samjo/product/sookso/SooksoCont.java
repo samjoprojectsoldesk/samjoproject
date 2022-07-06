@@ -1,9 +1,12 @@
 package kr.co.samjo.product.sookso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,7 @@ import net.utility.Utility;
 public class SooksoCont {
 
 	SooksoDAO dao =null;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");
 	
 	public SooksoCont() {
 		dao = new SooksoDAO();//DB연결 객체 생성
@@ -233,46 +237,8 @@ public class SooksoCont {
         return mav;
     }//read() end
 
-	@RequestMapping("/cart/addCart.do")
-	public ModelAndView cart(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String user_id = (String) session.getAttribute("s_id");
-		if(user_id == null) {
-			user_id = "guest";
-		}
-				
-		cartDTO cdto = new cartDTO();
-		cdto.setUser_id(user_id);
-		cdto.setS_code(request.getParameter("s_code"));
-		cdto.setCnt(Integer.parseInt(request.getParameter("cnt")));
-		cdto.setP_cnt(Integer.parseInt(request.getParameter("p_cnt")));
-		cdto.setSdate(request.getParameter("sdate"));
-		cdto.setFdate(request.getParameter("fdate"));
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("cart/msgView1");
-		int cnt = dao.create(cdto);
-
-		if (cnt == 0) {
-			String msg = "<p>장바구니 등록 실패</p>";
-			String img = "<img src='../images/fail.png'>";
-			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"list.do\"'>";
-			mav.addObject("msg", msg);
-			mav.addObject("img", img);
-			mav.addObject("link1", link1);
-			mav.addObject("link2", link2);
-		} else {
-			String msg = "<p>장바구니 등록 성공</p>";
-			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"list.do\"'>";
-			mav.addObject("msg", msg);
-			mav.addObject("img", img);
-			mav.addObject("link2", link2);
-		}
-
-		return mav;
-    }//list() end
+	
+    
 
 	@RequestMapping(value = "/admin/Sooksoupdate.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(String s_cn, String room_cn) {
@@ -286,7 +252,7 @@ public class SooksoCont {
 	@RequestMapping(value = "/admin/Sooksoupdate.do", method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute SooksoDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("tour/msgView");
+		mav.setViewName("sookso/msgView");
 
 		String basePath = req.getRealPath("/storage");
 		SooksoDTO oldDTO = dao.read(dto.getS_cn(), dto.getRoom_cn()); // 기존에 저장된 정보 가져오기
@@ -456,5 +422,48 @@ public class SooksoCont {
 		} // if end
 		return mav;
 	}// deleteProc() end
+	
+	
+	//////////////////////////////////////////////////////////////
+	
+	//장바구니 등록
+		@RequestMapping("cart/addCart.do")
+		public ModelAndView addCart(@ModelAttribute cartDTO dto, HttpServletRequest request, HttpServletResponse response) throws ParseException {
+			HttpSession session = request.getSession();
+			String user_id = (String) session.getAttribute("s_id");
+			if(user_id == null) {
+				user_id = "guest";
+			}
+					
+			cartDTO cdto = new cartDTO();
+			cdto.setUser_id(user_id);
+			cdto.setS_code(request.getParameter("s_code"));
+			cdto.setCnt(Integer.parseInt(request.getParameter("cnt")));
+			cdto.setP_cnt(Integer.parseInt(request.getParameter("p_cnt")));
+			cdto.setSdate(sdf.parse(request.getParameter("sdate")));
+			cdto.setFdate(sdf.parse(request.getParameter("fdate")));
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("cart/msgView");
+			int cnt = dao.create(cdto);
+			if (cnt == 0) {
+				String msg = "<p>장바구니 등록 실패</p>";
+				String img = "<img src='../images/fail.png'>";
+				String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+				String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"list.do\"'>";
+				mav.addObject("msg", msg);
+				mav.addObject("img", img);
+				mav.addObject("link1", link1);
+				mav.addObject("link2", link2);
+			} else {
+				String msg = "<p>장바구니 등록 성공</p>";
+				String img = "<img src='../images/sound.png'>";
+				String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"list.do\"'>";
+				mav.addObject("msg", msg);
+				mav.addObject("img", img);
+				mav.addObject("link2", link2);
+			}
+			return mav;
+		}
 
 }

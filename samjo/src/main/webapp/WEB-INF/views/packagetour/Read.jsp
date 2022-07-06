@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp"%>
 <!-- 본문 시작 Read.jsp -->
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
@@ -26,7 +26,7 @@
 						<strong>패키지 여행 정보</strong>						
 						<hr>
 						<li>여행코스&emsp;&emsp;&emsp;${dto.pack_cose}</li>
-						<li>모집일정&nbsp;&nbsp;&nbsp;&nbsp;${dto.pack_plan}</li>
+						<li>모집일정&nbsp;&nbsp;&nbsp;&nbsp;${dto.pack_plan_start}-${dto.pack_plan_end}</li>
 						<li>비용&emsp;&emsp;&emsp;${dto.pack_price}</li>
 						<li>모집인원&emsp;&emsp;&emsp;${dto.pack_people}</li>
 					</ul>
