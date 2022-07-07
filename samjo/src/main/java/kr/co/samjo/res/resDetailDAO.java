@@ -35,9 +35,9 @@ public class resDetailDAO {
 			pstmt.setString(1, res_no);
 			pstmt.setString(2, dto.getS_code());
 			pstmt.setInt(3, dto.getP_cnt());
-			pstmt.setString(4, dto.getSdate().toLocaleString());
+			pstmt.setString(4, dto.getSdate());
         	if(dto.getFdate()!=null) {
-			pstmt.setString(5, dto.getFdate().toLocaleString());}
+			pstmt.setString(5, dto.getFdate());}
         	else {pstmt.setString(5, "NULL");}
 			
 			cnt=pstmt.executeUpdate();
