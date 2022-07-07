@@ -30,9 +30,6 @@
 							<li>내용&nbsp;&nbsp;&nbsp;&nbsp;${dto.c_cont}</li>
 							<li>업체&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_name}</li>
 							<li>전화번호&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_phone}</li>
-							<li>사무실&nbsp;&nbsp;&nbsp;&nbsp; <a class="textLink"
-								href="${dto.s_link}" target="_blank">${dto.s_link}</a>
-							</li>
 							</ul>
 					</div>
 				</div>
@@ -100,8 +97,7 @@
                      </div>
                      <button type="submit">장바구니</button>
                      <input type="button" value="수정" onclick="location.href='/admin/rentalcarUpdate.do?c_code=${dto.c_code}'">
-                        <input type="button" value="삭제" onclick="location.href='/admin/rentalcarDelete.do?c_code=${dto.c_code}'">
-          
+                        <input type="button" value="삭제" onclick="location.href='/admin/rentalcarDelete.do?c_code=${dto.c_code}'">         
                </div>
             </c:forEach>
             </div>

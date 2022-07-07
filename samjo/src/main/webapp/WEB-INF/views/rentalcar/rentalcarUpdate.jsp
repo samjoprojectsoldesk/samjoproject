@@ -25,18 +25,6 @@
 				<input type="text" class="form-control" id="u_code" name="u_code" placeholder="C000_A00">
 			</div>
 			<div class="form-group">
-				<label for="u_name">업체명</label> 
-				<input type="text" class="form-control" id="u_name" name="u_name">
-			</div>
-			<div class="form-group">
-				<label for="u_phone">연락처</label> 
-				<input type="text" class="form-control" id="u_phone" name="u_phone">
-			</div>
-			<div class="form-group">
-				<label for="u_office">사무실</label> 
-				<input type="number" class="form-control" id="u_office" name="u_office">
-			</div>
-			<div class="form-group">
 				<label for="c_code">차량코드</label> 
 				<input type="text" class="form-control" id="c_code" name="c_code">
 			</div>
@@ -46,7 +34,15 @@
 			</div>
 			<div class="form-group">
 				<label for="c_name">차량명</label> 
-				<input type="text" class="form-control" id="c_name" name="c_name">
+				<input type="number" class="form-control" id="c_name" name="c_name">
+			</div>
+			<div class="form-group">
+				<label for="c_sum">금액(1일)</label> 
+				<input type="text" class="form-control" id="c_sum" name="c_sum">
+			</div>
+			<div class="form-group">
+				<label for="c_charge">추가요금(1시간당)</label> 
+				<input type="text" class="form-control" id="c_charge" name="c_charge">
 			</div>
 			<div class="form-group">
 				<label for="c_plan_start">모집일정(출발)</label> 
@@ -57,19 +53,16 @@
 				<input type="date" class="form-control" id="c_plan_end" name="c_plan_end">
 			</div>
 			<div class="form-group">
-				<label for="c_sum">금액(1일)</label> 
-				<input type="number" class="form-control" id="c_sum" name="c_sum">
-			</div>
-			<div class="form-group">
-				<label for="c_charge">추가요금(1시간당)</label> 
-				<input type="number" class="form-control" id="c_charge" name="c_charge">
-			</div>
-			<div class="form-group">
 				<label for="c_reserve">예약가능 차량수</label> 
 				<input type="number" class="form-control" id="c_reserve" name="c_reserve">
 			</div>
 			<div class="form-group">
-				<label for="c_content">상세 정보 및 내용</label>
+				<label for="posterMF2">이미지</label> 
+				<img src='../storage/${dto.c_img}' width='20%'>
+				<input type="file" class="form-control-file" id="posterMF2" name="posterMF2">
+			</div>
+			<div class="form-group">
+				<label for="c_cont">상세 정보 및 내용</label>
 				<textarea class="form-control" id="c_cont" name="c_cont" rows="3"></textarea>
 			</div>
 			<div class='bottom'>

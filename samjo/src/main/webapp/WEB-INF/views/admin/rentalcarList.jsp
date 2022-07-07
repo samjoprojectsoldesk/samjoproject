@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header2.jsp"%>
-<!-- 본문 시작 rentalcarList.jsp -->
+<!-- 본문 시작 tourist.jsp -->
 <aside id="fh5co-hero-T">
 	<div class="flexslider">
 		<div class="container">
@@ -10,7 +10,7 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">렌트카 목록</h2>
-					<button type="button" class="btn btn-primary" onclick="location.href='rentalIns.do'">등록</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='rentalcarIns.do'">등록</button>
 			</div>
 		</div>
 	</div>
@@ -36,29 +36,28 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th scope="col">업체코드</th>
-								<th scope="col">업체명</th>
-								<th scope="col">연락처</th>
-								<th scope="col">사무실</th>
+								<th scope="col">숙소코드</th>
+								<th scope="col">숙소명</th>
+								<th scope="col">숙소주소</th>
 								<th scope="col">수정 / 삭제</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="dto" items="${list}">
 								<tr>
-									<th scope="row">${dto.u_code}</th>
-									<td onclick="location.href='rentalcarList/Read.do?u_code=${dto.u_code}'">${dto.u_name}</td>
-									<td>${dto.u_office}</td>
+									<th scope="row">${dto.s_cn}</th>
+									<td onclick="location.href='sooksoList/read.do?s_cn=${dto.s_cn}'">${dto.s_name}</td>
+									<td>${dto.s_addr}</td>
 									<td><button type="button" class="btn btn-light"
-											onclick="location.href='rentalUpdate.do?u_code=${dto.u_code}'">수정</button>
+											onclick="location.href='sooksoupdate.do?s_cn=${dto.s_cn}'">수정</button>
 										<button type="button" class="btn btn-danger"
-											onclick="location.href='rentalDelete.do?u_code=${dto.u_code}'">삭제</button></td>
+											onclick="location.href='sooksodelete.do?s_cn=${dto.s_cn}'">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 					
-				</div>S
+				</div>
 			</div>
 		</div>
 	</div>
@@ -76,15 +75,15 @@
 				</c:if>
 
 				<c:if test="${startPage>0}">
-					<a href="/rentalcar/List.do?pageNum=${startPage}">[이전]</a>
+					<a href="/tour/tourist.do?pageNum=${startPage}">[이전]</a>
 				</c:if>
 
 				<c:forEach var="i" begin="${startPage+1}" end="${endPage-1}">
-					<a href="/rentalcar/List.do?pageNum=${i}">[${i}]</a>
+					<a href="/tour/tourist.do?pageNum=${i}">[${i}]</a>
 				</c:forEach>
 
 				<c:if test="${endPage<pageCount}">
-					<a href="/rentalcar/List.do?pageNum=${startPage+11}">[다음]</a>
+					<a href="/tour/tourist.do?pageNum=${startPage+11}">[다음]</a>
 				</c:if>
 			</div>
 		</c:if>

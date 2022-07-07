@@ -93,7 +93,7 @@
 									<a class="bold" href="work.html">예약</a>
 									<ul class="fh5co-sub-menu">
 									 	<li><a href="left-sidebar.html">숙박</a></li>
-									 	<li><a href="/rental/List.do">렌트카</a></li>
+									 	<li><a href="/rentalcar/List.do">렌트카</a></li>
 										<li><a href="#" class="fh5co-sub-ddown">맛집</a></li>
 										<li><a href="/packagetour/List.do">패키지</a></li>
 									</ul>
