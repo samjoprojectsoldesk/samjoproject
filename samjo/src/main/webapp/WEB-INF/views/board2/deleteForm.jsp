@@ -4,8 +4,8 @@
 
 <!-- 본문 시작 -->
 
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
@@ -19,7 +19,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="deleteForm.do" class="tourcreate"
+		<form name="frm" method="post" action="delete.do" class="tourcreate"
 			enctype="multipart/form-data">
 			<input type="hidden" name="bbs_idx" value="${dto.bbs_idx}">
 			<div class="content">

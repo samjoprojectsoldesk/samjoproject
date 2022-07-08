@@ -17,21 +17,38 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.samjo.cart.cartDAO;
 import kr.co.samjo.cart.cartDTO;
 
-
 @Controller
 public class resCont {
 
 	resDAO dao = null;
 	cartDAO cdao = null;
 	resDetailDAO dt_dao = null;
-	
+
 	public resCont() {
 		cdao = new cartDAO();
 		dao = new resDAO();
 		dt_dao = new resDetailDAO();
 		System.out.println("-----resCont객체 생성됨");
 	}
-	
+
+
+	@RequestMapping("reviewcreate.do")
+	public ModelAndView create(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("s_id");
+		resDetailDTO resdto = new resDetailDTO();
+		resDetailDAO resdao = new resDetailDAO();
+		resdto = resdao.read(Integer.parseInt(request.getParameter("detail_no")));
+
+		mav.addObject("review_code", resdto.getRes_no());
+		mav.addObject("s_code", resdto.getS_code());
+		mav.addObject("review_user_id", userId);
+
+		mav.setViewName("review/createForm");
+		return mav;
+	}// create() end
+
 	//장바구니 예약페이지 이동
 	@RequestMapping("/res/reserve.do")
 	public ModelAndView reserve(HttpServletRequest request, HttpServletResponse response) {
@@ -39,46 +56,50 @@ public class resCont {
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> map = new HashMap<String, Object>();
 		String userId = (String) session.getAttribute("s_id");
-		if(userId==null) {userId="guest";}
+		if (userId == null) {
+			userId = "guest";
+		}
 		ArrayList<cartDTO> list = new ArrayList<cartDTO>();
 		list = cdao.list(userId.trim());
 		long amount = cdao.amount(list);
-		
-		if(list==null) {
+
+		if (list == null) {
 			map.put("list", list);
 			map.put("amount", amount);
 			map.put("count", 0);
-		}else {
+		} else {
 			map.put("list", list);
 			map.put("amount", amount);
 			map.put("count", list.size());
 		}
-		
+
 		mav.setViewName("/res/reserve");
-		mav.addObject("map", map);		
+		mav.addObject("map", map);
 		return mav;
 	}
-	
-	//장바구니 물품 예약
+
+	// 장바구니 물품 예약
 	@RequestMapping(value = "/res/reserve.do", method = RequestMethod.POST)
-	public ModelAndView reserveProc(HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView reserveProc(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/res/msgView");
-		
+
 		resDTO rdto = new resDTO();
 		String user_id = (String) session.getAttribute("s_id");
-		if(user_id == null) {user_id="guest";}
-		
+		if (user_id == null) {
+			user_id = "guest";
+		}
+
 		cartDAO cdao = new cartDAO();
 		ArrayList<cartDTO> list = cdao.list(user_id);
 		rdto.setUser_id(user_id);
 		rdto.setAmount(Integer.parseInt(request.getParameter("amount")));
 		rdto.setPay(request.getParameter("pay"));
 		rdto.setResult("Y");
-		
+
 		int cnt = dao.add(rdto);
-		
+
 		if (cnt == 0) {
 			String msg = "<p>예약 실패</p>";
 			String img = "<img src='../images/fail.png'>";
@@ -91,47 +112,49 @@ public class resCont {
 		} else {
 			String msg = "<p>예약 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"/res/list.do\"'>";
+			String link2 = "<input type='button' value='예약목록' onclick='location.href=\"/res/list.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
 			cdao.delete(user_id);
 		}
-		
+
 		ArrayList<resDTO> reslist = dao.list(user_id);
-		
-		for(int i=0;i<list.size();i++) {
-			dt_dao.create(list.get(i), reslist.get(reslist.size()-1).getRes_no());
+
+		for (int i = 0; i < list.size(); i++) {
+			dt_dao.create(list.get(i), reslist.get(reslist.size() - 1).getRes_no());
 		}
-		
+
 		return mav;
 	}
 
-	//예약리스트
+	// 예약리스트
 	@RequestMapping("/res/list.do")
 	public ModelAndView list(@ModelAttribute resDTO dto, HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		ModelAndView mav = new ModelAndView();
 		String userId = (String) session.getAttribute("s_id");
-		if(userId==null) {userId="guest";}
+		if (userId == null) {
+			userId = "guest";
+		}
 		ArrayList<resDTO> list = new ArrayList<resDTO>();
 		list = dao.list(userId.trim());
-		
-		if(list==null) {
+
+		if (list == null) {
 			map.put("list", list);
 			map.put("count", 0);
-		}else {
+		} else {
 			map.put("list", list);
 			map.put("count", list.size());
 		}
-		
+
 		mav.setViewName("res/list");
 		mav.addObject("map", map);
-		
+
 		return mav;
 	}// list end
-	
-	//예약상세보기
+
+	// 예약상세보기
 	@RequestMapping("res/read.do")
 	public ModelAndView read(String res_no) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -140,23 +163,23 @@ public class resCont {
 		ArrayList<resDetailDTO> list = new ArrayList<resDetailDTO>();
 		list = dt_dao.list(res_no);
 
-		if(list==null) {
+		if (list == null) {
 			map.put("list", list);
 			map.put("count", 0);
-		}else {
+		} else {
 			map.put("list", list);
 			map.put("count", list.size());
 		}
-		
+
 		return mav;
 	}
-	
-	//예약취소
+
+	// 예약취소
 	@RequestMapping("res/delete.do")
 	public ModelAndView delete(String res_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/res/msgView");
-				
+
 		int cnt = dao.delete(res_no);
 
 		if (cnt == 0) {
@@ -176,8 +199,8 @@ public class resCont {
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
 		}
-		
+
 		return mav;
 	}
-	
+
 }

@@ -1,13 +1,14 @@
 package kr.co.samjo.product.rental;
 
 import org.springframework.web.multipart.MultipartFile;
+import kr.co.samjo.product.rentalcar.*;
 
 public class rentalDTO {
 
 	private String u_code;	//VARCHAR2(10)	NOT NULL	업체코드
 	private String u_name;	//VARCHAR2(20)	NOT NULL	업체명
 	private String u_phone;	//VARCHAR2(20) 	NOT NULL	연락처
-	private String u_office;//VARCHAR2(200)	NOT NULL	사무실
+	private String u_office;//VARCHAR2(200)	NOT NULL	사무실(주소)
 	private String u_img;
 	private String u_cont;
 	private String review_user_id;

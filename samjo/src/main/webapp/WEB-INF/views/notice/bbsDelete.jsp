@@ -19,7 +19,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="../notice/bbsDelete.do" class="bbsform"
+		<form name="frm" method="post" action="delete.do" class="bbsform"
 			enctype="multipart/form-data">
 			<input type="hidden" name="board_no" value="${dto.board_no}">
 			<div class="content">
@@ -27,7 +27,7 @@
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">예</button>
-				<button type="button" class="btn btn-secondary" onclick="location.href='/notice/bbsList.do?board_no=${dto.board_no}'">아니오</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='/notice/List.do?board_no=${dto.board_no}'">아니오</button>
 			</div>
 		</form>
 	</div>

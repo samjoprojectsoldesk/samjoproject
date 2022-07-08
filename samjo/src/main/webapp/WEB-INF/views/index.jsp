@@ -100,7 +100,7 @@
 										<ul class="fh5co-sub-menu">
 											<li><a href="/sookso/List.do">숙박</a></li>
 											<li><a href="/rentalcar/List.do">렌트카</a></li>
-											<li><a href="#" class="fh5co-sub-ddown">맛집</a></li>
+											<li><a href="/maszip/List.do">맛집</a></li>
 											<li><a href="/packagetour/List.do">패키지</a></li>
 										</ul></li>
 									<li><a class="bold" href="#" class="fh5co-sub-ddown">커뮤니티</a>

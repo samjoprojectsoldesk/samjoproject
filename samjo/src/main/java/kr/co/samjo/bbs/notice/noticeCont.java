@@ -26,7 +26,7 @@ public class noticeCont {
 	}// end
 //bbsIns
 
-	@RequestMapping(value = "notice/bbsIns.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/notice/create.do", method = RequestMethod.GET)
 	public ModelAndView bbsIns() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/bbsIns");
@@ -34,7 +34,7 @@ public class noticeCont {
 	}// bbsIns() end
 
 // bbsInsProc
-	@RequestMapping(value = "notice/bbsIns.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/notice/create.do", method = RequestMethod.POST)
 	public ModelAndView bbsIns(@ModelAttribute noticeDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/msgView");
@@ -44,7 +44,7 @@ public class noticeCont {
 			String msg = "<p>공지사항 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"bbsList.do\"'>";
+			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"List.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -52,8 +52,8 @@ public class noticeCont {
 		} else {
 			String msg = "<p>공지사항 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link1 = "<input type='button' value='계속등록' onclick='location.href=\"bbsIns.do\"'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"bbsList.do\"'>";
+			String link1 = "<input type='button' value='계속등록' onclick='location.href=\"create.do\"'>";
+			String link2 = "<input type='button' value='공지사항 목록' onclick='location.href=\"List.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -63,7 +63,7 @@ public class noticeCont {
 	}// bbsInsProc() end
 
 	//List	
-	@RequestMapping("notice/bbsList.do")
+	@RequestMapping("notice/List.do")
 	public ModelAndView bbsList(HttpServletRequest req) {
 		
 		//입력된 검색어 확인(검색어가 있으면 검색어 존재, 검색어가 없으면 빈문자열 "")
@@ -125,7 +125,7 @@ public class noticeCont {
 
 
 //Read
-	@RequestMapping("notice/bbsRead.do")
+	@RequestMapping("notice/read.do")
 	public ModelAndView bbsRead(int board_no) {
 		ModelAndView mav = new ModelAndView();
 		noticeDTO dto = dao.read(board_no);
@@ -135,7 +135,7 @@ public class noticeCont {
 	}// read() end
 
 //Delete	
-	@RequestMapping(value = "/notice/bbsDelete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/notice/delete.do", method = RequestMethod.GET)
 	public ModelAndView bbsDelete(int board_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/bbsDelete");
@@ -145,7 +145,7 @@ public class noticeCont {
 	}// deleteForm() end
 
 //DeleteProc	
-	@RequestMapping(value = "/notice/bbsDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/notice/delete.do", method = RequestMethod.POST)
 	public ModelAndView bbsDeleteProc(int board_no, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/msgView");
@@ -158,7 +158,7 @@ public class noticeCont {
 			String msg = "<p>공지사항 삭제 실패!!</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../notice/bbsList.do'\">";
+			String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -166,7 +166,7 @@ public class noticeCont {
 		} else {
 			String msg = "<p>공지사항이 삭제되었습니다</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../notice/bbsList.do'\">";
+			String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
@@ -175,7 +175,7 @@ public class noticeCont {
 	}// deleteProc() end
 
 //Update	
-	@RequestMapping(value = "/notice/bbsUpdate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/notice/update.do", method = RequestMethod.GET)
 	public ModelAndView bbsUpdate(int board_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/bbsUpdate");
@@ -185,7 +185,7 @@ public class noticeCont {
 	}// updateForm() end
 
 //UpdateProc
-	@RequestMapping(value = "/notice/bbsUpdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/notice/update.do", method = RequestMethod.POST)
 	public ModelAndView updateProc(@ModelAttribute noticeDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/msgView");
@@ -196,7 +196,7 @@ public class noticeCont {
 			String msg = "<p>공지사항 수정 실패!!</p>";
 			String img = "<img src='../images/fail.png'>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../notice/bbsList.do'\">";
+			String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link1", link1);
@@ -204,7 +204,7 @@ public class noticeCont {
 		} else {
 			String msg = "<p>공지사항이 수정되었습니다</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='/../notice/bbsList.do'\">";
+			String link2 = "<input type='button' value='공지사항 목록' onclick=\"location.href='List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);

@@ -1,6 +1,7 @@
 package kr.co.samjo.product.rentalcar;
 
 import java.util.Date;
+import kr.co.samjo.product.rental.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;

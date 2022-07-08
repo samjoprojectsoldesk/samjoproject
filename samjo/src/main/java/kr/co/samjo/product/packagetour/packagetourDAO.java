@@ -253,13 +253,15 @@ public class packagetourDAO {
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getPack_no());
 			pstmt.setString(2, dto.getPack_name());
-			pstmt.setString(3, dto.getPack_cose());		
-			pstmt.setString(4, dto.getPack_plan_start().toLocaleString());		
-			pstmt.setString(5, dto.getPack_plan_end().toLocaleString());	
+			pstmt.setString(3, dto.getPack_cose());
+			pstmt.setString(4, dto.getPack_plan_start().toLocaleString());
+			pstmt.setString(5, dto.getPack_plan_end().toLocaleString());
 			pstmt.setInt(6, dto.getPack_price());
 			pstmt.setInt(7, dto.getPack_people());
 			pstmt.setString(8, dto.getPack_cont());
 			pstmt.setString(9, dto.getPack_img());
+			pstmt.setString(10, dto.getPack_no());
+
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("패키지 여행 수정 실패" + e);

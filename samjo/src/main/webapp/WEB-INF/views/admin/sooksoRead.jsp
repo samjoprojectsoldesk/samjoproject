@@ -56,7 +56,7 @@
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">방 목록</h2>
 				<button type="button" class="btn btn-primary"
-					onclick="location.href='roomcreate.do'">방 등록</button>
+					onclick="location.href='roomcreate.do?s_cn=${dto.s_cn}'">방 등록</button>
 			</div>
 
 
@@ -84,9 +84,9 @@
 									<td>${dto.room_ep}</td>
 									<td>${dto.room_img}</td>
 									<td><button type="button" class="btn btn-light"
-											onclick="location.href='sooksoupdate.do?s_cn=${dto.s_cn}'">수정</button>
+											onclick="location.href='roomupdate.do?s_cn=${dto.s_cn}'">수정</button>
 										<button type="button" class="btn btn-danger"
-											onclick="location.href='sooksodelete.do?s_cn=${dto.s_cn}'">삭제</button></td>
+											onclick="location.href='roomdelete.do?s_cn=${dto.s_cn}'">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

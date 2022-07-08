@@ -3,20 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp"%>
 <!-- 본문 시작 List.jsp -->
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
-				<h2
-					style="margin-top: 300px; text-align: center; font-weight: bold;"
+				<h2 style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">렌트카</h2>
 			</div>
 		</div>
 	</div>
-
+</aside>
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
-		<form action="List.do">
+		<form action="/rentalcar/List.do">
 			<input type="text" name="word" id="word"
 				style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
 			&nbsp;&nbsp; <input type="submit" value="검색"
@@ -25,32 +24,23 @@
 		</form>
 	</div>
 	<!-- 검색 끝 -->
-</aside>
 <div id="fh5co-work-section">
 	<div class="container">
 		<div class="row">
 			<c:forEach var="dto" items="${list}">
-				<div class="col-md-12 text-center project">
-					<a href="../rentalcar/List/Read.do?c_code=${dto.c_code}"
-						class="grid-project">
-						<div class="image-T">
-							<img src="../storage/${dto.c_img}" alt="Project"
-								class="img-responsive" style="width: 40%; float: left;">
+				<div class="col-md-4 text-center project">
+					<a href="../rentalcar/List/Read.do?u_code=${dto.u_code}" class="grid-project">
+							<img src="../storage/${dto.c_img}" alt="Project" class="img-responsive" style="margin: 0 auto; height:300px;">
+						<div class="desc">
+							<h3>${dto.u_name}</h3>
+							<span>${dto.u_office}</span>
 						</div>
-						<div class="desc-T">
-							<h3>${dto.c_name}</h3>
-							<span>${dto.c_kind}</span> <br> <br>
-							<span>${dto.c_sum}</span> <br> <br>
-							<span>${dto.c_charge}</span> <br> <br>
-							<span>${dto.c_reserve}</span> <br> <br>
-							<span>${dto.c_cont}</span> <br> <br>
-						</div>
-					</div>
+					</a>
 				</div>
 			</c:forEach>
 		</div>
 	</div>
-	
+
 	<!-- 페이지 리스트 -->
 	<div class="paging">
 		<c:if test="${requestScope.count>0 }">
@@ -78,6 +68,7 @@
 		</c:if>
 	</div>
 
-</div>
+
+
 <!-- 본문 끝 -->
 <%@ include file="../footer.jsp"%>

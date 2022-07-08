@@ -10,14 +10,13 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">자유게시판 목록</h2>
-					<button type="button" class="btn btn-primary" onclick="location.href='notice/bbsIns.do'">등록</button>
 			</div>
 		</div>
 	</div>
 
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
-		<form action="tourist.jsp">
+		<form action="List.do">
 			<input type="text" name="word" id="word"
 				style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
 			&nbsp;&nbsp; <input type="submit" value="검색"
@@ -47,11 +46,11 @@
 							<c:forEach var="dto" items="${list}">
 								<tr>
 									<th scope="row">${dto.bbs_idx}</th>
-									<td onclick="location.href='admin/boardread.do?bbs_idx=${dto.bbs_idx}'">${dto.bbs_title}</td>
+									<td onclick="location.href='/board/read.do?bbs_idx=${dto.bbs_idx}'">${dto.bbs_title}</td>
 									<td>${dto.bbs_id}</td>
 									<td>${dto.bbs_date}</td>
 									<td><button type="button" class="btn btn-danger"
-											onclick="location.href='deleteForm.do?bbs_idx=${dto.bbs_idx}'">삭제</button></td>
+											onclick="location.href='delete.do?bbs_idx=${dto.bbs_idx}'">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -75,15 +74,15 @@
 				</c:if>
 
 				<c:if test="${startPage>0}">
-					<a href="/tour/tourist.do?pageNum=${startPage}">[이전]</a>
+					<a href="/admin/board/List.do?pageNum=${startPage}">[이전]</a>
 				</c:if>
 
 				<c:forEach var="i" begin="${startPage+1}" end="${endPage-1}">
-					<a href="/tour/tourist.do?pageNum=${i}">[${i}]</a>
+					<a href="/admin/board/List.do?pageNum=${i}">[${i}]</a>
 				</c:forEach>
 
 				<c:if test="${endPage<pageCount}">
-					<a href="/tour/tourist.do?pageNum=${startPage+11}">[다음]</a>
+					<a href="/admin/board/List.do?pageNum=${startPage+11}">[다음]</a>
 				</c:if>
 			</div>
 		</c:if>

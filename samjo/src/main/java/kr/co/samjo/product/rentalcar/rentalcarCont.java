@@ -26,7 +26,7 @@ public class rentalcarCont {
 	@RequestMapping(value = "rentalcarIns.do", method = RequestMethod.GET) //admin/
 	public ModelAndView Ins() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("rentalcar/Ins");
+		mav.setViewName("rentalcar/rentalcarIns");
 		return mav;
 	}//Ins() end
 	
@@ -65,8 +65,8 @@ public class rentalcarCont {
 			} else {
 				String msg = "<p>렌트카 등록 성공</p>";
 				String img = "<img src='../images/sound.png'>";
-				String link1 = "<input type='button' value='계속등록' onclick='location.href=\"Ins.do\"'>";
-				String link2 = "<input type='button' value='렌트카 목록' onclick='location.href=\"List.do\"'>";
+				String link1 = "<input type='button' value='계속등록' onclick='location.href=\"rentalcar/rentalcarIns.do\"'>";
+				String link2 = "<input type='button' value='렌트카 목록' onclick='location.href=\"rentalcar/List.do\"'>";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link1", link1);
@@ -193,7 +193,7 @@ public class rentalcarCont {
 		@RequestMapping(value = "rentalcarDelete.do", method = RequestMethod.GET)//admin/
 		public ModelAndView Delete(String c_code) {
 			ModelAndView mav = new ModelAndView();
-			mav.setViewName("rentalcar/Delete");
+			mav.setViewName("rentalcar/rentalcarDelete");
 			rentalcarDTO dto = dao.read(c_code);// 수정하고자 하는 행 가져오기
 			mav.addObject("dto", dto);
 			return mav;

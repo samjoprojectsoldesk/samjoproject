@@ -63,14 +63,14 @@ public class MaszipCont {
 		if (cnt == 0) {
 			String msg = "<p>맛집 등록 실패</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/maszipList.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/maszip/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>맛집 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/maszipList.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/maszip/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
@@ -241,13 +241,13 @@ public class MaszipCont {
 		if (cnt == 0) {
 			String msg = "<p>맛집 수정 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/List.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/maszip/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>맛집 수정 되었습니다</p>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/maszip/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 		} // if end
@@ -276,13 +276,13 @@ public class MaszipCont {
 		if (cnt == 0) {
 			String msg = "<p>맛집 삭제 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/maszip/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>맛집이 삭제되었습니다</p>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/maszip/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 			// 첨부했던 파일 삭제

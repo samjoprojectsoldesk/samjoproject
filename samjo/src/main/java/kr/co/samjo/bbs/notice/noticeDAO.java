@@ -122,6 +122,8 @@ public class noticeDAO {//데이터베이스 관련 작업
     public noticeDTO read(int board_no) {
     	noticeDTO dto=null;
         try {
+        	
+        	incrementCnt(board_no);
             con=dbopen.getConnection();
             
             sql=new StringBuilder();

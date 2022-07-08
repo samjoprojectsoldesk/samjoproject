@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.samjo.product.maszip.MaszipDTO;
+import net.utility.UploadSaveManager;
+
 @Controller
 public class MemberCont {
 	
@@ -123,7 +126,7 @@ public class MemberCont {
 	@RequestMapping("/member/memberModify.do")
 	public ModelAndView memberModify() {
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/member/memberModify");
+		mav.setViewName("/member/memberModifyPRoc");
 		return mav;
 	}//memberModify() end
 	
@@ -208,6 +211,41 @@ public class MemberCont {
 		mav.setViewName("/member/memberWithdraw_ok");
 		return mav;
 	}//memberWithdraw_ok() end
+	
+	@RequestMapping(value = "/admin/userdelete.do", method = RequestMethod.GET)
+	public ModelAndView deleteForm(String id) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/deleteForm");
+		MemberDTO dto = dao.read(id);// 수정하고자 하는 행 가져오기
+		mav.addObject("dto", dto);
+		return mav;
+	}// deleteForm() end
+
+	@RequestMapping(value = "/admin/userdelete.do", method = RequestMethod.POST)
+	public ModelAndView deleteProc(String id, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("maszip/msgView");
+
+		// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
+		MemberDTO oldDTO = dao.read(id);
+
+		int cnt = dao.delete(id);
+		if (cnt == 0) {
+			String msg = "<p>회원 삭제 실패!!</p>";
+			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/maszip/List.do'\">";
+			mav.addObject("msg", msg);
+			mav.addObject("link1", link1);
+			mav.addObject("link2", link2);
+		} else {
+			String msg = "<p>회원이 삭제되었습니다</p>";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/maszip/List.do'\">";
+			mav.addObject("msg", msg);
+			mav.addObject("link2", link2);
+			
+		} // if end
+		return mav;
+	}// deleteProc() end
 	
 
 }

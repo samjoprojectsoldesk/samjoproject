@@ -84,7 +84,7 @@ public class cartDTO {
 			s_name = dao.read(s_code).getC_name();
 		}else if(this.s_code.charAt(0)=='S'){
 			SooksoDAO dao = new SooksoDAO();
-			s_name = dao.read(s_code).getS_name();
+			s_name = dao.readroom(s_code).getS_name();
 		}else if(this.s_code.charAt(0)=='R') {
 			MaszipDAO dao = new MaszipDAO();
 			s_name = dao.read(s_code).getM_name();

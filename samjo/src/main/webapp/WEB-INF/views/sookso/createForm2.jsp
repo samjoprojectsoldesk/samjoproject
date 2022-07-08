@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header2.jsp"%>
+
 <!-- 본문 시작 -->
 
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
@@ -18,10 +19,10 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="Sooksocreate2.do" class="create" enctype="multipart/form-data">
+		<form name="frm" method="post" action="roomcreate.do" class="tourcreate" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="s_cn">해당 숙소 코드</label> 
-				<input type="text" class="form-control" id="s_cn" name="s_cn" value="${dto.s_cn}">
+				<input type="text" class="form-control" id="s_cn" name="s_cn" value="${dto.s_cn}" readonly>
 			</div>
 			<div class="form-group">
 				<label for="room_cn">방코드</label> 

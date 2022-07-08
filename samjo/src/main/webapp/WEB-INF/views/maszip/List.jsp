@@ -17,7 +17,7 @@
 
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
-		<form action="tourist.do">
+		<form action="/maszip/List.do">
 			<input type="text" name="word" id="word" style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
 			&nbsp;&nbsp; 
 			<input type="submit" value="검색" class="btn btn-secondary" style="font-weight: bold; font-family: Arial;">
