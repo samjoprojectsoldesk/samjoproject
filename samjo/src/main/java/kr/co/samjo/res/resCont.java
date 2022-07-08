@@ -30,6 +30,7 @@ public class resCont {
 		dt_dao = new resDetailDAO();
 		System.out.println("-----resCont객체 생성됨");
 	}
+<<<<<<< HEAD
 
 	@RequestMapping("reviewcreate.do")
 	public ModelAndView create(HttpServletRequest request, HttpServletResponse response) {
@@ -50,6 +51,11 @@ public class resCont {
 
 	// 장바구니 예약페이지 이동
 	@RequestMapping(value = "/res/reserve.do", method = RequestMethod.GET)
+=======
+	
+	//장바구니 예약페이지 이동
+	@RequestMapping("/res/reserve.do")
+>>>>>>> 4ad7e09d3c642a0a359f0053a205e37b587ce96e
 	public ModelAndView reserve(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();

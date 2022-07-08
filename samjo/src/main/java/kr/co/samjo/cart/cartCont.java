@@ -81,13 +81,13 @@ public class cartCont {
 		if(userId==null) {userId="guest";}
 		ArrayList<cartDTO> list = new ArrayList<cartDTO>();
 		list = dao.list(userId.trim());
-		long amount = dao.amount(list);
 		
 		if(list==null) {
 			map.put("list", list);
 			map.put("count", 0);
-			map.put("amount", amount);
+			map.put("amount", 0);
 		}else {
+			long amount = dao.amount(list);
 			map.put("list", list);
 			map.put("count", list.size());
 			map.put("amount", amount);

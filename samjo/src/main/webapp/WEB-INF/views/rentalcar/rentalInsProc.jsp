@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="ssi.jsp" %> 
 <%@ include file="../header.jsp" %>    
-<!-- 본문시작 InsProc.jsp -->
+<!-- rentalInsProc.jsp 본문시작 -->
 <%
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");	
 	//사용자가 입력 요청한 정보를 가져오기
@@ -40,12 +40,12 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");
 	
 	int cnt=dao.create(dto); 
     if(cnt==0){
-        out.println("<p>글추가 실패했습니다</p>");
+        out.println("<p>렌트카 업체 추가 실패했습니다</p>");
         out.println("<p><a href='javascript:history.back()'>[다시시도]</a></p>");
     }else{
         out.println("<script>");
-        out.println("    alert('게시글이 추가되었습니다');");
-        out.println("    location.href='List.jsp';");//목록페이지 이동
+        out.println("    alert('렌트카 업체가 추가되었습니다');");
+        out.println("    location.href='rentalcar/List.do';");//목록페이지 이동
         out.println("</script>");
     }//if end
 %>

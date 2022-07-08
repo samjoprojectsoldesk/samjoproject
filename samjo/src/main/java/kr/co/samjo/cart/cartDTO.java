@@ -4,8 +4,11 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import kr.co.samjo.product.maszip.MaszipDAO;
+import kr.co.samjo.product.packagetour.packagetourDAO;
 import kr.co.samjo.product.rentalcar.rentalcarDAO;
 import kr.co.samjo.product.rentalcar.rentalcarDTO;
+import kr.co.samjo.product.sookso.SooksoDAO;
 
 public class cartDTO {
 
@@ -76,9 +79,18 @@ public class cartDTO {
 	}
 
 	public String getS_name() {
-		if(this.s_code.equals("C")){
+		if(this.s_code.charAt(0)=='C'){
 			rentalcarDAO dao = new rentalcarDAO();
 			s_name = dao.read(s_code).getC_name();
+		}else if(this.s_code.charAt(0)=='S'){
+			SooksoDAO dao = new SooksoDAO();
+			s_name = dao.read(s_code).getS_name();
+		}else if(this.s_code.charAt(0)=='R') {
+			MaszipDAO dao = new MaszipDAO();
+			s_name = dao.read(s_code).getM_name();
+		}else {
+			packagetourDAO dao = new packagetourDAO();
+			s_name = dao.read(s_code).getPack_name();
 		}
 		return s_name;
 	}

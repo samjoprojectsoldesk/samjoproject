@@ -24,6 +24,7 @@ public class resDetailDAO {
 	public int create(cartDTO dto, String res_no) {
 		int cnt = 0;
 		try {
+<<<<<<< HEAD
 			con = dbopen.getConnection(); // DB연결
 
 			sql = new StringBuilder();
@@ -32,10 +33,21 @@ public class resDetailDAO {
 	         sql.append(" VALUES( resdetail_seq.nextval ?, ?, ?, ?, ? ) ");
 
 			pstmt = con.prepareStatement(sql.toString());
+=======
+			con=dbopen.getConnection(); //DB연결
+			
+			sql=new StringBuilder();
+
+			sql.append(" INSERT INTO tb_resdetail(detail_no, res_no, s_code, p_cnt, sdate, fdate) ");
+			sql.append(" VALUES( resdetail_seq.nextval ?, ?, ?, ?, ? ) ");
+			
+			pstmt=con.prepareStatement(sql.toString());
+>>>>>>> 4ad7e09d3c642a0a359f0053a205e37b587ce96e
 			pstmt.setString(1, res_no);
 			pstmt.setString(2, dto.getS_code());
 			pstmt.setInt(3, dto.getP_cnt());
 			pstmt.setString(4, dto.getSdate());
+<<<<<<< HEAD
 			if (dto.getFdate() != null) {
 				pstmt.setString(5, dto.getFdate());
 			} else {
@@ -44,6 +56,14 @@ public class resDetailDAO {
 
 			cnt = pstmt.executeUpdate();
 
+=======
+        	if(dto.getFdate()!=null) {
+			pstmt.setString(5, dto.getFdate());}
+        	else {pstmt.setString(5, "NULL");}
+			
+			cnt=pstmt.executeUpdate();
+			
+>>>>>>> 4ad7e09d3c642a0a359f0053a205e37b587ce96e
 		} catch (Exception e) {
 			System.out.println("예약상세등록실패" + e);
 		} finally {
@@ -87,6 +107,39 @@ public class resDetailDAO {
 			DBClose.close(con, pstmt, rs);
 		} // end
 		return list;
+	}
+	
+	public resDetailDTO read(int detail_no) {
+		resDetailDTO dto = null;
+
+        try {
+            con=dbopen.getConnection();
+            
+            sql=new StringBuilder();
+            sql.append(" SELECT res_no, s_code, sdate, fdate ");
+            sql.append(" FROM tb_resdetail ");
+            sql.append(" WHERE detail_no=? ");
+            sql.append(" ORDER BY res_no DESC ");
+            
+            pstmt=con.prepareStatement(sql.toString());
+            pstmt.setInt(1, detail_no);
+            
+            rs=pstmt.executeQuery();
+            
+            if(rs.next()) {
+            	dto = new resDetailDTO();
+                dto.setRes_no(rs.getString("res_no"));
+                dto.setS_code(rs.getString("s_code"));
+                dto.setSdate(rs.getString("sdate"));
+                dto.setFdate(rs.getString("fdate"));
+            }
+            
+        }catch (Exception e) {
+            System.out.println("예약상세 단일목록 실패:"+e);
+        }finally {
+            DBClose.close(con, pstmt, rs);
+        }//end		
+		return dto;
 	}
 
 	public resDetailDTO read(int detail_no) {

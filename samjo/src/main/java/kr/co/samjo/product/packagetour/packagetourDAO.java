@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import kr.co.samjo.tour.TourDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
@@ -254,6 +253,7 @@ public class packagetourDAO {
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getPack_no());
 			pstmt.setString(2, dto.getPack_name());
+<<<<<<< HEAD
 			pstmt.setString(3, dto.getPack_cose());
 			pstmt.setString(4, dto.getPack_plan_start().toLocaleString());
 			pstmt.setString(5, dto.getPack_plan_end().toLocaleString());
@@ -263,6 +263,15 @@ public class packagetourDAO {
 			pstmt.setString(9, dto.getPack_cont());
 			pstmt.setString(10, dto.getPack_no());
 
+=======
+			pstmt.setString(3, dto.getPack_cose());		
+			pstmt.setString(4, dto.getPack_plan_start().toLocaleString());		
+			pstmt.setString(5, dto.getPack_plan_end().toLocaleString());	
+			pstmt.setInt(6, dto.getPack_price());
+			pstmt.setInt(7, dto.getPack_people());
+			pstmt.setString(8, dto.getPack_cont());
+			pstmt.setString(9, dto.getPack_img());
+>>>>>>> 4ad7e09d3c642a0a359f0053a205e37b587ce96e
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("패키지 여행 수정 실패" + e);

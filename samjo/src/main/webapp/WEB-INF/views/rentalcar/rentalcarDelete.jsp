@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header2.jsp"%>
 
-<!-- 본문 시작 -->
+<!-- rentalcarDelete 본문 시작 -->
 
 <aside id="fh5co-hero-T" class="js-fullheight">
 	<div class="flexslider js-fullheight">
@@ -10,7 +10,7 @@
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">렌트카 업체 삭제</h2>
+					class="heading-section">렌트카 삭제</h2>
 			</div>
 		</div>
 	</div>
@@ -19,16 +19,16 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="rentalDelete.do" class="Ins"
+		<form name="frm" method="post" action="rentalcarDelete.do" class="Ins"
 			enctype="multipart/form-data">
-			<input type="hidden" name="u_code" value="${dto.u_code}">
+			<input type="hidden" name="c_code" value="${dto.c_code}">
 			<div class="content">
-				<p>해당 렌트카 업체(${dto.u_name}) 를 삭제하시겠습니까?</p>
+				<p>해당 렌트카(${dto.c_name}) 를 삭제하시겠습니까?</p>
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">삭제</button>
 				<button type="button" class="btn btn-secondary"
-					onclick="location.href='/rental/List.do'">목록</button>
+					onclick="location.href='/rentalcar/List.do'">목록</button>
 			</div>
 		</form>
 	</div>

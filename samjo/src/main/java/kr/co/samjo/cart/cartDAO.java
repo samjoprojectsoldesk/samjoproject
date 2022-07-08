@@ -20,7 +20,6 @@ public class cartDAO {
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
 	private StringBuilder sql=null;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd. a HH:mm:ss");
 	
 	public cartDAO() {
 		dbopen = new DBOpen();
@@ -189,7 +188,7 @@ public class cartDAO {
 			if(s_code.charAt(0)=='S') {
 				SooksoDAO sdao = new SooksoDAO();
 				SooksoDTO sdto = new SooksoDTO();
-				//sdto = sdao.read(s_code);
+				sdto = sdao.read(s_code);
 				for(int j=0; j<tmplist.size(); j++) {
 					if(tmplist.get(j)=="주말") {
 						sum += sdto.getRoom_ep();
@@ -208,8 +207,7 @@ public class cartDAO {
 			}else {
 				sum += 0;
 			}
-		}
-		
+		}		
 		return sum;
 	}
 	
