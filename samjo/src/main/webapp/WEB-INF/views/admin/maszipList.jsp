@@ -76,7 +76,7 @@
 				</c:if>
 
 				<c:if test="${startPage>0}">
-					<a href="/admin/maszip/lList.do?pageNum=${startPage}">[이전]</a>
+					<a href="/admin/maszip/List.do?pageNum=${startPage}">[이전]</a>
 				</c:if>
 
 				<c:forEach var="i" begin="${startPage+1}" end="${endPage-1}">

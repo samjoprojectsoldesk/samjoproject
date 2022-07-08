@@ -73,15 +73,15 @@
 				</c:if>
 
 				<c:if test="${startPage>0}">
-					<a href="/tour/tourist.do?pageNum=${startPage}">[이전]</a>
+					<a href="/admin/memberList.do?pageNum=${startPage}">[이전]</a>
 				</c:if>
 
 				<c:forEach var="i" begin="${startPage+1}" end="${endPage-1}">
-					<a href="/tour/tourist.do?pageNum=${i}">[${i}]</a>
+					<a href="/admin/memberList.do?pageNum=${i}">[${i}]</a>
 				</c:forEach>
 
 				<c:if test="${endPage<pageCount}">
-					<a href="/tour/tourist.do?pageNum=${startPage+11}">[다음]</a>
+					<a href="/admin/memberList.do?pageNum=${startPage+11}">[다음]</a>
 				</c:if>
 			</div>
 		</c:if>

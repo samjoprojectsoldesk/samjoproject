@@ -31,20 +31,23 @@
 		<table class="table">
 			<tr>
 				<th>예약 번호</th>
-				<th>상품 갯수</th>
 				<th>총 금액</th>
 				<th>결제 수단</th>
-				<th>인원 수</th>
 				<th>예약 결과</th>
 				<th>취소</th>
 			</tr>
 
 			<c:forEach var="dto" items="${map.list}">
 				<tr>
-					<td><a href="/read.do?res_no=${dto.res_no}">${dto.res_no}</a></td>
+					<td><a href="/res/read.do?res_no=${dto.res_no}">${dto.res_no}</a></td>
 					<td>${dto.amount}</td>
-					<td>${dto.pay}</td>
-					<td>${dto.p_cnt}</td>
+					<td>
+					<c:choose>
+						<c:when test="${dto.pay eq 'none' }">무통장입금</c:when>
+						<c:when test="${dto.pay eq 'card' }">신용카드</c:when>
+						<c:when test="${dto.pay eq 'realtime' }">현장결재</c:when>
+					</c:choose>
+					</td>
 					<c:choose>
 						<c:when test="${dto.result eq 'Y' }"><td>예약완료</td></c:when>
 						<c:when test="${dto.result eq 'C' }"><td>예약취소</td></c:when>

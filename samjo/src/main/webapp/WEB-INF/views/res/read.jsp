@@ -34,11 +34,7 @@
 				<th>상품 이름</th>
 				<th>이용시작일</th>
 				<th>이용종료일</th>
-<<<<<<< HEAD
-				<th>리뷰쓰기</th>
-=======
 				<th>리뷰 쓰기</th>
->>>>>>> 4ad7e09d3c642a0a359f0053a205e37b587ce96e
 			</tr>
 
 			<c:forEach var="dto" items="${map.list}">

@@ -61,10 +61,12 @@
 			<div class="tab-pane fade active in" id="map" role="tabpanel"
 				aria-labelledby="map-tab" style="margin-top: 30px;">
 
+				
 				<div id="map"></div>
 				<div id="store_address" data-address="${dto.s_addr}"></div>
 				<div id="store_name" data-name="${dto.s_name}"></div>
-				<div>${dto.s_cont}</div>
+				
+				
 
 			</div>
 
