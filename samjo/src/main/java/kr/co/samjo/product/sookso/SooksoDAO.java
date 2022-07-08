@@ -484,8 +484,8 @@ public int create2(SooksoDTO dto) {
 			pstmt.setString(2, dto.getS_code());
 			pstmt.setInt(3, dto.getCnt());
 			pstmt.setInt(4, dto.getP_cnt());
-			pstmt.setString(5, dto.getSdate().toLocaleString());
-			pstmt.setString(6, dto.getFdate().toLocaleString());
+			pstmt.setString(5, dto.getSdate());
+			pstmt.setString(6, dto.getFdate());
 			
 			cnt=pstmt.executeUpdate();
 			

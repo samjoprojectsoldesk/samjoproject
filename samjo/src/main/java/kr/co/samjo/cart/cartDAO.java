@@ -144,12 +144,12 @@ public class cartDAO {
             
             sql=new StringBuilder();
             sql.append(" with dt_w as ( ");
-            sql.append(" select to_char(to_date(st_dt, 'yyyymmdd.') + LEVEL -1, 'yyyymmdd') as dt ");
+            sql.append(" select to_char(to_date(st_dt, 'yyyy-mm-dd') + LEVEL -1, 'yyyy-mm-dd') as dt ");
             sql.append(" from(  ");
             sql.append(" select '(select sdate from tb_cart where c_no = ?)' as st_dt, ");
             sql.append(" select '(select fdate from tb_cart where c_no = ?)' as end_dt ");
             sql.append(" from dual ) ");
-            sql.append(" connect by LEVEL <= to_date(end_dt, 'yyyymmdd') - to_date(st_dt, 'yyyymmdd') + 1 ");
+            sql.append(" connect by LEVEL <= to_date(end_dt, 'yyyy-mm-dd') - to_date(st_dt, 'yyyy-mm-dd') + 1 ");
             sql.append(" ) ");
             sql.append(" select case when to_char(to_date(d.dt),'d') in ('1', '7') ");
          	sql.append(" then '주말' ");

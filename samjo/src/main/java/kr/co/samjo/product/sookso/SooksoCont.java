@@ -440,8 +440,8 @@ public class SooksoCont {
 			cdto.setS_code(request.getParameter("s_code"));
 			cdto.setCnt(Integer.parseInt(request.getParameter("cnt")));
 			cdto.setP_cnt(Integer.parseInt(request.getParameter("p_cnt")));
-			cdto.setSdate(sdf.parse(request.getParameter("sdate")));
-			cdto.setFdate(sdf.parse(request.getParameter("fdate")));
+			cdto.setSdate(request.getParameter("sdate"));
+			cdto.setFdate(request.getParameter("fdate"));
 			
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("cart/msgView");
