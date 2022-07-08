@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import kr.co.samjo.product.packagetour.packagetourDTO;
 import kr.co.samjo.product.rentalcar.rentalcarDTO;
+import kr.co.samjo.product.rental.rentalDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
@@ -31,19 +31,20 @@ public class rentalcarDAO {
 
 			sql = new StringBuilder();
 			sql.append(" INSERT INTO tb_car(c_code, u_code, c_kind, c_name, c_sum, c_charge, c_reserve, c_img, c_cont, c_plan_start, c_plan_end ) ");
-			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
+			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getC_code());
-			pstmt.setString(2, dto.getC_kind());
-			pstmt.setString(3, dto.getC_name());
-			pstmt.setInt(4, dto.getC_sum());
-			pstmt.setInt(5, dto.getC_charge());
-			pstmt.setInt(6, dto.getC_reserve());
-			pstmt.setString(7, dto.getC_img());
-			pstmt.setString(8, dto.getC_cont());
-			pstmt.setString(9, dto.getC_plan_start().toLocaleString());		
-			pstmt.setString(10, dto.getC_plan_end().toLocaleString());	
+			pstmt.setString(2, dto.getU_code());
+			pstmt.setString(3, dto.getC_kind());
+			pstmt.setString(4, dto.getC_name());
+			pstmt.setInt(5, dto.getC_sum());
+			pstmt.setInt(6, dto.getC_charge());
+			pstmt.setInt(7, dto.getC_reserve());
+			pstmt.setString(8, dto.getC_img());
+			pstmt.setString(9, dto.getC_cont());
+			pstmt.setString(10, dto.getC_plan_start().toLocaleString());		
+			pstmt.setString(11, dto.getC_plan_end().toLocaleString());	
 			cnt = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -261,6 +262,7 @@ public class rentalcarDAO {
 			pstmt.setString(8, dto.getC_cont());
 			pstmt.setString(9, dto.getC_plan_start().toLocaleString());		
 			pstmt.setString(10, dto.getC_plan_end().toLocaleString());	
+			pstmt.setString(11, dto.getC_code());
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("렌트카 수정 실패" + e);

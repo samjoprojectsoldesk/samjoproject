@@ -12,18 +12,11 @@ public class resDetailDTO {
     public int getDetail_no() {
 		return detail_no;
 	}
-<<<<<<< HEAD
-	public void setDetail_no(int detail_no) {
-		this.detail_no = detail_no;
-	}
-	
-=======
     
     public void setDetail_no(int detail_no) {
 		this.detail_no = detail_no;
 	}
     
->>>>>>> 4ad7e09d3c642a0a359f0053a205e37b587ce96e
 	public String getRes_no() {
 		return res_no;
 	}

@@ -17,11 +17,7 @@
 
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
-<<<<<<< HEAD
-		<form action="List.do">
-=======
 		<form action="packagetourList.do">
->>>>>>> 4ad7e09d3c642a0a359f0053a205e37b587ce96e
 			<input type="text" name="word" id="word"
 				style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
 			&nbsp;&nbsp; <input type="submit" value="검색"
@@ -51,15 +47,10 @@
 									<th scope="row">${dto.pack_no}</th>
 									<td>${dto.pack_name}</td>
 									<td><button type="button" class="btn btn-light"
-<<<<<<< HEAD
 											onclick="location.href='/admin/packagetourUpdate.do?pack_no=${dto.pack_no}'">수정</button>
 										<button type="button" class="btn btn-danger"
 											onclick="location.href='/admin/packagetourDelete.do?pack_no=${dto.pack_no}'">삭제</button></td>
-=======
-											onclick="location.href='packagetourUpdate.do?pack_no=${dto.pack_no}'">수정</button>
-										<button type="button" class="btn btn-danger"
-											onclick="location.href='packagetourDelete.do?pack_no=${dto.pack_no}'">삭제</button></td>
->>>>>>> 4ad7e09d3c642a0a359f0053a205e37b587ce96e
+
 								</tr>
 							</c:forEach>
 						</tbody>
