@@ -30,6 +30,10 @@ public class resCont {
 		dt_dao = new resDetailDAO();
 		System.out.println("-----resCont객체 생성됨");
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 09393cd6ab8529f626f6857590f3aeb3cbfe92db
 
 	@RequestMapping("reviewcreate.do")
 	public ModelAndView create(HttpServletRequest request, HttpServletResponse response) {
@@ -48,8 +52,11 @@ public class resCont {
 		return mav;
 	}// create() end
 
+<<<<<<< HEAD
 
 	
+=======
+>>>>>>> 09393cd6ab8529f626f6857590f3aeb3cbfe92db
 	//장바구니 예약페이지 이동
 	@RequestMapping("/res/reserve.do")
 	public ModelAndView reserve(HttpServletRequest request, HttpServletResponse response) {
@@ -113,7 +120,7 @@ public class resCont {
 		} else {
 			String msg = "<p>예약 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"/res/list.do\"'>";
+			String link2 = "<input type='button' value='예약목록' onclick='location.href=\"/res/list.do\"'>";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);

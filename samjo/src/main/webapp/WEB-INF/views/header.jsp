@@ -142,12 +142,12 @@
 									out.print("<li><a class='bold' href='#'>마이페이지</a>");
 									out.print("<ul class='fh5co-sub-menu'>");
 									out.print("<li><a href='/member/memberModify.do'>개인정보수정</a></li>");
-									out.print("<li><a href='right-sidebar.html'>예약관리</a></li>");
+									out.print("<li><a href='/res/list.do'>예약관리</a></li>");
 									out.print("</ul></li>");
 									out.print("<li>");
 									out.print("<a class='bold' href='/member/loginForm.do'>로그아웃</a>");
 									out.print("</li>");
-									out.print("<li><a class='bold' href='../cart/list.do'>장바구니</a></li>");
+									out.print("<li><a class='bold' href='../../cart/list.do'>장바구니</a></li>");
 									if (s_mlevel.equals("1")) {
 										out.print("<li><a class='bold' href='/admin/index.do'>관리자 페이지</a></li>");
 									}

@@ -170,6 +170,51 @@ public class SooksoDAO {
 		return dto;
 	}// read() end
 	
+
+    
+	public SooksoDTO readroom(String room_cn) {
+		SooksoDTO dto = null;
+		try {
+			con = dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" select * ");
+			sql.append(" from tb_sookso left join tb_room ");
+			sql.append(" on tb_sookso.s_cn = tb_room.s_cn ");
+			sql.append(" left join tb_review ");
+			sql.append(" on tb_sookso.s_cn = tb_review.review_code ");
+			sql.append(" WHERE tb_room.room_cn = ? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, room_cn);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto = new SooksoDTO();
+				dto.setS_cn(rs.getString("s_cn"));
+				dto.setS_name(rs.getString("s_name"));
+				dto.setS_addr(rs.getString("s_addr"));
+				dto.setS_addr2(rs.getString("s_addr2"));
+				dto.setS_tel(rs.getString("s_tel"));
+				dto.setS_link(rs.getString("s_link"));
+				dto.setS_cont(rs.getString("s_cont"));
+				dto.setS_img(rs.getString("s_img"));
+				dto.setRoom_cn(rs.getString("room_cn"));
+				dto.setRoom_name(rs.getString("room_name"));
+				dto.setRoom_img(rs.getString("room_img"));
+				dto.setRoom_mp(rs.getInt("room_mp"));
+				dto.setRoom_dp(rs.getInt("room_dp"));
+				dto.setRoom_ep(rs.getInt("room_ep"));
+				dto.setReview_user_id(rs.getString("review_user_id"));
+				dto.setReview_content(rs.getString("review_content"));
+				dto.setReview_date(rs.getString("review_date"));
+			} // if end
+
+		} catch (Exception e) {
+			System.out.println("상세보기실패" + e);
+		} finally {
+			DBClose.close(con, pstmt, rs);
+		} // end
+		return dto;
+	}// read() end
+	
 	
 	public int update(SooksoDTO dto) {
 		int cnt = 0;

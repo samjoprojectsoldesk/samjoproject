@@ -126,7 +126,7 @@ public class MemberCont {
 	@RequestMapping("/member/memberModify.do")
 	public ModelAndView memberModify() {
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/member/memberModify");
+		mav.setViewName("/member/memberModifyPRoc");
 		return mav;
 	}//memberModify() end
 	

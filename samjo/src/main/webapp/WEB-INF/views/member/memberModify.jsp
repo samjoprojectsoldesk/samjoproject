@@ -3,7 +3,7 @@
 <%@ include file="ssi.jsp" %>
 <%@ include file="../header.jsp" %>
 <!-- 본문시작 memberModify.jsp -->
-<aside id="fh5co-hero" class="js-fullheight">
+<aside id="fh5co-hero" class="js-fullheight" style="margin-bottom:100px;">
 	<div class="flexslider js-fullheight">
 		<div class="container">
 			<div class="slider-text-inner desc">
