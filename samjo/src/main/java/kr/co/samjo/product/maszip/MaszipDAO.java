@@ -53,7 +53,7 @@ public class MaszipDAO {
 	}// create() end
 
 	
-	// 관광지 목록
+	// 맛집 목록
 	public ArrayList<MaszipDTO> list(int start, int end, String word) {
 		ArrayList<MaszipDTO> list = null;
 		try {
@@ -113,13 +113,13 @@ public class MaszipDAO {
 
 
 
-	// 관광지 글 갯수
+	// 맛집 글 갯수
 	public int totalRowCount() {
 		int cnt = 0;
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
-			sql.append(" SELECT COUNT(*) FROM tb_tour WHERE t_dividecn = 1 ");
+			sql.append(" SELECT COUNT(*) FROM tb_maszip ");
 			pstmt = con.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			if (rs.next()) {

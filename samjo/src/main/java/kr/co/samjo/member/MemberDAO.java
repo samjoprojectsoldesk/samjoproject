@@ -298,5 +298,22 @@ public class MemberDAO {
 		return flag;
 	}
 	
+	public int delete(String id) {
+		int cnt = 0;
+		try {
+			con = dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" DELETE FROM tb_user");
+			sql.append(" WHERE user_id=? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			cnt = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("삭제 실패" + e);
+		} finally {
+			DBClose.close(con, pstmt);
+		} // end
+		return cnt;
+	}// delete() end
 	
 }//class end

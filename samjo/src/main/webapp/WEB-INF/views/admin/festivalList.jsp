@@ -11,7 +11,7 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">문화행사 목록</h2>
-					<button type="button" class="btn btn-primary" onclick="location.href='tourcreate.do'">등록</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='/admin/tour/create.do'">등록</button>
 			</div>
 		</div>
 	</div>
@@ -50,9 +50,9 @@
 									<td>${dto.t_name}</td>
 									<td>${dto.t_rdate}</td>
 									<td><button type="button" class="btn btn-light"
-											onclick="location.href='tourupdate.do?t_cn=${dto.t_cn}'">수정</button>
+											onclick="location.href='/admin/tour/update.do?t_cn=${dto.t_cn}'">수정</button>
 										<button type="button" class="btn btn-danger"
-											onclick="location.href='tourdelete.do?t_cn=${dto.t_cn}'">삭제</button></td>
+											onclick="location.href='/admin/tour/delete.do?t_cn=${dto.t_cn}'">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

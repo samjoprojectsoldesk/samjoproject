@@ -9,7 +9,7 @@
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">맛집 등록</h2>
+					class="heading-section">맛집 수정</h2>
 			</div>
 		</div>
 	</div>
@@ -122,7 +122,7 @@
 				<textarea class="form-control" id="m_content" name="m_content" rows="3">${dto.m_content}</textarea>
 			</div>
 			<div class='bottom'>
-				<button type="submit" class="btn btn-primary">등록</button>
+				<button type="submit" class="btn btn-primary">수정</button>
 				<button type="button" class="btn btn-secondary" onclick="location.href='/maszip/List.do'">목록</button>
 			</div>
 		</form>

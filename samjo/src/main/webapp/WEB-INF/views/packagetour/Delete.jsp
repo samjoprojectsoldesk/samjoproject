@@ -28,7 +28,7 @@
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">삭제</button>
 				<button type="button" class="btn btn-secondary"
-					onclick="location.href='/packagetour/List.do'">목록</button>
+					onclick="location.href='/admin/packagetour/List.do'">목록</button>
 			</div>
 		</form>
 	</div>

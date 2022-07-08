@@ -9,7 +9,7 @@ import kr.co.samjo.product.packagetour.packagetourDTO;
 import kr.co.samjo.product.rental.rentalDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
-
+import kr.co.samjo.product.rentalcar.*;
 public class rentalDAO {
 	private DBOpen dbopen = null;
 	private Connection con = null;

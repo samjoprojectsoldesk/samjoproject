@@ -2,12 +2,20 @@ package kr.co.samjo.res;
 
 public class resDetailDTO {
 
+	private int detail_no;
     private String res_no; // timestamp not null,
     private String s_code; // varchar2(10) not null,
     private int p_cnt;
     private String sdate; // VARCHAR2(30) not null,
     private String fdate; // VARCHAR2(30)
     
+    public int getDetail_no() {
+		return detail_no;
+	}
+	public void setDetail_no(int detail_no) {
+		this.detail_no = detail_no;
+	}
+	
 	public String getRes_no() {
 		return res_no;
 	}

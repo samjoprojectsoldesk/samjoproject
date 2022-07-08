@@ -10,7 +10,7 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">공지사항 목록</h2>
-					<button type="button" class="btn btn-primary" onclick="location.href='notice/bbsIns.do'">등록</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='create.do'">등록</button>
 			</div>
 		</div>
 	</div>
@@ -47,13 +47,13 @@
 							<c:forEach var="dto" items="${list}">
 								<tr>
 									<th scope="row">${dto.board_no}</th>
-									<td onclick="location.href='/notice/bbsRead.do?board_no=${dto.board_no}'">${dto.board_title}</td>
+									<td onclick="location.href='/notice/read.do?board_no=${dto.board_no}'">${dto.board_title}</td>
 									<td>${dto.board_content}</td>
 									<td>${dto.board_date}</td>
 									<td><button type="button" class="btn btn-light"
-											onclick="location.href='bbsUpdate.do?board_no=${dto.board_no}'">수정</button>
+											onclick="location.href='update.do?board_no=${dto.board_no}'">수정</button>
 										<button type="button" class="btn btn-danger"
-											onclick="location.href='bbsDelete.do?board_no=${dto.board_no}'">삭제</button></td>
+											onclick="location.href='delete.do?board_no=${dto.board_no}'">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -127,7 +127,7 @@ public class SooksoDAO {
         return cnt;
     }//totalRowCount() end
     
-	public SooksoDTO read(String s_cn, String room_cn) {
+	public SooksoDTO read(String s_cn) {
 		SooksoDTO dto = null;
 		try {
 			con = dbopen.getConnection();
@@ -322,15 +322,16 @@ public int create2(SooksoDTO dto) {
 	
 	
 	
-	public int delete2(String room_cn) {
+	public int delete2(String s_cn, String room_cn) {
 		int cnt = 0;
 		try {
 			con = dbopen.getConnection();
 			sql = new StringBuilder();
 			sql.append(" DELETE FROM tb_room");
-			sql.append(" WHERE room_cn=? ");
+			sql.append(" WHERE s_cn =? AND room_cn=? ");
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, room_cn);
+			pstmt.setString(1, s_cn);
+			pstmt.setString(2, room_cn);
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("삭제 실패" + e);
@@ -484,8 +485,8 @@ public int create2(SooksoDTO dto) {
 			pstmt.setString(2, dto.getS_code());
 			pstmt.setInt(3, dto.getCnt());
 			pstmt.setInt(4, dto.getP_cnt());
-			pstmt.setString(5, dto.getSdate().toLocaleString());
-			pstmt.setString(6, dto.getFdate().toLocaleString());
+			pstmt.setString(5, dto.getSdate());
+			pstmt.setString(6, dto.getFdate());
 			
 			cnt=pstmt.executeUpdate();
 			

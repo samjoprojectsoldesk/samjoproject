@@ -36,12 +36,12 @@ public class TourCont {
 	}//list() end
 	*/
 	
-	@RequestMapping(value = "admin/tourcreate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/tour/create.do", method = RequestMethod.GET)
 	public String createFrom() {
 		return "tour/createForm";
 	}//createForm() end
 
-	@RequestMapping(value = "/admin/tourcreate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/tour/create.do", method = RequestMethod.POST)
 	public ModelAndView create(@ModelAttribute TourDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("tour/msgView");
@@ -63,14 +63,14 @@ public class TourCont {
 		if (cnt == 0) {
 			String msg = "<p>여행지 등록 실패</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tour/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>여행지 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tour/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
@@ -258,7 +258,7 @@ public class TourCont {
 	}// read() end
 	
 
-	@RequestMapping(value = "/admin/tourupdate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/tour/update.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(String t_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("tour/updateForm");
@@ -267,7 +267,7 @@ public class TourCont {
 		return mav;
 	}// updateForm() end
 
-	@RequestMapping(value = "/admin/tourupdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/tour/update.do", method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute TourDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("tour/msgView");
@@ -298,13 +298,13 @@ public class TourCont {
 		if (cnt == 0) {
 			String msg = "<p>여행지 수정 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tour/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>여행지가 수정 되었습니다</p>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tour/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 		} // if end
@@ -312,7 +312,7 @@ public class TourCont {
 		return mav;
 	}// updateProc() end
 	
-	@RequestMapping(value = "/admin/tourdelete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/tour/delete.do", method = RequestMethod.GET)
 	public ModelAndView deleteForm(String t_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("tour/deleteForm");
@@ -321,7 +321,7 @@ public class TourCont {
 		return mav;
 	}// deleteForm() end
 
-	@RequestMapping(value = "/admin/tourdelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/tour/delete.do", method = RequestMethod.POST)
 	public ModelAndView deleteProc(String t_cn, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("tour/msgView");
@@ -333,13 +333,13 @@ public class TourCont {
 		if (cnt == 0) {
 			String msg = "<p>여행지 삭제 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tour/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>여행지가 삭제되었습니다</p>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tourist.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tour/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 			// 첨부했던 파일 삭제

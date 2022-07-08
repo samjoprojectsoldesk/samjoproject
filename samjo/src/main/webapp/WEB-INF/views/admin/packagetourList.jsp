@@ -10,14 +10,14 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">패키지투어 목록</h2>
-					<button type="button" class="btn btn-primary" onclick="location.href='packagetourIns.do'">등록</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='/admin/packagetourIns.do'">등록</button>
 			</div>
 		</div>
 	</div>
 
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
-		<form action="packagetourList.jsp">
+		<form action="List.do">
 			<input type="text" name="word" id="word"
 				style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
 			&nbsp;&nbsp; <input type="submit" value="검색"
@@ -47,9 +47,9 @@
 									<th scope="row">${dto.pack_no}</th>
 									<td>${dto.pack_name}</td>
 									<td><button type="button" class="btn btn-light"
-											onclick="location.href='packagetourupdate.do?pack_no=${dto.pack_no}'">수정</button>
+											onclick="location.href='/admin/packagetourUpdate.do?pack_no=${dto.pack_no}'">수정</button>
 										<button type="button" class="btn btn-danger"
-											onclick="location.href='packagetourdelete.do?pack_no=${dto.pack_no}'">삭제</button></td>
+											onclick="location.href='/admin/packagetourDelete.do?pack_no=${dto.pack_no}'">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

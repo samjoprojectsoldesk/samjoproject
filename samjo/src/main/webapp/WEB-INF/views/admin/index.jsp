@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -54,17 +53,17 @@
 	rel="stylesheet">
 
 <!-- Animate.css -->
-<link rel="stylesheet" href="../css/animate.css">
+<link rel="stylesheet" href="../../css/animate.css">
 <!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="../css/icomoon.css">
+<link rel="stylesheet" href="../../css/icomoon.css">
 <!-- Bootstrap  -->
-<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../../css/bootstrap.css">
 <!-- Superfish -->
-<link rel="stylesheet" href="../css/superfish.css">
+<link rel="stylesheet" href="../../css/superfish.css">
 <!-- Flexslider  -->
-<link rel="stylesheet" href="../css/flexslider.css">
+<link rel="stylesheet" href="../../css/flexslider.css">
 
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../../css/style.css">
 
 
 <!-- Modernizr JS -->
@@ -83,32 +82,31 @@
 				<header id="fh5co-header-section">
 					<div class="container">
 						<div class="nav-header">
-							<a href="/index.do" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+							<a href="/admin/index.do" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 							<h1 id="fh5co-logo">
-								<a href="index.do"><i class="icon-home2"></i>여기놀자</a>
+								<a href="/admin/index.do"><i class="icon-home2"></i>여기놀자</a>
 							</h1>
 							<!-- START #fh5co-menu-wrap -->
 							<nav id="fh5co-menu-wrap" role="navigation">
 								<ul class="sf-menu" id="fh5co-primary-menu">
-									<li><a class="bold" href="#">회원 관리</a>
-									</li>
+									<li><a class="bold" href="/admin/member/List.do">회원 관리</a></li>
 									<li><a class="bold" href="#">여행지 관리</a>
 										<ul class="fh5co-sub-menu">
-											<li><a href="/admin/tourist.do">관광지</a></li>
-											<li><a href="/admin/festivalList.do">문화행사</a></li>
+											<li><a href="/admin/tour/List.do">관광지</a></li>
+											<li><a href="/admin/festival/List.do">문화행사</a></li>
 										</ul></li>
 									<li><a class="bold" href="#">예약 상품 관리</a>
 										<ul class="fh5co-sub-menu">
-											<li><a href="/admin/sooksoList.do">숙박</a></li>
-											<li><a href="/admin/rentalList.do">렌트카</a></li>
-											<li><a href="#">맛집</a></li>
-											<li><a href="/admin/packagetourList.do">패키지</a></li>
+											<li><a href="/admin/sookso/List.do">숙박</a></li>
+											<li><a href="/admin/rental/List.do">렌트카</a></li>
+											<li><a href="/admin/maszip/List.do">맛집</a></li>
+											<li><a href="/admin/packagetour/List.do">패키지</a></li>
 										</ul></li>
-									<li><a class="bold" href="#"
-										class="fh5co-sub-ddown">커뮤니티 관리</a>
+									<li><a class="bold" href="#" class="fh5co-sub-ddown">커뮤니티
+											관리</a>
 										<ul class="fh5co-sub-menu">
-											<li><a href="/admin/notice.do">공지사항</a></li>
-											<li><a href="/admin/boardList.do">자유게시판</a></li>
+											<li><a href="/admin/notice/List.do">공지사항</a></li>
+											<li><a href="/admin/board/List.do">자유게시판</a></li>
 										</ul>
 									</li>
 									<li><a class="bold" href="#">예약 관리</a>

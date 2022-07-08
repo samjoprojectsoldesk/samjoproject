@@ -64,7 +64,7 @@ public class packagetourCont {
 				String msg = "<p>패키지여행 등록 실패</p>";
 				String img = "<img src='../images/fail.png'>";
 				String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-				String link2 = "<input type='button' value='패키지여행 목록' onclick='location.href=\"packagetourList.do\"'>";
+				String link2 = "<input type='button' value='패키지여행 목록' onclick='location.href=\"packagetour/List.do\"'>";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link1", link1);
@@ -73,7 +73,7 @@ public class packagetourCont {
 				String msg = "<p>패키지여행 등록 성공</p>";
 				String img = "<img src='../images/sound.png'>";
 				String link1 = "<input type='button' value='계속등록' onclick='location.href=\"packagetourIns.do\"'>";
-				String link2 = "<input type='button' value='패키지여행 목록' onclick='location.href=\"packagetourList.do\"'>";
+				String link2 = "<input type='button' value='패키지여행 목록' onclick='location.href=\"packagetour/List.do\"'>";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link1", link1);
@@ -225,7 +225,7 @@ public class packagetourCont {
 				String msg = "<p>패키지여행 삭제 실패!!</p>";
 				String img = "<img src='../images/fail.png'>";
 				String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-				String link2 = "<input type='button' value='패키지여행 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+				String link2 = "<input type='button' value='패키지여행 목록' onclick=\"location.href='/admin/packagetour/List.do'\">";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link1", link1);
@@ -233,7 +233,7 @@ public class packagetourCont {
 			} else {
 				String msg = "<p>패키지여행이 삭제되었습니다</p>";
 				String img = "<img src='../images/sound.png'>";
-				String link2 = "<input type='button' value='패키지여행 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+				String link2 = "<input type='button' value='패키지여행 목록' onclick=\"location.href='/admin/packagetour/List.do'\">";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link2", link2);
@@ -289,7 +289,7 @@ public class packagetourCont {
 				String msg = "<p>패키지 여행 수정 실패!!</p>";
 				String img = "<img src='../images/fail.png'>";
 				String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-				String link2 = "<input type='button' value='패키지여행 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+				String link2 = "<input type='button' value='패키지여행 목록' onclick=\"location.href='/admin/packagetour/List.do'\">";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link1", link1);
@@ -297,7 +297,7 @@ public class packagetourCont {
 			} else {
 				String msg = "<p>패키지 여행이 수정되었습니다</p>";
 				String img = "<img src='../images/sound.png'>";
-				String link2 = "<input type='button' value='패키지여행 목록' onclick=\"location.href='/../packagetour/List.do'\">";
+				String link2 = "<input type='button' value='패키지여행 목록' onclick=\"location.href='/admin/packagetour/List.do'\">";
 				mav.addObject("msg", msg);
 				mav.addObject("img", img);
 				mav.addObject("link2", link2);

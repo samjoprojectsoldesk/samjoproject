@@ -18,7 +18,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="packagetourIns.do" class="Ins" enctype="multipart/form-data">
+		<form name="frm" method="post" action="packagetourIns.do" class="tourcreate" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="pack_no">패키지코드</label> 
 				<input type="text" class="form-control" id="pack_no" name="pack_no" placeholder="P000">

@@ -10,7 +10,7 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">숙소 목록</h2>
-					<button type="button" class="btn btn-primary" onclick="location.href='Sooksocreate.do'">등록</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='create.do'">등록</button>
 			</div>
 		</div>
 	</div>
@@ -46,12 +46,12 @@
 							<c:forEach var="dto" items="${list}">
 								<tr>
 									<th scope="row">${dto.s_cn}</th>
-									<td onclick="location.href='sooksoList/read.do?s_cn=${dto.s_cn}'">${dto.s_name}</td>
+									<td onclick="location.href='Listread.do?s_cn=${dto.s_cn}'">${dto.s_name}</td>
 									<td>${dto.s_addr}</td>
 									<td><button type="button" class="btn btn-light"
-											onclick="location.href='sooksoupdate.do?s_cn=${dto.s_cn}'">수정</button>
+											onclick="location.href='update.do?s_cn=${dto.s_cn}'">수정</button>
 										<button type="button" class="btn btn-danger"
-											onclick="location.href='sooksodelete.do?s_cn=${dto.s_cn}'">삭제</button></td>
+											onclick="location.href='delete.do?s_cn=${dto.s_cn}'">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class adminDTO {
 
 	/* 여행지 시작 */
+	/*
 	private String t_cn;
 	private String t_name;
 	private String t_addr;
@@ -119,11 +120,11 @@ public class adminDTO {
 
 	public void setT_rdate(String t_rdate) {
 		this.t_rdate = t_rdate;
-	}
+	}*/
 	/* 여행지 끝 */
 
 	/* 공지사항 시작 */
-	private int board_no; // NUMBER NULL 일련번호
+	/*private int board_no; // NUMBER NULL 일련번호
 	private String board_title; // VARCHAR2(200) NOT NULL 제목
 	private String board_content; // VARCHAR2(4000) NOT NULL 내용
 	private String board_date; // date NOT NULL 작성일
@@ -167,12 +168,12 @@ public class adminDTO {
 
 	public void setBoard_readcnt(int board_readcnt) {
 		this.board_readcnt = board_readcnt;
-	}
+	}*/
 
 	/* 공지사항 끝 */
 
 	/* 패키지투어 시작 */
-	private String pack_no; // VARCHAR2(10) NULL 패키지코드
+	/*private String pack_no; // VARCHAR2(10) NULL 패키지코드
 	private String pack_name; // VARCHAR2(50) NOT NULL 패키지이름
 	private String pack_cose; // VARCHAR2(4000) NOT NULL 여행코스
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -282,11 +283,11 @@ public class adminDTO {
 
 	public void setPack_img(String pack_img) {
 		this.pack_img = pack_img;
-	}
+	}*/
 	/* 패키지투어 끝 */
 
 	/* 렌트카업체 시작 */
-	private String u_code; // VARCHAR2(10) NOT NULL 업체코드
+	/*private String u_code; // VARCHAR2(10) NOT NULL 업체코드
 	private String u_name; // VARCHAR2(20) NOT NULL 업체명
 	private String u_phone; // VARCHAR2(20) NOT NULL 연락처
 	private String u_office;// VARCHAR2(200) NOT NULL 사무실
@@ -339,11 +340,11 @@ public class adminDTO {
 
 	public void setU_office(String u_office) {
 		this.u_office = u_office;
-	}
+	}*/
 	/* 렌트카업체 끝 */
 
 	/* 렌트카 시작 */
-	private String c_code; // VARCHAR2(10) NOT NULL 차량코드
+	/*private String c_code; // VARCHAR2(10) NOT NULL 차량코드
 	private String c_kind; // VARCHAR2(20) NOT NULL 차종
 	private String c_name; // VARCHAR2(20) NOT NULL 차량명
 	private int c_sum; // NUMBER NOT NULL 금액(1일)
@@ -431,7 +432,7 @@ public class adminDTO {
 
 	public void setC_plan_end(Date c_plan_end) {
 		this.c_plan_end = c_plan_end;
-	}
+	}*/
 	/* 렌트카 끝 */
 
 	/* 자유게시판 시작 */

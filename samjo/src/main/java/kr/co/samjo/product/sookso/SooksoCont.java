@@ -34,12 +34,12 @@ public class SooksoCont {
 	}//end
 
 	
-	@RequestMapping(value = "admin/Sooksocreate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/sookso/create.do", method = RequestMethod.GET)
 	public String createFrom() {
 		return "sookso/createForm";
 	}//createForm() end
 
-	@RequestMapping(value = "/admin/Sooksocreate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/sookso/create.do", method = RequestMethod.POST)
 	public ModelAndView create(@ModelAttribute SooksoDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/msgView");
@@ -61,14 +61,14 @@ public class SooksoCont {
 		if (cnt == 0) {
 			String msg = "<p>숙소 등록 실패</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/sookso/List.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/sookso/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>숙소 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/sookso/List.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/sookso/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
@@ -77,12 +77,16 @@ public class SooksoCont {
 		return mav;
 	}// createProc() end
 	
-	@RequestMapping(value = "admin/Sooksocreate2.do", method = RequestMethod.GET)
-	public String createFrom2() {
-		return "sookso/createForm2";
-	}//createForm() end
+	@RequestMapping(value = "admin/sookso/roomcreate.do", method = RequestMethod.GET)
+	public ModelAndView createForm(String s_cn) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("sookso/createForm2");
+		SooksoDTO dto = dao.read(s_cn);
+		mav.addObject("dto", dto);
+		return mav;
+	}// createForm() end
 
-	@RequestMapping(value = "/admin/Sooksocreate2.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/sookso/roomcreate.do", method = RequestMethod.POST)
 	public ModelAndView create2(@ModelAttribute SooksoDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/msgView");
@@ -99,14 +103,14 @@ public class SooksoCont {
 		if (cnt == 0) {
 			String msg = "<p>방 등록 실패</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/sookso/List.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/sookso/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>방 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/sookso/List.do'\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/sookso/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
@@ -173,7 +177,7 @@ public class SooksoCont {
 	@RequestMapping("/sookso/List/read.do")
 	public ModelAndView read(String s_cn, String room_cn, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		SooksoDTO dto = dao.read(s_cn, room_cn);
+		SooksoDTO dto = dao.read(s_cn);
 		mav.setViewName("sookso/read");
 		mav.addObject("dto", dto);
 		
@@ -230,9 +234,6 @@ public class SooksoCont {
         mav.addObject("endPage",   endPage);
         mav.addObject("list", list);
         mav.addObject("list2", list2);
-        System.out.println(list);
-        System.out.println(list2);
-       
 		
         return mav;
     }//read() end
@@ -240,22 +241,22 @@ public class SooksoCont {
 	
     
 
-	@RequestMapping(value = "/admin/Sooksoupdate.do", method = RequestMethod.GET)
-	public ModelAndView updateForm(String s_cn, String room_cn) {
+	@RequestMapping(value = "/admin/sookso/update.do", method = RequestMethod.GET)
+	public ModelAndView updateForm(String s_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/updateForm");
-		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기
+		SooksoDTO dto = dao.read(s_cn);// 수정하고자 하는 행 가져오기
 		mav.addObject("dto", dto);
 		return mav;
 	}// updateForm() end
 
-	@RequestMapping(value = "/admin/Sooksoupdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/sookso/update.do", method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute SooksoDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/msgView");
 
 		String basePath = req.getRealPath("/storage");
-		SooksoDTO oldDTO = dao.read(dto.getS_cn(), dto.getRoom_cn()); // 기존에 저장된 정보 가져오기
+		SooksoDTO oldDTO = dao.read(dto.getS_cn()); // 기존에 저장된 정보 가져오기
 		// ---------------------------------------------------------------------
 		// 파일을 수정할 것인지?
 
@@ -279,13 +280,13 @@ public class SooksoCont {
 		if (cnt == 0) {
 			String msg = "<p>숙소 수정 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='숙소목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\\\"location.href='/admin/sookso/List.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
-			String msg = "<p>여행지가 수정 되었습니다</p>";
-			String link2 = "<input type='button' value='숙소목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
+			String msg = "<p>숙소가 수정 되었습니다</p>";
+			String link2 = "<input type='button' value='목록으로' onclick=\\\"location.href='/admin/sookso/List.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 		} // if end
@@ -295,22 +296,22 @@ public class SooksoCont {
 	
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping(value = "/admin/Sooksoupdate2.do", method = RequestMethod.GET)
-	public ModelAndView updateForm2(String s_cn, String room_cn) {
+	@RequestMapping(value = "/admin/sookso/roomupdate.do", method = RequestMethod.GET)
+	public ModelAndView updateForm2(String s_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/updateForm2");
-		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기 
+		SooksoDTO dto = dao.read(s_cn);// 수정하고자 하는 행 가져오기 
 		mav.addObject("dto", dto);
 		return mav;
 	}// updateForm() end
 
-	@RequestMapping(value = "/admin/Sooksoupdate2.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/sookso/roomupdate.do", method = RequestMethod.POST)
 	public ModelAndView update2(@ModelAttribute SooksoDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("tour/msgView");
 
 		String basePath = req.getRealPath("/storage");
-		SooksoDTO oldDTO = dao.read(dto.getS_cn(), dto.getRoom_cn()); // 기존에 저장된 정보 가져오기
+		SooksoDTO oldDTO = dao.read(dto.getS_cn()); // 기존에 저장된 정보 가져오기
 		// ---------------------------------------------------------------------
 		// 파일을 수정할 것인지?
 
@@ -334,13 +335,13 @@ public class SooksoCont {
 		if (cnt == 0) {
 			String msg = "<p>방 수정 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='방목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
+			String link2 = "<input type='button' value='방목록' onclick=\\\"location.href='/admin/sookso/List.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>방 수정 되었습니다</p>";
-			String link2 = "<input type='button' value='방목록' onclick=\\\"location.href='/admin/sooksoList.do'\\\">";
+			String link2 = "<input type='button' value='방목록' onclick=\\\"location.href='/admin/sookso/List.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 		} // if end
@@ -348,34 +349,34 @@ public class SooksoCont {
 		return mav;
 	}// updateProc() end
 	/////////////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping(value = "/admin/Sooksodelete.do", method = RequestMethod.GET)
-	public ModelAndView deleteForm(String s_cn, String room_cn) {
+	@RequestMapping(value = "/admin/sookso/delete.do", method = RequestMethod.GET)
+	public ModelAndView deleteForm(String s_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/deleteForm");
-		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기
+		SooksoDTO dto = dao.read(s_cn);// 수정하고자 하는 행 가져오기
 		mav.addObject("dto", dto);
 		return mav;
 	}// deleteForm() end
 
-	@RequestMapping(value = "/admin/Sooksodelete.do", method = RequestMethod.POST)
-	public ModelAndView deleteProc(String s_cn,String room_cn, HttpServletRequest req) {
+	@RequestMapping(value = "/admin/sookso/delete.do", method = RequestMethod.POST)
+	public ModelAndView deleteProc(String s_cn, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/msgView");
 
 		// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
-		SooksoDTO oldDTO = dao.read(s_cn, room_cn);
+		SooksoDTO oldDTO = dao.read(s_cn);
 
 		int cnt = dao.delete(s_cn);
 		if (cnt == 0) {
 			String msg = "<p>숙소 삭제 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/admin/List.do'\\\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\\\"location.href='List.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>숙소가 삭제되었습니다</p>";
-			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/admin/List.do'\\\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\\\"location.href='List.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 			// 첨부했던 파일 삭제
@@ -386,34 +387,34 @@ public class SooksoCont {
 	}// deleteProc() end
 	
 	////////////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping(value = "/admin/Sooksodelete2.do", method = RequestMethod.GET)
-	public ModelAndView deleteForm2(String s_cn, String room_cn) {
+	@RequestMapping(value = "/admin/sookso/roomdelete.do", method = RequestMethod.GET)
+	public ModelAndView deleteForm2(String s_cn) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/deleteForm2");
-		SooksoDTO dto = dao.read(s_cn, room_cn);// 수정하고자 하는 행 가져오기
+		SooksoDTO dto = dao.read(s_cn);// 삭제하고자 하는 행 가져오기
 		mav.addObject("dto", dto);
 		return mav;
 	}// deleteForm() end
 
-	@RequestMapping(value = "/admin/Sooksodelete2.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/sookso/roomdelete.do", method = RequestMethod.POST)
 	public ModelAndView deleteProc2(String s_cn,String room_cn, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/msgView");
 
 		// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
-		SooksoDTO oldDTO = dao.read(s_cn, room_cn);
+		SooksoDTO oldDTO = dao.read(s_cn);
 
-		int cnt = dao.delete2(room_cn);
+		int cnt = dao.delete2(s_cn, room_cn);
 		if (cnt == 0) {
 			String msg = "<p>방 삭제 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록' onclick=\\\"location.href='/admin/List.do'\\\">";
+			String link2 = "<input type='button' value='방 목록' onclick=\\\"location.href='/admin/sookso/List.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
-			String msg = "<p>숙소가 삭제되었습니다</p>";
-			String link2 = "<input type='button' value='음원목록' onclick=\\\"location.href='/admin/List.do'\\\">";
+			String msg = "<p>방이 삭제되었습니다</p>";
+			String link2 = "<input type='button' value='방 목록' onclick=\\\"location.href='/admin/sookso/List.do'\\\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 			// 첨부했던 파일 삭제
@@ -428,20 +429,20 @@ public class SooksoCont {
 	
 	//장바구니 등록
 		@RequestMapping("cart/addCart.do")
-		public ModelAndView addCart(@ModelAttribute cartDTO dto, HttpServletRequest request, HttpServletResponse response) throws ParseException {
+		public ModelAndView addCart(HttpServletRequest request, HttpServletResponse response) throws ParseException {
 			HttpSession session = request.getSession();
 			String user_id = (String) session.getAttribute("s_id");
 			if(user_id == null) {
 				user_id = "guest";
 			}
-					
+			
 			cartDTO cdto = new cartDTO();
 			cdto.setUser_id(user_id);
 			cdto.setS_code(request.getParameter("s_code"));
 			cdto.setCnt(Integer.parseInt(request.getParameter("cnt")));
 			cdto.setP_cnt(Integer.parseInt(request.getParameter("p_cnt")));
-			cdto.setSdate(sdf.parse(request.getParameter("sdate")));
-			cdto.setFdate(sdf.parse(request.getParameter("fdate")));
+			cdto.setSdate(request.getParameter("sdate"));
+			cdto.setFdate(request.getParameter("fdate"));
 			
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("cart/msgView");
