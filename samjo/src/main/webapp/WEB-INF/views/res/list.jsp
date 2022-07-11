@@ -57,9 +57,6 @@
 						onclick="location.href='delete.do?c_no=${dto.res_no}'"></td>
 				</tr>
 			</c:forEach>
-			<tr>
-				<td><input type="button" value="예약확정" onclick="location.href='reserve.do'"></td>
-			</tr>
 		</table>
 	</div>
 	</c:otherwise>

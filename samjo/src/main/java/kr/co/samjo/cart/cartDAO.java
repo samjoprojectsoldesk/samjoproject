@@ -140,43 +140,6 @@ public class cartDAO {
 	public ArrayList<String> week(int c_no) {
 		ArrayList<String> list = null;
 		try {
-<<<<<<< HEAD
-            con=dbopen.getConnection();
-            
-            sql=new StringBuilder();
-            sql.append(" with dt_w as ( ");
-            sql.append(" select to_char(to_date(st_dt, 'yyyy-mm-dd') + LEVEL -1, 'yyyy-mm-dd') as dt ");
-            sql.append(" from(  ");
-            sql.append(" select '(select sdate from tb_cart where c_no = ?)' as st_dt, ");
-            sql.append(" select '(select fdate from tb_cart where c_no = ?)' as end_dt ");
-            sql.append(" from dual ) ");
-            sql.append(" connect by LEVEL <= to_date(end_dt, 'yyyy-mm-dd') - to_date(st_dt, 'yyyy-mm-dd') + 1 ");
-            sql.append(" ) ");
-            sql.append(" select case when to_char(to_date(d.dt),'d') in ('1', '7') ");
-         	sql.append(" then '주말' ");
-            sql.append(" else '평일' end as week_day ");
-            sql.append(" from dt_w d; ");
-            
-            pstmt=con.prepareStatement(sql.toString());
-            System.out.println(sql.toString());
-            pstmt.setInt(1, c_no);
-            pstmt.setInt(2, c_no);
-            
-            rs=pstmt.executeQuery();
-            
-            if(rs.next()) {
-        		list = new ArrayList<String>();
-                do {
-                    list.add(rs.getString("week_day")); //list에 모으기
-                }while(rs.next());
-            }
-            
-        }catch (Exception e) {
-            System.out.println("평일 주말 구분 실패:"+e);
-        }finally {
-            DBClose.close(con, pstmt, rs);
-        }//end		
-=======
 			con = dbopen.getConnection();
 
 			sql = new StringBuilder();
@@ -184,8 +147,7 @@ public class cartDAO {
 			sql.append("	    SELECT TO_CHAR(TO_DATE(ST_DT, 'YYYY-MM-DD') + LEVEL - 1, 'YYYY-MM-DD') AS DT ");
 			sql.append("	    FROM ( SELECT  substr(sdate, 0, 10) AS ST_DT, substr(fdate, 0, 10) AS END_DT ");
 			sql.append("	            from tb_cart where c_no = ? ) ");
-			sql.append(
-					"	    CONNECT BY LEVEL <=  TO_DATE(END_DT, 'YYYY-MM-DD') - TO_DATE(ST_DT, 'YYYY-MM-DD') + 1 ");
+			sql.append("	    CONNECT BY LEVEL <=  TO_DATE(END_DT, 'YYYY-MM-DD') - TO_DATE(ST_DT, 'YYYY-MM-DD') + 1 ");
 			sql.append("	) ");
 			sql.append("	SELECT CASE WHEN TO_CHAR(TO_DATE(D.DT),'D') IN ('1','7') ");
 			sql.append("	            THEN '주말' ");
@@ -209,7 +171,6 @@ public class cartDAO {
 		} finally {
 			DBClose.close(con, pstmt, rs);
 		} // end
->>>>>>> 09393cd6ab8529f626f6857590f3aeb3cbfe92db
 		return list;
 	}
 
