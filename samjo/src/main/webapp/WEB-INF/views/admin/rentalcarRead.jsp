@@ -88,9 +88,9 @@
 									<td>${dto.c_img}</td>
 									<td>${dto.c_cont}</td>
 									<td><button type="button" class="btn btn-light"
-											onclick="location.href='rentalUpdate.do?u_code=${dto.u_code}'">수정</button>
+											onclick="location.href='rentalcarUpdate.do?u_code=${dto.u_code}'">수정</button>
 										<button type="button" class="btn btn-danger"
-											onclick="location.href='rentalDelete.do?u_code=${dto.u_code}'">삭제</button></td>
+											onclick="location.href='rentalcarDelete.do?u_code=${dto.u_code}'">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

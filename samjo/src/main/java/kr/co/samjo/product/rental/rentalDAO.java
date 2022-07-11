@@ -1,5 +1,8 @@
 package kr.co.samjo.product.rental;
 
+import kr.co.samjo.product.rentalcar.rentalcarDTO;
+import kr.co.samjo.product.rental.rentalDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -241,6 +244,8 @@ public class rentalDAO {
 			pstmt.setString(4, dto.getU_office());
 			pstmt.setString(5, dto.getU_img());
 			pstmt.setString(6, dto.getU_cont());
+			pstmt.setString(7, dto.getU_code());
+			
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("렌트카 업체 수정 실패" + e);
@@ -260,6 +265,7 @@ public class rentalDAO {
 			sql.append(" WHERE u_code=? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, u_code);
+			
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("삭제 실패" + e);

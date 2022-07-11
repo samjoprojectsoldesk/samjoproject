@@ -35,10 +35,6 @@
 				</div>
 			</div>
 		</div>
-		<input type="button" value="수정" onclick="location.href='/admin/rentalcarUpdate.do?c_code=${dto.c_code}'">
-        <input type="button" value="삭제" onclick="location.href='/admin/rentalcarDelete.do?c_code=${dto.c_code}'">
-        <input type="button" value="차량등록" onclick="location.href='/admin/rentalcarCreate2.do?c_code=${dto.c_code}'">
-	
 	<div class="col-md-12" id="tab-menu">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
          <li class="col-md-4 nav-item"><a class="nav-link active"

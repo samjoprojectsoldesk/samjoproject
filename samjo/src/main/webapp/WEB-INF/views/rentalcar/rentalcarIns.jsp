@@ -65,7 +65,7 @@
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">등록</button>
-				<button type="button" class="btn btn-secondary" onclick="location.href='/rentalcar/List.do'">목록</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='/admin/rentalcarList.do'">목록</button>
 			</div>
 		</form>
 	</div>

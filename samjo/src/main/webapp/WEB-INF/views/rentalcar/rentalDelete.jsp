@@ -21,14 +21,14 @@
 	<div class="col-md-12">
 		<form name="frm" method="post" action="rentalDelete.do" class="Ins"
 			enctype="multipart/form-data">
-			<input type="hidden" name="c_code" value="${dto.u_code}">
+			<input type="hidden" name="u_code" value="${dto.u_code}">
 			<div class="content">
 				<p>해당 렌트카 업체(${dto.u_name}) 를 삭제하시겠습니까?</p>
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">삭제</button>
 				<button type="button" class="btn btn-secondary"
-					onclick="location.href='/rentalcar/List.do'">목록</button>
+					onclick="location.href='/admin/rentalcarList.do'">목록</button>
 			</div>
 		</form>
 	</div>

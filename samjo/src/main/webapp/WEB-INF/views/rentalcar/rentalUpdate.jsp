@@ -18,7 +18,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="Sooksoupdate.do" class="create" enctype="multipart/form-data">
+		<form name="frm" method="post" action="rentalUpdate.do" class="create" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="u_code">업체코드</label> 
 				<input type="text" class="form-control" id="u_code" name="u_code" value="${dto.u_code}" readonly>
