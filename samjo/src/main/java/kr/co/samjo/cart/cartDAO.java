@@ -147,8 +147,7 @@ public class cartDAO {
 			sql.append("	    SELECT TO_CHAR(TO_DATE(ST_DT, 'YYYY-MM-DD') + LEVEL - 1, 'YYYY-MM-DD') AS DT ");
 			sql.append("	    FROM ( SELECT  substr(sdate, 0, 10) AS ST_DT, substr(fdate, 0, 10) AS END_DT ");
 			sql.append("	            from tb_cart where c_no = ? ) ");
-			sql.append(
-					"	    CONNECT BY LEVEL <=  TO_DATE(END_DT, 'YYYY-MM-DD') - TO_DATE(ST_DT, 'YYYY-MM-DD') + 1 ");
+			sql.append("	    CONNECT BY LEVEL <=  TO_DATE(END_DT, 'YYYY-MM-DD') - TO_DATE(ST_DT, 'YYYY-MM-DD') + 1 ");
 			sql.append("	) ");
 			sql.append("	SELECT CASE WHEN TO_CHAR(TO_DATE(D.DT),'D') IN ('1','7') ");
 			sql.append("	            THEN '주말' ");

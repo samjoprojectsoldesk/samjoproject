@@ -45,9 +45,6 @@
 					<td>${dto.fdate}</td>
 					<td><a href="/review/reviewcreate.do?detail_no=${dto.detail_no}">리뷰쓰기</a></td>
 			</c:forEach>
-			<tr>
-				<td><input type="button" value="결제하기" onclick="location.href='cost.do'"></td>
-			</tr>
 		</table>
 	</div>
 	</c:otherwise>

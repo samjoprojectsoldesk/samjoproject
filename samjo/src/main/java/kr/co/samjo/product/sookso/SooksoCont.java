@@ -392,7 +392,6 @@ public class SooksoCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sookso/deleteForm2");
 		SooksoDTO dto = dao.read(s_cn);// 삭제하고자 하는 행 가져오기
-
 		mav.addObject("dto", dto);
 		return mav;
 	}// deleteForm() end

@@ -44,7 +44,6 @@ public class resDetailDAO {
         	else {pstmt.setString(5, "NULL");}
 			
 			cnt=pstmt.executeUpdate();
-			
 		} catch (Exception e) {
 			System.out.println("예약상세등록실패" + e);
 		} finally {

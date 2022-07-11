@@ -261,7 +261,6 @@ public class packagetourDAO {
 			pstmt.setString(8, dto.getPack_cont());
 			pstmt.setString(9, dto.getPack_img());
 			pstmt.setString(10, dto.getPack_no());
-
 			cnt = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("패키지 여행 수정 실패" + e);

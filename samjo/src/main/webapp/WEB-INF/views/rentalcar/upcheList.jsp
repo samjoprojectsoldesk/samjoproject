@@ -2,13 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp"%>
-<!-- 본문 시작 List.jsp -->
+<!-- 본문 시작 upcheList.jsp -->
 <aside id="fh5co-hero-T">
 	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2 style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">렌트카</h2>
+					class="heading-section">렌트카 업체 리스트</h2>
 			</div>
 		</div>
 	</div>
@@ -29,8 +29,8 @@
 		<div class="row">
 			<c:forEach var="dto" items="${list}">
 				<div class="col-md-4 text-center project">
-					<a href="../rentalcar/List/Read.do?u_code=${dto.u_code}" class="grid-project">
-							<img src="../storage/${dto.c_img}" alt="Project" class="img-responsive" style="margin: 0 auto; height:300px;">
+					<a href="../rentalcar/Read.do?u_code=${dto.u_code}" class="grid-project">
+							<img src="../storage/${dto.u_img}" alt="Project" class="img-responsive" style="margin: 0 auto; height:300px;">
 						<div class="desc">
 							<h3>${dto.u_name}</h3>
 							<span>${dto.u_office}</span>
