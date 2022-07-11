@@ -3,6 +3,8 @@ package kr.co.samjo.res;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import kr.co.samjo.cart.cartDTO;
@@ -29,7 +31,7 @@ public class resDetailDAO {
 			sql = new StringBuilder();
 
 			sql.append(" INSERT INTO tb_resdetail(detail_no, res_no, s_code, p_cnt, sdate, fdate) ");
-	         sql.append(" VALUES( resdetail_seq.nextval ?, ?, ?, ?, ? ) ");
+	         sql.append(" VALUES( resdetail_seq.nextval, ?, ?, ?, ?, ? ) ");
 
 			pstmt = con.prepareStatement(sql.toString());
 
@@ -57,7 +59,7 @@ public class resDetailDAO {
 			con = dbopen.getConnection();
 
 			sql = new StringBuilder();
-			sql.append(" SELECT res_no, s_code, sdate, fdate ");
+			sql.append(" SELECT detail_no, res_no, s_code, sdate, fdate ");
 			sql.append(" FROM tb_resdetail ");
 			sql.append(" WHERE res_no=? ");
 			sql.append(" ORDER BY res_no DESC ");
@@ -72,6 +74,7 @@ public class resDetailDAO {
 				do {
 
 					resDetailDTO dto = new resDetailDTO(); // 한줄담기
+					dto.setDetail_no(rs.getInt("detail_no"));
 					dto.setRes_no(rs.getString("res_no"));
 					dto.setS_code(rs.getString("s_code"));
 					dto.setSdate(rs.getString("sdate"));

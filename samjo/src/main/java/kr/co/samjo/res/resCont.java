@@ -122,7 +122,7 @@ public class resCont {
 		ArrayList<resDTO> reslist = dao.list(user_id);
 
 		for (int i = 0; i < list.size(); i++) {
-			dt_dao.create(list.get(i), reslist.get(reslist.size() - 1).getRes_no());
+			dt_dao.create(list.get(i), reslist.get(0).getRes_no());
 		}
 
 		return mav;
@@ -170,6 +170,8 @@ public class resCont {
 			map.put("list", list);
 			map.put("count", list.size());
 		}
+		
+		mav.addObject("map",map);
 
 		return mav;
 	}

@@ -65,8 +65,10 @@
 
 		<div class="paging">
 			<div class="content">
-				<input type="button" value="글쓰기"
-					onclick="location.href='boardcreate.do'">
+			<% if (s_mlevel.equals("2")) {%>
+				<input type='button' value='글쓰기' onclick='location.href="create.do"'>
+				
+			<%}%>
 			</div>
 			<br>
 			<c:if test="${requestScope.count>0 }">

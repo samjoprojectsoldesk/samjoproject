@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp"%>
 <!-- 본문 시작 list.jsp -->
+
 <aside id="fh5co-hero-T">
 	<div class="flexslider">
 		<div class="container">
@@ -87,9 +88,49 @@
                <div class="col-md-4 text-center project">
                   <a class="grid-project">
                      <div class="desc">
-                        <h3>${dto.review_content}</h3>
+					<style>
+					.star-ratings {
+					   margin-left: 37%;
+					  color: #aaa9a9; 
+					  position: relative;
+					  unicode-bidi: bidi-override;
+					  width: max-content;
+					  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+					  -webkit-text-stroke-width: 1.3px;
+					  -webkit-text-stroke-color: #2b2a29;
+					}
+					 
+					.star-ratings-fill {
+					  color: #fff58c;
+					  padding: 0;
+					  position: absolute;
+					  z-index: 1;
+					  display: flex;
+					  top: 0;
+					  left: 0;
+					  overflow: hidden;
+					  -webkit-text-fill-color: gold;
+					}
+					 
+					.star-ratings-base {
+					  z-index: 0;
+					  padding: 0;
+					}
+					</style>
+					<div class="star-ratings" style="">
+						<div 
+					    class="star-ratings-fill space-x-2 text-lg"
+					    style="width: ${dto.review_asterion*20}%;">
+							<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+						</div>
+						<div class="star-ratings-base space-x-2 text-lg">
+							<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+						</div>
+					</div>
+                        <span>${dto.review_content}</span> <br>
                         <span>${dto.review_user_id}</span> <br> <span>${dto.review_date}</span>
                      </div>
+                     
                   </a>
                </div>
             </c:forEach>

@@ -39,13 +39,16 @@
 						</div>
 						<div class="desc-T">
 							<h3>${dto.t_name}</h3>
-							<span>${dto.t_addr}</span> <br> <br>
-							<span>${dto.t_cont}</span> <br> <br>
+							<span>${dto.t_addr}</span> <br> <br> <span>${dto.t_cont}</span>
+							<br> <br>
 							<ul>
-								<li>${dto.t_tel}</li>
-								<li><a class="textLink" href="${dto.t_link}"
-									target="_blank"> ${dto.t_link} </a></li>
 								<li>${dto.t_sche}</li>
+								<c:if test="${dto.t_car != null}">
+									<li>${dto.t_car}</li>
+								</c:if>
+								<c:if test="${dto.t_link != null}">
+									<li><a class="textLink" href="${dto.t_link}" target="_blank">${dto.t_link}</a></li>
+								</c:if>
 							</ul>
 						</div>
 
@@ -55,7 +58,7 @@
 			</c:forEach>
 		</div>
 	</div>
-	
+
 	<!-- 페이지 리스트 -->
 	<div class="paging">
 		<c:if test="${requestScope.count>0 }">

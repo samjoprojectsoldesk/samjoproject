@@ -32,9 +32,7 @@
 			<tr>
 			<td colspan="2" align="center">
 				<div class='bottom'>
-					<button type="submit" class="btn btn-primary" onclick="location.href='/notice/bbsUpdate.do?board_no=${dto.board_no}'">수정</button>
-					<button type="submit" class="btn btn-primary" onclick="location.href='/notice/bbsDelete.do?board_no=${dto.board_no}'">삭제</button>
-					<button type="button" class="btn btn-secondary" onclick="location.href='/notice/bbsList.do'">목록</button>
+					<button type="button" class="btn btn-secondary" onclick="location.href='/notice/List.do'">목록</button>
 				</div>			
 			</td>
 		</table>

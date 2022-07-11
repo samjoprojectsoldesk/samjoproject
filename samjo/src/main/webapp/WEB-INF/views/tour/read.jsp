@@ -28,10 +28,17 @@
 						<strong>기본정보</strong>
 						<hr>
 						<li>주소&emsp;&emsp;&emsp;${dto.t_addr}</li>
-						<li>전화번호&nbsp;&nbsp;&nbsp;&nbsp;${dto.t_tel}</li>
-						<li>홈페이지&nbsp;&nbsp;&nbsp;&nbsp;</li>
-						<li><a class="textLink" href="${dto.t_link}" target="_blank">${dto.t_link}</a></li>
-						<li>주차&emsp;&emsp;&emsp;${dto.t_car}</li>
+						<c:if test="${dto.t_tel != null}">
+							<li>전화번호&nbsp;&nbsp;&nbsp;&nbsp;${dto.t_tel}</li>
+						</c:if>
+						<c:if test="${dto.t_link != null}">
+							<li>홈페이지&nbsp;&nbsp;&nbsp;&nbsp;
+							<a class="textLink" href="${dto.t_link}" target="_blank">${dto.t_link}</a>
+							</li>
+						</c:if>
+						<c:if test="${dto.t_car != null}">
+							<li>주차&emsp;&emsp;&emsp;${dto.t_car}</li>
+						</c:if>
 					</ul>
 				</div>
 			</div>
@@ -40,20 +47,17 @@
 
 	<div class="col-md-12" id="tab-menu">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="col-md-4 nav-item"><a class="nav-link active"
+			<li class="col-md-6 nav-item"><a class="nav-link active"
 				id="map-tab" data-toggle="tab" href="#map" role="tab"
 				aria-controls="map" aria-selected="true">지도에서 보기</a></li>
-			<li class="col-md-4 nav-item"><a class="nav-link" id="info-tab"
+			<li class="col-md-6 nav-item"><a class="nav-link" id="info-tab"
 				data-toggle="tab" href="#info" role="tab" aria-controls="info"
 				aria-selected="false">상세정보</a></li>
-			<li class="col-md-4 nav-item"><a class="nav-link"
-				id="review-tab" data-toggle="tab" href="#review" role="tab"
-				aria-controls="review" aria-selected="false">리뷰보기</a></li>
 		</ul>
 
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade active in" id="map" role="tabpanel"
-				aria-labelledby="map-tab" style="margin-top:30px;">
+				aria-labelledby="map-tab" style="margin-top: 30px;">
 
 				<div id="map"></div>
 				<div id="store_address" data-address="${dto.t_addr}"></div>
@@ -62,20 +66,8 @@
 			</div>
 
 			<div class="tab-pane fade" id="info" role="tabpanel"
-				aria-labelledby="info-tab" style="margin-top:30px;">${dto.t_cont}</div>
-
-			<div class="tab-pane fade" id="review" role="tabpanel"
-				aria-labelledby="review-tab" style="margin-top:30px;">
-				<c:forEach var="dto" items="${list}">
-					<div class="col-md-4 text-center project">
-						<a class="grid-project">
-							<div class="desc">
-								<h3>${dto.review_content}</h3>
-								<span>${dto.review_user_id}</span> <br> <span>${dto.review_date}</span>
-							</div>
-						</a>
-					</div>
-				</c:forEach>
+				aria-labelledby="info-tab" style="margin-top: 30px;">
+				<div style="white-space: pre; overflow: auto;">${dto.t_cont}</div>
 			</div>
 
 

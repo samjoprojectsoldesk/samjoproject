@@ -1,7 +1,9 @@
+<%@page import="kr.co.samjo.review.reviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp"%>
+
 <!-- 본문 시작 list.jsp -->
 <aside id="fh5co-hero-T">
 	<div class="flexslider">
@@ -37,36 +39,33 @@
 			</div>
 		</div>
 	</div>
-	<input type="button" value="수정"
-		onclick="location.href='/admin/Sooksoupdate.do?s_cn=${dto.s_cn}'">
-	<input type="button" value="삭제"
-		onclick="location.href='/admin/Sooksodelete.do?room_cn=${dto.s_cn}'">
-	<input type="button" value="방생성"
-		onclick="location.href='/admin/Sooksocreate2.do?s_cn=${dto.s_cn}'">
 
 	<div class="col-md-12" id="tab-menu">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="col-md-4 nav-item"><a class="nav-link active"
+			<li class="col-md-3 nav-item"><a class="nav-link active"
 				id="map-tab" data-toggle="tab" href="#map" role="tab"
 				aria-controls="map" aria-selected="true">지도에서 보기</a></li>
-			<li class="col-md-4 nav-item"><a class="nav-link" id="info-tab"
+			<li class="col-md-3 nav-item"><a class="nav-link" id="info-tab"
 				data-toggle="tab" href="#info" role="tab" aria-controls="info"
 				aria-selected="false">상세정보</a></li>
-			<li class="col-md-4 nav-item"><a class="nav-link"
+			<li class="col-md-3 nav-item"><a class="nav-link"
 				id="review-tab" data-toggle="tab" href="#review" role="tab"
 				aria-controls="review" aria-selected="false">리뷰보기</a></li>
+			<li class="col-md-3 nav-item"><a class="nav-link"
+				id="review-tab" data-toggle="tab" href="#in" role="tab"
+				aria-controls="in" aria-selected="false">상세정보</a></li>
 		</ul>
 
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade active in" id="map" role="tabpanel"
 				aria-labelledby="map-tab" style="margin-top: 30px;">
 
-				
+
 				<div id="map"></div>
 				<div id="store_address" data-address="${dto.s_addr}"></div>
 				<div id="store_name" data-name="${dto.s_name}"></div>
-				
-				
+
+
 
 			</div>
 
@@ -136,11 +135,7 @@
 
 								</div>
 								<button type="submit">장바구니</button>
-								<input type="button" value="수정"
-									onclick="location.href='/admin/Sooksoupdate2.do?s_cn=${dto.s_cn}'">
-								<input type="button" value="삭제"
-									onclick="location.href='/admin/Sooksodelete2.do?s_cn=${dto.s_cn}'">
-
+							
 							</div>
 						</c:forEach>
 					</div>
@@ -152,16 +147,56 @@
 				aria-labelledby="review-tab" style="margin-top: 30px;">
 				<c:forEach var="dto" items="${list2}">
 					<div class="col-md-4 text-center project">
-						<a href="../sookso/List/read.do?s_cn=${dto.s_cn}"
-							class="grid-project">
+						<div class="grid-project">
 							<div class="desc">
+								<style>
+.star-ratings {
+	margin-left: 37%;
+	color: #aaa9a9;
+	position: relative;
+	unicode-bidi: bidi-override;
+	width: max-content;
+	-webkit-text-fill-color: transparent;
+	/* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 1.3px;
+	-webkit-text-stroke-color: #2b2a29;
+}
+
+.star-ratings-fill {
+	color: #fff58c;
+	padding: 0;
+	position: absolute;
+	z-index: 1;
+	display: flex;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	-webkit-text-fill-color: gold;
+}
+
+.star-ratings-base {
+	z-index: 0;
+	padding: 0;
+}
+</style>
+								<div class="star-ratings" style="">
+									<div class="star-ratings-fill space-x-2 text-lg"
+										style="width: ${dto.review_asterion*20}%;">
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+									</div>
+									<div class="star-ratings-base space-x-2 text-lg">
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+									</div>
+								</div>
 								<h3>${dto.review_content}</h3>
 								<span>${dto.review_user_id}</span> <br> <span>${dto.review_date}</span>
 							</div>
-						</a>
+						</div>
 					</div>
 				</c:forEach>
 			</div>
+			<div class="tab-pane fade" id="in" role="tabpanel"
+				aria-labelledby="review-tab" style="margin-top: 30px; white-space:pre;">${dto.s_cont}</div>
 
 
 		</div>

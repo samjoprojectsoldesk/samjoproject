@@ -10,7 +10,10 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">숙소 목록</h2>
-					<button type="button" class="btn btn-primary" onclick="location.href='create.do'">등록</button>
+				<div style="text-align: center;">
+					<button type="button" class="btn btn-primary"
+						onclick="location.href='create.do'">등록</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -56,7 +59,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					
+
 				</div>
 			</div>
 		</div>

@@ -25,13 +25,14 @@ public class reviewDAO {
 
 			sql = new StringBuilder();
 			sql.append(" INSERT INTO tb_review(review_no, review_user_id, review_res_no, review_code, review_asterion, review_date, review_content) ");
-			sql.append(" VALUES(review_no.nextval, ?, systimestamp, ?, ?, sysdate, ?) ");
+			sql.append(" VALUES(review_no.nextval, ?, ?, ?, ?, sysdate, ?) ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getReview_user_id());
-			pstmt.setString(2, dto.getReview_code());
-			pstmt.setInt(3, dto.getReview_asterion());
-			pstmt.setString(4, dto.getReview_content());
+			pstmt.setString(2, dto.getReview_res_no());
+			pstmt.setString(3, dto.getReview_code());
+			pstmt.setInt(4, dto.getReview_asterion());
+			pstmt.setString(5, dto.getReview_content());
 			cnt = pstmt.executeUpdate();
 
 		} catch (Exception e) {

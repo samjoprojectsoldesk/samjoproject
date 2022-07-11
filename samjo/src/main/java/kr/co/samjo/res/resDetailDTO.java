@@ -1,5 +1,10 @@
 package kr.co.samjo.res;
 
+import kr.co.samjo.product.maszip.MaszipDAO;
+import kr.co.samjo.product.packagetour.packagetourDAO;
+import kr.co.samjo.product.rentalcar.rentalcarDAO;
+import kr.co.samjo.product.sookso.SooksoDAO;
+
 public class resDetailDTO {
 
 	private int detail_no;
@@ -8,6 +13,29 @@ public class resDetailDTO {
     private int p_cnt;
     private String sdate; // VARCHAR2(30) not null,
     private String fdate; // VARCHAR2(30)
+	private String s_name;// 상품명
+	
+
+	public String getS_name() {
+		if(this.s_code.charAt(0)=='C'){
+			rentalcarDAO dao = new rentalcarDAO();
+			s_name = dao.read(s_code).getC_name();
+		}else if(this.s_code.charAt(0)=='S'){
+			SooksoDAO dao = new SooksoDAO();
+			s_name = dao.readroom(s_code).getS_name();
+		}else if(this.s_code.charAt(0)=='R') {
+			MaszipDAO dao = new MaszipDAO();
+			s_name = dao.read(s_code).getM_name();
+		}else {
+			packagetourDAO dao = new packagetourDAO();
+			s_name = dao.read(s_code).getPack_name();
+		}
+		return s_name;
+	}
+
+	public void setS_name(String s_name) {
+		this.s_name = s_name;
+	}
     
     public int getDetail_no() {
 		return detail_no;

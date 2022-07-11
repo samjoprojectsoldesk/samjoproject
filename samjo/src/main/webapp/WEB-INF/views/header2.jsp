@@ -97,17 +97,11 @@
 										</ul></li>
 									<li><a class="bold" href="#">예약 상품 관리</a>
 										<ul class="fh5co-sub-menu">
-<<<<<<< HEAD
 											<li><a href="/admin/sookso/List.do">숙박</a></li>
 											<li><a href="/admin/rental/List.do">렌트카</a></li>
 											<li><a href="/admin/maszip/List.do">맛집</a></li>
 											<li><a href="/admin/packagetour/List.do">패키지</a></li>
-=======
-											<li><a href="/admin/sooksoList.do">숙박</a></li>
-											<li><a href="/admin/rentalcarList.do">렌트카</a></li>
-											<li><a href="/admin/">맛집</a></li>
-											<li><a href="/admin/packagetourList.do">패키지</a></li>
->>>>>>> 4ad7e09d3c642a0a359f0053a205e37b587ce96e
+
 										</ul></li>
 									<li><a class="bold" href="#" class="fh5co-sub-ddown">커뮤니티
 											관리</a>

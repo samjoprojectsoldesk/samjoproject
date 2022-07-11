@@ -4,8 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="../header.jsp"%>
 <!-- 본문 시작 template.jsp -->
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
@@ -50,16 +50,19 @@
 					</td>
 					<c:choose>
 						<c:when test="${dto.result eq 'Y' }"><td>예약완료</td></c:when>
-						<c:when test="${dto.result eq 'C' }"><td>예약취소</td></c:when>
+						<c:when test="${dto.result eq 'c' }"><td>예약취소</td></c:when>
 						<c:when test="${dto.result eq 'U' }"><td>사용완료</td></c:when>
 					</c:choose>
-					<td><input type="button" value="예약취소"
-						onclick="location.href='delete.do?c_no=${dto.res_no}'"></td>
+					
+					<c:choose>
+						<c:when test="${dto.result eq 'Y' }">
+						<td><input type="button" value="예약취소"
+						onclick="location.href='delete.do?res_no=${dto.res_no}'"></td></c:when>
+						<c:when test="${dto.result eq 'c' }"><td>취소완료</td></c:when>
+						<c:when test="${dto.result eq 'U' }"><td>사용완료</td></c:when>
+					</c:choose>
 				</tr>
 			</c:forEach>
-			<tr>
-				<td><input type="button" value="예약확정" onclick="location.href='reserve.do'"></td>
-			</tr>
 		</table>
 	</div>
 	</c:otherwise>

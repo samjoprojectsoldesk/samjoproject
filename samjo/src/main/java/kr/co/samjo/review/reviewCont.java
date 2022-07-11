@@ -26,7 +26,7 @@ public class reviewCont {
 		System.out.println("-----reviewCont() 객체 생성됨");
 	}//end
 	
-	@RequestMapping(value = "reviewcreate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/review/reviewcreate.do", method = RequestMethod.GET)
 	public ModelAndView create(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
@@ -35,16 +35,17 @@ public class reviewCont {
 		resDetailDAO resdao = new resDetailDAO();
 		resdto = resdao.read(Integer.parseInt(request.getParameter("detail_no")));
 		
-		mav.addObject("review_code", resdto.getRes_no());
 		mav.addObject("s_code", resdto.getS_code());
-		mav.addObject("review_user_id", userId);
+		mav.addObject("res_no", resdto.getRes_no());
+		mav.addObject("s_name", resdto.getS_name());
+		mav.addObject("user_id", userId);
 		
 		mav.setViewName("review/createForm");
 		return mav; 
 	}//create() end
 	
 	
-	@RequestMapping(value = "reviewcreate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/review/reviewcreate.do", method = RequestMethod.POST)
 	public ModelAndView create(@ModelAttribute reviewDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice/msgView");

@@ -11,7 +11,10 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">문화행사 목록</h2>
-					<button type="button" class="btn btn-primary" onclick="location.href='/admin/tour/create.do'">등록</button>
+				<div style="text-align: center;">
+					<button type="button" class="btn btn-primary"
+						onclick="location.href='/admin/tour/create.do'">등록</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -57,7 +60,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					
+
 				</div>
 			</div>
 

@@ -55,8 +55,11 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">방 목록</h2>
-				<button type="button" class="btn btn-primary"
-					onclick="location.href='roomcreate.do?s_cn=${dto.s_cn}'">방 등록</button>
+				<div style="text-align: center;">
+					<button type="button" class="btn btn-primary"
+						onclick="location.href='roomcreate.do?s_cn=${dto.s_cn}'">방
+						등록</button>
+				</div>
 			</div>
 
 

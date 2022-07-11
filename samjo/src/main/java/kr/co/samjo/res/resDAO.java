@@ -29,7 +29,7 @@ public class resDAO {
 			sql = new StringBuilder();
 
 			sql.append(" INSERT INTO tb_reserve(res_no, user_id, amount, pay, result) ");
-			sql.append(" VALUES( systimestamp, ?, ?, ?, ?) ");
+			sql.append(" VALUES( substr(systimestamp, 10, 14) , ?, ?, ?, ?) ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, rdto.getUser_id());

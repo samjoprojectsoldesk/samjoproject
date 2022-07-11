@@ -4,8 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="../header.jsp"%>
 <!-- 본문 시작 template.jsp -->
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
@@ -43,7 +43,7 @@
 					<td>${dto.s_name}</td>
 					<td>${dto.sdate}</td>
 					<td>${dto.fdate}</td>
-					<td><a href="review/reviewcreate?res_no=${dto.detail_no}">리뷰쓰기</a></td>
+					<td><a href="/review/reviewcreate.do?detail_no=${dto.detail_no}">리뷰쓰기</a></td>
 			</c:forEach>
 			<tr>
 				<td><input type="button" value="결제하기" onclick="location.href='cost.do'"></td>

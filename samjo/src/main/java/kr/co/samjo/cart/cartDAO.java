@@ -186,7 +186,6 @@ public class cartDAO {
 				SooksoDAO sdao = new SooksoDAO();
 				SooksoDTO sdto = new SooksoDTO();
 				sdto = sdao.readroom(s_code);
-				System.out.println(sdto.toString());
 				for (int j = 0; j < tmplist.size(); j++) {
 					if (tmplist.get(j) == "주말") {
 						sum += sdto.getRoom_ep();

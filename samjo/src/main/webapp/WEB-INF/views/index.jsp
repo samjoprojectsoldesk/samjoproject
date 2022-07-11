@@ -105,7 +105,7 @@
 										</ul></li>
 									<li><a class="bold" href="#" class="fh5co-sub-ddown">커뮤니티</a>
 										<ul class="fh5co-sub-menu">
-											<li><a href="/notice/bbsList.do">공지사항</a></li>
+											<li><a href="/notice/List.do">공지사항</a></li>
 											<li><a href="/board/List.do">자유게시판</a></li>
 										</ul></li>
 
@@ -135,7 +135,7 @@
 									out.print("<li><a class='bold' href='#'>마이페이지</a>");
 									out.print("<ul class='fh5co-sub-menu'>");
 									out.print("<li><a href='/member/memberModify.do'>개인정보수정</a></li>");
-									out.print("<li><a href='right-sidebar.html'>예약관리</a></li>");
+									out.print("<li><a href='/res/list.do'>예약관리</a></li>");
 									out.print("</ul></li>");
 									out.print("<li>");
 									out.print("<a class='bold' href='/member/loginForm.do'>로그아웃</a>");

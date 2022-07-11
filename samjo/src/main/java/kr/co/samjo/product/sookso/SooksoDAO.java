@@ -457,12 +457,14 @@ public int create2(SooksoDTO dto) {
 			sql.append(
 					"               SELECT review_no, review_code,review_res_no, review_user_id, review_content, review_asterion, review_date ");
 			sql.append("               FROM tb_review ");
-			sql.append("			   WHERE review_code = ? ");
+			sql.append("			   WHERE substr(review_code, 0, 4) = ? ");
 			sql.append("			   order by review_date DESC ");
 			sql.append("             )BB ");
 			sql.append("      ) AA ");
 			sql.append(" WHERE AA.RNUM >=? AND AA.RNUM<=? ");
 
+			System.out.println(review_code.substring(4));
+			
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, review_code);
 			pstmt.setInt(2, start);
@@ -474,11 +476,11 @@ public int create2(SooksoDTO dto) {
 				do {
 					SooksoDTO dto = new SooksoDTO();
 					dto.setReview_user_id(rs.getString("review_no"));
-					dto.setReview_user_id(rs.getString("review_code"));
-					dto.setReview_user_id(rs.getString("review_res_no"));
+					dto.setReview_code(rs.getString("review_code"));
+					dto.setReview_res_no(rs.getString("review_res_no"));
 					dto.setReview_user_id(rs.getString("review_user_id"));
 					dto.setReview_content(rs.getString("review_content"));
-					dto.setReview_content(rs.getString("review_asterion"));
+					dto.setReview_asterion(rs.getString("review_asterion"));
 					dto.setReview_date(rs.getString("review_date"));
 					list2.add(dto);
 				} while (rs.next());

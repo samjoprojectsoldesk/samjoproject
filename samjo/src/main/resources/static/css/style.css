@@ -289,17 +289,33 @@ figure {
 }
 
 @media screen and (max-width: 768px) {
-	.fh5co-hero-T,  {
-		height: 400px;
-	}
+	.fh5co-hero-T
+	,
+	{
+	height
+	:
+	 
+	400px
+	;
+	
+	
 }
 
+}
 @media screen and (max-width: 768px) {
-	.fh5co-hero-T,  {
-		height: 200px;
-	}
+	.fh5co-hero-T
+	,
+	{
+	height
+	:
+	 
+	200px
+	;
+	
+	
 }
 
+}
 .fh5co-cover.fh5co-hero-2, .fh5co-hero.fh5co-hero-2 {
 	height: 600px;
 }
@@ -561,7 +577,6 @@ figure {
 
 #fh5co-header-section .bottomMenu .searchWrap .search {
 	font-family: "Roboto Slab", Arial, sans-serif;
-	border: 2px solid #f3c204;
 	background: #fff;
 }
 
@@ -586,27 +601,6 @@ figure {
 	width: 46px;
 	height: 46px;
 	text-indent: -99999px;
-}
-
-
-#fh5co-header-section .bottomMenu {
-	clear: both;
-	overflow: hidden;
-}
-
-#fh5co-header-section .bottomMenu .searchWrap {
-	float: left;
-	overflow: hidden;
-}
-
-#fh5co-header-section .bottomMenu .searchWrap .search {
-	font-family: "Roboto Slab", Arial, sans-serif;
-	border: 2px solid #f3c204;
-	background: #fff;
-}
-
-#fh5co-header-section .bottomMenu .searchWrap .keywords {
-	margin: 10px 0 0 10px;
 }
 
 #fh5co-header-section .bottomMenu .weather {
@@ -643,7 +637,6 @@ figure {
 	padding-right: 5px;
 }
 
-
 #fh5co-header-section .bottomMenu .weather li::before {
 	content: '';
 	display: block;
@@ -673,8 +666,6 @@ figure {
 	background: url(../images/search.png) no-repeat center;
 	text-indent: -99999px;
 }
-
-
 
 .nav-header {
 	position: relative;
@@ -1175,7 +1166,6 @@ figure {
 .tourcreate .bottom {
 	text-align: center;
 }
-
 
 #fh5co-section {
 	float: left;
@@ -1943,18 +1933,44 @@ figure {
 	font-weight: bold;
 }
 
-
 #fh5co-work-section .container .btns button {
 	font-family: "Roboto Slab", Arial, sans-serif;
 	font-weight: bold;
 }
 
-#fh5co-work-section .container .grid-project tr,
-#fh5co-work-section .container .grid-project button {
+#fh5co-work-section .container .grid-project tr, #fh5co-work-section .container .grid-project button
+	{
 	font-family: "Roboto Slab", Arial, sans-serif;
 	font-weight: bold;
 	text-align: left;
 }
 
-
+/*
+#fh5co-contact-section .star-ratings {
+  color: #aaa9a9; 
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+}
+ 
+#fh5co-contact-section .star-ratings-fill {
+  color: #fff58c;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+}
+ 
+#fh5co-contact-section .star-ratings-base {
+  z-index: 0;
+  padding: 0;
+}
+*/
 /*# sourceMappingURL=style.css.map */

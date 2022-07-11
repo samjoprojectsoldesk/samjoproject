@@ -112,7 +112,7 @@
 									<li><a class="bold" href="#"
 										class="fh5co-sub-ddown">커뮤니티</a>
 										<ul class="fh5co-sub-menu">
-											<li><a href="/notice/bbsList.do">공지사항</a></li>
+											<li><a href="/notice/List.do">공지사항</a></li>
 											<li><a href="/board/List.do">자유게시판</a></li>
 										</ul></li>
 

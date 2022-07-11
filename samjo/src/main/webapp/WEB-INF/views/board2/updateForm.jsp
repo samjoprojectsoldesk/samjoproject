@@ -19,7 +19,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="updateForm.do" class="tourcreate" enctype="multipart/form-data">
+		<form name="frm" method="post" action="update.do" class="tourcreate" enctype="multipart/form-data">
 		<input type="hidden" name="bbs_idx" id="bbs_idx" value="${dto.bbs_idx }">
 			<div class="form-group">
 				<label for="bbs_title">제목</label> 

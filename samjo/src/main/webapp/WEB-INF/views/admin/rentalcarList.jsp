@@ -10,7 +10,10 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">렌트카 목록</h2>
-					<button type="button" class="btn btn-primary" onclick="location.href='rentalcarIns.do'">등록</button>
+				<div style="text-align: center;">
+					<button type="button" class="btn btn-primary"
+						onclick="location.href='rentalcarIns.do'">등록</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -46,7 +49,8 @@
 							<c:forEach var="dto" items="${list}">
 								<tr>
 									<th scope="row">${dto.s_cn}</th>
-									<td onclick="location.href='sooksoList/read.do?s_cn=${dto.s_cn}'">${dto.s_name}</td>
+									<td
+										onclick="location.href='sooksoList/read.do?s_cn=${dto.s_cn}'">${dto.s_name}</td>
 									<td>${dto.s_addr}</td>
 									<td><button type="button" class="btn btn-light"
 											onclick="location.href='sooksoupdate.do?s_cn=${dto.s_cn}'">수정</button>
@@ -56,7 +60,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					
+
 				</div>
 			</div>
 		</div>

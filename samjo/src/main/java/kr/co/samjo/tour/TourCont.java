@@ -70,9 +70,11 @@ public class TourCont {
 		} else {
 			String msg = "<p>여행지 등록 성공</p>";
 			String img = "<img src='../images/sound.png'>";
+			String link1 = "<input type='button' value='계속등록' onclick=\\\"location.href='/admin/tour/create.do'\\\">";
 			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='/admin/tour/List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
+			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} // if end
 

@@ -139,7 +139,7 @@ public class boardCont {
       return mav;
    }// list() end
 
-   @RequestMapping("/board/read.do")
+   @RequestMapping("/board/boardread.do")
    public ModelAndView read(int bbs_idx) {
       ModelAndView mav = new ModelAndView();
       boardDTO dto = dao.read(bbs_idx);
@@ -161,9 +161,9 @@ public class boardCont {
    }// updateForm() end
 
    @RequestMapping(value = "/board/update.do", method = RequestMethod.POST)
-   public ModelAndView update(@ModelAttribute boardDTO dto, HttpServletRequest req) {
+   public ModelAndView update(int bbs_idx, @ModelAttribute boardDTO dto, HttpServletRequest req) {
       ModelAndView mav = new ModelAndView();
-      mav.setViewName("board2/msgView");
+      mav.setViewName("board2/msgView2");
 
       String basePath = req.getRealPath("/storage");
       boardDTO oldDTO = dao.read(dto.getBbs_idx()); // 기존에 저장된 정보 가져오기
@@ -209,6 +209,9 @@ public class boardCont {
          mav.addObject("img", img);
          mav.addObject("link2", link2);
       } // if end
+      
+      dto = dao.read(bbs_idx);
+      mav.addObject("dto", dto);
       return mav;
    }// updateProc() end
 

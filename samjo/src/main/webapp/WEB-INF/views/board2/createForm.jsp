@@ -18,7 +18,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="boardcreate.do" class="tourcreate" enctype="multipart/form-data">
+		<form name="frm" method="post" action="create.do" class="tourcreate" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="bbs_title">제목</label> 
 				<input type="text" class="form-control" id="bbs_title" name="bbs_title">
