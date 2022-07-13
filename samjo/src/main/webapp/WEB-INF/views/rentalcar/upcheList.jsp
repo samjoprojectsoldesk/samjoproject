@@ -8,7 +8,7 @@
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2 style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">렌트카 업체 리스트</h2>
+					class="heading-section">렌트카 업체</h2>
 			</div>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 			</div>
 		</c:if>
 	</div>
-
+</div>
 
 
 <!-- 본문 끝 -->

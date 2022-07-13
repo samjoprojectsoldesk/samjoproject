@@ -8,7 +8,7 @@
   onsubmit 이벤트는 form이 submit이 될 때 발생함.
   실행된 함수가 false를 리턴하면 submit을 하지 않음.
 -->
-<aside id="fh5co-hero" class="js-fullheight">
+<aside id="fh5co-hero" class="js-fullheight" style="margin-bottom:200px;">
 	<div class="flexslider js-fullheight">
 		<div class="container">
 			<div class="slider-text-inner desc">
@@ -17,7 +17,7 @@
 				<table border="0" cellspacing="0" cellpadding="2"  align="center">
 				    <tr align="center" height="10"> 
 				        <td>
-				            <textarea cols="55" rows="14" readonly>Community 서비스약관 (2005. 7. 18 부터 유효)
+				            <textarea cols="150" rows="14" readonly>Community 서비스약관 (2005. 7. 18 부터 유효)
 				
 				제1조(목적 등)
 				

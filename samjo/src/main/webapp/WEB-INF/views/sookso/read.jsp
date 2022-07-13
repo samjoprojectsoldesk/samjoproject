@@ -29,11 +29,15 @@
 						<strong>기본정보</strong>
 						<hr>
 						<li>주소&emsp;&emsp;&emsp;${dto.s_addr}</li>
-						<li>상세주소&nbsp;&nbsp;&nbsp;&nbsp;${dto.s_addr2}</li>
+						<c:if test="${dto.s_addr2 != null}">
+							<li>상세주소&nbsp;&nbsp;&nbsp;&nbsp;${dto.s_addr2}</li>
+						</c:if>
 						<li>전화번호&nbsp;&nbsp;&nbsp;&nbsp;${dto.s_tel}</li>
-						<li>홈페이지&nbsp;&nbsp;&nbsp;&nbsp; <a class="textLink"
-							href="${dto.s_link}" target="_blank">${dto.s_link}</a>
-						</li>
+						<c:if test="${dto.s_link != null}">
+							<li>홈페이지&nbsp;&nbsp;&nbsp;&nbsp; <a class="textLink"
+								href="${dto.s_link}" target="_blank">${dto.s_link}</a>
+							</li>
+						</c:if>
 					</ul>
 				</div>
 			</div>
@@ -47,7 +51,7 @@
 				aria-controls="map" aria-selected="true">지도에서 보기</a></li>
 			<li class="col-md-3 nav-item"><a class="nav-link" id="info-tab"
 				data-toggle="tab" href="#info" role="tab" aria-controls="info"
-				aria-selected="false">상세정보</a></li>
+				aria-selected="false">숙소 예약</a></li>
 			<li class="col-md-3 nav-item"><a class="nav-link"
 				id="review-tab" data-toggle="tab" href="#review" role="tab"
 				aria-controls="review" aria-selected="false">리뷰보기</a></li>
@@ -135,7 +139,7 @@
 
 								</div>
 								<button type="submit">장바구니</button>
-							
+
 							</div>
 						</c:forEach>
 					</div>
@@ -179,7 +183,7 @@
 	padding: 0;
 }
 </style>
-								<div class="star-ratings" style="">
+								<div class="star-ratings" style="text-align: center;">
 									<div class="star-ratings-fill space-x-2 text-lg"
 										style="width: ${dto.review_asterion*20}%;">
 										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
@@ -196,7 +200,8 @@
 				</c:forEach>
 			</div>
 			<div class="tab-pane fade" id="in" role="tabpanel"
-				aria-labelledby="review-tab" style="margin-top: 30px; white-space:pre;">${dto.s_cont}</div>
+				aria-labelledby="review-tab"
+				style="margin-top: 30px; white-space: pre;">${dto.s_cont}</div>
 
 
 		</div>

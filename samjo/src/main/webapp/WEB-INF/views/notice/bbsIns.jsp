@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header2.jsp" %>    
 <!-- 본문시작 bbsIns.jsp -->
-<<<<<<< HEAD
 
 <aside id="fh5co-hero-T">
 	<div class="flexslider">

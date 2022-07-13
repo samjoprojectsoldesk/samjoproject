@@ -20,12 +20,8 @@
 
 	<!-- 검색 시작 -->
 	<div style='text-align: right; height: 50px; margin-right: 50px;'>
-<<<<<<< HEAD
-		<form action="packagetourList.do">
-=======
 
 		<form action="List.do">
->>>>>>> 09393cd6ab8529f626f6857590f3aeb3cbfe92db
 			<input type="text" name="word" id="word"
 				style="border: 2px solid black; border-radius: 5px 5px 5px 5px">
 			&nbsp;&nbsp; <input type="submit" value="검색"
@@ -58,10 +54,7 @@
 											onclick="location.href='/admin/packagetourUpdate.do?pack_no=${dto.pack_no}'">수정</button>
 										<button type="button" class="btn btn-danger"
 											onclick="location.href='/admin/packagetourDelete.do?pack_no=${dto.pack_no}'">삭제</button></td>
-<<<<<<< HEAD
 
-=======
->>>>>>> 09393cd6ab8529f626f6857590f3aeb3cbfe92db
 								</tr>
 							</c:forEach>
 						</tbody>

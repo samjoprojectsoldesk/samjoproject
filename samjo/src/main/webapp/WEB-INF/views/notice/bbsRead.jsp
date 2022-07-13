@@ -16,26 +16,32 @@
 
 </aside>
 
-<div class="row">
-	<div class="col-md-12">
-		<table>
-			<tr>
-				<th>제목 : ${dto.board_title}</th>
-			</tr>		
-			<tr>
-				<th>내용 : ${dto.board_content}</th>
-			</tr>
-			<tr>
-				<th>조회수 : ${dto.board_readcnt}</th>
-			</tr>		
-			<!-- 삭제, 수정, 목록 버튼 -->
-			<tr>
-			<td colspan="2" align="center">
-				<div class='bottom'>
-					<button type="button" class="btn btn-secondary" onclick="location.href='/notice/List.do'">목록</button>
-				</div>			
-			</td>
+<div class="row-bbs">
+	<div class="col-md-12 text-center project">
+		<table class="table table-sm">
+			<thead>
+				<tr>
+					<th colspan="4" scope="col">${dto.board_title}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="2" style="text-align:left">등록일 : ${dto.board_date}</td>
+					<td colspan="2">조회수 : ${dto.board_readcnt}</td>
+				</tr>
+				<tr>
+					<td colspan="4" rowspan="4" style="text-align:left; white-space: pre; overflow: auto;">${dto.board_content}</td>
+				</tr>
+			</tbody>
 		</table>
+
+		<div style="text-align: center;">
+			<div class='bottom'>
+				<button type="button" class="btn btn-secondary"
+					onclick="location.href='/notice/List.do'">목록</button>
+			</div>
+		</div>
+
 	</div>
 </div>
 

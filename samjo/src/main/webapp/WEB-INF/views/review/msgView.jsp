@@ -11,16 +11,6 @@
     <link href="../css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div class="title">알림</div>
-    <div class="content">
-    	<dl>
-    		<dd>${msg != null ? img : ""} ${msg}</dd>
-    	</dl>
-    	<p>
-    		${link1}
-    		${link2}
-    	</p>
-    </div>
-
+    ${msg}
 </body>
 </html> 

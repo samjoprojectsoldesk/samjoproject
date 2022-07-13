@@ -9,7 +9,7 @@
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">${dto.c_name}</h2>
+					class="heading-section">${udto.u_name}</h2>
 			</div>
 		</div>
 	</div>
@@ -20,16 +20,16 @@
 		<div class="grid-project">
 		
 				<div class="image-T">
-					<img src="../../storage/${dto.c_img}" class="img-responsive"
+					<img src="../../storage/${udto.u_img}" class="img-responsive"
 						style="width: 40%; float: left;">
 					<div class="desc-T">
 						<ul>
 							<strong>렌트카 기본정보</strong>						
 							<hr>
-							<li>차량 종류&emsp;&emsp;&emsp;${dto.c_name}</li>
-							<li>내용&nbsp;&nbsp;&nbsp;&nbsp;${dto.c_cont}</li>
-							<li>업체&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_name}</li>
-							<li>전화번호&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_phone}</li>
+							<li>내용&nbsp;&nbsp;&nbsp;&nbsp;${udto.u_cont}</li>
+							<li>업체&nbsp;&nbsp;&nbsp;&nbsp;${udto.u_name}</li>
+							<li>전화번호&nbsp;&nbsp;&nbsp;&nbsp;${udto.u_phone}</li>
+							<li>주소&nbsp;&nbsp;&nbsp;&nbsp;${udto.u_office}</li>
 							</ul>
 					</div>
 				</div>
@@ -53,9 +53,8 @@
             aria-labelledby="map-tab" style="margin-top:30px;">
 
             <div id="map"></div>
-            <div id="rentalcarstore_address" data-address="${dto.u_office}"></div>
-            <div id="rentalcarstore_name" data-name="${dto.u_name}"></div>
-			<div>${dto.s_cont}</div>
+            <div id="store_address" data-address="${udto.u_office}"></div>
+            <div id="store_name" data-name="${udto.u_name}"></div>
 			
          </div>
 
@@ -68,32 +67,32 @@
                               <input type="date" class="" id="sdate" name="sdate"> - 
                               <input type="date" class="" id="fdate" name="fdate">
                            </div>
-               <c:forEach var="dto" items="${list}">
+               <c:forEach var="dto2" items="${list2}">
                <div class="col-md-4 text-center project">
-                  <img src="../../storage/${dto.c_img}" class="img-responsive"
+                  <img src="../../storage/${dto2.c_img}" class="img-responsive"
                   style="width: 100%; float: left;">
                      <div class="desc">
-                     <input type="hidden" name="s_code" id="s_code" value="${dto.c_code}">
+                     <input type="hidden" name="s_code" id="s_code" value="${dto2.c_code}">
                         <div class="form-group">
                            <label for="c_name">차량종류</label> 
-                           <input type="text" class="form-control" id="c_name" name="c_name" value="${dto.c_name}" readonly>
+                           <input type="text" class="form-control" id="c_name" name="c_name" value="${dto2.c_name}" readonly>
                         </div>
                         <div class="form-group">
                            <label for="c_sum">금액(1일)</label> 
-                           <input type="number" class="form-control" id="c_sum" name="c_sum" value="${dto.c_sum}" readonly>
+                           <input type="number" class="form-control" id="c_sum" name="c_sum" value="${dto2.c_sum}" readonly>
                         </div>
                         <div class="form-group">
                            <label for="c_charge">추가요금(1시간당)</label> 
-                           <input type="number" class="form-control" id="c_charge" name="c_charge" value="${dto.c_charge}" readonly>
+                           <input type="number" class="form-control" id="c_charge" name="c_charge" value="${dto2.c_charge}" readonly>
                         </div>
                         <div class="form-group">
                            <label for="c_reserve">예약가능 차량수</label> 
-                           <input type="number" class="form-control" id="c_reserve" name="c_reserve" value="${dto.c_reserve}" readonly>
+                           <input type="number" class="form-control" id="c_reserve" name="c_reserve" value="${dto2.c_reserve}" readonly>
                         </div>                     
                      </div>
                      <button type="submit">장바구니</button>
-                     <input type="button" value="수정" onclick="location.href='/admin/rentalcarUpdate.do?c_code=${dto.c_code}'">
-                        <input type="button" value="삭제" onclick="location.href='/admin/rentalcarDelete.do?c_code=${dto.c_code}'">         
+                     <input type="button" value="수정" onclick="location.href='/admin/rentalcarUpdate.do?c_code=${dto2.c_code}'">
+                        <input type="button" value="삭제" onclick="location.href='/admin/rentalcarDelete.do?c_code=${dto2.c_code}'">         
                </div>
             </c:forEach>
             </div>
@@ -103,13 +102,13 @@
 
          <div class="tab-pane fade" id="review" role="tabpanel"
             aria-labelledby="review-tab" style="margin-top:30px;">
-            <c:forEach var="dto" items="${list2}">
+            <c:forEach var="dto1" items="${list}">
                <div class="col-md-4 text-center project">
-                  <a href="../rentalcar/List/Read.do?c_code=${dto.c_code}"
+                  <a href="../rentalcar/List/Read.do?c_code=${dto1.c_code}"
                      class="grid-project">
                      <div class="desc">
-                        <h3>${dto.review_content}</h3>
-                        <span>${dto.review_user_id}</span> <br> <span>${dto.review_date}</span>
+                        <h3>${dto1.review_content}</h3>
+                        <span>${dto1.review_user_id}</span> <br> <span>${dto1.review_date}</span>
                      </div>
                   </a>
                </div>

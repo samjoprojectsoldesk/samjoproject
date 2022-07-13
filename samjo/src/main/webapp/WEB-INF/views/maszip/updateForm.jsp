@@ -123,7 +123,7 @@
 			</div>
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">수정</button>
-				<button type="button" class="btn btn-secondary" onclick="location.href='/maszip/List.do'">목록</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='/admin/maszip/List.do'">목록</button>
 			</div>
 		</form>
 	</div>

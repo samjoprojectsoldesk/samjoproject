@@ -39,8 +39,6 @@
 						</div>
 						<div class="desc">
 							<h3>${dto.pack_name}</h3>
-							<span>${dto.pack_cose}</span> <br> <br>
-							<span>${dto.pack_cont}</span> <br> <br>
 						</div>
 					</a>
 				</div>

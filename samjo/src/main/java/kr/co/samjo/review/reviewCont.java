@@ -51,6 +51,7 @@ public class reviewCont {
 		mav.setViewName("notice/msgView");
 
 		int cnt = dao.create(dto);
+		/*
 		if (cnt == 0) {
 			String msg = "<p>리뷰 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";
@@ -70,6 +71,23 @@ public class reviewCont {
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} // if end
+		*/
+
+	      if (cnt == 0) {
+	    	  String msg = "<script type=\"text/javascript\">\r\n"
+	    	      		+ "    	alert('리뷰 등록 실패.');\r\n"
+	    	      		+ "    	location.href='../res/list.do'"
+	    	      		+ ";"
+	    	      		+ "    </script>";
+	    	      mav.addObject("msg", msg);
+	      }else {
+	    	  String msg = "<script type=\"text/javascript\">"
+	    	      		+ "    	alert('리뷰가 등록 됐어요.');"
+	    	      		+ "    	location.href='../res/list.do'"
+	    	      		+ ";"
+	    	      		+ "    </script>";
+	    	      mav.addObject("msg", msg);
+	      }
 		return mav;
 	}// create() end
 	

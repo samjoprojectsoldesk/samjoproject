@@ -19,7 +19,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<form name="frm" method="post" action="delete.do" class="tourcreate"
+		<form name="frm" method="post" action="/board/delete.do" class="tourcreate"
 			enctype="multipart/form-data">
 			<input type="hidden" name="bbs_idx" value="${dto.bbs_idx}">
 			<div class="content">

@@ -170,10 +170,10 @@
 								</div>
 							</div>
 							<ul class="weather">
-								<li class="todayWeather">오늘<span class="wTemp">20℃</span></li>
-								<li class="tomorrowWeather">내일<span class="wState hidden">21℃</span></li>
+								<li class="todayWeather">오늘<span class="wTemp">30℃</span></li>
+								<li class="tomorrowWeather">내일<span class="wState">31℃</span></li>
 								<li class="afterTomorrowWeather">모레<span
-									class="wState2 hidden">22℃</span></li>
+									class="wState2">32℃</span></li>
 							</ul>
 						</div>
 					</div>

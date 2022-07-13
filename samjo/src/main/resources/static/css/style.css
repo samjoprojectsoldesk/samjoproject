@@ -1097,6 +1097,18 @@ figure {
 	color: #FA7E0A;
 }
 
+
+.row-notice {
+	margin-left: 20%;
+	margin-right: 20%;
+	height: 100%;
+}
+
+.row-bbs {
+	margin: 5%;
+	height: 100%;
+}
+
 .row-read {
 	margin: 10%;
 	height: 100%;
@@ -1944,6 +1956,12 @@ figure {
 	font-weight: bold;
 	text-align: left;
 }
+
+.row-notice .grid-project tr, .row-bbs tr, #tab-menu table{
+	font-family: "Roboto Slab", Arial, sans-serif;
+}
+
+
 
 /*
 #fh5co-contact-section .star-ratings {

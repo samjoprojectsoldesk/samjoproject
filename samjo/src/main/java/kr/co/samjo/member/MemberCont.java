@@ -126,7 +126,13 @@ public class MemberCont {
 	@RequestMapping("/member/memberModify.do")
 	public ModelAndView memberModify() {
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/member/memberModifyPRoc");
+		mav.setViewName("/member/memberModify");
+		return mav;
+	}//memberModify() end
+	@RequestMapping("/member/memberModifyProc.do")
+	public ModelAndView memberModifyProc() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/member/memberModifyProc");
 		return mav;
 	}//memberModify() end
 	

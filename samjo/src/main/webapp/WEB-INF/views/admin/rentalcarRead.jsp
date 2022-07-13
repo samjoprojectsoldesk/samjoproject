@@ -33,16 +33,16 @@
 				<div class="grid-project">
 
 					<div class="image-T">
-						<img src="../../storage/${dto.u_img}" class="img-responsive"
+						<img src="../../storage/${udto.u_img}" class="img-responsive"
 							style="width: 40%; float: left;">
 						<div class="desc-T">
 							<ul>
 								<strong>렌트카 업체 정보</strong>
 								<hr>
-								<li>렌트카 업체 이름&emsp;&emsp;&emsp;${dto.u_name}</li>
-								<li>연락처&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_phone}</li>
-								<li>주소&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_office}</li>
-								<li>내용&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_cont}</li>
+								<li>렌트카 업체 이름&emsp;&emsp;&emsp;${udto.u_name}</li>
+								<li>연락처&nbsp;&nbsp;&nbsp;&nbsp;${udto.u_phone}</li>
+								<li>주소&nbsp;&nbsp;&nbsp;&nbsp;${udto.u_office}</li>
+								<li>내용&nbsp;&nbsp;&nbsp;&nbsp;${usdto.u_cont}</li>
 							</ul>
 						</div>
 					</div>

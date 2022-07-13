@@ -11,10 +11,10 @@
     <link href="../css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-						<script>
-				      	alert('수정되었습니다.');
-				      	location.href='boardread.do?bbs_idx=${dto.bbs_idx}';
-				      	</script>
+    <script type="text/javascript">
+    	alert('수정되었습니다.');
+    	location.href='boardread.do?bbs_idx=${dto.bbs_idx}';
+    </script>
 
 </body>
 </html> 

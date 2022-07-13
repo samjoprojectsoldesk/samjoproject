@@ -40,7 +40,7 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th class="board_no">일련번호</th>
+								<th class="board_no">글번호</th>
 								<th class="board_title">제목</th>
 								<th class="board_date">작성일</th>
 								<th class="board_readcnt">조회수</th>

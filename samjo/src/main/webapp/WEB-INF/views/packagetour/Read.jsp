@@ -37,23 +37,18 @@
 	
 	<div class="col-md-12" id="tab-menu">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="col-md-4 nav-item"><a class="nav-link active"
+			<li class="col-md-6 nav-item"><a class="nav-link active in"
 				id="info-tab" data-toggle="tab" href="#info" role="tab"
 				aria-controls="info" aria-selected="true">상세정보</a></li>
-			<li class="col-md-4 nav-item"><a class="nav-link" id="map-tab"
-				data-toggle="tab" href="#map" role="tab" aria-controls="map"
-				aria-selected="false">지도에서 보기</a></li>
-			<li class="col-md-4 nav-item"><a class="nav-link"
+			<li class="col-md-6 nav-item"><a class="nav-link"
 				id="review-tab" data-toggle="tab" href="#review" role="tab"
 				aria-controls="review" aria-selected="false">리뷰</a></li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="info" role="tabpanel"
 				aria-labelledby="info-tab">${dto.pack_cont}</div>
-			<div class="tab-pane fade" id="map" role="tabpanel"
-				aria-labelledby="map-tab"></div>
 			<div class="tab-pane fade" id="review" role="tabpanel"
-				aria-labelledby="review-tab">리뷰 추가하기</div>
+				aria-labelledby="review-tab">${dto.review_content}</div>
 		</div>
 	</div>
 </div>

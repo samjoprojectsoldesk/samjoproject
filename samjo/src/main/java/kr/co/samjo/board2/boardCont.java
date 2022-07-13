@@ -1,5 +1,6 @@
 package kr.co.samjo.board2;
 
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.Collections;
 import java.util.List;
@@ -40,12 +41,20 @@ public class boardCont {
    @RequestMapping(value = "board/create.do", method = RequestMethod.GET)
    public String createFrom() {
       return "board2/createForm";
+      
    }// createForm() end
 
    @RequestMapping(value = "/board/create.do", method = RequestMethod.POST)
    public ModelAndView create(@ModelAttribute boardDTO dto, HttpServletRequest req) {
       ModelAndView mav = new ModelAndView();
-      mav.setViewName("board2/msgView");
+      HttpSession session = req.getSession();
+		String user_id = (String) session.getAttribute("s_id");
+		if(user_id == null) {
+			user_id = "guest";
+		}
+		
+      mav.setViewName("board2/msgView3");
+     
       // ----------------------------------------------------------------------------
       // 첨부된 파일 처리
       // ->실제 파일은 /storage폴더에 저장
@@ -64,20 +73,20 @@ public class boardCont {
       
       int cnt = dao.create(dto);
       if (cnt == 0) {
-         String msg = "<p>게시판 등록 실패</p>";
-         String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-         String link2 = "<input type='button' value='목록으로' onclick=\"location.href='List.do'\">";
-         mav.addObject("msg", msg);
-         mav.addObject("link1", link1);
-         mav.addObject("link2", link2);
-      } else {
-         String msg = "<p>게시판 등록 성공</p>";
-         String img = "<img src='../images/sound.png'>";
-         String link2 = "<input type='button' value='목록으로' onclick=\"location.href='List.do'\">";
-         mav.addObject("msg", msg);
-         mav.addObject("img", img);
-         mav.addObject("link2", link2);
-      } // if end
+    	  String msg = "<script type=\"text/javascript\">\r\n"
+    	      		+ "    	alert('게시판생성실패.');\r\n"
+    	      		+ "    	location.href='List.do'"
+    	      		+ ";"
+    	      		+ "    </script>";
+    	      mav.addObject("msg", msg);
+      }else {
+    	  String msg = "<script type=\"text/javascript\">"
+    	      		+ "    	alert('게시판생성완료.');"
+    	      		+ "    	location.href='List.do'"
+    	      		+ ";"
+    	      		+ "    </script>";
+    	      mav.addObject("msg", msg);
+      }
 
       return mav;
    }// create() end
@@ -140,7 +149,7 @@ public class boardCont {
    }// list() end
 
    @RequestMapping("/board/boardread.do")
-   public ModelAndView read(int bbs_idx) {
+   public ModelAndView read(int bbs_idx, HttpServletRequest req) {
       ModelAndView mav = new ModelAndView();
       boardDTO dto = dao.read(bbs_idx);
       mav.setViewName("board2/read");
@@ -148,6 +157,12 @@ public class boardCont {
       List cmtList=null;
       cmtList = dao.cmtList(bbs_idx);
       mav.addObject("cmtList", cmtList);
+      
+      HttpSession session = req.getSession();
+		String user_id = (String) session.getAttribute("s_id");
+		if(user_id == null) {
+			user_id = "guest";
+		}
       return mav;
    }// read() end
 
@@ -161,9 +176,10 @@ public class boardCont {
    }// updateForm() end
 
    @RequestMapping(value = "/board/update.do", method = RequestMethod.POST)
-   public ModelAndView update(int bbs_idx, @ModelAttribute boardDTO dto, HttpServletRequest req) {
+   public ModelAndView update(int bbs_idx,@ModelAttribute boardDTO dto, HttpServletRequest req) {
       ModelAndView mav = new ModelAndView();
-      mav.setViewName("board2/msgView2");
+      mav.setViewName("board2/msgView3");
+      
 
       String basePath = req.getRealPath("/storage");
       boardDTO oldDTO = dao.read(dto.getBbs_idx()); // 기존에 저장된 정보 가져오기
@@ -192,11 +208,13 @@ public class boardCont {
       // ---------------------------------------------------------------------
 
       int cnt = dao.update(dto);
+      
+      /*
       if (cnt == 0) {
          String msg = "<p>게시판 수정 실패!!</p>";
          String img = "<img src='../images/fail.png'>";
          String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-         String link2 = "<input type='button' value='게시판목록' onclick=\\\"location.href='List.do'\\\">";
+         String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='List.do'\">";
          mav.addObject("msg", msg);
          mav.addObject("img", img);
          mav.addObject("link1", link1);
@@ -204,14 +222,34 @@ public class boardCont {
       } else {
          String msg = "<p>게시판 수정 되었습니다</p>";
          String img = "<img src='../images/sound.png'>";
-         String link2 = "<input type='button' value='게시판목록' onclick=\\\"location.href='List.do'\\\">";
+         String link1 = "<input type='button' value='게시판목록' onclick=\"location.href='List.do'\">";
          mav.addObject("msg", msg);
          mav.addObject("img", img);
-         mav.addObject("link2", link2);
+         mav.addObject("link1", link1);
       } // if end
+      */
+      if (cnt == 0) {
+    	  String msg = "<script type=\"text/javascript\">\r\n"
+    	      		+ "    	alert('실패하였습니다.');\r\n"
+    	      		+ "    	location.href='boardread.do?bbs_idx="
+    	      		+ dto.getBbs_idx()
+    	      		+ "';"
+    	      		+ "    </script>";
+    	      dto = dao.read(bbs_idx);
+    	      mav.addObject("msg", msg);
+    	      mav.addObject("dto", dto);
+      }else {
+    	  String msg = "<script type=\"text/javascript\">\r\n"
+    	      		+ "    	alert('수정되었습니다.');\r\n"
+    	      		+ "    	location.href='boardread.do?bbs_idx="
+    	      		+ dto.getBbs_idx()
+    	      		+ "';"
+    	      		+ "    </script>";
+    	      dto = dao.read(bbs_idx);
+    	      mav.addObject("msg", msg);
+    	      mav.addObject("dto", dto);
+      }
       
-      dto = dao.read(bbs_idx);
-      mav.addObject("dto", dto);
       return mav;
    }// updateProc() end
 
@@ -227,34 +265,30 @@ public class boardCont {
    @RequestMapping(value = "/board/delete.do", method = RequestMethod.POST)
    public ModelAndView deleteProc(int bbs_idx, HttpServletRequest req) {
       ModelAndView mav = new ModelAndView();
-      mav.setViewName("board2/msgView");
+      mav.setViewName("board2/msgView3");
 
       // 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
       boardDTO oldDTO = dao.read(bbs_idx);
 
       int cnt = dao.delete(bbs_idx);
+     
       if (cnt == 0) {
-         String msg = "<p>게시판 삭제 실패!!</p>";
-         String img = "<img src='../images/fail.png'>";
-         String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-         String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='List.do'\">";
-         mav.addObject("msg", msg);
-         mav.addObject("img", img);
-         mav.addObject("link1", link1);
-         mav.addObject("link2", link2);
-      } else {
-         String msg = "<p>게시판이 삭제되었습니다</p>";
-         String img = "<img src='../images/sound.png'>";
-         String link2 = "<input type='button' value='게시판목록' onclick=\"location.href='List.do'\">";
-
-         mav.addObject("msg", msg);
-         mav.addObject("img", img);
-         mav.addObject("link2", link2);
-         // 첨부했던 파일 삭제
-         String basePath = req.getRealPath("/storage");
-         UploadSaveManager.deleteFile(basePath, oldDTO.getBbs_img());
-
-      } // if end
+    	  String msg = "<script type=\"text/javascript\">\r\n"
+    	      		+ "    	alert('게시판삭제실패.');\r\n"
+    	      		+ "    	location.href='List.do'"
+    	      		+ ";"
+    	      		+ "    </script>";
+    	      mav.addObject("msg", msg);
+      }else {
+    	  String msg = "<script type=\"text/javascript\">"
+    	      		+ "    	alert('게시판삭제완료.');"
+    	      		+ "    	location.href='List.do'"
+    	      		+ ";"
+    	      		+ "    </script>";
+    	      mav.addObject("msg", msg);
+    	      String basePath = req.getRealPath("/storage");
+    	      UploadSaveManager.deleteFile(basePath, oldDTO.getBbs_img());
+      }
       return mav;
    }// deleteProc() end
    
@@ -272,12 +306,31 @@ public class boardCont {
  	@RequestMapping(value = "/admin/board/delete.do", method = RequestMethod.POST)
  	public ModelAndView deleteProc3(int bbs_idx, HttpServletRequest req) {
  		ModelAndView mav = new ModelAndView();
- 		mav.setViewName("board2/msgView");
+ 		mav.setViewName("board2/msgView3");
 
  		// 삭제하고자 하는 글정보 가져오기(storage폴더에서 삭제할 파일명을 보관하기 위해)
  		boardDTO oldDTO = dao.read(bbs_idx);
 
  		int cnt = dao.delete(bbs_idx);
+ 		
+ 		if (cnt == 0) {
+ 	    	  String msg = "<script type=\"text/javascript\">\r\n"
+ 	    	      		+ "    	alert('게시판삭제실패.');\r\n"
+ 	    	      		+ "    	location.href='/admin/board/List.do'"
+ 	    	      		+ ";"
+ 	    	      		+ "    </script>";
+ 	    	      mav.addObject("msg", msg);
+ 	      }else {
+ 	    	  String msg = "<script type=\"text/javascript\">"
+ 	    	      		+ "    	alert('게시판삭제완료.');"
+ 	    	      		+ "    	location.href='/admin/board/List.do'"
+ 	    	      		+ ";"
+ 	    	      		+ "    </script>";
+ 	    	      mav.addObject("msg", msg);
+ 	    	      String basePath = req.getRealPath("/storage");
+ 	    	      UploadSaveManager.deleteFile(basePath, oldDTO.getBbs_img());
+ 	      }
+ 		/*
  		if (cnt == 0) {
  			String msg = "<p>게시판 삭제 실패!!</p>";
  			String img = "<img src='../images/fail.png'>";
@@ -298,8 +351,8 @@ public class boardCont {
  			// 첨부했던 파일 삭제
  			String basePath = req.getRealPath("/storage");
  			UploadSaveManager.deleteFile(basePath, oldDTO.getBbs_img());
-
  		} // if end
+ 		*/
  		return mav;
  	}// deleteProc3() end
 
@@ -308,35 +361,40 @@ public class boardCont {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @RequestMapping("/board/cmt.do")
-    public ModelAndView addCart(@ModelAttribute CmtDTO dto, HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView cmt(int cmt_bbs_idx,@ModelAttribute CmtDTO dto, HttpServletRequest request, HttpServletResponse response){
        HttpSession session = request.getSession();
        String user_id = (String) session.getAttribute("s_id");
        if(user_id == null) {
           user_id = "guest";
        }
        dto.setCmt_id(user_id);
-          
+       
        ModelAndView mav = new ModelAndView();
-       mav.setViewName("board2/msgView");
+       mav.setViewName("board2/msgView3");
        int cnt = dao.create2(dto);
-       if (cnt == 0) {
-          String msg = "<p>댓글 등록 성공</p>";
-          String img = "<img src='../images/fail.png'>";
-          String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-          String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"List.do\"'>";
-          mav.addObject("msg", msg);
-          mav.addObject("img", img);
-          mav.addObject("link1", link1);
-          mav.addObject("link2", link2);
-       } else {
-          String msg = "<p>댓글 등록 성공</p>";
-          String img = "<img src='../images/sound.png'>";
-          String link2 = "<input type='button' value='장바구니목록' onclick='location.href=\"List.do\"'>";
-          mav.addObject("msg", msg);
-          mav.addObject("img", img);
-          mav.addObject("link2", link2);
-       }
-       return mav;
+
+        if (cnt == 0) {
+      	  String msg = "<script type=\"text/javascript\">\r\n"
+      	      		+ "    	alert('실패하였습니다.');\r\n"
+      	      		+ "    	location.href='boardread.do?bbs_idx="
+      	      		+ dto.getCmt_bbs_idx()
+      	      		+ "';"
+      	      		+ "    </script>";
+      	      dto = dao.sread(cmt_bbs_idx);
+      	      mav.addObject("msg", msg);
+      	      mav.addObject("dto", dto);
+        }else {
+      	  String msg = "<script type=\"text/javascript\">\r\n"
+      	      		+ "    	alert('댓글작성완료.');\r\n"
+      	      		+ "    	location.href='boardread.do?bbs_idx="
+      	      		+ dto.getCmt_bbs_idx()
+      	      		+ "';"
+      	      		+ "    </script>";
+      	      dto = dao.sread(cmt_bbs_idx);
+      	      mav.addObject("msg", msg);
+      	      mav.addObject("dto", dto);
+        }
+        return mav;
     }
     ///////////////////////////////////////////////////////////////////////////////////////
     
@@ -405,7 +463,7 @@ public class boardCont {
       } else {
          String msg = "<p>댓글이 수정 되었습니다</p>";
          String img = "<img src='../images/sound.png'>";
-         String link2 = "<input type='button' value='게시판목록' onclick=\\\"location.href='/board/List.do'\\\">";
+         String link2 = "<input type='button' value='이전페이지' onclick='javascript:history.back()'>";
          mav.addObject("msg", msg);
          mav.addObject("img", img);
          mav.addObject("link2", link2);
@@ -455,7 +513,7 @@ public class boardCont {
       } else {
          String msg = "<p>댓글이 수정 되었습니다</p>";
          String img = "<img src='../images/sound.png'>";
-         String link2 = "<input type='button' value='게시판목록' onclick=\\\"location.href='/board/List.do'\\\">";
+         String link2 = "<input type='button' value='이전페이지' onclick='javascript:history.back()'>";
          mav.addObject("msg", msg);
          mav.addObject("img", img);
          mav.addObject("link2", link2);

@@ -32,7 +32,7 @@ if (session.getAttribute("s_id")==null ||session.getAttribute("s_passwd")==null 
 					<div class="slider-text-inner desc">
 						<h2 style="margin-top: 300px; text-align: center; font-weight: bold;" class="heading-section">로그인</h2>
 						<form name="loginfrm" id="loginfrm" method="post" action="loginProc.do" onsubmit="return loginCheck()"><!-- myscript.js에서 함수 작성 -->
-							<table class="table">
+							<table class="table" >
 								<tr>
 									<td><input type="text" name="user_id" id="user_id" value="<%=c_id%>" placeholder="아이디" maxlength="10" required></td>
 									<td rowspan="2">
@@ -57,17 +57,16 @@ if (session.getAttribute("s_id")==null ||session.getAttribute("s_passwd")==null 
 	} else {
 %>
 
-<aside id="fh5co-hero" class="js-fullheight">
+<aside id="fh5co-hero" class="js-fullheight" style="text-align: center;">
 	<div class="flexslider js-fullheight">
 		<div class="container">
 			<div class="slider-text-inner desc">
-				<h2 style="margin-top: 300px; text-align: center; font-weight: bold;" class="heading-section">로그인</h2>
+				<h2 style="margin-top: 300px; text-align: center; font-weight: bold;" class="heading-section">로그인 정보</h2>
 <%
 			//로그인 성공했다면
 			out.println("<strong>" + s_id + "</strong> 님");
-			out.println("<a href='logout.do'>[로그아웃]</a>");
 			out.println("<br><br>");
-			out.println("<a href='memberModify.do'>[회원정보수정]</a>");
+			out.println("<a href='logout.do'>[로그아웃]</a>");
 			out.println("&nbsp;&nbsp;");
 			out.println("<a href='memberWithdraw_re.do'>[회원탈퇴]</a>");
 	} //if end

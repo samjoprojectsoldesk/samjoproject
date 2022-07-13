@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.samjo.product.rental.rentalDAO;
+import kr.co.samjo.product.rental.rentalDTO;
 import kr.co.samjo.product.rentalcar.rentalcarDTO;
 import kr.co.samjo.product.sookso.SooksoDTO;
 import net.utility.Utility;
@@ -17,9 +19,11 @@ import net.utility.Utility;
 public class adminCont {
 
 	adminDAO dao = null;
+	rentalDAO udao = null;
 
 	public adminCont() {
 		dao = new adminDAO();// DB연결 객체 생성
+		udao = new rentalDAO();
 		System.out.println("-----adminCont() 객체 생성됨");
 	}// end
 
@@ -560,7 +564,7 @@ public class adminCont {
 		}// Tourlist() end
 		
 		//렌트카 업체 목록
-		@RequestMapping("admin/rentalcarList.do")
+		@RequestMapping("/admin/rental/List.do")
 		public ModelAndView Upchelist(HttpServletRequest req) {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("admin/rentalcarList");
@@ -620,6 +624,8 @@ public class adminCont {
 		@RequestMapping("/admin/rentalcarRead.do")
 		public ModelAndView adminrentalcarRead(HttpServletRequest req) {
 			ModelAndView mav = new ModelAndView();
+			rentalDTO udto = udao.read(req.getParameter("u_code"));
+			mav.addObject("udto",udto);
 			mav.setViewName("admin/rentalcarRead");
 
 			int totalRowCount = dao.rentalcartotalRowCount(); // 총 글갯수
@@ -649,6 +655,7 @@ public class adminCont {
 			List list = null;
 			if (totalRowCount > 0) {
 				list = dao.rentalcarlist(startRow, endRow);
+				
 			} else {
 				list = Collections.EMPTY_LIST;
 			} // if end

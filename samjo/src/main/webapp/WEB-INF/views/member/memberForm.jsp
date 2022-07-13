@@ -3,7 +3,7 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 memberForm.jsp-->
-<aside id="fh5co-hero" class="js-fullheight">
+<aside id="fh5co-hero" class="js-fullheight" style="margin-bottom:250px;">
 	<div class="flexslider js-fullheight">
 		<div class="container">
 			<div class="slider-text-inner desc">

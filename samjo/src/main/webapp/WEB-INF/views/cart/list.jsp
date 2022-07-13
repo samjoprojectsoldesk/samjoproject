@@ -24,7 +24,6 @@
 	<div class="row-read">
 		<table class="table">
 			<tr>
-				<th>번호</th>
 				<th>상품명</th>
 				<th>수량</th>
 				<th>인원</th>
@@ -35,7 +34,6 @@
 
 			<c:forEach var="dto" items="${map.list}">
 				<tr>
-					<td>${dto.c_no}</td>
 					<td>${dto.s_name}</td>
 					<td>${dto.cnt}</td>
 					<td>${dto.p_cnt}</td>

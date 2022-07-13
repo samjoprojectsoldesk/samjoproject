@@ -36,7 +36,7 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th>번호</th>
+									<th>글번호</th>
 									<th>제목</th>
 									<th>작성자</th>
 									<th>등록일</th>
@@ -55,8 +55,6 @@
 							</c:forEach>
 						</table>
 					</div>
-
-
 				</div>
 			</div>
 		</div>
@@ -66,11 +64,13 @@
 		<div class="paging">
 			<div class="content">
 			<% if (s_mlevel.equals("2")) {%>
-				<input type='button' value='글쓰기' onclick='location.href="create.do"'>
+            <input type="button" class="btn btn-primary" value="글쓰기" onclick="location.href='/board/create.do'">
+        	<% }%>
 				
-			<%}%>
 			</div>
+			
 			<br>
+			
 			<c:if test="${requestScope.count>0 }">
 				<c:set var="pageCount" value="${requestScope.totalPage}" />
 				<c:set var="startPage" value="${requestScope.startPage}" />

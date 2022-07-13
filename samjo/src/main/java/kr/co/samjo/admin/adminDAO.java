@@ -856,7 +856,7 @@ public class adminDAO {
 			sql.append("        SELECT ROWNUM as RNUM, BB.* ");
 			sql.append("        FROM ( ");
 			sql.append(
-					"               SELECT c_code, u_code, c_kind, c_name, c_sum, c_charge, c_reserve, c_img, c_cont, c_plan_start, c_plan_end ");
+					"               SELECT c_code, u_code, c_kind, c_name, c_sum, c_charge, c_reserve, c_img, c_cont ");
 			sql.append("               FROM tb_car ");
 			sql.append("               ORDER BY c_code DESC ");
 			sql.append("             )BB ");
@@ -881,8 +881,6 @@ public class adminDAO {
 					dto.setC_reserve(rs.getInt("c_reserve"));
 					dto.setC_img(rs.getString("c_img"));
 					dto.setC_cont(rs.getString("c_cont"));
-					dto.setC_plan_start(sdf.parse(rs.getString("c_plan_start")));
-                	dto.setC_plan_end(sdf.parse(rs.getString("c_plan_end")));
 					list.add(dto);
 				} while (rs.next());
 			} // if end

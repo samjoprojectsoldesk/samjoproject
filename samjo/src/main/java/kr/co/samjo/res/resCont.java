@@ -100,6 +100,7 @@ public class resCont {
 
 		int cnt = dao.add(rdto);
 
+		/*
 		if (cnt == 0) {
 			String msg = "<p>예약 실패</p>";
 			String img = "<img src='../images/fail.png'>";
@@ -118,6 +119,24 @@ public class resCont {
 			mav.addObject("link2", link2);
 			cdao.delete(user_id);
 		}
+		*/
+
+	      if (cnt == 0) {
+	    	  String msg = "<script type=\"text/javascript\">\r\n"
+	    	      		+ "    	alert('예약실패.');\r\n"
+	    	      		+ "    	location.href='list.do'"
+	    	      		+ ";"
+	    	      		+ "    </script>";
+	    	      mav.addObject("msg", msg);
+	      }else {
+	    	  String msg = "<script type=\"text/javascript\">"
+	    	      		+ "    	alert('예약됐어요.');"
+	    	      		+ "    	location.href='list.do'"
+	    	      		+ ";"
+	    	      		+ "    </script>";
+				  cdao.delete(user_id);
+	    	      mav.addObject("msg", msg);
+	      }
 
 		ArrayList<resDTO> reslist = dao.list(user_id);
 
@@ -184,6 +203,7 @@ public class resCont {
 
 		int cnt = dao.delete(res_no);
 
+		/*
 		if (cnt == 0) {
 			String msg = "<p>예약 취소 실패</p>";
 			String img = "<img src='../images/fail.png'>";
@@ -201,6 +221,23 @@ public class resCont {
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
 		}
+		*/
+
+	      if (cnt == 0) {
+	    	  String msg = "<script type=\"text/javascript\">\r\n"
+	    	      		+ "    	alert('예약 취소 실패.');\r\n"
+	    	      		+ "    	location.href='list.do'"
+	    	      		+ ";"
+	    	      		+ "    </script>";
+	    	      mav.addObject("msg", msg);
+	      }else {
+	    	  String msg = "<script type=\"text/javascript\">"
+	    	      		+ "    	alert('예약이 취소됐어요.');"
+	    	      		+ "    	location.href='list.do'"
+	    	      		+ ";"
+	    	      		+ "    </script>";
+	    	      mav.addObject("msg", msg);
+	      }
 
 		return mav;
 	}

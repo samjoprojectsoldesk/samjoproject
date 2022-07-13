@@ -233,6 +233,49 @@ public class boardDAO {
       } // end
       return cdto;
    }// read() end
+   
+   public CmtDTO sread(int cmt_bbs_idx) {
+	      boardDTO dto = null;
+	      CmtDTO cdto = new CmtDTO();
+
+	      try {
+	         increment(cmt_bbs_idx);
+	         con = dbopen.getConnection();
+	         sql = new StringBuilder();
+	         sql.append(" select * ");
+	         sql.append(" from tb_bbs2 ");
+	         sql.append(" left join tb_cmt ");
+	         sql.append(" on tb_bbs2.bbs_idx = tb_cmt.cmt_bbs_idx ");
+	         sql.append(" where tb_cmt.cmt_bbs_idx = ? ");
+	         pstmt = con.prepareStatement(sql.toString());
+	         pstmt.setInt(1, cmt_bbs_idx);
+	         rs = pstmt.executeQuery();
+	         if (rs.next()) {
+	            dto = new boardDTO();
+	            dto.setBbs_idx(rs.getInt("bbs_idx"));
+	            dto.setBbs_img(rs.getString("bbs_img"));
+	            dto.setBbs_id(rs.getString("bbs_id"));
+	            dto.setBbs_title(rs.getString("bbs_title"));
+	            dto.setBbs_content(rs.getString("bbs_content"));
+	            dto.setBbs_count(rs.getInt("bbs_count"));
+	            dto.setBbs_date(rs.getString("bbs_date"));
+	            cdto.setCmt_idx(rs.getInt("cmt_idx"));
+	            cdto.setCmt_id(rs.getString("cmt_id"));
+	            cdto.setCmt_content(rs.getString("cmt_content"));
+	            cdto.setCmt_bbs_idx(rs.getInt("cmt_bbs_idx"));
+	            cdto.setCmt_ref(rs.getInt("cmt_ref"));
+	            cdto.setCmt_re_setp(rs.getInt("cmt_re_setp"));
+	            cdto.setCmt_level(rs.getInt("cmt_level"));
+	            cdto.setCmt_date(rs.getString("cmt_date"));
+	         } // if end
+
+	      } catch (Exception e) {
+	         System.out.println("상세보기실패" + e);
+	      } finally {
+	         DBClose.close(con, pstmt, rs);
+	      } // end
+	      return cdto;
+	   }// read() end
 
    public int update(boardDTO dto) {
       int cnt = 0;

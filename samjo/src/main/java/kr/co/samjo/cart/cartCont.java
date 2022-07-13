@@ -51,6 +51,7 @@ public class cartCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("cart/msgView");
 		int cnt = dao.create(cdto);
+		/*
 		if (cnt == 0) {
 			String msg = "<p>장바구니 등록 실패</p>";
 			String img = "<img src='../images/fail.png'>";
@@ -67,7 +68,23 @@ public class cartCont {
 			mav.addObject("msg", msg);
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
-		}
+		}*/
+
+	      if (cnt == 0) {
+	    	  String msg = "<script type=\"text/javascript\">\r\n"
+	    	      		+ "    	alert('장바구니등록실패.');\r\n"
+	    	      		+ "    	location.href='list.do'"
+	    	      		+ ";"
+	    	      		+ "    </script>";
+	    	      mav.addObject("msg", msg);
+	      }else {
+	    	  String msg = "<script type=\"text/javascript\">"
+	    	      		+ "    	alert('장바구니에 추가됐어요.');"
+	    	      		+ "    	location.href='list.do'"
+	    	      		+ ";"
+	    	      		+ "    </script>";
+	    	      mav.addObject("msg", msg);
+	      }
 		return mav;
 	}
 
@@ -115,6 +132,7 @@ public class cartCont {
 		mav.setViewName("cart/msgView");
 
 		int cnt = dao.delete(c_no);
+		/*
 		if (cnt == 0) {
 			String msg="<p>장바구니 항목 삭제 실패</p>";
 			String img="<img src='../images/fail.png'>";
@@ -132,6 +150,23 @@ public class cartCont {
 			mav.addObject("img", img);
 			mav.addObject("link2", link2);
 		}
+		*/
+
+	      if (cnt == 0) {
+	    	  String msg = "<script type=\"text/javascript\">\r\n"
+	    	      		+ "    	alert('장바구니삭제실패.');\r\n"
+	    	      		+ "    	location.href='list.do'"
+	    	      		+ ";"
+	    	      		+ "    </script>";
+	    	      mav.addObject("msg", msg);
+	      }else {
+	    	  String msg = "<script type=\"text/javascript\">"
+	    	      		+ "    	alert('장바구니가 삭제됐어요.');"
+	    	      		+ "    	location.href='list.do'"
+	    	      		+ ";"
+	    	      		+ "    </script>";
+	    	      mav.addObject("msg", msg);
+	      }
 
 		return mav;
 	}// deleteProc end

@@ -370,13 +370,13 @@ public class SooksoCont {
 		if (cnt == 0) {
 			String msg = "<p>숙소 삭제 실패!!</p>";
 			String link1 = "<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2 = "<input type='button' value='목록으로' onclick=\\\"location.href='List.do'\\\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link1", link1);
 			mav.addObject("link2", link2);
 		} else {
 			String msg = "<p>숙소가 삭제되었습니다</p>";
-			String link2 = "<input type='button' value='목록으로' onclick=\\\"location.href='List.do'\\\">";
+			String link2 = "<input type='button' value='목록으로' onclick=\"location.href='List.do'\">";
 			mav.addObject("msg", msg);
 			mav.addObject("link2", link2);
 			// 첨부했던 파일 삭제

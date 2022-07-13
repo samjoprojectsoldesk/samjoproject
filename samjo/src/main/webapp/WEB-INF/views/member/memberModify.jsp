@@ -3,7 +3,7 @@
 <%@ include file="ssi.jsp" %>
 <%@ include file="../header.jsp" %>
 <!-- 본문시작 memberModify.jsp -->
-<aside id="fh5co-hero" class="js-fullheight" style="margin-bottom:100px;">
+<aside id="fh5co-hero" class="js-fullheight" style="margin-bottom:250px;">
 	<div class="flexslider js-fullheight">
 		<div class="container">
 			<div class="slider-text-inner desc">
@@ -14,7 +14,7 @@
 						out.print("회원 정보 없음!!");
 					}else{//수정폼에 출력(memberForm.jsp에서 폼을 복사)
 				%>	
-					<form name="memfrm" id="memfrm" action="memberModify.do" onsubmit="return memberCheck()"><!-- myscript.js -->
+					<form name="memfrm" id="memfrm" action="memberModifyProc.do" onsubmit="return memberCheck()"><!-- myscript.js -->
 					<span style="color:red; font-weight: bold">* 필수입력</span>
 					<br>
 					<table class="table">
@@ -27,7 +27,7 @@
 					</tr>
 					<tr>
 					    <th>*비밀번호</th>
-					    <td style="text-align: left"><input type="password" value="<%=dto.getUser_pw()%>" name="user_pw" id="user_pw" size="15" required onchange="memberCheck()"></td>
+					    <td style="text-align: left"><input type="password" name="user_pw" id="user_pw" size="15" required onchange="memberCheck()"></td>
 					</tr>
 					<tr>
 					    <th>*비밀번호 확인</th>

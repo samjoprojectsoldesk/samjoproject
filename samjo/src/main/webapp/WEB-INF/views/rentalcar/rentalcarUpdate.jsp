@@ -45,14 +45,6 @@
 				<input type="text" class="form-control" id="c_charge" name="c_charge" value="${dto.c_charge}">
 			</div>
 			<div class="form-group">
-				<label for="c_plan_start">모집일정(출발)</label> 
-				<input type="date" class="form-control" id="c_plan_start" name="c_plan_start" value="${dto.c_plan_start}">
-			</div>
-			<div class="form-group">
-				<label for="c_plan_end">모집일정(도착)</label> 
-				<input type="date" class="form-control" id="c_plan_end" name="c_plan_end" value="${dto.c_plan_end}">
-			</div>
-			<div class="form-group">
 				<label for="c_reserve">예약가능 차량수</label> 
 				<input type="number" class="form-control" id="c_reserve" name="c_reserve" value="${dto.c_reserve}">
 			</div>

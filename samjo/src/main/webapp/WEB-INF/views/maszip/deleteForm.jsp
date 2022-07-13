@@ -4,8 +4,8 @@
 
 <!-- 본문 시작 -->
 
-<aside id="fh5co-hero-T" class="js-fullheight">
-	<div class="flexslider js-fullheight">
+<aside id="fh5co-hero-T">
+	<div class="flexslider">
 		<div class="container">
 			<div class="slider-text-inner desc">
 				<h2
@@ -28,7 +28,7 @@
 			<div class='bottom'>
 				<button type="submit" class="btn btn-primary">삭제</button>
 				<button type="button" class="btn btn-secondary"
-					onclick="location.href='/admin/tourist.do'">목록</button>
+					onclick="location.href='/admin/maszip/List.do'">목록</button>
 			</div>
 		</form>
 	</div>

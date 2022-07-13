@@ -165,10 +165,10 @@
 								</div>
 							</div>
 							<ul class="weather">
-								<li class="todayWeather">오늘<span class="wTemp">20℃</span></li>
-								<li class="tomorrowWeather">내일<span class="wState hidden">21℃</span></li>
+								<li class="todayWeather">오늘<span class="wTemp">30℃</span></li>
+								<li class="tomorrowWeather">내일<span class="wState">31℃</span></li>
 								<li class="afterTomorrowWeather">모레<span
-									class="wState2 hidden">22℃</span></li>
+									class="wState2">32℃</span></li>
 							</ul>
 						</div>
 					</div>
@@ -188,7 +188,7 @@
 										<div class="desc">
 											<h2>7월 경주, 다채로움</h2>
 											<p>
-												<a href="#" class="btn btn-primary btn-outline">View
+												<a href="/tour/festivalList.do" class="btn btn-primary btn-outline">View
 													Details</a>
 											</p>
 										</div>
@@ -203,9 +203,9 @@
 									class="col-md-5 col-sm-6 col-xs-12 js-fullheight slider-text">
 									<div class="slider-text-inner">
 										<div class="desc">
-											<h2>경주로 오시는 길</h2>
+											<h2>경주 관광지 만나보기</h2>
 											<p>
-												<a href="#" class="btn btn-primary btn-outline">View
+												<a href="/tour/tourist.do" class="btn btn-primary btn-outline">View
 													Details</a>
 											</p>
 										</div>
@@ -213,7 +213,7 @@
 								</div>
 							</div>
 						</li>
-						<li style="background-image: url(images/donghak2.jpg);">
+						<li style="background-image: url(images/yagyeong.jpg);">
 							<div class="overlay-gradient"></div>
 							<div class="container">
 								<div
@@ -221,10 +221,10 @@
 									<div class="slider-text-inner">
 										<div class="desc">
 											<h2>
-												동학의 발상지 따라<br>현곡여행
+												경주야경투어
 											</h2>
 											<p>
-												<a href="#" class="btn btn-primary btn-outline">View
+												<a href="/packagetour/List/Read.do?pack_no=P005" class="btn btn-primary btn-outline">View
 													Details</a>
 											</p>
 										</div>

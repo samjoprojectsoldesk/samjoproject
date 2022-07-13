@@ -41,7 +41,6 @@
 							<tr>
 								<th scope="col">번호</th>
 								<th scope="col">제목</th>
-								<th scope="col">내용</th>
 								<th scope="col">등록일</th>
 								<th scope="col">수정 / 삭제</th>
 							</tr>
@@ -52,7 +51,6 @@
 									<th scope="row">${dto.board_no}</th>
 									<td
 										onclick="location.href='/notice/read.do?board_no=${dto.board_no}'">${dto.board_title}</td>
-									<td>${dto.board_content}</td>
 									<td>${dto.board_date}</td>
 									<td><button type="button" class="btn btn-light"
 											onclick="location.href='update.do?board_no=${dto.board_no}'">수정</button>

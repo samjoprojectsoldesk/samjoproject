@@ -48,14 +48,6 @@
 				<input type="number" class="form-control" id="c_reserve" name="c_reserve">
 			</div>
 			<div class="form-group">
-				<label for="c_plan_start">모집일정(출발)</label> 
-				<input type="date" class="form-control" id="c_plan_start" name="c_plan_start">
-			</div>
-			<div class="form-group">
-				<label for="c_plan_end">모집일정(도착)</label> 
-				<input type="date" class="form-control" id="c_plan_end" name="c_plan_end">
-			</div>
-			<div class="form-group">
 				<label for="posterMF">이미지</label> 
 				<input type="file" class="form-control-file" id="posterMF" name="posterMF">
 			</div>

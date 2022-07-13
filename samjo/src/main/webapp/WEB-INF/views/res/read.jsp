@@ -10,7 +10,7 @@
 			<div class="slider-text-inner desc">
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
-					class="heading-section">예약 목록</h2>
+					class="heading-section">예약 상세 내역</h2>
 			</div>
 		</div>
 	</div>

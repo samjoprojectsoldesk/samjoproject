@@ -16,7 +16,7 @@
 	</div>
 </aside>
 
-<form name="frm" method="post" action="" class="create" enctype="multipart/form-data">
+
 <div class="row-read">
 	<div class="col-md-12 text-center project">
 		<div class="grid-project">
@@ -32,7 +32,9 @@
 						<li>전화번호&nbsp;&nbsp;&nbsp;&nbsp;${dto.m_phone}</li>
 						<li>종류&emsp;&emsp;&emsp;${dto.m_kind}</li>
 					</ul>
-					<input type="date" class="" id="sdate" name="sdate">
+					<form name="frm" method="post" action="/cart/addCart.do" class="create" enctype="multipart/form-data">
+					<input type="hidden" id="s_code" name="s_code" value="${dto.m_code}">
+					<input type="date" class="sdate" id="sdate" name="sdate">
 					<div>
 						인원수
 						<select class="form-control" id="p_cnt" name="p_cnt">
@@ -46,15 +48,14 @@
 								<option>8</option>
 								<option>9</option>
 						 </select>
-	</div>
-	<button type="submit">장바구니</button>
+					</div>
+					<button type="submit">장바구니</button>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<input type="button" value="수정" onclick="location.href='/admin/maszipupdate.do?m_code=${dto.m_code}'">
-    <input type="button" value="삭제" onclick="location.href='/admin/maszipdelete.do?m_code=${dto.m_code}'">
-	</form>
+
 
 	<div class="col-md-12" id="tab-menu">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -80,7 +81,8 @@
          </div>
 
          <div class="tab-pane fade" id="info" role="tabpanel"
-            aria-labelledby="info-tab" style="margin-top:30px;">${dto.m_content}</div>
+            aria-labelledby="info-tab" style="margin-top:30px;">
+            <div style="white-space: pre;">${dto.m_content}</div></div>
 
          <div class="tab-pane fade" id="review" role="tabpanel"
             aria-labelledby="review-tab" style="margin-top:30px;">

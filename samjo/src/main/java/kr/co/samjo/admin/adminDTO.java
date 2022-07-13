@@ -352,10 +352,6 @@ public class adminDTO {
 	private int c_reserve; // NUMBER NOT NULL 예약가능 차량수
 	private String c_img; // VARCHAR2(255) 이미지
 	private String c_cont; // VARCHAR2(4000)NOT NULL 내용
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date c_plan_start; // VARCHAR2(1000) NOT NULL 모집일정
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date c_plan_end; // VARCHAR2(1000) NOT NULL 모집일정
 
 	public String getC_code() {
 		return c_code;
@@ -418,20 +414,6 @@ public class adminDTO {
 		this.c_cont = c_cont;
 	}
 
-	public Date getC_plan_start() {
-		return c_plan_start;
-	}
-
-	public void setC_plan_start(Date c_plan_start) {
-		this.c_plan_start = c_plan_start;
-	}
-
-	public Date getC_plan_end() {
-		return c_plan_end;
-	}
-
-	public void setC_plan_end(Date c_plan_end) {
-		this.c_plan_end = c_plan_end;
 	}*/
 	/* 렌트카 끝 */
 

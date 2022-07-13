@@ -13,14 +13,12 @@
 				<h2
 					style="margin-top: 300px; text-align: center; font-weight: bold;"
 					class="heading-section">렌트카 목록</h2>
-<<<<<<< HEAD
+
 				<div style="text-align: center;">
 					<button type="button" class="btn btn-primary"
-						onclick="location.href='rentalcarIns.do'">등록</button>
+						onclick="location.href='rentalIns.do'">등록</button>
 				</div>
-=======
-					<button type="button" class="btn btn-primary" onclick="location.href='rentalIns.do'">등록</button>
->>>>>>> 7af3abfc911411e5cb33dd93fd6a90ead347f7fa
+
 			</div>
 		</div>
 	</div>
@@ -55,16 +53,9 @@
 						<tbody>
 							<c:forEach var="dto" items="${list}">
 								<tr>
-<<<<<<< HEAD
-									<th scope="row">${dto.s_cn}</th>
-									<td
-										onclick="location.href='sooksoList/read.do?s_cn=${dto.s_cn}'">${dto.s_name}</td>
-									<td>${dto.s_addr}</td>
-=======
 									<th scope="row">${dto.u_code}</th>
 									<td onclick="location.href='/admin/rentalcarRead.do?u_code=${dto.u_code}'">${dto.u_name}</td>
 									<td>${dto.u_office}</td>
->>>>>>> 7af3abfc911411e5cb33dd93fd6a90ead347f7fa
 									<td><button type="button" class="btn btn-light"
 											onclick="location.href='rentalcarUpdate.do?u_code=${dto.u_code}'">수정</button>
 										<button type="button" class="btn btn-danger"

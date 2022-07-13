@@ -2,6 +2,7 @@ package kr.co.samjo.product.rentalcar;
 
 import java.util.Collections;
 import kr.co.samjo.product.rentalcar.rentalcarDTO;
+import kr.co.samjo.product.rental.rentalDAO;
 import kr.co.samjo.product.rental.rentalDTO;
 import java.util.List;
 
@@ -19,9 +20,11 @@ import net.utility.UploadSaveManager;
 @Controller
 public class rentalcarCont {
 	rentalcarDAO dao = null;
+	rentalDAO udao = null;
 	
 	public rentalcarCont() {
 		dao = new rentalcarDAO();
+		udao = new rentalDAO();
 		System.out.println("-----rentalcarCont객체 생성됨");
 	}
 	//Ins	
@@ -84,12 +87,15 @@ public class rentalcarCont {
 		@RequestMapping("rentalcar/Read.do")
 			public ModelAndView Read(String c_code, HttpServletRequest req) {
 			ModelAndView mav = new ModelAndView();
+			rentalDTO udto = udao.read(req.getParameter("u_code"));
 			rentalcarDTO dto = dao.read(c_code);
 			mav.setViewName("rentalcar/Read");
+			mav.addObject("udto",udto);
 			mav.addObject("dto", dto);
 
 			int totalRowCount=dao.reviewtotalRowCount(c_code); //총 글갯수
 		       
+			int totalRowCount2=dao.totalRowCount();
 	        //페이징
 	        int numPerPage   = 9;    // 한 페이지당 레코드 갯수
 	        int pagePerBlock = 10;   // 페이지 리스트
@@ -113,11 +119,18 @@ public class rentalcarCont {
 	        int endPage   = startPage+pagePerBlock+1;
 	       
 	       
-	        List list=null;     
+	        List list=null; 
+	        List list2=null;
 	        if(totalRowCount>0){           
 	              list=dao.reviewList(c_code, startRow, endRow);          
 	        } else {           
 	              list=Collections.EMPTY_LIST;           
+	        }//if end
+
+	        if(totalRowCount2>0){           
+	              list2=dao.list(startRow, endRow);          
+	        } else {           
+	              list2=Collections.EMPTY_LIST;           
 	        }//if end
 	         
 	        int number=0;
@@ -133,6 +146,8 @@ public class rentalcarCont {
 	        mav.addObject("startPage", startPage);
 	        mav.addObject("endPage",   endPage);
 	        mav.addObject("list", list);
+	        mav.addObject("list2", list2);
+	        
 			return mav;
 		}// read() end
 		
